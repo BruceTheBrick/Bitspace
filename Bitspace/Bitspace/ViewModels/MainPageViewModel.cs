@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Bitspace.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : BasePageViewModel
     {
         public MainPageViewModel(INavigationService navigationService)
             : base(navigationService)
