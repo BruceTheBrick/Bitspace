@@ -1,6 +1,10 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Bitspace.Droid.Services.DeviceLocation;
+using Bitspace.Droid.Services.FirebaseAnalyticsService;
+using Bitspace.Services.DeviceLocation;
+using Bitspace.Services.FirebaseAnalytics;
 using Prism;
 using Prism.Ioc;
 
@@ -14,7 +18,8 @@ namespace Bitspace.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Rg.Plugins.Popup.Popup.Init(this);
+            Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App(new AndroidInitializer()));
         }
 
@@ -24,6 +29,11 @@ namespace Bitspace.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        public override void OnBackPressed()
+        {
+            Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
+        }
     }
 
     public class AndroidInitializer : IPlatformInitializer
@@ -31,6 +41,8 @@ namespace Bitspace.Droid
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
+            containerRegistry.Register<IDeviceLocation, DeviceLocationService>();
+            containerRegistry.Register<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
         }
     }
 }

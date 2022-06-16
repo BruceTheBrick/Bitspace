@@ -26,6 +26,7 @@
     <JavaOptions />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,18 +66,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers">
-      <Version>1.1.118</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
+    <PackageReference Include="Plugin.CurrentActivity">
+      <Version>2.1.0.4</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.4.1" />
+    <PackageReference Include="Xamarin.Firebase.Analytics">
+      <Version>120.0.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.3.1" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Base">
+      <Version>118.0.1.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainApplication.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Services\DeviceLocation\DeviceLocationService.cs" />
+    <Compile Include="Services\FirebaseAnalyticsService\FirebaseAnalyticsService.cs" />
     <Compile Include="SplashActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <LinkDescription Include="LinkerSettings.xml" />
@@ -85,6 +93,7 @@
     <None Include="..\Bitspace\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
+    <GoogleServicesJson Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
@@ -123,4 +132,9 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionBitspaceAndroidHideInfoBar="True" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

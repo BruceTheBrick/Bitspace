@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="Bitspace.Styles.Styles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:bitspace="clr-namespace:Bitspace"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--  Colors  -->
+    <bitspace:ColorRef Color="{StaticResource Dark}" x:Key="ColorPrimary" />
+    <bitspace:ColorRef Color="{StaticResource Blue}" x:Key="ColorSecondary" />
+    <bitspace:ColorRef Color="{StaticResource Green}" x:Key="TextColor" />
+
+    <!--  ContentPage  -->
+    <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorPrimary}" />
+    </Style>
+
+    <!--  Label  -->
+    <Style ApplyToDerivedTypes="True" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    Title="{Binding Title}"
+    x:Class="Bitspace.Pages.WeatherForecast.WeatherForecastPage"
+    x:DataType="weatherforecast:WeatherForecastPageViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:weatherforecast="clr-namespace:Bitspace.Pages.WeatherForecast"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ContentPage.Resources>
+        <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+    </ContentPage.Resources>
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <StackLayout IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}">
+            <Label
+                FontSize="Title"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Temperature, StringFormat='{0:F2}°C'}" />
+            <Label
+                FontSize="Title"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Weather.Name}" />
+        </StackLayout>
+        <StackLayout IsVisible="{Binding IsBusy}">
+            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" />
+            <Label HorizontalTextAlignment="Center" Text="Loading weather information, please wait..." />
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

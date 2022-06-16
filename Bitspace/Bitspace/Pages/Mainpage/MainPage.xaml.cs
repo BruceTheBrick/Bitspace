@@ -1,4 +1,4 @@
-﻿namespace Bitspace.Views
+﻿namespace Bitspace.Pages.Mainpage
 {
     public partial class MainPage
     {
