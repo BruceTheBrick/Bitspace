@@ -185,6 +185,8 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\ic_barcode.svg" />
+    <BundleResource Include="Resources\ic_chevron_right.svg" />
     <BundleResource Include="Resources\LaunchIcon%401x.png" />
     <BundleResource Include="Resources\LaunchIcon%402x.png" />
     <BundleResource Include="Resources\LaunchIcon%403x.png" />
@@ -197,6 +199,7 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.3.1" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />

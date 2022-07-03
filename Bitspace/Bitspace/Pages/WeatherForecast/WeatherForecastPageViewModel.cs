@@ -1,37 +1,34 @@
-﻿using Bitspace.APIs.OpenWeather;
-using Bitspace.APIs.OpenWeather.Responses;
-using Bitspace.Services.FirebaseAnalytics;
+﻿using System.Threading.Tasks;
+using Bitspace.APIs.OpenWeather.Data_Layers;
+using Bitspace.APIs.OpenWeather.Models;
 using Prism.Navigation;
 
-namespace Bitspace.Pages.WeatherForecast
+namespace Bitspace.Pages.WeatherForecast;
+
+public class WeatherForecastPageViewModel : BasePageViewModel
 {
-    public class WeatherForecastPageViewModel : BasePageViewModel
+    private readonly ICurrentWeatherService _currentWeatherService;
+    public WeatherForecastPageViewModel(
+        INavigationService navigationService,
+        ICurrentWeatherService currentWeatherService)
+        : base(navigationService)
     {
-        private readonly IFirebaseAnalyticsService _firebaseAnalyticsService;
-        private readonly IOpenWeatherService _openWeatherService;
-        public WeatherForecastPageViewModel(
-            INavigationService navigationService,
-            IOpenWeatherService openWeatherService,
-            IFirebaseAnalyticsService firebaseAnalyticsService)
-            : base(navigationService)
-        {
-            _openWeatherService = openWeatherService;
-            _firebaseAnalyticsService = firebaseAnalyticsService;
-            Title = "Main Page";
-        }
+        _currentWeatherService = currentWeatherService;
+        Title = "Main Page";
+    }
 
-        public double Temperature { get; set; }
-        public CurrentWeatherResponse Weather { get; set; }
+    public CurrentWeatherViewModel Weather { get; set; }
 
-        public override async void Initialize(INavigationParameters parameters)
-        {
-            base.Initialize(parameters);
-            IsBusy = true;
-            var weather = await _openWeatherService.GetCurrentWeather();
-            Weather = weather;
-            Temperature = weather.Main.Temperature;
-            _firebaseAnalyticsService.LogEvent("Check out my event!");
-            IsBusy = false;
-        }
+    public override async Task InitializeAsync(INavigationParameters parameters)
+    {
+        await base.InitializeAsync(parameters);
+        Task.Run(UpdateCurrentWeather);
+    }
+
+    private async Task UpdateCurrentWeather()
+    {
+        IsBusy = true;
+        Weather = await _currentWeatherService.GetCurrentWeather();
+        IsBusy = false;
     }
 }

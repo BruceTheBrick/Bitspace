@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.APIs.OpenWeather.Responses;
+using Bitspace.APIs.OpenWeather.Response_Models;
 
 namespace Bitspace.APIs.OpenWeather
 {
-    public interface IOpenWeatherService
+    public interface IOpenWeatherAPI
     {
         Task<CurrentWeatherResponse> GetCurrentWeather();
     }

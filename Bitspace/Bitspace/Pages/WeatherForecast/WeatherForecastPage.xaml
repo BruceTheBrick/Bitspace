@@ -1,31 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    Title="{Binding Title}"
     x:Class="Bitspace.Pages.WeatherForecast.WeatherForecastPage"
-    x:DataType="weatherforecast:WeatherForecastPageViewModel"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Bitspace.Pages.WeatherForecast.Controls;assembly=Bitspace"
+    xmlns:controls1="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+    xmlns:tempConverter="clr-namespace:Bitspace.Converters;assembly=Bitspace"
     xmlns:weatherforecast="clr-namespace:Bitspace.Pages.WeatherForecast"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-
+    Title="{Binding Title}"
+    x:DataType="weatherforecast:WeatherForecastPageViewModel">
     <ContentPage.Resources>
-        <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        <tempConverter:TemperatureToColorConverter x:Key="TemperatureToColorConverter" />
     </ContentPage.Resources>
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <StackLayout IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}">
+    <Grid
+        Padding="24"
+        ColumnDefinitions="*, *, *"
+        RowDefinitions="auto, *, *, auto">
+        <controls1:SkeletonSection
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            IsLoading="{Binding IsBusy}">
             <Label
-                FontSize="Title"
-                HorizontalTextAlignment="Center"
-                Text="{Binding Temperature, StringFormat='{0:F2}°C'}" />
+                CharacterSpacing="2"
+                FontSize="Subtitle"
+                Text="{Binding Weather.Suburb}"
+                TextTransform="Uppercase" />
+        </controls1:SkeletonSection>
+        <controls1:SkeletonSection
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            IsLoading="{Binding IsBusy}">
             <Label
-                FontSize="Title"
-                HorizontalTextAlignment="Center"
-                Text="{Binding Weather.Name}" />
-        </StackLayout>
-        <StackLayout IsVisible="{Binding IsBusy}">
-            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" />
-            <Label HorizontalTextAlignment="Center" Text="Loading weather information, please wait..." />
-        </StackLayout>
-    </StackLayout>
-
+                FontSize="124"
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Start"
+                Text="{Binding Weather.Temperature, StringFormat='{0:F0}°'}"
+                TextColor="{Binding Weather.Temperature, Converter={StaticResource TemperatureToColorConverter}}"
+                VerticalOptions="Start" />
+        </controls1:SkeletonSection>
+        <controls:InfoCard
+            x:Name="InfoCard"
+            Grid.Row="3"
+            Grid.ColumnSpan="3"
+            Humidity="{Binding Weather.Humidity}"
+            IsLoading="{Binding IsBusy}"
+            Pressure="{Binding Weather.Pressure}"
+            WindSpeed="{Binding Weather.WindSpeed}" />
+    </Grid>
 </ContentPage>

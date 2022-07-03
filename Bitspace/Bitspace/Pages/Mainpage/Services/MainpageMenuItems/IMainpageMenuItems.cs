@@ -6,6 +6,6 @@ namespace Bitspace.Pages.Mainpage.Services.MainpageMenuItems
 {
     public interface IMainpageMenuItems
     {
-        public Task<ObservableCollection<MenuItemModel>> GetMenuItems();
+        public Task<ObservableCollection<MenuListItemViewModel>> GetMenuItems();
     }
 }

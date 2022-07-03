@@ -2,10 +2,8 @@
 using System.Threading.Tasks;
 using Bitspace.Constants;
 using Bitspace.Pages.Mainpage.Models;
-using Bitspace.Pages.WeatherForecast;
 using Bitspace.Registers;
 using Bitspace.Services.FirebaseRemoteConfig;
-using Prism.Navigation.Xaml;
 
 namespace Bitspace.Pages.Mainpage.Services.MainpageMenuItems
 {
@@ -17,16 +15,28 @@ namespace Bitspace.Pages.Mainpage.Services.MainpageMenuItems
             _remoteConfigService = remoteConfigService;
         }
 
-        public async Task<ObservableCollection<MenuItemModel>> GetMenuItems()
+        public async Task<ObservableCollection<MenuListItemViewModel>> GetMenuItems()
         {
-            var items = new ObservableCollection<MenuItemModel>();
+            var items = new ObservableCollection<MenuListItemViewModel>();
             if (await _remoteConfigService.IsEnabled(RemoteConfigConstants.MAINPAGE_MENUITEM_WEATHER))
             {
-                items.Add(new MenuItemModel
+                items.Add(new MenuListItemViewModel
                 {
-                    Image = "image",
-                    Title = MainpageRegister.WEATHER_FORECAST_TITLE,
-                    Type = NavigationConstants.WeatherForecast,
+                    Icon = "ic_weather",
+                    ActionIcon = "ic_chevron_right",
+                    Text = MainpageRegister.WEATHER_FORECAST_TITLE,
+                    NavigationConstant = NavigationConstants.WeatherForecast,
+                });
+            }
+
+            if (await _remoteConfigService.IsEnabled(RemoteConfigConstants.MAINPAGE_MENUITEM_BARCODE_SCANNER))
+            {
+                items.Add(new MenuListItemViewModel
+                {
+                    Icon = "ic_barcode",
+                    ActionIcon = "ic_chevron_right",
+                    Text = MainpageRegister.BARCODE_SCANNER_TITLE,
+                    NavigationConstant = NavigationConstants.BarcodeScanner,
                 });
             }
 

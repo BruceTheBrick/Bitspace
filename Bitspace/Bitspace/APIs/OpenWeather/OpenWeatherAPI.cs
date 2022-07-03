@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.APIs.OpenWeather.Responses;
+using Bitspace.APIs.OpenWeather.Response_Models;
 using Bitspace.Services.DeviceLocation;
 using Newtonsoft.Json;
 
 namespace Bitspace.APIs.OpenWeather
 {
-    public class OpenWeatherAPI : IOpenWeatherService
+    public class OpenWeatherAPI : IOpenWeatherAPI
     {
         private readonly IHttpClient _client;
         private readonly IDeviceLocation _deviceLocationService;

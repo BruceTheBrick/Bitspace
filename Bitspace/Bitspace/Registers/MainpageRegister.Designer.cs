@@ -61,11 +61,38 @@ namespace Bitspace.Registers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Barcode Scanner.
+        /// </summary>
+        internal static string BARCODE_SCANNER_TITLE {
+            get {
+                return ResourceManager.GetString("BARCODE_SCANNER_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BITSPACE.
+        /// </summary>
+        internal static string BITSPACE {
+            get {
+                return ResourceManager.GetString("BITSPACE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Weather Forecast.
         /// </summary>
         internal static string WEATHER_FORECAST_TITLE {
             get {
                 return ResourceManager.GetString("WEATHER_FORECAST_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to.
+        /// </summary>
+        internal static string WELCOME_TO {
+            get {
+                return ResourceManager.GetString("WELCOME_TO", resourceCulture);
             }
         }
     }

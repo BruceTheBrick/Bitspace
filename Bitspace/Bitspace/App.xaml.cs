@@ -1,9 +1,11 @@
 using Bitspace.APIs;
 using Bitspace.APIs.OpenWeather;
+using Bitspace.APIs.OpenWeather.Data_Layers;
 using Bitspace.Constants;
 using Bitspace.Pages.Mainpage;
 using Bitspace.Pages.Mainpage.Services.MainpageMenuItems;
 using Bitspace.Pages.WeatherForecast;
+using Bitspace.Services.CachingService;
 using Bitspace.Services.DeviceInformation;
 using Bitspace.Services.FirebaseRemoteConfig;
 using DLToolkit.Forms.Controls;
@@ -27,6 +29,7 @@ namespace Bitspace
         {
             InitializeComponent();
             FlowListView.Init();
+            Sharpnado.MaterialFrame.Initializer.Initialize(false, true);
             await NavigationService.NavigateAsync($"NavigationPage/{NavigationConstants.Mainpage}");
         }
 
@@ -34,6 +37,7 @@ namespace Bitspace
         {
             RegisterServices(containerRegistry);
             RegisterAPIs(containerRegistry);
+            RegisterDataLayers(containerRegistry);
             RegisterNavigation(containerRegistry);
         }
 
@@ -45,6 +49,7 @@ namespace Bitspace
             containerRegistry.Register<IFirebaseRemoteConfig, FirebaseRemoteConfigService>();
             containerRegistry.Register<IHttpClient, ExtendedHttpClient>();
             containerRegistry.Register<IMainpageMenuItems, MainpageMenuItemService>();
+            containerRegistry.RegisterSingleton<ICachingService, CachingService>();
         }
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)
@@ -56,7 +61,12 @@ namespace Bitspace
 
         private void RegisterAPIs(IContainerRegistry containerRegistry)
         {
-            containerRegistry.Register<IOpenWeatherService, OpenWeatherAPI>();
+            containerRegistry.Register<IOpenWeatherAPI, OpenWeatherAPI>();
+        }
+
+        private void RegisterDataLayers(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterSingleton<ICurrentWeatherService, CurrentWeatherService>();
         }
     }
 }

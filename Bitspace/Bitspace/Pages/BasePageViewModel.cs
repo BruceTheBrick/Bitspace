@@ -9,15 +9,15 @@ namespace Bitspace.Pages
     {
         private string _title;
 
-        public BasePageViewModel(INavigationService navigationService)
+        protected BasePageViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
         }
 
         public string Title
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
         public bool IsBusy { get; set; }

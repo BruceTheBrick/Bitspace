@@ -4,5 +4,6 @@
     {
         public static string Mainpage = nameof(Mainpage);
         public static string WeatherForecast = nameof(WeatherForecast);
+        public static string BarcodeScanner = nameof(BarcodeScanner);
     }
 }

@@ -1,25 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    Title="{Binding Title}"
+    NavigationPage.HasNavigationBar="False"
     x:Class="Bitspace.Pages.Mainpage.MainPage"
     x:DataType="mainpage:MainPageViewModel"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+    xmlns:behaviors="http://prismlibrary.com"
+    xmlns:controls="clr-namespace:Bitspace.Pages.Mainpage.Controls;assembly=Bitspace"
+    xmlns:controls1="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:mainpage="clr-namespace:Bitspace.Pages.Mainpage;assembly=Bitspace"
-    xmlns:mit="clr-namespace:Bitspace.Pages.Mainpage.Controls;assembly=Bitspace"
     xmlns:models="clr-namespace:Bitspace.Pages.Mainpage.Models;assembly=Bitspace"
+    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:registers="clr-namespace:Bitspace.Registers;assembly=Bitspace"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <flv:FlowListView
-        FlowColumnCount="1"
-        FlowItemTappedCommand="{Binding MenuTileSelectedCommand}"
-        FlowItemsSource="{Binding MenuItems}"
-        HasUnevenRows="True"
-        Margin="12,6">
-        <flv:FlowListView.FlowColumnTemplate>
-            <DataTemplate x:DataType="models:MenuItemModel">
-                <mit:MenuItemTile Title="{Binding Title}" />
-            </DataTemplate>
-        </flv:FlowListView.FlowColumnTemplate>
-    </flv:FlowListView>
-
+    <StackLayout Spacing="0">
+        <Grid
+            Margin="0,24"
+            Padding="18"
+            RowDefinitions="auto, auto, auto"
+            RowSpacing="12">
+            <Label
+                FontSize="Header"
+                Grid.Row="0"
+                HorizontalOptions="CenterAndExpand"
+                Text="{x:Static registers:MainpageRegister.WELCOME_TO}" />
+            <controls1:AppIcon Grid.Row="1" HeightRequest="60" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="Large"
+                Grid.Row="2"
+                HorizontalOptions="CenterAndExpand"
+                Text="{x:Static registers:MainpageRegister.BITSPACE}"
+                x:Name="AppName" />
+        </Grid>
+        <pancakeView:PancakeView
+            BackgroundColor="White"
+            CornerRadius="20"
+            Padding="0,20"
+            Shadow="{pancakeView:ShadowMarkup Color=WhiteSmoke,
+                                              Offset='10,10'}">
+            <ListView
+                HasUnevenRows="True"
+                ItemsSource="{Binding MenuItems}"
+                SelectionMode="None">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior
+                        Command="{Binding ItemSelectedCommand}"
+                        EventArgsParameterPath="Item"
+                        EventName="ItemTapped" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:MenuListItemViewModel">
+                        <ViewCell>
+                            <controls:MenuListItem ActionIconTint="Gray" MenuListItemViewModel="{Binding}" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </pancakeView:PancakeView>
+    </StackLayout>
 </ContentPage>

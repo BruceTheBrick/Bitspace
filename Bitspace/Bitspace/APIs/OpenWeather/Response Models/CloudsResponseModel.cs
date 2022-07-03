@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Bitspace.APIs.OpenWeather.Responses
+namespace Bitspace.APIs.OpenWeather.Response_Models
 {
     public class CloudsResponseModel
     {

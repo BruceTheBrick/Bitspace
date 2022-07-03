@@ -23,6 +23,7 @@ namespace Bitspace.iOS
         {
             Rg.Plugins.Popup.Popup.Init();
             Xamarin.Forms.Forms.Init();
+            Sharpnado.MaterialFrame.iOS.iOSMaterialFrameRenderer.Init();
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

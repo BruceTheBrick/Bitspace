@@ -21,4 +21,13 @@
     <data name="WEATHER_FORECAST_TITLE" xml:space="preserve">
         <value>Weather Forecast</value>
     </data>
+    <data name="WELCOME_TO" xml:space="preserve">
+        <value>Welcome to</value>
+    </data>
+    <data name="BITSPACE" xml:space="preserve">
+        <value>BITSPACE</value>
+    </data>
+    <data name="BARCODE_SCANNER_TITLE" xml:space="preserve">
+        <value>Barcode Scanner</value>
+    </data>
 </root>

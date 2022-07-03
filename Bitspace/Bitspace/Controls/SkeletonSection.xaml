@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Bitspace.Controls.SkeletonSection"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:skeleton="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+    x:Name="This"
+    BackgroundColor="Transparent">
+    <ContentView.Resources>
+        <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid>
+            <StackLayout x:Name="ContentStack" IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}, Source={x:Reference This}}" />
+            <Frame
+                skeleton:Skeleton.Animation="{skeleton:DefaultAnimation Fade}"
+                skeleton:Skeleton.BackgroundColor="{Binding LoadingBackgroundColor, Source={x:Reference This}}"
+                skeleton:Skeleton.IsBusy="{Binding IsLoading, Source={x:Reference This}}"
+                BackgroundColor="Transparent"
+                CornerRadius="16"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding IsLoading, Source={x:Reference This}}"
+                Opacity="0.3"
+                VerticalOptions="FillAndExpand" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

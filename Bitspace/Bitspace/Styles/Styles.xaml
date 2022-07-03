@@ -2,17 +2,20 @@
 <ResourceDictionary
     x:Class="Bitspace.Styles.Styles"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:bitspace="clr-namespace:Bitspace"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bitspace="clr-namespace:Bitspace">
 
     <!--  Colors  -->
-    <bitspace:ColorRef Color="{StaticResource Dark}" x:Key="ColorPrimary" />
-    <bitspace:ColorRef Color="{StaticResource Blue}" x:Key="ColorSecondary" />
-    <bitspace:ColorRef Color="{StaticResource Green}" x:Key="TextColor" />
+    <bitspace:ColorRef x:Key="ColorPrimary" Color="{StaticResource Dark}" />
+    <bitspace:ColorRef x:Key="ColorSecondary" Color="{StaticResource Blue}" />
+    <bitspace:ColorRef x:Key="BackgroundColor" Color="{StaticResource Dark}" />
+    <bitspace:ColorRef x:Key="TextColor" Color="{StaticResource Green}" />
+    <bitspace:ColorRef x:Key="LoadingColor" Color="{StaticResource DarkThemeSkeletonLoader}" />
+
 
     <!--  ContentPage  -->
     <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
-        <Setter Property="BackgroundColor" Value="{StaticResource ColorPrimary}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
     </Style>
 
     <!--  Label  -->

@@ -14,6 +14,14 @@ namespace Bitspace
 
         public Color Color { get; set; }
 
-        public static implicit operator Color(ColorRef x) => x.Color;
+        public static implicit operator Color(ColorRef x)
+        {
+            return x.Color;
+        }
+
+        public static implicit operator Color?(ColorRef x)
+        {
+            return x.Color == default ? default : x.Color;
+        }
     }
 }
