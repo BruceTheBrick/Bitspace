@@ -18,7 +18,7 @@
                 skeleton:Skeleton.BackgroundColor="{Binding LoadingBackgroundColor, Source={x:Reference This}}"
                 skeleton:Skeleton.IsBusy="{Binding IsLoading, Source={x:Reference This}}"
                 BackgroundColor="Transparent"
-                CornerRadius="16"
+                CornerRadius="18"
                 HorizontalOptions="FillAndExpand"
                 IsVisible="{Binding IsLoading, Source={x:Reference This}}"
                 Opacity="0.3"

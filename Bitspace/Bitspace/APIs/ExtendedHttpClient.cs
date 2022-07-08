@@ -6,21 +6,31 @@ namespace Bitspace.APIs
 {
     public class ExtendedHttpClient : IHttpClient
     {
-        private readonly HttpClient _client;
+        private HttpClient _client;
 
         public ExtendedHttpClient()
         {
             _client = new HttpClient();
         }
 
-        public Task<HttpResponseMessage> GetAsync(Uri uri)
+        public void SetTimeout(int seconds)
         {
-            return _client.GetAsync(uri);
+            _client.Timeout = TimeSpan.FromSeconds(seconds);
         }
 
-        public Task<HttpResponseMessage> GetAsync(string url)
+        public int GetTimeout()
         {
-            return _client.GetAsync(url);
+            return (int)_client.Timeout.TotalSeconds;
+        }
+
+        public async Task<HttpResponseMessage> GetAsync(Uri uri)
+        {
+            return await _client.GetAsync(uri);
+        }
+
+        public async Task<HttpResponseMessage> GetAsync(string url)
+        {
+            return await _client.GetAsync(url);
         }
     }
 }

@@ -1,11 +1,12 @@
 using Bitspace.APIs;
 using Bitspace.APIs.OpenWeather;
-using Bitspace.APIs.OpenWeather.Data_Layers;
 using Bitspace.Constants;
 using Bitspace.Pages.Mainpage;
 using Bitspace.Pages.Mainpage.Services.MainpageMenuItems;
 using Bitspace.Pages.WeatherForecast;
+using Bitspace.Services.BiometricService;
 using Bitspace.Services.CachingService;
+using Bitspace.Services.CurrentWeatherService;
 using Bitspace.Services.DeviceInformation;
 using Bitspace.Services.FirebaseRemoteConfig;
 using DLToolkit.Forms.Controls;
@@ -50,6 +51,7 @@ namespace Bitspace
             containerRegistry.Register<IHttpClient, ExtendedHttpClient>();
             containerRegistry.Register<IMainpageMenuItems, MainpageMenuItemService>();
             containerRegistry.RegisterSingleton<ICachingService, CachingService>();
+            containerRegistry.Register<IBiometricService, BiometricService>();
         }
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)

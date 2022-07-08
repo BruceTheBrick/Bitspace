@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Bitspace.APIs.OpenWeather.Models;
 
-namespace Bitspace.APIs.OpenWeather.Data_Layers;
+namespace Bitspace.Services.CurrentWeatherService;
 
 public interface ICurrentWeatherService
 {

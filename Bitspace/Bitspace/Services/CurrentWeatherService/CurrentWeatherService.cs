@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Bitspace.APIs.OpenWeather;
 using Bitspace.APIs.OpenWeather.Models;
 using Bitspace.APIs.OpenWeather.Response_Models;
 using Bitspace.Data_Layers;
 
-namespace Bitspace.APIs.OpenWeather.Data_Layers;
+namespace Bitspace.Services.CurrentWeatherService;
 
 public class CurrentWeatherService : BaseDataLayer, ICurrentWeatherService
 {
@@ -24,7 +25,6 @@ public class CurrentWeatherService : BaseDataLayer, ICurrentWeatherService
             await FetchCurrentWeather();
         }
 
-        InitCurrentWeatherViewModel();
         return _currentWeatherViewModel;
     }
 
@@ -80,8 +80,13 @@ public class CurrentWeatherService : BaseDataLayer, ICurrentWeatherService
 
     private async Task FetchCurrentWeather()
     {
-        _currentWeatherResponse = await _openWeatherApi.GetCurrentWeather();
-        UpdateDateTimeLastUpdate();
+        var response = await _openWeatherApi.GetCurrentWeather();
+        if (response.IsSuccess)
+        {
+            _currentWeatherResponse = response.Data;
+            InitCurrentWeatherViewModel();
+            UpdateDateTimeLastUpdate();
+        }
     }
 
     private void InitCurrentWeatherViewModel()

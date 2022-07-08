@@ -69,8 +69,13 @@
     <PackageReference Include="Plugin.CurrentActivity">
       <Version>2.1.0.4</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.Fingerprint" Version="2.1.5" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.4.0.2" />
+    <PackageReference Include="Xamarin.AndroidX.Core" Version="1.8.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4" Version="1.0.0.14" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.4.1.2" />
     <PackageReference Include="Xamarin.Firebase.Analytics">
       <Version>120.0.1.1</Version>
     </PackageReference>
@@ -78,6 +83,7 @@
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.3.1" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
     <PackageReference Include="Xamarin.Forms.Skeleton" Version="2.0.0" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.6.1.1" />
     <PackageReference Include="Xamarin.GooglePlayServices.Base">
       <Version>118.0.1.1</Version>
     </PackageReference>

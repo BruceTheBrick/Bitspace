@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.APIs.OpenWeather.Data_Layers;
 using Bitspace.APIs.OpenWeather.Models;
+using Bitspace.Services.CurrentWeatherService;
 using Prism.Navigation;
 
 namespace Bitspace.Pages.WeatherForecast;

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using Prism.AppModel;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -47,6 +48,7 @@ namespace Bitspace.Pages
 
         public virtual void OnAppearing()
         {
+            Debug.WriteLine(NavigationService.GetNavigationUriPath());
         }
 
         public virtual void OnDisappearing()

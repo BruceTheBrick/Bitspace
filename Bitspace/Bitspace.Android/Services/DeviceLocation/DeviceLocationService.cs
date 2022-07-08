@@ -1,6 +1,7 @@
 ﻿using Bitspace.Services.DeviceLocation;
 using Bitspace.Services.DeviceLocation.Models;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
@@ -10,13 +11,23 @@ namespace Bitspace.Droid.Services.DeviceLocation
     {
         public async Task<LocationModel> GetCurrentLocation(LocationAccuracy accuracy, int timeout = 5)
         {
-            var request = new GeolocationRequest(LocationAccuracyToGeolocationAccuray(accuracy), TimeSpan.FromSeconds(timeout));
-            var location = await Geolocation.GetLocationAsync(request);
-            return new LocationModel
+            try
             {
-                Latitude = location.Latitude,
-                Longitude = location.Longitude,
-            };
+                var request = new GeolocationRequest(LocationAccuracyToGeolocationAccuray(accuracy),
+                    TimeSpan.FromSeconds(timeout));
+                var location = await Geolocation.GetLocationAsync(request);
+                return new LocationModel
+                {
+                    Latitude = location.Latitude,
+                    Longitude = location.Longitude,
+                };
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
+
+            return null;
         }
 
         private GeolocationAccuracy LocationAccuracyToGeolocationAccuray(LocationAccuracy accuracy)

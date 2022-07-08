@@ -3,8 +3,10 @@ using Android.Content.PM;
 using Android.OS;
 using Bitspace.Droid.Services.DeviceLocation;
 using Bitspace.Droid.Services.FirebaseAnalyticsService;
+using Bitspace.Services.BiometricService;
 using Bitspace.Services.DeviceLocation;
 using Bitspace.Services.FirebaseAnalytics;
+using Plugin.Fingerprint;
 using Prism;
 using Prism.Ioc;
 
@@ -20,6 +22,7 @@ namespace Bitspace.Droid
 
             Rg.Plugins.Popup.Popup.Init(this);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CrossFingerprint.SetCurrentActivityResolver(() => Xamarin.Essentials.Platform.CurrentActivity);
             LoadApplication(new App(new AndroidInitializer()));
         }
 
@@ -41,6 +44,11 @@ namespace Bitspace.Droid
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
+            RegisterServices(containerRegistry);
+        }
+
+        private void RegisterServices(IContainerRegistry containerRegistry)
+        {
             containerRegistry.Register<IDeviceLocation, DeviceLocationService>();
             containerRegistry.Register<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
         }

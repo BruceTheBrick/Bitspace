@@ -5,6 +5,6 @@ namespace Bitspace.APIs.OpenWeather
 {
     public interface IOpenWeatherAPI
     {
-        Task<CurrentWeatherResponse> GetCurrentWeather();
+        Task<Response<CurrentWeatherResponse>> GetCurrentWeather();
     }
 }

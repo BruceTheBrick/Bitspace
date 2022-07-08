@@ -6,7 +6,7 @@ public class BaseDataLayer
 {
     protected const int EXPIRY_MINS = 5;
 
-    protected DateTime DateTimeLastUpdate;
+    public DateTime DateTimeLastUpdate;
 
     protected bool IsExpired()
     {
