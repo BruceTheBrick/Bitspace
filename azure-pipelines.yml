@@ -9,6 +9,6 @@ pool:
 steps:    
 - task: gitsync@1
   inputs:
-    GitRepoUrl: 'https://drtardis1:$(GithubPAT)@github.com/Bitspace.git'
+    GitRepoUrl: 'https://drtardis1:$(GithubPAT)@github.com/DrTardis1/Bitspace.git'
 
 
