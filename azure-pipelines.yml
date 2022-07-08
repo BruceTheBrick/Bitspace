@@ -4,7 +4,7 @@ trigger:
      - '*'
 
 pool:
-  vmImage: windows
+  vmImage: windows-latest
 
 steps:    
 - task: gitsync@1
