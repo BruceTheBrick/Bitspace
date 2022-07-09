@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Bitspace.Pages.Mainpage.Models;
 using Bitspace.Pages.Mainpage.Services.MainpageMenuItems;
-using Bitspace.Registers;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
 

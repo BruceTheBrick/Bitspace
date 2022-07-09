@@ -34,8 +34,4 @@
     <ProjectReference Include="..\Bitspace\Bitspace\Bitspace.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataLayers" />
-  </ItemGroup>
-
 </Project>
