@@ -27,7 +27,7 @@
     <data name="BITSPACE" xml:space="preserve">
         <value>BITSPACE</value>
     </data>
-    <data name="BARCODE_SCANNER_TITLE" xml:space="preserve">
-        <value>Barcode Scanner</value>
+    <data name="QR_CODE_SCANNER_TITLE" xml:space="preserve">
+        <value>QR Code Scanner</value>
     </data>
 </root>

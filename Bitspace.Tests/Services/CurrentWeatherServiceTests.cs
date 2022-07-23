@@ -1,9 +1,8 @@
-﻿using Bitspace.APIs;
-using Bitspace.APIs.OpenWeather;
-using Bitspace.APIs.OpenWeather.Response_Models;
+﻿using Bitspace.APIs.OpenWeather;
 using Bitspace.Services.CurrentWeatherService;
+using Bitspace.Services.PermissionService;
+using Bitspace.Services.TimeoutService;
 using Bitspace.Tests.Base;
-using Bitspace.Tests.Factories.Responses;
 using FluentAssertions;
 using Moq;
 using Xunit;
@@ -18,7 +17,8 @@ public class CurrentWeatherServiceTests : UnitTestBase<CurrentWeatherService>
     public async Task GetCurrentWeather_ShouldCallAPI_WhenIsExpired()
     {
         //Arrange
-        Sut.DateTimeLastUpdate = DateTime.Now - TimeSpan.FromMinutes(30);
+        Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(true);
+        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired()).Returns(true);
         
         //Act
         await Sut.GetCurrentWeather();
@@ -28,36 +28,30 @@ public class CurrentWeatherServiceTests : UnitTestBase<CurrentWeatherService>
     }
 
     [Fact]
-    public async Task GetCurrentWeather_ShouldUpdateDateTimeLastUpdated_WhenIsExpired()
+    public async Task GetCurrentWeather_ShouldNotCallAPI_WhenNotIsExpired()
     {
         //Arrange
-        Sut.DateTimeLastUpdate = DateTime.Now - TimeSpan.FromMinutes(30);
-        var prevDateTimeUpdate = Sut.DateTimeLastUpdate;
-        var apiResponse = new Response<CurrentWeatherResponse>
-        {
-            IsSuccess = true,
-            Data = CurrentWeatherResponseFactory.GetModel()
-        };
-        Mocker.GetMock<IOpenWeatherAPI>().Setup(x => x.GetCurrentWeather()).ReturnsAsync(apiResponse);
+        Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(true);
+        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired()).Returns(false);
         
         //Act
         await Sut.GetCurrentWeather();
 
         //Assert
-        Sut.DateTimeLastUpdate.Should().NotBe(prevDateTimeUpdate);
-        Sut.DateTimeLastUpdate.Should().BeAfter(prevDateTimeUpdate);
+        Mocker.GetMock<IOpenWeatherAPI>().Verify(x => x.GetCurrentWeather(), Times.Never);
     }
 
     [Fact]
-    public async Task GetCurrentWeather_ShouldNotCallAPI_WhenNotIsExpired()
+    public async Task GetCurrentWeather_ShouldReturnNull_WhenPermissionRequestReturnsFalse()
     {
         //Arrange
-        Sut.DateTimeLastUpdate = DateTime.Now;
+        Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(false);
+
         //Act
-        await Sut.GetCurrentWeather();
+        var result = await Sut.GetCurrentWeather();
 
         //Assert
-        Mocker.GetMock<IOpenWeatherAPI>().Verify(x => x.GetCurrentWeather(), Times.Never);
+        result.Should().BeNull();
     }
 
     #endregion

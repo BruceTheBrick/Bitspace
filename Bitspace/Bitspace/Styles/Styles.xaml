@@ -3,14 +3,14 @@
     x:Class="Bitspace.Styles.Styles"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:bitspace="clr-namespace:Bitspace">
+    xmlns:styles="clr-namespace:Bitspace.Styles;assembly=Bitspace">
 
     <!--  Colors  -->
-    <bitspace:ColorRef x:Key="ColorPrimary" Color="{StaticResource Dark}" />
-    <bitspace:ColorRef x:Key="ColorSecondary" Color="{StaticResource Blue}" />
-    <bitspace:ColorRef x:Key="BackgroundColor" Color="{StaticResource Dark}" />
-    <bitspace:ColorRef x:Key="TextColor" Color="{StaticResource Green}" />
-    <bitspace:ColorRef x:Key="LoadingColor" Color="{StaticResource DarkThemeSkeletonLoader}" />
+    <styles:ColorRef x:Key="ColorPrimary" Color="{StaticResource SunburnRed}" />
+    <styles:ColorRef x:Key="ColorSecondary" Color="{StaticResource NeonYellow}" />
+    <styles:ColorRef x:Key="BackgroundColor" Color="{StaticResource Dark}" />
+    <styles:ColorRef x:Key="TextColor" Color="{StaticResource DodgerBlue}" />
+    <styles:ColorRef x:Key="LoadingColor" Color="{StaticResource DarkThemeSkeletonLoader}" />
 
 
     <!--  ContentPage  -->

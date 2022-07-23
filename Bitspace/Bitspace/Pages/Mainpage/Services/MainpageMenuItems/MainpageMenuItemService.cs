@@ -1,24 +1,23 @@
 ﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using Bitspace.Constants;
 using Bitspace.Pages.Mainpage.Models;
 using Bitspace.Registers;
-using Bitspace.Services.FirebaseRemoteConfig;
+using Bitspace.Services.RemoteConfig;
 
 namespace Bitspace.Pages.Mainpage.Services.MainpageMenuItems
 {
     public class MainpageMenuItemService : IMainpageMenuItems
     {
-        private readonly IFirebaseRemoteConfig _remoteConfigService;
-        public MainpageMenuItemService(IFirebaseRemoteConfig remoteConfigService)
+        private readonly IRemoteConfigService _remoteConfigService;
+        public MainpageMenuItemService(IRemoteConfigService remoteConfigService)
         {
             _remoteConfigService = remoteConfigService;
         }
 
-        public async Task<ObservableCollection<MenuListItemViewModel>> GetMenuItems()
+        public ObservableCollection<MenuListItemViewModel> GetMenuItems()
         {
             var items = new ObservableCollection<MenuListItemViewModel>();
-            if (await _remoteConfigService.IsEnabled(RemoteConfigConstants.MAINPAGE_MENUITEM_WEATHER))
+            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.MAINPAGE_MENUITEM_WEATHER))
             {
                 items.Add(new MenuListItemViewModel
                 {
@@ -29,18 +28,24 @@ namespace Bitspace.Pages.Mainpage.Services.MainpageMenuItems
                 });
             }
 
-            if (await _remoteConfigService.IsEnabled(RemoteConfigConstants.MAINPAGE_MENUITEM_BARCODE_SCANNER))
+            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.MAINPAGE_MENUITEM_QR_CODE_SCANNER))
             {
                 items.Add(new MenuListItemViewModel
                 {
                     Icon = "ic_barcode",
                     ActionIcon = "ic_chevron_right",
-                    Text = MainpageRegister.BARCODE_SCANNER_TITLE,
-                    NavigationConstant = NavigationConstants.BarcodeScanner,
+                    Text = MainpageRegister.QR_CODE_SCANNER_TITLE,
+                    NavigationConstant = NavigationConstants.QRCodeScanner,
                 });
             }
 
             return items;
+        }
+
+        public ObservableCollection<MenuListItemViewModel> ForceUpdateGetMenuItems()
+        {
+            _remoteConfigService.Update();
+            return GetMenuItems();
         }
     }
 }

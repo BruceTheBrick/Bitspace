@@ -199,8 +199,12 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CarouselView.FormsPlugin" Version="6.0.0" />
     <PackageReference Include="Plugin.Fingerprint" Version="2.1.5" />
+    <PackageReference Include="Prism.Plugin.Popups" Version="8.0.76" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Xamarin.Dynamsoft.Barcode.iOS" Version="9.2.11" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.3.1" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />

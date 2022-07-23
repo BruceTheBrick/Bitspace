@@ -44,6 +44,7 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
+    <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,6 +58,7 @@
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -64,23 +66,27 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.Firebase.Config">
+      <HintPath>..\..\..\..\..\.nuget\packages\xamarin.firebase.config\121.0.1.6\lib\monoandroid12.0\Xamarin.Firebase.Config.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CarouselView.FormsPlugin" Version="6.0.0" />
     <PackageReference Include="Plugin.CurrentActivity">
       <Version>2.1.0.4</Version>
     </PackageReference>
     <PackageReference Include="Plugin.Fingerprint" Version="2.1.5" />
+    <PackageReference Include="Prism.Plugin.Popups" Version="8.0.76" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.4.0.2" />
     <PackageReference Include="Xamarin.AndroidX.Core" Version="1.8.0.1" />
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4" Version="1.0.0.14" />
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.4.1.2" />
-    <PackageReference Include="Xamarin.Firebase.Analytics">
-      <Version>120.0.1.1</Version>
-    </PackageReference>
+    <PackageReference Include="Xamarin.Dynamsoft.Barcode.Android" Version="9.2.10" />
+    <PackageReference Include="Xamarin.Firebase.Config" Version="121.0.1.6" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
-    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.3.1" />
+    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.3.2" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
     <PackageReference Include="Xamarin.Forms.Skeleton" Version="2.0.0" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.6.1.1" />
@@ -92,7 +98,7 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Services\DeviceLocation\DeviceLocationService.cs" />
-    <Compile Include="Services\FirebaseAnalyticsService\FirebaseAnalyticsService.cs" />
+    <Compile Include="Services\RemoteConfigService\RemoteConfigService.cs" />
     <Compile Include="SplashActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <LinkDescription Include="LinkerSettings.xml" />
@@ -142,9 +148,6 @@
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>Bitspace</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Effects" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

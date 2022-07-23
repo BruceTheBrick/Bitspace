@@ -3,12 +3,17 @@ using Bitspace.APIs.OpenWeather;
 using Bitspace.Constants;
 using Bitspace.Pages.Mainpage;
 using Bitspace.Pages.Mainpage.Services.MainpageMenuItems;
+using Bitspace.Pages.QRCodeScanner;
 using Bitspace.Pages.WeatherForecast;
+using Bitspace.Services.AlertService;
+using Bitspace.Services.AnimationService;
+using Bitspace.Services.APIKeyManager;
 using Bitspace.Services.BiometricService;
 using Bitspace.Services.CachingService;
 using Bitspace.Services.CurrentWeatherService;
 using Bitspace.Services.DeviceInformation;
-using Bitspace.Services.FirebaseRemoteConfig;
+using Bitspace.Services.PermissionService;
+using Bitspace.Services.TimeoutService;
 using DLToolkit.Forms.Controls;
 using Prism;
 using Prism.Ioc;
@@ -31,7 +36,7 @@ namespace Bitspace
             InitializeComponent();
             FlowListView.Init();
             Sharpnado.MaterialFrame.Initializer.Initialize(false, true);
-            await NavigationService.NavigateAsync($"NavigationPage/{NavigationConstants.Mainpage}");
+            await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{NavigationConstants.Mainpage}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -47,18 +52,23 @@ namespace Bitspace
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
             containerRegistry.RegisterPopupNavigationService();
             containerRegistry.RegisterSingleton<IDeviceInformationService, DeviceInformationService>();
-            containerRegistry.Register<IFirebaseRemoteConfig, FirebaseRemoteConfigService>();
             containerRegistry.Register<IHttpClient, ExtendedHttpClient>();
             containerRegistry.Register<IMainpageMenuItems, MainpageMenuItemService>();
             containerRegistry.RegisterSingleton<ICachingService, CachingService>();
             containerRegistry.Register<IBiometricService, BiometricService>();
+            containerRegistry.Register<ITimeoutService, TimeoutService>();
+            containerRegistry.RegisterSingleton<IApiKeyManagerService, ApiKeyManagerService>();
+            containerRegistry.Register<IPermissionService, PermissionService>();
+            containerRegistry.Register<IAnimationService, AnimationService>();
+            containerRegistry.Register<IAlertService, AlertService>();
         }
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<NavigationPage>(nameof(NavigationPage));
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>(NavigationConstants.Mainpage);
             containerRegistry.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>(NavigationConstants.WeatherForecast);
+            containerRegistry.RegisterForNavigation<QRCodeScannerPage, QRCodeScannerPageViewModel>(NavigationConstants.QRCodeScanner);
         }
 
         private void RegisterAPIs(IContainerRegistry containerRegistry)

@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Bitspace.Pages.Mainpage.Models;
 using Bitspace.Pages.Mainpage.Services.MainpageMenuItems;
-using Bitspace.Registers;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Forms;
 
 namespace Bitspace.Pages.Mainpage
 {
@@ -19,15 +19,20 @@ namespace Bitspace.Pages.Mainpage
             : base(navigationService)
         {
             _mainpageMenuItemsService = mainpageMenuItemsService;
+
             ItemSelectedCommand = new AsyncCommand<MenuListItemViewModel>(ItemSelected);
+            RefreshMenuItemsCommand = new Command(RefreshMenuItems);
         }
 
         public ObservableCollection<MenuListItemViewModel> MenuItems { get; set; }
         public ICommand ItemSelectedCommand { get; }
+        public ICommand RefreshMenuItemsCommand { get; }
+        public bool IsRefreshing { get; set; }
 
-        public override async Task InitializeAsync(INavigationParameters parameters)
+        public override void Initialize(INavigationParameters parameters)
         {
-            MenuItems = await _mainpageMenuItemsService.GetMenuItems();
+            base.Initialize(parameters);
+            MenuItems = _mainpageMenuItemsService.GetMenuItems();
         }
 
         private async Task ItemSelected(MenuListItemViewModel item)
@@ -36,6 +41,13 @@ namespace Bitspace.Pages.Mainpage
             {
                 await NavigationService.NavigateAsync(item.NavigationConstant);
             }
+        }
+
+        private void RefreshMenuItems()
+        {
+            IsRefreshing = true;
+            MenuItems = _mainpageMenuItemsService.ForceUpdateGetMenuItems();
+            IsRefreshing = false;
         }
     }
 }

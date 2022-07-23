@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Bitspace.Styles;
 using Xamarin.Forms;
 
 namespace Bitspace.Controls;

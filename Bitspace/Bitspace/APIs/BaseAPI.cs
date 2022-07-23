@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+using Bitspace.Services.APIKeyManager;
 using Newtonsoft.Json;
 
 namespace Bitspace.APIs;
@@ -18,14 +19,24 @@ public class BaseAPI
         INVALID,
     }
 
+    protected string API_KEY { get; }
     protected readonly int TimeoutSeconds = 10;
+    protected API_Endpoints ApiType { get; }
 
     protected readonly IHttpClient _client;
+    protected readonly IApiKeyManagerService _keyManagerService;
 
-    protected BaseAPI(IHttpClient client)
+    protected BaseAPI(
+        IHttpClient client,
+        IApiKeyManagerService keyManagerService,
+        API_Endpoints api)
     {
         _client = client;
+        _keyManagerService = keyManagerService;
+        ApiType = api;
+
         _client.SetTimeout(TimeoutSeconds);
+        API_KEY = _keyManagerService.GetKey(api);
     }
 
     protected async Task<Response<T>> ToResponse<T>(HttpResponseMessage rawResponse) where T : class

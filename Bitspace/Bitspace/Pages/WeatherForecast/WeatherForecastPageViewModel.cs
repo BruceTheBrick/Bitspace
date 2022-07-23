@@ -14,7 +14,6 @@ public class WeatherForecastPageViewModel : BasePageViewModel
         : base(navigationService)
     {
         _currentWeatherService = currentWeatherService;
-        Title = "Main Page";
     }
 
     public CurrentWeatherViewModel Weather { get; set; }
@@ -22,7 +21,7 @@ public class WeatherForecastPageViewModel : BasePageViewModel
     public override async Task InitializeAsync(INavigationParameters parameters)
     {
         await base.InitializeAsync(parameters);
-        Task.Run(UpdateCurrentWeather);
+        _ = UpdateCurrentWeather();
     }
 
     private async Task UpdateCurrentWeather()

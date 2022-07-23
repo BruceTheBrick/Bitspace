@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Bogus" Version="34.0.2" />
+    <PackageReference Include="CarouselView.FormsPlugin" Version="6.0.0" />
     <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Plugin.Fingerprint" Version="2.1.5" />
@@ -20,6 +21,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.3.1" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
@@ -29,7 +31,6 @@
 
   <ItemGroup>
     <Folder Include="APIs\OpenWeather\Models\" />
-    <Folder Include="Resources" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +54,10 @@
     </Compile>
     <Compile Update="Styles\Sizes.xaml.cs">
       <DependentUpon>Sizes.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\SplashPage\SplashPage.xaml.cs">
+      <DependentUpon>SplashPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

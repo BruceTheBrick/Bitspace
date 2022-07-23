@@ -24,7 +24,7 @@
             Padding="12"
             ColumnDefinitions="*, auto, *, auto, *"
             HorizontalOptions="FillAndExpand"
-            RowDefinitions="auto, auto">
+            RowDefinitions="*, *">
             <controls:SkeletonSection
                 Grid.Row="0"
                 Grid.Column="0"

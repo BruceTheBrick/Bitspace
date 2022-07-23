@@ -1,13 +1,13 @@
-﻿using Bitspace.Animations;
+﻿using Bitspace.Services.AnimationService;
 
 namespace Bitspace.Pages.WeatherForecast
 {
     public partial class WeatherForecastPage
     {
-        private AnimationHelper _animations;
+        private AnimationService _animations;
         public WeatherForecastPage()
         {
-            _animations = new AnimationHelper();
+            _animations = new AnimationService();
             InitializeComponent();
         }
 

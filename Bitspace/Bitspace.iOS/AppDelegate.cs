@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using CarouselView.FormsPlugin.iOS;
+using Foundation;
 using Prism;
 using Prism.Ioc;
 using UIKit;
@@ -24,6 +25,7 @@ namespace Bitspace.iOS
             Rg.Plugins.Popup.Popup.Init();
             Xamarin.Forms.Forms.Init();
             Sharpnado.MaterialFrame.iOS.iOSMaterialFrameRenderer.Init();
+            CarouselViewRenderer.Init();
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

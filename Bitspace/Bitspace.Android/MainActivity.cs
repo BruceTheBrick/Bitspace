@@ -2,10 +2,10 @@
 using Android.Content.PM;
 using Android.OS;
 using Bitspace.Droid.Services.DeviceLocation;
-using Bitspace.Droid.Services.FirebaseAnalyticsService;
-using Bitspace.Services.BiometricService;
+using Bitspace.Droid.Services.RemoteConfigService;
 using Bitspace.Services.DeviceLocation;
-using Bitspace.Services.FirebaseAnalytics;
+using Bitspace.Services.RemoteConfig;
+using CarouselView.FormsPlugin.Droid;
 using Plugin.Fingerprint;
 using Prism;
 using Prism.Ioc;
@@ -19,14 +19,15 @@ namespace Bitspace.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             Rg.Plugins.Popup.Popup.Init(this);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            CarouselViewRenderer.Init();
             CrossFingerprint.SetCurrentActivityResolver(() => Xamarin.Essentials.Platform.CurrentActivity);
             LoadApplication(new App(new AndroidInitializer()));
         }
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
@@ -50,7 +51,7 @@ namespace Bitspace.Droid
         private void RegisterServices(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IDeviceLocation, DeviceLocationService>();
-            containerRegistry.Register<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
+            containerRegistry.RegisterSingleton<IRemoteConfigService, RemoteConfigService>();
         }
     }
 }
