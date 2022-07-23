@@ -8,6 +8,9 @@ namespace Bitspace.APIs.OpenWeather
     public class OpenWeatherAPI : BaseAPI, IOpenWeatherAPI
     {
         private readonly IDeviceLocation _deviceLocationService;
+
+        private const string Endpoint = "https://api.openweathermap.org";
+
         public OpenWeatherAPI(
             IDeviceLocation deviceLocationService,
             IHttpClient client,
@@ -20,9 +23,20 @@ namespace Bitspace.APIs.OpenWeather
         public async Task<Response<CurrentWeatherResponse>> GetCurrentWeather()
         {
             var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
-            var url = $"https://api.openweathermap.org/data/2.5/weather?units=metric&lat={location.Latitude}&lon={location.Longitude}&appid={API_KEY}";
+            var url = $"{Endpoint}/data/2.5/weather?units=metric&lat={location.Latitude}&lon={location.Longitude}&appid={API_KEY}";
             var rawResponse = await _client.GetAsync(url);
             return await ToResponse<CurrentWeatherResponse>(rawResponse);
+        }
+
+        public string GetIconURL(string iconId, int size = 2)
+        {
+            if (size is <= 0 or > 4)
+            {
+                return string.Empty;
+            }
+
+            var imgSize = size == 1 ? string.Empty : $"@{size}x";
+            return $"http://openweathermap.org/img/wn/{iconId}{imgSize}.png";
         }
     }
 }

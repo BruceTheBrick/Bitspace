@@ -4,6 +4,7 @@ namespace Bitspace.APIs.OpenWeather.Models;
 
 public class CurrentWeatherViewModel
 {
+    public string IconUrl { get; set; }
     public string Suburb { get; set; }
     public double Temperature { get; set; }
     public double Humidity { get; set; }

@@ -117,12 +117,17 @@ public class CurrentWeatherService : ICurrentWeatherService
         {
             await _alertService.Snackbar("Uh oh, something went wrong! Please try again later.");
         }
+        catch (Exception e)
+        {
+            await _alertService.Snackbar(e.Message);
+        }
     }
 
     private void InitCurrentWeatherViewModel()
     {
         _currentWeatherViewModel = new CurrentWeatherViewModel
         {
+            IconUrl = GetIconUrlFromResponse(),
             Suburb = _currentWeatherResponse.Name,
             Temperature = _currentWeatherResponse.Main.Temperature,
             Humidity = _currentWeatherResponse.Main.Humidity,
@@ -136,5 +141,10 @@ public class CurrentWeatherService : ICurrentWeatherService
     private List<string> GetDescriptionsFromResponse()
     {
         return _currentWeatherResponse.Weather.Select(weather => weather.Description.ToUpper()).ToList();
+    }
+
+    private string GetIconUrlFromResponse()
+    {
+        return _openWeatherApi.GetIconURL(_currentWeatherResponse.Weather.FirstOrDefault()?.Icon, 4);
     }
 }

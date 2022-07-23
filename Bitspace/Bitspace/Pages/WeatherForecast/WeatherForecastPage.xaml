@@ -40,6 +40,12 @@
                 TextColor="{Binding Weather.Temperature, Converter={StaticResource TemperatureToColorConverter}}"
                 VerticalOptions="Start" />
         </loader:SkeletonSection>
+        <loader:SkeletonSection
+            Grid.Row="1"
+            Grid.Column="2"
+            IsLoading="{Binding IsBusy}">
+            <Image x:Name="WeatherIcon" Source="{Binding Weather.IconUrl}" />
+        </loader:SkeletonSection>
         <controls:InfoCard
             x:Name="InfoCard"
             Grid.Row="3"
