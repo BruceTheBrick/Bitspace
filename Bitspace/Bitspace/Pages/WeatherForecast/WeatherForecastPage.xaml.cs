@@ -4,7 +4,7 @@ namespace Bitspace.Pages.WeatherForecast
 {
     public partial class WeatherForecastPage
     {
-        private AnimationService _animations;
+        private readonly AnimationService _animations;
         public WeatherForecastPage()
         {
             _animations = new AnimationService();
