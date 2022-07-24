@@ -1,11 +1,13 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Provider;
 using Bitspace.Droid.Services.DeviceLocation;
 using Bitspace.Droid.Services.RemoteConfigService;
 using Bitspace.Services.DeviceLocation;
 using Bitspace.Services.RemoteConfig;
 using CarouselView.FormsPlugin.Droid;
+using FFImageLoading.Forms.Platform;
 using Plugin.Fingerprint;
 using Prism;
 using Prism.Ioc;
@@ -19,24 +21,30 @@ namespace Bitspace.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Rg.Plugins.Popup.Popup.Init(this);
-            Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            CarouselViewRenderer.Init();
-            CrossFingerprint.SetCurrentActivityResolver(() => Xamarin.Essentials.Platform.CurrentActivity);
+            InitNugets(savedInstanceState);
             LoadApplication(new App(new AndroidInitializer()));
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         public override void OnBackPressed()
         {
             Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
+        }
+
+        private void InitNugets(Bundle savedInstanceState)
+        {
+            Rg.Plugins.Popup.Popup.Init(this);
+            Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            CachedImageRenderer.Init(enableFastRenderer: true);
+            CachedImageRenderer.InitImageViewHandler();
+            CarouselViewRenderer.Init();
+            CrossFingerprint.SetCurrentActivityResolver(() => Xamarin.Essentials.Platform.CurrentActivity);
         }
     }
 

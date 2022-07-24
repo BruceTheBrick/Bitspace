@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Pages.WeatherForecast.Controls;assembly=Bitspace"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:loader="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:tempConverter="clr-namespace:Bitspace.Converters;assembly=Bitspace"
     xmlns:weatherforecast="clr-namespace:Bitspace.Pages.WeatherForecast"
@@ -44,7 +45,7 @@
             Grid.Row="1"
             Grid.Column="2"
             IsLoading="{Binding IsBusy}">
-            <Image x:Name="WeatherIcon" Source="{Binding Weather.IconUrl}" />
+            <forms:CachedImage LoadingPlaceholder="loading_spinner" Source="{Binding Weather.IconUrl}" />
         </loader:SkeletonSection>
         <controls:InfoCard
             x:Name="InfoCard"

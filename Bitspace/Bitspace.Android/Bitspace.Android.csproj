@@ -84,6 +84,11 @@
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4" Version="1.0.0.14" />
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.4.1.2" />
     <PackageReference Include="Xamarin.Dynamsoft.Barcode.Android" Version="9.2.10" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Firebase.Config" Version="121.0.1.6" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.3.2" />
@@ -115,6 +120,7 @@
     <AndroidResource Include="Resources\drawable\ic_barcode.xml" />
     <AndroidResource Include="Resources\drawable\ic_chevron_right.xml" />
     <AndroidResource Include="Resources\drawable\ic_weather.xml" />
+    <AndroidResource Include="Resources\drawable\loading_spinner.gif" />
     <AndroidResource Include="Resources\drawable\logo.xml" />
     <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />
     <AndroidResource Include="Resources\mipmap-anydpi-v26\icon_round.xml" />
