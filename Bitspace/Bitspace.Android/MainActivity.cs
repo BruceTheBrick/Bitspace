@@ -1,13 +1,13 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Android.Provider;
 using Bitspace.Droid.Services.DeviceLocation;
 using Bitspace.Droid.Services.RemoteConfigService;
 using Bitspace.Services.DeviceLocation;
 using Bitspace.Services.RemoteConfig;
 using CarouselView.FormsPlugin.Droid;
 using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;
 using Plugin.Fingerprint;
 using Prism;
 using Prism.Ioc;
@@ -42,7 +42,7 @@ namespace Bitspace.Droid
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             CachedImageRenderer.Init(enableFastRenderer: true);
-            CachedImageRenderer.InitImageViewHandler();
+            _ = typeof(SvgCachedImage);
             CarouselViewRenderer.Init();
             CrossFingerprint.SetCurrentActivityResolver(() => Xamarin.Essentials.Platform.CurrentActivity);
         }

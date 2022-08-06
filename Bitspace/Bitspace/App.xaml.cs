@@ -1,6 +1,7 @@
 using Bitspace.APIs;
 using Bitspace.APIs.OpenWeather;
 using Bitspace.Constants;
+using Bitspace.Pages;
 using Bitspace.Pages.Mainpage;
 using Bitspace.Pages.Mainpage.Services.MainpageMenuItems;
 using Bitspace.Pages.QRCodeScanner;
@@ -36,7 +37,7 @@ namespace Bitspace
             InitializeComponent();
             FlowListView.Init();
             Sharpnado.MaterialFrame.Initializer.Initialize(false, true);
-            await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{NavigationConstants.Mainpage}");
+            await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(MainPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -66,9 +67,9 @@ namespace Bitspace
         private void RegisterNavigation(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>(nameof(NavigationPage));
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>(NavigationConstants.Mainpage);
-            containerRegistry.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>(NavigationConstants.WeatherForecast);
-            containerRegistry.RegisterForNavigation<QRCodeScannerPage, QRCodeScannerPageViewModel>(NavigationConstants.QRCodeScanner);
+            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>(nameof(MainPage));
+            containerRegistry.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>(nameof(WeatherForecastPage));
+            containerRegistry.RegisterForNavigation<QRCodeScannerPage, QRCodeScannerPageViewModel>(nameof(QRCodeScannerPage));
         }
 
         private void RegisterAPIs(IContainerRegistry containerRegistry)

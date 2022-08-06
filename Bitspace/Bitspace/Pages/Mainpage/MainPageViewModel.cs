@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Bitspace.Pages.Mainpage.Models;
@@ -33,6 +34,12 @@ namespace Bitspace.Pages.Mainpage
         {
             base.Initialize(parameters);
             MenuItems = _mainpageMenuItemsService.GetMenuItems();
+        }
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+            Debug.WriteLine(NavigationService.GetNavigationUriPath());
         }
 
         private async Task ItemSelected(MenuListItemViewModel item)

@@ -1,5 +1,6 @@
 ﻿using CarouselView.FormsPlugin.iOS;
 using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;
 using Foundation;
 using Prism;
 using Prism.Ioc;
@@ -27,7 +28,7 @@ namespace Bitspace.iOS
             Xamarin.Forms.Forms.Init();
             Sharpnado.MaterialFrame.iOS.iOSMaterialFrameRenderer.Init();
             CachedImageRenderer.Init();
-            CachedImageRenderer.InitImageSourceHandler();
+            _ = typeof(SvgCachedImage);
             CarouselViewRenderer.Init();
             LoadApplication(new App(new iOSInitializer()));
 

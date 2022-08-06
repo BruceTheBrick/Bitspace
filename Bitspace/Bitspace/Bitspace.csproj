@@ -92,6 +92,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>WeatherForecastPageRegister.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Remove="Resources\ic_rocket.svg" />
+    <EmbeddedResource Include="Resources\ic_rocket.svg" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using Bitspace.Constants;
 using Bitspace.Pages.Mainpage.Models;
+using Bitspace.Pages.QRCodeScanner;
+using Bitspace.Pages.WeatherForecast;
 using Bitspace.Registers;
 using Bitspace.Services.RemoteConfig;
 
@@ -24,7 +26,7 @@ namespace Bitspace.Pages.Mainpage.Services.MainpageMenuItems
                     Icon = "ic_weather",
                     ActionIcon = "ic_chevron_right",
                     Text = MainpageRegister.WEATHER_FORECAST_TITLE,
-                    NavigationConstant = NavigationConstants.WeatherForecast,
+                    NavigationConstant = nameof(WeatherForecastPage),
                 });
             }
 
@@ -35,7 +37,7 @@ namespace Bitspace.Pages.Mainpage.Services.MainpageMenuItems
                     Icon = "ic_barcode",
                     ActionIcon = "ic_chevron_right",
                     Text = MainpageRegister.QR_CODE_SCANNER_TITLE,
-                    NavigationConstant = NavigationConstants.QRCodeScanner,
+                    NavigationConstant = nameof(QRCodeScannerPage),
                 });
             }
 

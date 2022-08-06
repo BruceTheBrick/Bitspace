@@ -23,7 +23,7 @@ namespace Bitspace.Pages
 
         public bool IsBusy { get; set; }
 
-        protected INavigationService NavigationService { get; private set; }
+        protected INavigationService NavigationService { get; }
 
         public virtual void Initialize(INavigationParameters parameters)
         {
@@ -48,7 +48,6 @@ namespace Bitspace.Pages
 
         public virtual void OnAppearing()
         {
-            Debug.WriteLine(NavigationService.GetNavigationUriPath());
         }
 
         public virtual void OnDisappearing()
