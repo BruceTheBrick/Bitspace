@@ -117,11 +117,6 @@
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_barcode.xml" />
-    <AndroidResource Include="Resources\drawable\ic_chevron_right.xml" />
-    <AndroidResource Include="Resources\drawable\ic_weather.xml" />
-    <AndroidResource Include="Resources\drawable\loading_spinner.gif" />
-    <AndroidResource Include="Resources\drawable\logo.xml" />
     <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />
     <AndroidResource Include="Resources\mipmap-anydpi-v26\icon_round.xml" />
     <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
