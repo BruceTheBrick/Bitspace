@@ -1,23 +1,37 @@
-﻿using FFImageLoading.Svg.Forms;
+﻿using FFImageLoading.Forms;
+using FFImageLoading.Svg.Forms;
 using Xamarin.Forms;
 
 namespace Bitspace.Controls;
 
 public class ExtendedImage : SvgCachedImage
 {
-    public static readonly BindableProperty ImageSourceProperty = BindableProperty.Create(
-        nameof(ImageSource),
+    public static new readonly BindableProperty SourceProperty = BindableProperty.Create(
+        nameof(Source),
         typeof(string),
         typeof(ExtendedImage),
         string.Empty,
         BindingMode.TwoWay,
         propertyChanged: OnSourceUpdated);
 
-    private const string SourcePrefix = "resource://Bitspace.Resource.";
-    public string ImageSource
+    public static readonly BindableProperty ExtensionProperty = BindableProperty.Create(
+        nameof(Extension),
+        typeof(string),
+        typeof(ExtendedImage),
+        "svg",
+        BindingMode.TwoWay);
+
+    private const string SourcePrefix = "resource://Bitspace.Resources.";
+    public new string Source
     {
-        get => (string)GetValue(ImageSourceProperty);
-        set => SetValue(ImageSourceProperty, value);
+        get => (string)GetValue(SourceProperty);
+        set => SetValue(SourceProperty, value);
+    }
+
+    public string Extension
+    {
+        get => (string)GetValue(ExtensionProperty);
+        set => SetValue(ExtensionProperty, value);
     }
 
     private static void OnSourceUpdated(BindableObject bindable, object oldvalue, object newvalue)
@@ -33,11 +47,11 @@ public class ExtendedImage : SvgCachedImage
 
     private string FormatSource(string input)
     {
-        return $"{SourcePrefix}{input}.svg";
+        return $"{SourcePrefix}{input}.{Extension}";
     }
 
     private void SetBaseSource(string source)
     {
-        Source = source;
+        ((CachedImage)this).Source = source;
     }
 }
