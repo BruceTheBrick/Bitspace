@@ -34,7 +34,7 @@ namespace Bitspace.Pages.Mainpage.Services.MainpageMenuItems
             {
                 items.Add(new MenuListItemViewModel
                 {
-                    Icon = "ic_barcode",
+                    Icon = "ic_qrcode",
                     ActionIcon = "ic_chevron_right",
                     Text = MainpageRegister.QR_CODE_SCANNER_TITLE,
                     NavigationConstant = nameof(QRCodeScannerPage),
