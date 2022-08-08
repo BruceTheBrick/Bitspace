@@ -1,6 +1,7 @@
 ﻿using System;
 using Bitspace.Services.AnimationService;
 using Xamarin.Forms;
+using System.Buffers;
 
 namespace Bitspace.Controls;
 public partial class AppIcon
