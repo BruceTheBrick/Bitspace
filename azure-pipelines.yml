@@ -2,7 +2,7 @@ trigger:
   - '*'
 
 variables:
-  buildConfiguration: 'Release'
+  buildConfiguration: 'Debug'
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
 
 pool:
