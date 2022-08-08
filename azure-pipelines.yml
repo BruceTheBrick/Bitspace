@@ -4,7 +4,6 @@ trigger:
 variables:
   buildConfiguration: 'Release'
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
-  androidApkDirectory: 'Bitspace/Bitspace/Bitspace.Android/bin/Debug/com.brycelynch.bitspace-Signed.apk'
 
 pool:
   vmImage: windows-latest
@@ -29,10 +28,8 @@ steps:
   inputs:
     serverEndpoint: 'App Center Connection'
     appSlug: 'drtardis1/Bitspace'
-    appFile: '$(androidApkDirectory)'
+    appFile: '$(outputDirectory)/*.apk'
     symbolsOption: 'Android'
     releaseNotesOption: input
     releaseNotesInput: 'Release notes would go here, if there were any!'
     destinationType: 'groups'
-
-
