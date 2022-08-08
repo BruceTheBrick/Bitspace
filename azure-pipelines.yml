@@ -24,4 +24,15 @@ steps:
     configuration: '$(buildConfiguration)'
     msbuildVersionOption: '16.0'
 
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: 'App Center Connection'
+    appSlug: 'drtardis1/Bitspace'
+    appFile: '$(outputDirectory)'
+    symbolsOption: 'Android'
+    releaseNotesOption: 'file'
+    releaseNotesFile: 'CHANGELOG'
+    isMandatory: true
+    destinationType: 'groups'
+
 
