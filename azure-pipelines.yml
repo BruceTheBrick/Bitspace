@@ -1,6 +1,10 @@
 trigger:
   - '*'
 
+variables:
+  buildConfiguration: 'Release'
+  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+
 pool:
   vmImage: windows-latest
 
@@ -8,5 +12,16 @@ steps:
 - task: gitsync@1
   inputs:
     GitRepoUrl: 'https://drtardis1:$(GithubPAT)@github.com/DrTardis1/Bitspace.git'
+- task: NuGetToolInstaller@1
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '**/*.sln'
+    
+- task: XamarinAndroid@1
+  inputs:
+    projectFile: '**/*Droid*.csproj'
+    outputDirectory: '$(outputDirectory)'
+    configuration: '$(buildConfiguration)'
+    msbuildVersionOption: '16.0'
 
 
