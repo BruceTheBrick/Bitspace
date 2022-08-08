@@ -29,7 +29,7 @@ steps:
   inputs:
     serverEndpoint: 'App Center Connection'
     appSlug: 'drtardis1/Bitspace'
-    appFile: '$(androidApkDirectory)'
+    appFile: '$(outputDirectory)'
     symbolsOption: 'Android'
     releaseNotesOption: input
     releaseNotesInput: 'Release notes would go here, if there were any!'
