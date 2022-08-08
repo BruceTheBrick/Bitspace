@@ -30,6 +30,8 @@ steps:
     appSlug: 'drtardis1/Bitspace'
     appFile: '$(outputDirectory)'
     symbolsOption: 'Android'
+    releaseNotesOption: input
+    releaseNotesInput: 'Release notes would go here, if there were any!'
     isMandatory: true
     destinationType: 'groups'
 
