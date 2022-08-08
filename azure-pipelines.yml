@@ -1,6 +1,11 @@
 trigger:
   - '*'
 
+variables:
+  buildConfiguration: 'Release'
+  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+  androidApkDirectory: '/bin/Debug/com.brycelynch.bitspace-Signed.apk'
+
 pool:
   vmImage: windows-latest
 
@@ -8,5 +13,26 @@ steps:
 - task: gitsync@1
   inputs:
     GitRepoUrl: 'https://drtardis1:$(GithubPAT)@github.com/DrTardis1/Bitspace.git'
+- task: NuGetToolInstaller@1
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '**/*.sln'
+    
+- task: XamarinAndroid@1
+  inputs:
+    projectFile: '**/*Droid*.csproj'
+    outputDirectory: '$(outputDirectory)'
+    configuration: '$(buildConfiguration)'
+    msbuildVersionOption: '16.0'
+
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: 'App Center Connection'
+    appSlug: 'drtardis1/Bitspace'
+    appFile: '$(androidApkDirectory)'
+    symbolsOption: 'Android'
+    releaseNotesOption: input
+    releaseNotesInput: 'Release notes would go here, if there were any!'
+    destinationType: 'groups'
 
 
