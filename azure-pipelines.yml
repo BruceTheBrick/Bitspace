@@ -4,7 +4,7 @@ trigger:
 variables:
   buildConfiguration: 'Release'
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
-  androidApkDirectory: 'bin/Debug/com.brycelynch.bitspace-Signed.apk'
+  androidApkDirectory: 'Bitspace/Bitspace/Bitspace.Android/bin/Debug/com.brycelynch.bitspace-Signed.apk'
 
 pool:
   vmImage: windows-latest
