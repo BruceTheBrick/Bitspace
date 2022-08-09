@@ -24,6 +24,13 @@ steps:
     configuration: '$(buildConfiguration)'
     msbuildVersionOption: '16.0'
 
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '$(outputDirectory)/*.apk'
+    apksignerKeystoreFile: 'Bitspace.keystore'
+    apksignerKeystorePassword: '$(KEYSTOREPASSWORD)'
+    apksignerKeystoreAlias: 'Bitspace'
+    
 - task: AppCenterDistribute@3
   inputs:
     serverEndpoint: 'App Center Connection'
