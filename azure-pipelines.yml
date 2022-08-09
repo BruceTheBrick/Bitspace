@@ -25,6 +25,11 @@ steps:
     configuration: '$(buildConfiguration)'
     msbuildVersionOption: '16.0'
 
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '**/*.apk'
+    zipalign: false
+
 - task: AppCenterDistribute@3
   inputs:
     serverEndpoint: 'App Center Connection'
