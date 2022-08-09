@@ -30,7 +30,6 @@ steps:
       apksignerKeystoreFile: "Bitspace.keystore"
       apksignerKeystorePassword: "$(KEYSTOREPASSWORD)"
       apksignerKeystoreAlias: "Bitspace"
-      zipalign: false
 
   - task: AppCenterDistribute@3
     inputs:
