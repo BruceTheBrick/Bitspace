@@ -6,7 +6,7 @@ variables:
   outputDirectory: "$(build.binariesDirectory)/$(buildConfiguration)"
 
 pool:
-  vmImage: macOS-latest
+  vmImage: windows-latest
 
 steps:
   - task: gitsync@1
