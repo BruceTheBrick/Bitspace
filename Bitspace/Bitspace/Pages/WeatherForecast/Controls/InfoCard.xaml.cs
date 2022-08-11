@@ -1,9 +1,9 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using System.Diagnostics.CodeAnalysis;
+using Xamarin.Forms;
 
 namespace Bitspace.Pages.WeatherForecast.Controls;
 
-[XamlCompilation(XamlCompilationOptions.Compile)]
+[ExcludeFromCodeCoverage]
 public partial class InfoCard
 {
     public static readonly BindableProperty HumidityProperty = BindableProperty.Create(
@@ -29,7 +29,7 @@ public partial class InfoCard
 
     public static readonly BindableProperty IsLoadingProperty = BindableProperty.Create(
         nameof(IsLoading),
-        typeof(bool?),
+        typeof(bool),
         typeof(InfoCard),
         null,
         BindingMode.TwoWay);
@@ -57,9 +57,9 @@ public partial class InfoCard
         set => SetValue(PressureProperty, value);
     }
 
-    public bool? IsLoading
+    public bool IsLoading
     {
-        get => (bool?)GetValue(IsLoadingProperty);
+        get => (bool)GetValue(IsLoadingProperty);
         set => SetValue(IsLoadingProperty, value);
     }
 }
