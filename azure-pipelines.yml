@@ -1,43 +1,42 @@
 trigger:
-  - '*'
+  - "*"
 
 variables:
-  buildConfiguration: 'Release'
-  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
-  androidApkDirectory: 'Bitspace/Bitspace.Android/bin/$(buildConfiguration)/*.apk'
+  buildConfiguration: "Debug"
+  outputDirectory: "$(build.binariesDirectory)/$(buildConfiguration)"
 
 pool:
-  vmImage: windows-latest
+  vmImage: macOS-latest
 
-steps:    
-- task: gitsync@1
-  inputs:
-    GitRepoUrl: 'https://drtardis1:$(GithubPAT)@github.com/DrTardis1/Bitspace.git'
-- task: NuGetToolInstaller@1
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '**/*.sln'
-    
-- task: XamarinAndroid@1
-  inputs:
-    projectFile: '**/*Droid*.csproj'
-    outputDirectory: '$(outputDirectory)'
-    configuration: '$(buildConfiguration)'
-    msbuildVersionOption: '16.0'
+steps:
+  - task: gitsync@1
+    inputs:
+      GitRepoUrl: "https://drtardis1:$(GithubPAT)@github.com/DrTardis1/Bitspace.git"
+  - task: NuGetToolInstaller@1
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: "**/*.sln"
 
-- task: AndroidSigning@3
-  inputs:
-    apkFiles: '**/*.apk'
-    zipalign: false
+  - task: XamarinAndroid@1
+    inputs:
+      projectFile: "**/*droid*.csproj"
+      outputDirectory: "$(outputDirectory)"
+      configuration: "$(buildConfiguration)"
+      msbuildVersionOption: "16.0"
 
-- task: AppCenterDistribute@3
-  inputs:
-    serverEndpoint: 'App Center Connection'
-    appSlug: 'drtardis1/Bitspace'
-    appFile: '$(outputDirectory)/*.apk'
-    symbolsOption: 'Android'
-    releaseNotesOption: input
-    releaseNotesInput: 'Release notes would go here, if there were any!'
-    destinationType: 'groups'
+  - task: AndroidSigning@3
+    inputs:
+      apkFiles: "$(outputDirectory)/*.apk"
+      apksignerKeystoreFile: "Bitspace.keystore"
+      apksignerKeystorePassword: "$(KEYSTOREPASSWORD)"
+      apksignerKeystoreAlias: "Bitspace"
 
-
+  - task: AppCenterDistribute@3
+    inputs:
+      serverEndpoint: "App Center Connection"
+      appSlug: "drtardis1/Bitspace"
+      appFile: "$(outputDirectory)/*.apk"
+      symbolsOption: "Android"
+      releaseNotesOption: input
+      releaseNotesInput: "Release notes would go here, if there were any!"
+      destinationType: "groups"
