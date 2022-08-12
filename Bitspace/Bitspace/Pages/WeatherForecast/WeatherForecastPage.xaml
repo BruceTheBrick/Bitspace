@@ -4,14 +4,14 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Pages.WeatherForecast.Controls;assembly=Bitspace"
+    xmlns:converters="clr-namespace:Bitspace.Converters;assembly=Bitspace"
     xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:loader="clr-namespace:Bitspace.Controls;assembly=Bitspace"
-    xmlns:tempConverter="clr-namespace:Bitspace.Converters;assembly=Bitspace"
     xmlns:weatherforecast="clr-namespace:Bitspace.Pages.WeatherForecast"
     Title="{Binding Title}"
     x:DataType="weatherforecast:WeatherForecastPageViewModel">
     <ContentPage.Resources>
-        <tempConverter:TemperatureToColorConverter x:Key="TemperatureToColorConverter" />
+        <converters:TemperatureToColorConverter x:Key="TemperatureToColorConverter" />
     </ContentPage.Resources>
     <Grid
         Padding="24"
@@ -48,7 +48,6 @@
             <forms:CachedImage Source="{Binding Weather.IconUrl}" />
         </loader:SkeletonSection>
         <controls:InfoCard
-            x:Name="InfoCard"
             Grid.Row="3"
             Grid.ColumnSpan="3"
             Humidity="{Binding Weather.Humidity}"
