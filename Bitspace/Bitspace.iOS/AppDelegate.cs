@@ -28,6 +28,7 @@ namespace Bitspace.iOS
             Xamarin.Forms.Forms.Init();
             Sharpnado.MaterialFrame.iOS.iOSMaterialFrameRenderer.Init();
             CachedImageRenderer.Init();
+            SvgCachedImage.Init();
             _ = typeof(SvgCachedImage);
             CarouselViewRenderer.Init();
             LoadApplication(new App(new iOSInitializer()));

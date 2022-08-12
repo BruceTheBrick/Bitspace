@@ -42,6 +42,7 @@ namespace Bitspace.Droid
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             CachedImageRenderer.Init(enableFastRenderer: true);
+            SvgCachedImage.Init();
             _ = typeof(SvgCachedImage);
             CarouselViewRenderer.Init();
             CrossFingerprint.SetCurrentActivityResolver(() => Xamarin.Essentials.Platform.CurrentActivity);
