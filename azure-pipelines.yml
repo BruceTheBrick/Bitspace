@@ -2,13 +2,15 @@ trigger:
   - "*"
 
 variables:
-  buildConfiguration: "Debug"
+  buildConfiguration: "Release"
   outputDirectory: "$(build.binariesDirectory)/$(buildConfiguration)"
 
 pool:
-  vmImage: macos-latest
-
+#  vmImage: macos-latest
+    vmImage: windows-latest
 steps:
+  - task: NuGetToolInstaller@1
+
   - task: NuGetCommand@2
     inputs:
       restoreSolution: "**/*.sln"
@@ -24,9 +26,9 @@ steps:
       apkFiles: "$(outputDirectory)/*.apk"
       apksignerKeystoreFile: "Bitspace.keystore"
       apksignerKeystorePassword: "$(KEYSTOREPASSWORD)"
+      apksignerKeyPassword: "$(KEYSTOREPASSWORD)"
       apksignerKeystoreAlias: "Bitspace"
       zipalign: true
-      
 
   - task: AppCenterDistribute@3
     inputs:
