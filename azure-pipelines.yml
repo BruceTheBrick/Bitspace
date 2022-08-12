@@ -6,13 +6,11 @@ variables:
   outputDirectory: "$(build.binariesDirectory)/$(buildConfiguration)"
 
 pool:
-  vmImage: windows-latest
+  vmImage: macos-latest
 
 steps:
-  - task: gitsync@1
-    inputs:
-      GitRepoUrl: "https://drtardis1:$(GithubPAT)@github.com/DrTardis1/Bitspace.git"
   - task: NuGetToolInstaller@1
+
   - task: NuGetCommand@2
     inputs:
       restoreSolution: "**/*.sln"
@@ -22,7 +20,6 @@ steps:
       projectFile: "**/*droid*.csproj"
       outputDirectory: "$(outputDirectory)"
       configuration: "$(buildConfiguration)"
-      msbuildVersionOption: "16.0"
 
   - task: AndroidSigning@3
     inputs:
