@@ -1,9 +1,7 @@
 ﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Bitspace.Controls;
 
-[XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class Divider
 {
     private bool _isVertical;

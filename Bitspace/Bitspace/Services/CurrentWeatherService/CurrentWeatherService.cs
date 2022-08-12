@@ -113,9 +113,9 @@ public class CurrentWeatherService : ICurrentWeatherService
                 _timeoutService.Update();
             }
         }
-        catch (HttpRequestException requestException)
+        catch (HttpRequestException)
         {
-            await _alertService.Snackbar("Uh oh, something went wrong! Please try again later.");
+            await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
         }
         catch (Exception e)
         {
@@ -136,6 +136,8 @@ public class CurrentWeatherService : ICurrentWeatherService
             Description = _currentWeatherResponse.Weather?[0].Description,
             DescriptionList = GetDescriptionsFromResponse(),
         };
+        _currentWeatherViewModel.DescriptionList.Add("ANOTHER ITEM");
+        _currentWeatherViewModel.DescriptionList.Add("FILLER INFORMATION");
     }
 
     private List<string> GetDescriptionsFromResponse()
