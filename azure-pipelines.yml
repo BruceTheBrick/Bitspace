@@ -9,7 +9,6 @@ pool:
   vmImage: macos-latest
 
 steps:
-  - task: NuGetToolInstaller@1
   - task: NuGetCommand@2
     inputs:
       restoreSolution: "**/*.sln"
@@ -19,16 +18,16 @@ steps:
       projectFile: "**/*droid*.csproj"
       outputDirectory: "$(outputDirectory)"
       configuration: "$(buildConfiguration)"
-      msbuildVersionOption: "16.0"
 
   - task: AndroidSigning@3
     inputs:
       apkFiles: "$(outputDirectory)/*.apk"
       apksignerKeystoreFile: "Bitspace.keystore"
       apksignerKeystorePassword: "$(KEYSTOREPASSWORD)"
-      apksignerKeystoreAlias: "Bitspace"
       apksignerKeyPassword: "$(KEYSTOREPASSWORD)"
+      apksignerKeystoreAlias: "Bitspace"
       zipalign: true
+
 
   - task: AppCenterDistribute@3
     inputs:
