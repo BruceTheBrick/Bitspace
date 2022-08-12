@@ -17,6 +17,7 @@
     </pancakeView:PancakeView.Resources>
     <Grid>
         <controls:SkeletonSection
+            CornerRadius="0"
             IsLoading="{Binding IsLoading, Source={x:Reference This}}"
             IsVisible="{Binding IsLoading, Source={x:Reference This}}"
             LoadingBackgroundColor="DarkGray" />

@@ -22,6 +22,13 @@ public partial class SkeletonSection
         default,
         BindingMode.TwoWay);
 
+    public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(
+        nameof(CornerRadius),
+        typeof(int),
+        typeof(SkeletonSection),
+        16,
+        BindingMode.TwoWay);
+
     public SkeletonSection()
     {
         InitializeComponent();
@@ -40,6 +47,12 @@ public partial class SkeletonSection
     {
         get => (Color)GetValue(LoadingBackgroundColorProperty);
         set => SetValue(LoadingBackgroundColorProperty, value);
+    }
+
+    public int CornerRadius
+    {
+        get => (int)GetValue(CornerRadiusProperty);
+        set => SetValue(CornerRadiusProperty, value);
     }
 
     private void SetDefaultLoadingColor()
