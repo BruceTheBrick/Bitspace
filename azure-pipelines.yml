@@ -6,8 +6,8 @@ variables:
   outputDirectory: "$(build.binariesDirectory)/$(buildConfiguration)"
 
 pool:
-  vmImage: macos-latest
-
+#  vmImage: macos-latest
+    vmImage: windows-latest
 steps:
   - task: NuGetToolInstaller@1
 
