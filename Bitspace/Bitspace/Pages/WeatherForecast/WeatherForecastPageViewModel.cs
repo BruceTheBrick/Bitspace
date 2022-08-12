@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Bitspace.APIs.OpenWeather.Models;
 using Bitspace.Services.CurrentWeatherService;
 using Prism.Navigation;
@@ -23,12 +22,6 @@ public class WeatherForecastPageViewModel : BasePageViewModel
     {
         await base.InitializeAsync(parameters);
         _ = UpdateCurrentWeather();
-    }
-
-    public override void OnAppearing()
-    {
-        base.OnAppearing();
-        Debug.WriteLine(NavigationService.GetNavigationUriPath());
     }
 
     private async Task UpdateCurrentWeather()
