@@ -10,8 +10,6 @@ pool:
 
 steps:
   - task: NuGetToolInstaller@1
-    inputs:
-      checkLatest: true
 
   - task: NuGetCommand@2
     inputs:
@@ -31,7 +29,6 @@ steps:
       apksignerKeyPassword: "$(KEYSTOREPASSWORD)"
       apksignerKeystoreAlias: "Bitspace"
       zipalign: true
-
 
   - task: AppCenterDistribute@3
     inputs:
