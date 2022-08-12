@@ -7,9 +7,8 @@ namespace Bitspace.APIs.OpenWeather
 {
     public class OpenWeatherAPI : BaseAPI, IOpenWeatherAPI
     {
-        private readonly IDeviceLocation _deviceLocationService;
-
         private const string Endpoint = "https://api.openweathermap.org";
+        private readonly IDeviceLocation _deviceLocationService;
 
         public OpenWeatherAPI(
             IDeviceLocation deviceLocationService,
@@ -18,12 +17,13 @@ namespace Bitspace.APIs.OpenWeather
             : base(client, keyManagerService, API_Endpoints.OPEN_WEATHER)
         {
             _deviceLocationService = deviceLocationService;
+            TimeoutSeconds = 1;
         }
 
         public async Task<Response<CurrentWeatherResponse>> GetCurrentWeather()
         {
             var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
-            var url = $"{Endpoint}/data/2.5/weather?units=metric&lat={location.Latitude}&lon={location.Longitude}&appid={API_KEY}";
+            var url = $"{Endpoint}/data/2.5/weather?units=metric&lat={location.Latitude}&lon={location.Longitude}&appid={ApiKey}";
             var rawResponse = await _client.GetAsync(url);
             return await ToResponse<CurrentWeatherResponse>(rawResponse);
         }
