@@ -24,7 +24,7 @@
             AutomationProperties.IsInAccessibleTree="False"
             Text="{Binding .MenuListItemViewModel.Text, Source={x:Reference This}}"
             VerticalOptions="Center" />
-        <Image
+        <controls:ExtendedImage
             Grid.Column="2"
             effects:IconTintColorEffect.TintColor="{Binding ActionIconTint, Source={x:Reference This}}"
             AutomationProperties.IsInAccessibleTree="False"
