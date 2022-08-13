@@ -25,13 +25,9 @@ public class BaseAPI
 
     protected async Task<Response<T>> ToResponse<T>(HttpResponseMessage rawResponse) where T : class
     {
-        var response = new Response<T>
-            {
-                Method = StringToMethod(rawResponse.RequestMessage.Method.Method), StatusCode = rawResponse.StatusCode,
-                IsSuccess = rawResponse.IsSuccessStatusCode,
-            };
         var content = await rawResponse.Content.ReadAsStringAsync();
-        response.Data = JsonConvert.DeserializeObject<T>(content);
+        var data = JsonConvert.DeserializeObject<T>(content);
+        var response = new Response<T>(data, rawResponse.StatusCode, StringToMethod(rawResponse.RequestMessage.Method.Method), rawResponse.IsSuccessStatusCode);
         return response;
     }
 

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.APIs.OpenWeather.Models;
+using Bitspace.APIs.OpenWeather.ViewModels;
 
 namespace Bitspace.Services.CurrentWeatherService;
 

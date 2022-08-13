@@ -2,7 +2,7 @@
 using System.Linq;
 using Bitspace.APIs.OpenWeather.Response_Models;
 
-namespace Bitspace.APIs.OpenWeather.Models;
+namespace Bitspace.APIs.OpenWeather.ViewModels;
 
 public class CurrentWeatherViewModel
 {

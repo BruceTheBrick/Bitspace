@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Bitspace.APIs;
 using Bitspace.APIs.OpenWeather;
 using Bitspace.Pages.HomePage;
@@ -24,6 +25,7 @@ using Xamarin.Forms;
 
 namespace Bitspace
 {
+    [ExcludeFromCodeCoverage]
     public partial class App
     {
         public App(IPlatformInitializer initializer)

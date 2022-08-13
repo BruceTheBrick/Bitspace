@@ -34,4 +34,8 @@
     <ProjectReference Include="..\Bitspace\Bitspace\Bitspace.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Factories\CurrentWeather" />
+  </ItemGroup>
+
 </Project>

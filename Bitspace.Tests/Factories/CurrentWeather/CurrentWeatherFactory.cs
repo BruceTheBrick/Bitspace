@@ -1,14 +1,20 @@
 ﻿using Bitspace.APIs.OpenWeather.Response_Models;
+using Bitspace.APIs.OpenWeather.ViewModels;
 using Bitspace.Tests.Factories.APIs.OpenWeatherAPI;
 using Bogus;
 
-namespace Bitspace.Tests.Factories.Responses;
+namespace Bitspace.Tests.Factories;
 
-public static class CurrentWeatherResponseFactory
+public static class CurrentWeatherFactory
 {
     public static CurrentWeatherResponse GetModel()
     {
         return GetModels(1).First();
+    }
+    
+    public static CurrentWeatherViewModel GetViewModel()
+    {
+        return GetViewModels(1).First();
     }
 
     public static CurrentWeatherResponse[] GetModels(int count = 5)
@@ -27,6 +33,11 @@ public static class CurrentWeatherResponseFactory
             .RuleFor(x => x.Wind, WindResponseModelFactory.GetModel())
             .RuleFor(x => x.DT, f => f.Random.Double(double.MinValue, double.MaxValue))
             .Generate(count).ToArray();
+    }
 
+    public static CurrentWeatherViewModel[] GetViewModels(int count = 5)
+    {
+        var models = GetModels(count);
+        return models.Select(model => new CurrentWeatherViewModel(model)).ToArray();
     }
 }

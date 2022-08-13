@@ -2,9 +2,9 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Bitspace.APIs.OpenWeather;
-using Bitspace.APIs.OpenWeather.Models;
 using Bitspace.APIs.OpenWeather.Request_Models;
 using Bitspace.APIs.OpenWeather.Response_Models;
+using Bitspace.APIs.OpenWeather.ViewModels;
 using Bitspace.Services.AlertService;
 using Bitspace.Services.DeviceLocation;
 using Bitspace.Services.PermissionService;
@@ -41,11 +41,6 @@ public class CurrentWeatherService : ICurrentWeatherService
 
     public async Task<CurrentWeatherViewModel> GetCurrentWeather()
     {
-        if (!await _permissionService.RequestPermission(DevicePermissions.LOCATION))
-        {
-            return null;
-        }
-
         if (_timeoutService.IsExpired())
         {
             await FetchCurrentWeather();
@@ -58,6 +53,11 @@ public class CurrentWeatherService : ICurrentWeatherService
     {
         try
         {
+            if (!await _permissionService.RequestPermission(DevicePermissions.LOCATION))
+            {
+                return;
+            }
+
             var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
             var response = await _openWeatherApi.GetCurrentWeather(new CurrentWeatherRequest(location.Latitude, location.Longitude));
             if (response.IsSuccess)

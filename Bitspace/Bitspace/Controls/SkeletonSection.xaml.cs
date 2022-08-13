@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Bitspace.Styles;
 using Xamarin.Forms;
 
 namespace Bitspace.Controls;
 
+[ExcludeFromCodeCoverage]
 [ContentProperty("Contents")]
 public partial class SkeletonSection
 {

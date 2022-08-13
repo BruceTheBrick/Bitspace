@@ -1,9 +1,11 @@
-﻿using FFImageLoading.Forms;
+﻿using System.Diagnostics.CodeAnalysis;
+using FFImageLoading.Forms;
 using FFImageLoading.Svg.Forms;
 using Xamarin.Forms;
 
 namespace Bitspace.Controls;
 
+[ExcludeFromCodeCoverage]
 public class ExtendedImage : SvgCachedImage
 {
     public static new readonly BindableProperty SourceProperty = BindableProperty.Create(

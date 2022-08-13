@@ -9,7 +9,7 @@ using Moq;
 using Prism.Navigation;
 using Xunit;
 
-namespace Bitspace.Tests.Pages.Mainpage;
+namespace Bitspace.Tests.Pages.HomePage;
 
 public class MainPageViewModelTests : UnitTestBase<HomePageViewModel>
 {
