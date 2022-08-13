@@ -21,7 +21,7 @@ public class WeatherForecastPageViewModel : BasePageViewModel
     public override async Task InitializeAsync(INavigationParameters parameters)
     {
         await base.InitializeAsync(parameters);
-        _ = UpdateCurrentWeather();
+        await UpdateCurrentWeather();
     }
 
     private async Task UpdateCurrentWeather()

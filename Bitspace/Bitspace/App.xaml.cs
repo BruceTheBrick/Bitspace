@@ -1,9 +1,8 @@
 using Bitspace.APIs;
 using Bitspace.APIs.OpenWeather;
-using Bitspace.Constants;
-using Bitspace.Pages;
+using Bitspace.Pages.HomePage;
+using Bitspace.Pages.HomePage.Services;
 using Bitspace.Pages.Mainpage;
-using Bitspace.Pages.Mainpage.Services.MainpageMenuItems;
 using Bitspace.Pages.QRCodeScanner;
 using Bitspace.Pages.WeatherForecast;
 using Bitspace.Services.AlertService;
@@ -54,7 +53,7 @@ namespace Bitspace
             containerRegistry.RegisterPopupNavigationService();
             containerRegistry.RegisterSingleton<IDeviceInformationService, DeviceInformationService>();
             containerRegistry.Register<IHttpClient, ExtendedHttpClient>();
-            containerRegistry.Register<IMainpageMenuItems, MainpageMenuItemService>();
+            containerRegistry.Register<IHomePageMenuItems, HomePageMenuItemService>();
             containerRegistry.RegisterSingleton<ICachingService, CachingService>();
             containerRegistry.Register<IBiometricService, BiometricService>();
             containerRegistry.Register<ITimeoutService, TimeoutService>();
@@ -66,10 +65,10 @@ namespace Bitspace
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>(nameof(NavigationPage));
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>(nameof(MainPage));
-            containerRegistry.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>(nameof(WeatherForecastPage));
-            containerRegistry.RegisterForNavigation<QRCodeScannerPage, QRCodeScannerPageViewModel>(nameof(QRCodeScannerPage));
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
+            containerRegistry.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>();
+            containerRegistry.RegisterForNavigation<QRCodeScannerPage, QRCodeScannerPageViewModel>();
         }
 
         private void RegisterAPIs(IContainerRegistry containerRegistry)

@@ -1,17 +1,16 @@
 ﻿using System.Collections.ObjectModel;
-using Bitspace.Constants;
 using Bitspace.Pages.Mainpage.Models;
 using Bitspace.Pages.QRCodeScanner;
 using Bitspace.Pages.WeatherForecast;
 using Bitspace.Registers;
 using Bitspace.Services.RemoteConfig;
 
-namespace Bitspace.Pages.Mainpage.Services.MainpageMenuItems
+namespace Bitspace.Pages.HomePage.Services
 {
-    public class MainpageMenuItemService : IMainpageMenuItems
+    public class HomePageMenuItemService : IHomePageMenuItems
     {
         private readonly IRemoteConfigService _remoteConfigService;
-        public MainpageMenuItemService(IRemoteConfigService remoteConfigService)
+        public HomePageMenuItemService(IRemoteConfigService remoteConfigService)
         {
             _remoteConfigService = remoteConfigService;
         }
@@ -19,7 +18,7 @@ namespace Bitspace.Pages.Mainpage.Services.MainpageMenuItems
         public ObservableCollection<MenuListItemViewModel> GetMenuItems()
         {
             var items = new ObservableCollection<MenuListItemViewModel>();
-            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.MAINPAGE_MENUITEM_WEATHER))
+            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.HOMEPAGE_MENUITEM_WEATHER))
             {
                 items.Add(new MenuListItemViewModel
                 {
@@ -30,7 +29,7 @@ namespace Bitspace.Pages.Mainpage.Services.MainpageMenuItems
                 });
             }
 
-            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.MAINPAGE_MENUITEM_QR_CODE_SCANNER))
+            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.HOMEPAGE_MENUITEM_QR_CODE_SCANNER))
             {
                 items.Add(new MenuListItemViewModel
                 {

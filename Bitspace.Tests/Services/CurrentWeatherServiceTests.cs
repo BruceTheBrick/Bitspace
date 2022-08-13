@@ -1,4 +1,5 @@
 ﻿using Bitspace.APIs.OpenWeather;
+using Bitspace.APIs.OpenWeather.Request_Models;
 using Bitspace.Services.CurrentWeatherService;
 using Bitspace.Services.PermissionService;
 using Bitspace.Services.TimeoutService;
@@ -24,7 +25,7 @@ public class CurrentWeatherServiceTests : UnitTestBase<CurrentWeatherService>
         await Sut.GetCurrentWeather();
 
         //Assert
-        Mocker.GetMock<IOpenWeatherAPI>().Verify(x => x.GetCurrentWeather(), Times.Once);
+        Mocker.GetMock<IOpenWeatherAPI>().Verify(x => x.GetCurrentWeather(It.IsAny<CurrentWeatherRequest>()), Times.Once);
     }
 
     [Fact]
@@ -38,7 +39,7 @@ public class CurrentWeatherServiceTests : UnitTestBase<CurrentWeatherService>
         await Sut.GetCurrentWeather();
 
         //Assert
-        Mocker.GetMock<IOpenWeatherAPI>().Verify(x => x.GetCurrentWeather(), Times.Never);
+        Mocker.GetMock<IOpenWeatherAPI>().Verify(x => x.GetCurrentWeather(It.IsAny<CurrentWeatherRequest>()), Times.Never);
     }
 
     [Fact]

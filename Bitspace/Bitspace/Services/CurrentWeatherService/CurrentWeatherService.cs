@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Bitspace.APIs.OpenWeather;
 using Bitspace.APIs.OpenWeather.Models;
+using Bitspace.APIs.OpenWeather.Request_Models;
 using Bitspace.APIs.OpenWeather.Response_Models;
 using Bitspace.Services.AlertService;
+using Bitspace.Services.DeviceLocation;
 using Bitspace.Services.PermissionService;
 using Bitspace.Services.TimeoutService;
 
@@ -18,6 +18,7 @@ public class CurrentWeatherService : ICurrentWeatherService
     private readonly ITimeoutService _timeoutService;
     private readonly IPermissionService _permissionService;
     private readonly IAlertService _alertService;
+    private readonly IDeviceLocation _deviceLocationService;
 
     private CurrentWeatherResponse _currentWeatherResponse;
     private CurrentWeatherViewModel _currentWeatherViewModel;
@@ -26,11 +27,13 @@ public class CurrentWeatherService : ICurrentWeatherService
         IOpenWeatherAPI openWeatherApi,
         ITimeoutService timeoutService,
         IPermissionService permissionService,
+        IDeviceLocation deviceLocationService,
         IAlertService alertService)
     {
         _openWeatherApi = openWeatherApi;
         _timeoutService = timeoutService;
         _permissionService = permissionService;
+        _deviceLocationService = deviceLocationService;
         _alertService = alertService;
 
         _timeoutService.ExpiryMinutes = 5;
@@ -51,65 +54,16 @@ public class CurrentWeatherService : ICurrentWeatherService
         return _currentWeatherViewModel;
     }
 
-    public async Task<string> GetSuburb()
-    {
-        if (_timeoutService.IsExpired())
-        {
-            await FetchCurrentWeather();
-        }
-
-        return _currentWeatherResponse.Name;
-    }
-
-    public async Task<double> GetTemperature()
-    {
-        if (_timeoutService.IsExpired())
-        {
-            await FetchCurrentWeather();
-        }
-
-        return Math.Round(_currentWeatherResponse.Main.Temperature, 2);
-    }
-
-    public async Task<double> GetHumidity()
-    {
-        if (_timeoutService.IsExpired())
-        {
-            await FetchCurrentWeather();
-        }
-
-        return _currentWeatherResponse.Main.Humidity;
-    }
-
-    public async Task<double> GetWindSpeed()
-    {
-        if (_timeoutService.IsExpired())
-        {
-            await FetchCurrentWeather();
-        }
-
-        return Math.Round(_currentWeatherResponse.Wind.Speed, 2);
-    }
-
-    public async Task<double> GetPressure()
-    {
-        if (_timeoutService.IsExpired())
-        {
-            await FetchCurrentWeather();
-        }
-
-        return _currentWeatherResponse.Main.Pressure;
-    }
-
     private async Task FetchCurrentWeather()
     {
         try
         {
-            var response = await _openWeatherApi.GetCurrentWeather();
+            var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
+            var response = await _openWeatherApi.GetCurrentWeather(new CurrentWeatherRequest(location.Latitude, location.Longitude));
             if (response.IsSuccess)
             {
                 _currentWeatherResponse = response.Data;
-                InitCurrentWeatherViewModel();
+                _currentWeatherViewModel = new CurrentWeatherViewModel(_currentWeatherResponse);
                 _timeoutService.Update();
             }
         }
@@ -121,32 +75,5 @@ public class CurrentWeatherService : ICurrentWeatherService
         {
             await _alertService.Snackbar(e.Message);
         }
-    }
-
-    private void InitCurrentWeatherViewModel()
-    {
-        _currentWeatherViewModel = new CurrentWeatherViewModel
-        {
-            IconUrl = GetIconUrlFromResponse(),
-            Suburb = _currentWeatherResponse.Name,
-            Temperature = _currentWeatherResponse.Main.Temperature,
-            Humidity = _currentWeatherResponse.Main.Humidity,
-            Pressure = _currentWeatherResponse.Main.Pressure,
-            WindSpeed = _currentWeatherResponse.Wind.Speed,
-            Description = _currentWeatherResponse.Weather?[0].Description,
-            DescriptionList = GetDescriptionsFromResponse(),
-        };
-        _currentWeatherViewModel.DescriptionList.Add("ANOTHER ITEM");
-        _currentWeatherViewModel.DescriptionList.Add("FILLER INFORMATION");
-    }
-
-    private List<string> GetDescriptionsFromResponse()
-    {
-        return _currentWeatherResponse.Weather.Select(weather => weather.Description.ToUpper()).ToList();
-    }
-
-    private string GetIconUrlFromResponse()
-    {
-        return _openWeatherApi.GetIconURL(_currentWeatherResponse.Weather.FirstOrDefault()?.Icon, 4);
     }
 }

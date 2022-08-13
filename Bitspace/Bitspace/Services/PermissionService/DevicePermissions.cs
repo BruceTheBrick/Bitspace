@@ -3,5 +3,5 @@
 public enum DevicePermissions
 {
     LOCATION,
-    STORAGE
+    STORAGE,
 }

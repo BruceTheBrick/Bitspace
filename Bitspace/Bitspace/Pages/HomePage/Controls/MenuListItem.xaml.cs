@@ -1,10 +1,10 @@
-﻿using Bitspace.Pages.Mainpage.Models;
+﻿using System.Diagnostics.CodeAnalysis;
+using Bitspace.Pages.Mainpage.Models;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-namespace Bitspace.Pages.Mainpage.Controls;
+namespace Bitspace.Pages.HomePage.Controls;
 
-[XamlCompilation(XamlCompilationOptions.Compile)]
+[ExcludeFromCodeCoverage]
 public partial class MenuListItem
 {
     public static readonly BindableProperty MenuListItemViewModelProperty = BindableProperty.Create(

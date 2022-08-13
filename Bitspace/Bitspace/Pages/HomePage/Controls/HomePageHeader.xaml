@@ -1,32 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Grid
+    x:Class="Bitspace.Pages.HomePage.Controls.HomePageHeader"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+    xmlns:registers="clr-namespace:Bitspace.Registers;assembly=Bitspace"
     Margin="0,24"
     Padding="18"
     RowDefinitions="auto, auto, auto"
-    RowSpacing="12"
-    x:Class="Bitspace.Pages.Mainpage.Controls.MainpageHeader"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
-    xmlns:registers="clr-namespace:Bitspace.Registers;assembly=Bitspace"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    RowSpacing="12">
     <Label
-        FontSize="Header"
         Grid.Row="0"
+        FontSize="Header"
         HorizontalOptions="CenterAndExpand"
         Text="{x:Static registers:MainpageRegister.WELCOME_TO}" />
     <Frame
+        Grid.Row="1"
         BackgroundColor="White"
         CornerRadius="100"
-        Grid.Row="1"
         HorizontalOptions="Center"
         Opacity="0.3">
-        <controls:AppIcon HeightRequest="60" x:Name="AppIcon" />
+        <controls:AppIcon x:Name="AppIcon" HeightRequest="60" />
     </Frame>
     <Label
+        x:Name="AppName"
+        Grid.Row="2"
         FontAttributes="Bold"
         FontSize="Large"
-        Grid.Row="2"
         HorizontalOptions="CenterAndExpand"
-        Text="{x:Static registers:MainpageRegister.BITSPACE}"
-        x:Name="AppName" />
+        Text="{x:Static registers:MainpageRegister.BITSPACE}" />
 </Grid>

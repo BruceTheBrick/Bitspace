@@ -2,5 +2,5 @@
 
 public enum API_Endpoints
 {
-    OPEN_WEATHER
+    OPEN_WEATHER,
 }

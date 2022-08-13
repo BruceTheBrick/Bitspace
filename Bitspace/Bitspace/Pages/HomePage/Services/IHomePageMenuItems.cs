@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using Bitspace.Pages.Mainpage.Models;
 
-namespace Bitspace.Pages.Mainpage.Services.MainpageMenuItems
+namespace Bitspace.Pages.HomePage.Services
 {
-    public interface IMainpageMenuItems
+    public interface IHomePageMenuItems
     {
         public ObservableCollection<MenuListItemViewModel> GetMenuItems();
 

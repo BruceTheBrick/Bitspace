@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Bogus;
 
 namespace Bitspace.APIs.OpenWeather.Response_Models;
@@ -21,5 +20,4 @@ public static class SystemResponseModelFactory
             .RuleFor(x => x.Type, f => f.Random.Int())
             .Generate(count).ToArray();
     }
-
 }

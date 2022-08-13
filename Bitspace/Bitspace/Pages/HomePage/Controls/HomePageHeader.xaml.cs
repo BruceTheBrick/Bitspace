@@ -1,13 +1,15 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Bitspace.Services.AnimationService;
 using Xamarin.Forms;
 
-namespace Bitspace.Pages.Mainpage.Controls;
+namespace Bitspace.Pages.HomePage.Controls;
 
-public partial class MainpageHeader
+[ExcludeFromCodeCoverage]
+public partial class HomePageHeader
 {
     private readonly IAnimationService _animationService;
-    public MainpageHeader()
+    public HomePageHeader()
     {
         InitializeComponent();
         _animationService = new AnimationService();

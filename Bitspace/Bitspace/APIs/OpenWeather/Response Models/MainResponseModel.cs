@@ -19,7 +19,16 @@ namespace Bitspace.APIs.OpenWeather.Response_Models
         [JsonProperty("pressure")]
         public int Pressure { get; set; }
 
+        [JsonProperty("sea_level")]
+        public int SeaLevel { get; set; }
+
+        [JsonProperty("grnd_level")]
+        public int GroundLevel { get; set; }
+
         [JsonProperty("humidity")]
         public int Humidity { get; set; }
+
+        [JsonProperty("temp_kf")]
+        public double Temperature_KF { get; set; }
     }
 }

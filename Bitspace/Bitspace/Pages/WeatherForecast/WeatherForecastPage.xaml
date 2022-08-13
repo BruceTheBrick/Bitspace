@@ -40,6 +40,7 @@
                 Text="{Binding Weather.Temperature, StringFormat='{0:F0}°'}"
                 TextColor="{Binding Weather.Temperature, Converter={StaticResource TemperatureToColorConverter}}"
                 VerticalOptions="Start" />
+            <Label Text="{Binding Weather.FeelsLike, StringFormat='Feels like {0:F0}°'}" />
         </loader:SkeletonSection>
         <loader:SkeletonSection
             Grid.Row="1"

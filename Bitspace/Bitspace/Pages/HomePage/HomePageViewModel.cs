@@ -2,24 +2,24 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Bitspace.Pages.HomePage.Services;
 using Bitspace.Pages.Mainpage.Models;
-using Bitspace.Pages.Mainpage.Services.MainpageMenuItems;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Bitspace.Pages.Mainpage
 {
-    public class MainPageViewModel : BasePageViewModel
+    public class HomePageViewModel : BasePageViewModel
     {
-        private readonly IMainpageMenuItems _mainpageMenuItemsService;
+        private readonly IHomePageMenuItems _homePageMenuItemsService;
 
-        public MainPageViewModel(
+        public HomePageViewModel(
             INavigationService navigationService,
-            IMainpageMenuItems mainpageMenuItemsService)
+            IHomePageMenuItems homePageMenuItemsService)
             : base(navigationService)
         {
-            _mainpageMenuItemsService = mainpageMenuItemsService;
+            _homePageMenuItemsService = homePageMenuItemsService;
 
             ItemSelectedCommand = new AsyncCommand<MenuListItemViewModel>(ItemSelected);
             RefreshMenuItemsCommand = new Command(RefreshMenuItems);
@@ -33,13 +33,7 @@ namespace Bitspace.Pages.Mainpage
         public override void Initialize(INavigationParameters parameters)
         {
             base.Initialize(parameters);
-            MenuItems = _mainpageMenuItemsService.GetMenuItems();
-        }
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            base.OnNavigatedTo(parameters);
-            Debug.WriteLine(NavigationService.GetNavigationUriPath());
+            MenuItems = _homePageMenuItemsService.GetMenuItems();
         }
 
         private async Task ItemSelected(MenuListItemViewModel item)
@@ -53,7 +47,7 @@ namespace Bitspace.Pages.Mainpage
         private void RefreshMenuItems()
         {
             IsRefreshing = true;
-            MenuItems = _mainpageMenuItemsService.ForceUpdateGetMenuItems();
+            MenuItems = _homePageMenuItemsService.ForceUpdateGetMenuItems();
             IsRefreshing = false;
         }
     }

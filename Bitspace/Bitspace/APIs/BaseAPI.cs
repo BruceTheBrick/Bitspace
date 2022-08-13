@@ -7,24 +7,8 @@ namespace Bitspace.APIs;
 
 public class BaseAPI
 {
-    public enum HTTPMethod
-    {
-        GET,
-        POST,
-        PUT,
-        HEAD,
-        DELETE,
-        PATCH,
-        OPTIONS,
-        INVALID,
-    }
-
-    protected string API_KEY { get; }
-    protected readonly int TimeoutSeconds = 10;
-    protected API_Endpoints ApiType { get; }
-
     protected readonly IHttpClient _client;
-    protected readonly IApiKeyManagerService _keyManagerService;
+    protected int TimeoutSeconds = 10;
 
     protected BaseAPI(
         IHttpClient client,
@@ -32,36 +16,36 @@ public class BaseAPI
         API_Endpoints api)
     {
         _client = client;
-        _keyManagerService = keyManagerService;
-        ApiType = api;
 
         _client.SetTimeout(TimeoutSeconds);
-        API_KEY = _keyManagerService.GetKey(api);
+        ApiKey = keyManagerService.GetKey(api);
     }
+
+    protected string ApiKey { get; }
 
     protected async Task<Response<T>> ToResponse<T>(HttpResponseMessage rawResponse) where T : class
     {
-        var response = new Response<T>();
-        response.Method = StringToMethod(rawResponse.RequestMessage.Method.Method);
-        response.StatusCode = rawResponse.StatusCode;
-        response.IsSuccess = rawResponse.IsSuccessStatusCode;
+        var response = new Response<T>
+            {
+                Method = StringToMethod(rawResponse.RequestMessage.Method.Method), StatusCode = rawResponse.StatusCode,
+                IsSuccess = rawResponse.IsSuccessStatusCode,
+            };
         var content = await rawResponse.Content.ReadAsStringAsync();
         response.Data = JsonConvert.DeserializeObject<T>(content);
         return response;
     }
 
-    private HTTPMethod StringToMethod(string methodString)
+    private HttpMethod StringToMethod(string methodString)
     {
         return methodString switch
         {
-            "GET" => HTTPMethod.GET,
-            "POST" => HTTPMethod.POST,
-            "PUT" => HTTPMethod.PUT,
-            "HEAD" => HTTPMethod.HEAD,
-            "DELETE" => HTTPMethod.DELETE,
-            "PATCH" => HTTPMethod.PATCH,
-            "OPTIONS" => HTTPMethod.OPTIONS,
-            _ => HTTPMethod.INVALID
+            "GET" => HttpMethod.Get,
+            "POST" => HttpMethod.Post,
+            "PUT" => HttpMethod.Put,
+            "HEAD" => HttpMethod.Head,
+            "DELETE" => HttpMethod.Delete,
+            "PATCH" => HttpMethod.Patch,
+            "OPTIONS" => HttpMethod.Options,
         };
     }
 }

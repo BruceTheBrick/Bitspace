@@ -36,7 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="APIs\OpenWeather\Models\" />
+    <Folder Include="APIs\OpenWeather\ViewModels\" />
+    <Folder Include="Constants" />
+    <Folder Include="Effects" />
   </ItemGroup>
 
   <ItemGroup>
