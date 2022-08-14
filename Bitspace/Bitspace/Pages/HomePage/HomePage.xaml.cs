@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Pages.HomePage
+namespace Bitspace.Pages
 {
     [ExcludeFromCodeCoverage]
     public partial class HomePage

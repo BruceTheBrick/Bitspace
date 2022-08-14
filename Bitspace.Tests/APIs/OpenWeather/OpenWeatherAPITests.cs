@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using Bitspace.APIs;
-using Bitspace.APIs.OpenWeather;
 using Bitspace.Tests.Base;
 using Bitspace.Tests.Factories;
 using Moq;

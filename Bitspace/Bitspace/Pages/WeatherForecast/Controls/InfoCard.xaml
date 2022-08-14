@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pancakeView:PancakeView
-    x:Class="Bitspace.Pages.WeatherForecast.Controls.InfoCard"
+    x:Class="Bitspace.Pages.InfoCard"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"

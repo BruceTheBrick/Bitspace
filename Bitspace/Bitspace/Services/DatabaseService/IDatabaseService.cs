@@ -1,4 +1,4 @@
-﻿namespace Bitspace.Services.DatabaseService;
+﻿namespace Bitspace.Services;
 
 public interface IDatabaseService
 {

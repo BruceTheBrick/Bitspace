@@ -2,13 +2,12 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Bitspace.Pages.HomePage.Services;
-using Bitspace.Pages.Mainpage.Models;
+using Bitspace.Pages;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
-namespace Bitspace.Pages.Mainpage
+namespace Bitspace.Pages
 {
     public class HomePageViewModel : BasePageViewModel
     {

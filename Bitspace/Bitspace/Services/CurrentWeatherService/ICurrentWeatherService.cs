@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.APIs.OpenWeather.ViewModels;
+using Bitspace.APIs;
 
-namespace Bitspace.Services.CurrentWeatherService;
+namespace Bitspace.Services;
 
 public interface ICurrentWeatherService
 {

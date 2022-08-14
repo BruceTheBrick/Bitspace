@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Bitspace.Services.AnimationService;
+using Bitspace.Services;
 using Xamarin.Forms;
 
 namespace Bitspace.Controls;

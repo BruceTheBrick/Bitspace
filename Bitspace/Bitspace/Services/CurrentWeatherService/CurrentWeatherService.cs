@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Bitspace.APIs.OpenWeather;
-using Bitspace.APIs.OpenWeather.Request_Models;
-using Bitspace.APIs.OpenWeather.Response_Models;
-using Bitspace.APIs.OpenWeather.ViewModels;
-using Bitspace.Services.AlertService;
-using Bitspace.Services.DeviceLocation;
-using Bitspace.Services.PermissionService;
-using Bitspace.Services.TimeoutService;
+using Bitspace.APIs;
 
-namespace Bitspace.Services.CurrentWeatherService;
+namespace Bitspace.Services;
 
 public class CurrentWeatherService : ICurrentWeatherService
 {

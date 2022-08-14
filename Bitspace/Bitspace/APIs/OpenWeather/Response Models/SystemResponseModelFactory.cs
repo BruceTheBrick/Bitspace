@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Bogus;
 
-namespace Bitspace.APIs.OpenWeather.Response_Models;
+namespace Bitspace.APIs;
 
 public static class SystemResponseModelFactory
 {

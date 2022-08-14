@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.APIs.OpenWeather.ViewModels;
-using Bitspace.Services.CurrentWeatherService;
+using Bitspace.APIs;
+using Bitspace.Services;
 using Prism.Navigation;
 
-namespace Bitspace.Pages.WeatherForecast;
+namespace Bitspace.Pages;
 
 public class WeatherForecastPageViewModel : BasePageViewModel
 {

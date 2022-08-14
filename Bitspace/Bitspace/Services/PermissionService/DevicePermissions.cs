@@ -1,4 +1,4 @@
-﻿namespace Bitspace.Services.PermissionService;
+﻿namespace Bitspace.Services;
 
 public enum DevicePermissions
 {

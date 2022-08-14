@@ -1,5 +1,5 @@
-﻿using Bitspace.Pages.WeatherForecast;
-using Bitspace.Services.CurrentWeatherService;
+﻿using Bitspace.Pages;
+using Bitspace.Services;
 using Bitspace.Tests.Base;
 using Bitspace.Tests.Factories;
 using FluentAssertions;

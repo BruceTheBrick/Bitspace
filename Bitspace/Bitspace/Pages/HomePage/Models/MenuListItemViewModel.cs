@@ -1,4 +1,4 @@
-﻿namespace Bitspace.Pages.Mainpage.Models;
+﻿namespace Bitspace.Pages;
 
 public class MenuListItemViewModel
 {

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Bitspace.Pages.HomePage.HomePage"
+    x:Class="Bitspace.Pages.HomePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="http://prismlibrary.com"
-    xmlns:controls1="clr-namespace:Bitspace.Pages.HomePage.Controls;assembly=Bitspace"
+    xmlns:controls1="clr-namespace:Bitspace.Pages;assembly=Bitspace"
     xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:mainpage="clr-namespace:Bitspace.Pages.Mainpage;assembly=Bitspace"
-    xmlns:models="clr-namespace:Bitspace.Pages.Mainpage.Models;assembly=Bitspace"
+    xmlns:mainpage="clr-namespace:Bitspace.Pages;assembly=Bitspace"
+    xmlns:models="clr-namespace:Bitspace.Pages;assembly=Bitspace"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:DataType="mainpage:HomePageViewModel"
     NavigationPage.HasNavigationBar="False">

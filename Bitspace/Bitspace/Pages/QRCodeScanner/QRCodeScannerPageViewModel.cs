@@ -1,4 +1,4 @@
-﻿namespace Bitspace.Pages.QRCodeScanner;
+﻿namespace Bitspace.Pages;
 
 public class QRCodeScannerPageViewModel
 {

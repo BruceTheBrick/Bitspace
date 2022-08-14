@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Bitspace.Services.AnimationService;
+namespace Bitspace.Services;
 
 public class AnimationService : IAnimationService
 {

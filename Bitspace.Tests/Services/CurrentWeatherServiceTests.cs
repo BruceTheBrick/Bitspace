@@ -1,9 +1,5 @@
-﻿using Bitspace.APIs.OpenWeather;
-using Bitspace.APIs.OpenWeather.Request_Models;
-using Bitspace.Services.AlertService;
-using Bitspace.Services.CurrentWeatherService;
-using Bitspace.Services.PermissionService;
-using Bitspace.Services.TimeoutService;
+﻿using Bitspace.APIs;
+using Bitspace.Services;
 using Bitspace.Tests.Base;
 using Bitspace.Tests.Factories;
 using Moq;

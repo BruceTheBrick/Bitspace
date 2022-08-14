@@ -1,7 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using Bitspace.Pages.HomePage.Services;
-using Bitspace.Pages.Mainpage;
-using Bitspace.Pages.Mainpage.Models;
+using Bitspace.Pages;
 using Bitspace.Tests.Base;
 using Bitspace.Tests.Factories.Pages.Mainpage.Services;
 using FluentAssertions;

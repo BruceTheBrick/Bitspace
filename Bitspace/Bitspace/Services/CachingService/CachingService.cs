@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace Bitspace.Services.CachingService;
+namespace Bitspace.Services;
 
 public class CachingService : ICachingService
 {

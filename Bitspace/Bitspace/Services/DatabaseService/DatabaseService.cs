@@ -2,7 +2,7 @@
 using System.IO;
 using SQLite;
 
-namespace Bitspace.Services.DatabaseService;
+namespace Bitspace.Services;
 
 public class DatabaseService : IDatabaseService
 {

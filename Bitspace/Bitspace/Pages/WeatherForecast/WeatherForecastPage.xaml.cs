@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Pages.WeatherForecast;
+namespace Bitspace.Pages;
 
 [ExcludeFromCodeCoverage]
 public partial class WeatherForecastPage

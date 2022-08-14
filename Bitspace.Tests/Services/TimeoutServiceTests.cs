@@ -1,4 +1,4 @@
-﻿using Bitspace.Services.TimeoutService;
+﻿using Bitspace.Services;
 using Bitspace.Tests.Base;
 using FluentAssertions;
 using Xunit;

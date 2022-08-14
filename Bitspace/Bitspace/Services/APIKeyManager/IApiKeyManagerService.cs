@@ -1,6 +1,6 @@
 ﻿using Bitspace.APIs;
 
-namespace Bitspace.Services.APIKeyManager;
+namespace Bitspace.Services;
 
 public interface IApiKeyManagerService
 {

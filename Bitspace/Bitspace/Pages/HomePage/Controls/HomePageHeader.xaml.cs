@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using Bitspace.Services.AnimationService;
+using Bitspace.Services;
 using Xamarin.Forms;
 
-namespace Bitspace.Pages.HomePage.Controls;
+namespace Bitspace.Pages;
 
 [ExcludeFromCodeCoverage]
 public partial class HomePageHeader

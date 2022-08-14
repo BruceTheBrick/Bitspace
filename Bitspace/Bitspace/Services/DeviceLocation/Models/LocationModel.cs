@@ -1,4 +1,4 @@
-﻿namespace Bitspace.Services.DeviceLocation.Models
+﻿namespace Bitspace.Services
 {
     public class LocationModel
     {

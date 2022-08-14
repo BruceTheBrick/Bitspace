@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using Bitspace.Services.RemoteConfig;
-using Bitspace.Services.TimeoutService;
+using Bitspace.Services;
 using Firebase.RemoteConfig;
 
 namespace Bitspace.Droid.Services.RemoteConfigService;

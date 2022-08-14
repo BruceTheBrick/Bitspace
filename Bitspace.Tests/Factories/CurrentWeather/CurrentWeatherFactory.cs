@@ -1,5 +1,4 @@
-﻿using Bitspace.APIs.OpenWeather.Response_Models;
-using Bitspace.APIs.OpenWeather.ViewModels;
+﻿using Bitspace.APIs;
 using Bitspace.Tests.Factories.APIs.OpenWeatherAPI;
 using Bogus;
 

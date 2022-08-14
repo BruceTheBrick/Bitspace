@@ -1,5 +1,5 @@
-﻿using Bitspace.Pages.HomePage.Services;
-using Bitspace.Services.RemoteConfig;
+﻿using Bitspace.Pages;
+using Bitspace.Services;
 using Bitspace.Tests.Base;
 using FluentAssertions;
 using Moq;

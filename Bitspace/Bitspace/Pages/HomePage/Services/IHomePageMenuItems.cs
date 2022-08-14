@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using Bitspace.Pages.Mainpage.Models;
+using Bitspace.Pages;
 
-namespace Bitspace.Pages.HomePage.Services
+namespace Bitspace.Pages
 {
     public interface IHomePageMenuItems
     {

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Services.RemoteConfig
+namespace Bitspace.Services
 {
     [ExcludeFromCodeCoverage]
     public static class RemoteConfigConstants

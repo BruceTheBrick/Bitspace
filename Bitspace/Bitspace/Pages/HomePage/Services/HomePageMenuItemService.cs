@@ -1,11 +1,9 @@
 ﻿using System.Collections.ObjectModel;
-using Bitspace.Pages.Mainpage.Models;
-using Bitspace.Pages.QRCodeScanner;
-using Bitspace.Pages.WeatherForecast;
+using Bitspace.Pages;
 using Bitspace.Registers;
-using Bitspace.Services.RemoteConfig;
+using Bitspace.Services;
 
-namespace Bitspace.Pages.HomePage.Services
+namespace Bitspace.Pages
 {
     public class HomePageMenuItemService : IHomePageMenuItems
     {

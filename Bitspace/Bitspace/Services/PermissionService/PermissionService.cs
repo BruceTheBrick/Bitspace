@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace Bitspace.Services.PermissionService;
+namespace Bitspace.Services;
 
 public class PermissionService : IPermissionService
 {

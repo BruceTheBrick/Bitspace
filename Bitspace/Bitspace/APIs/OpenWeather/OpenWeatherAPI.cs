@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.APIs.OpenWeather.Request_Models;
-using Bitspace.APIs.OpenWeather.Response_Models;
-using Bitspace.Services.APIKeyManager;
+using Bitspace.APIs;
+using Bitspace.Services;
 
-namespace Bitspace.APIs.OpenWeather
+namespace Bitspace.APIs
 {
     public class OpenWeatherAPI : BaseAPI, IOpenWeatherAPI
     {

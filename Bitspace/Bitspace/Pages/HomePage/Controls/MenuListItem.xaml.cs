@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Bitspace.Pages.Mainpage.Models;
+using Bitspace.Pages;
 using Xamarin.Forms;
 
-namespace Bitspace.Pages.HomePage.Controls;
+namespace Bitspace.Pages;
 
 [ExcludeFromCodeCoverage]
 public partial class MenuListItem

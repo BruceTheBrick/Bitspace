@@ -1,6 +1,6 @@
 ﻿using Xamarin.Essentials;
 
-namespace Bitspace.Services.DeviceInformation
+namespace Bitspace.Services
 {
     public class DeviceInformationService : IDeviceInformationService
     {

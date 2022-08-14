@@ -1,4 +1,4 @@
-﻿namespace Bitspace.APIs.OpenWeather.Request_Models;
+﻿namespace Bitspace.APIs;
 
 public class CurrentWeatherRequest
 {

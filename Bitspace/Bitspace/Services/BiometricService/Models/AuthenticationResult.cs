@@ -1,4 +1,4 @@
-﻿namespace Bitspace.Services.BiometricService.Models;
+﻿namespace Bitspace.Services;
 
 public class AuthenticationResult
 {

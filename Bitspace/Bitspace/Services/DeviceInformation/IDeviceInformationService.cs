@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Bitspace.Services.DeviceInformation
+﻿namespace Bitspace.Services
 {
     public interface IDeviceInformationService
     {

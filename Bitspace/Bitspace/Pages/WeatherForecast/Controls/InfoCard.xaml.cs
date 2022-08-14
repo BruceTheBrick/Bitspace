@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
 
-namespace Bitspace.Pages.WeatherForecast.Controls;
+namespace Bitspace.Pages;
 
 [ExcludeFromCodeCoverage]
 public partial class InfoCard

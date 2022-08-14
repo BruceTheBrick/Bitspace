@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bitspace.APIs.OpenWeather.Response_Models;
+using Bitspace.APIs;
 
-namespace Bitspace.APIs.OpenWeather.ViewModels;
+namespace Bitspace.APIs;
 
 public class CurrentWeatherViewModel
 {
