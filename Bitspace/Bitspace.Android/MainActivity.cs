@@ -37,6 +37,7 @@ namespace Bitspace.Droid
 
         private void InitNugets(Bundle savedInstanceState)
         {
+            AndroidX.Core.SplashScreen.SplashScreen.InstallSplashScreen(this);
             Rg.Plugins.Popup.Popup.Init(this);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
