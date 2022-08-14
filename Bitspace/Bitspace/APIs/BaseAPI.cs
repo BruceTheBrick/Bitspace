@@ -23,25 +23,34 @@ public class BaseAPI
 
     protected string ApiKey { get; }
 
-    protected async Task<Response<T>> ToResponse<T>(HttpResponseMessage rawResponse) where T : class
+    protected async Task<Response<T>> ToResponse<T>(HttpResponseMessage rawResponse) where T : class, new()
     {
         var content = await rawResponse.Content.ReadAsStringAsync();
-        var data = JsonConvert.DeserializeObject<T>(content);
+        var data = JsonConvert.DeserializeObject<T>(content) ?? new T();
         var response = new Response<T>(data, rawResponse.StatusCode, StringToMethod(rawResponse.RequestMessage.Method.Method), rawResponse.IsSuccessStatusCode);
         return response;
     }
 
     private HttpMethod StringToMethod(string methodString)
     {
-        return methodString switch
+        switch (methodString)
         {
-            "GET" => HttpMethod.Get,
-            "POST" => HttpMethod.Post,
-            "PUT" => HttpMethod.Put,
-            "HEAD" => HttpMethod.Head,
-            "DELETE" => HttpMethod.Delete,
-            "PATCH" => HttpMethod.Patch,
-            "OPTIONS" => HttpMethod.Options,
-        };
+            case "GET":
+                return HttpMethod.Get;
+            case "POST":
+                return HttpMethod.Post;
+            case "PUT":
+                return HttpMethod.Put;
+            case "HEAD":
+                return HttpMethod.Head;
+            case "DELETE":
+                return HttpMethod.Delete;
+            case "PATCH":
+                return HttpMethod.Patch;
+            case "OPTIONS":
+                return HttpMethod.Options;
+        }
+
+        return null;
     }
 }

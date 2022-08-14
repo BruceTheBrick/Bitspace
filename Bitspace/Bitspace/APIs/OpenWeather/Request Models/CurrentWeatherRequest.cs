@@ -2,6 +2,10 @@
 
 public class CurrentWeatherRequest
 {
+    public CurrentWeatherRequest()
+    {
+    }
+
     public CurrentWeatherRequest(double latitude, double longitude)
     {
         Latitude = latitude;
