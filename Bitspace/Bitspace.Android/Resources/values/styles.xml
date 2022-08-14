@@ -17,6 +17,5 @@
   
   <style name="MainTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowSplashScreenBackground">@color/colorPrimaryDark</item>
-    <item name="android:windowSplashScreenAnimatedIcon">@drawable/logo</item>
   </style>
 </resources>
