@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Bitspace.Pages;
 using Bitspace.Registers;
 using Bitspace.Services;
 

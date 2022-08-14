@@ -2,19 +2,19 @@
 
 namespace Bitspace.APIs;
 
-public class CurrentWeatherRequest
+public class HourlyWeatherRequest
 {
-    public CurrentWeatherRequest()
+    public HourlyWeatherRequest()
     {
     }
 
-    public CurrentWeatherRequest(double latitude, double longitude)
+    public HourlyWeatherRequest(double latitude, double longitude)
     {
         Latitude = latitude;
         Longitude = longitude;
     }
 
-    public CurrentWeatherRequest(LocationModel location)
+    public HourlyWeatherRequest(LocationModel location)
     {
         Latitude = location.Latitude;
         Longitude = location.Longitude;

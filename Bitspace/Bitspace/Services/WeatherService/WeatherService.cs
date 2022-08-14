@@ -42,6 +42,12 @@ public class CurrentWeatherService : ICurrentWeatherService
         return _currentWeatherViewModel;
     }
 
+    public async Task GetHourlyForecast()
+    {
+        var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
+        var response = await _openWeatherApi.GetHourlyWeather(new HourlyWeatherRequest(location));
+    }
+
     private async Task FetchCurrentWeather()
     {
         try

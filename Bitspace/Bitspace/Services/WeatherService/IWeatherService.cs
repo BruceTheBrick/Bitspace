@@ -6,4 +6,6 @@ namespace Bitspace.Services;
 public interface ICurrentWeatherService
 {
     public Task<CurrentWeatherViewModel> GetCurrentWeather();
+
+    public Task GetHourlyForecast();
 }

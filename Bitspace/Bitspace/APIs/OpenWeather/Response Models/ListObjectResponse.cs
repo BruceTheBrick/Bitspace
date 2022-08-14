@@ -23,7 +23,13 @@ public class ListObjectResponse
     public int Visibility { get; set; }
 
     [JsonProperty("pop")]
-    public double Pop { get; set; }
+    public double RainChance { get; set; }
+
+    [JsonProperty("rain")]
+    public RainResponseModel Rain { get; set; }
+
+    [JsonProperty("snow")]
+    public SnowResponseModel Snow { get; set; }
 
     [JsonProperty("sys")]
     public SystemResponseModel System { get; set; }

@@ -16,6 +16,6 @@ public class HourlyWeatherResponse
     [JsonProperty("list")]
     public ListObjectResponse[] List { get; set; }
 
-    // [JsonProperty("city")]
-    // public C
+    [JsonProperty("city")]
+    public CityResponseModel City { get; set; }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Bitspace.Pages;
 using Xamarin.Forms;
 
 namespace Bitspace.Pages;

@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Bitspace.Pages;
 
 namespace Bitspace.Pages
 {

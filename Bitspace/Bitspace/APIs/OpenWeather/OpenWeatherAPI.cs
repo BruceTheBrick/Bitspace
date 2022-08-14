@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.APIs;
 using Bitspace.Services;
 
 namespace Bitspace.APIs
@@ -22,9 +21,11 @@ namespace Bitspace.APIs
             return await ToResponse<CurrentWeatherResponse>(rawResponse);
         }
 
-        // public async Task<Response<HourlyWeatherResponse>> GetHourlyWeather()
-        // {
-        //     
-        // }
+        public async Task<Response<HourlyWeatherResponse>> GetHourlyWeather(HourlyWeatherRequest request)
+        {
+            var url = $"{Endpoint}/data/2.5/forecast?units=metric&lat={request.Latitude}&lon={request.Longitude}&appid={ApiKey}";
+            var rawResponse = await _client.GetAsync(url);
+            return await ToResponse<HourlyWeatherResponse>(rawResponse);
+        }
     }
 }

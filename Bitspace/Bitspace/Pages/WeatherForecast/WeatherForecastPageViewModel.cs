@@ -28,6 +28,7 @@ public class WeatherForecastPageViewModel : BasePageViewModel
     {
         IsBusy = true;
         Weather = await _currentWeatherService.GetCurrentWeather();
+        await _currentWeatherService.GetHourlyForecast();
         IsBusy = false;
     }
 }
