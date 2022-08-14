@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Bitspace.Services.AlertService;
+namespace Bitspace.Services;
 
 public interface IAlertService
 {

@@ -1,20 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 using Bitspace.APIs;
-using Bitspace.APIs.OpenWeather;
-using Bitspace.Constants;
 using Bitspace.Pages;
-using Bitspace.Pages.Mainpage;
-using Bitspace.Pages.Mainpage.Services.MainpageMenuItems;
-using Bitspace.Pages.QRCodeScanner;
-using Bitspace.Pages.WeatherForecast;
-using Bitspace.Services.AlertService;
-using Bitspace.Services.AnimationService;
-using Bitspace.Services.APIKeyManager;
-using Bitspace.Services.BiometricService;
-using Bitspace.Services.CachingService;
-using Bitspace.Services.CurrentWeatherService;
-using Bitspace.Services.DeviceInformation;
-using Bitspace.Services.PermissionService;
-using Bitspace.Services.TimeoutService;
+using Bitspace.Services;
 using DLToolkit.Forms.Controls;
 using Prism;
 using Prism.Ioc;
@@ -25,6 +12,7 @@ using Xamarin.Forms;
 
 namespace Bitspace
 {
+    [ExcludeFromCodeCoverage]
     public partial class App
     {
         public App(IPlatformInitializer initializer)
@@ -37,7 +25,7 @@ namespace Bitspace
             InitializeComponent();
             FlowListView.Init();
             Sharpnado.MaterialFrame.Initializer.Initialize(false, true);
-            await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(MainPage)}");
+            await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(HomePage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -54,7 +42,7 @@ namespace Bitspace
             containerRegistry.RegisterPopupNavigationService();
             containerRegistry.RegisterSingleton<IDeviceInformationService, DeviceInformationService>();
             containerRegistry.Register<IHttpClient, ExtendedHttpClient>();
-            containerRegistry.Register<IMainpageMenuItems, MainpageMenuItemService>();
+            containerRegistry.Register<IHomePageMenuItems, HomePageMenuItemService>();
             containerRegistry.RegisterSingleton<ICachingService, CachingService>();
             containerRegistry.Register<IBiometricService, BiometricService>();
             containerRegistry.Register<ITimeoutService, TimeoutService>();
@@ -66,10 +54,10 @@ namespace Bitspace
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>(nameof(NavigationPage));
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>(nameof(MainPage));
-            containerRegistry.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>(nameof(WeatherForecastPage));
-            containerRegistry.RegisterForNavigation<QRCodeScannerPage, QRCodeScannerPageViewModel>(nameof(QRCodeScannerPage));
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
+            containerRegistry.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>();
+            containerRegistry.RegisterForNavigation<QRCodeScannerPage, QRCodeScannerPageViewModel>();
         }
 
         private void RegisterAPIs(IContainerRegistry containerRegistry)

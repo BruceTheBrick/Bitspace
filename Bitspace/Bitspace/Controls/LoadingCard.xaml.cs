@@ -1,7 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using System.Diagnostics.CodeAnalysis;
+using Xamarin.Forms;
 
 namespace Bitspace.Controls;
 
+[ExcludeFromCodeCoverage]
 public partial class LoadingCard
 {
     public static readonly BindableProperty IsLoadingProperty = BindableProperty.Create(

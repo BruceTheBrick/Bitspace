@@ -1,12 +1,11 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Prism.AppModel;
 using Prism.Mvvm;
 using Prism.Navigation;
 
 namespace Bitspace.Pages
 {
-    public class BasePageViewModel : BindableBase, IInitialize, IInitializeAsync, INavigationAware, IDestructible, IPageLifecycleAware
+    public class BasePageViewModel : BindableBase, IInitialize, INavigationAware, IDestructible, IPageLifecycleAware
     {
         private string _title;
 
@@ -27,11 +26,12 @@ namespace Bitspace.Pages
 
         public virtual void Initialize(INavigationParameters parameters)
         {
+            InitializeAsync(parameters).ConfigureAwait(false);
         }
 
-        public virtual async Task InitializeAsync(INavigationParameters parameters)
+        public virtual Task InitializeAsync(INavigationParameters parameters)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         public virtual void OnNavigatedFrom(INavigationParameters parameters)

@@ -1,42 +1,31 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.APIs.OpenWeather.Response_Models;
-using Bitspace.Services.APIKeyManager;
-using Bitspace.Services.DeviceLocation;
+using Bitspace.Services;
 
-namespace Bitspace.APIs.OpenWeather
+namespace Bitspace.APIs
 {
     public class OpenWeatherAPI : BaseAPI, IOpenWeatherAPI
     {
         private const string Endpoint = "https://api.openweathermap.org";
-        private readonly IDeviceLocation _deviceLocationService;
 
         public OpenWeatherAPI(
-            IDeviceLocation deviceLocationService,
             IHttpClient client,
             IApiKeyManagerService keyManagerService)
             : base(client, keyManagerService, API_Endpoints.OPEN_WEATHER)
         {
-            _deviceLocationService = deviceLocationService;
-            TimeoutSeconds = 1;
         }
 
-        public async Task<Response<CurrentWeatherResponse>> GetCurrentWeather()
+        public async Task<Response<CurrentWeatherResponse>> GetCurrentWeather(CurrentWeatherRequest request)
         {
-            var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
-            var url = $"{Endpoint}/data/2.5/weather?units=metric&lat={location.Latitude}&lon={location.Longitude}&appid={ApiKey}";
+            var url = $"{Endpoint}/data/2.5/weather?units=metric&lat={request.Latitude}&lon={request.Longitude}&appid={ApiKey}";
             var rawResponse = await _client.GetAsync(url);
             return await ToResponse<CurrentWeatherResponse>(rawResponse);
         }
 
-        public string GetIconURL(string iconId, int size = 2)
+        public async Task<Response<HourlyWeatherResponse>> GetHourlyWeather(HourlyForecastRequest request)
         {
-            if (size is <= 0 or > 4)
-            {
-                return string.Empty;
-            }
-
-            var imgSize = size == 1 ? string.Empty : $"@{size}x";
-            return $"http://openweathermap.org/img/wn/{iconId}{imgSize}.png";
+            var url = $"{Endpoint}/data/2.5/forecast?units=metric&lat={request.Latitude}&lon={request.Longitude}&appid={ApiKey}";
+            var rawResponse = await _client.GetAsync(url);
+            return await ToResponse<HourlyWeatherResponse>(rawResponse);
         }
     }
 }

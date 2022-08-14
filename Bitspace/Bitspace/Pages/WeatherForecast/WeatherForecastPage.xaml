@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Bitspace.Pages.WeatherForecast.WeatherForecastPage"
+    x:Class="Bitspace.Pages.WeatherForecastPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Bitspace.Pages.WeatherForecast.Controls;assembly=Bitspace"
+    xmlns:controls="clr-namespace:Bitspace.Pages;assembly=Bitspace"
     xmlns:converters="clr-namespace:Bitspace.Converters;assembly=Bitspace"
     xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:loader="clr-namespace:Bitspace.Controls;assembly=Bitspace"
-    xmlns:weatherforecast="clr-namespace:Bitspace.Pages.WeatherForecast"
+    xmlns:weatherforecast="clr-namespace:Bitspace.Pages"
     Title="{Binding Title}"
     x:DataType="weatherforecast:WeatherForecastPageViewModel">
     <ContentPage.Resources>
@@ -40,6 +40,7 @@
                 Text="{Binding Weather.Temperature, StringFormat='{0:F0}°'}"
                 TextColor="{Binding Weather.Temperature, Converter={StaticResource TemperatureToColorConverter}}"
                 VerticalOptions="Start" />
+            <Label Text="{Binding Weather.FeelsLike, StringFormat='Feels like {0:F0}°'}" />
         </loader:SkeletonSection>
         <loader:SkeletonSection
             Grid.Row="1"

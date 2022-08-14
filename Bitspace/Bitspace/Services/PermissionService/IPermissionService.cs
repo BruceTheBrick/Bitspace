@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Bitspace.Services.PermissionService;
+namespace Bitspace.Services;
 
 public interface IPermissionService
 {

@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.Services.BiometricService.Models;
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
 
-namespace Bitspace.Services.BiometricService;
+namespace Bitspace.Services;
 
 public class BiometricService : IBiometricService
 {

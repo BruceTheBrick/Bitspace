@@ -1,11 +1,12 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.APIs.OpenWeather.Response_Models;
+using Bitspace.APIs;
 
-namespace Bitspace.APIs.OpenWeather
+namespace Bitspace.APIs
 {
     public interface IOpenWeatherAPI
     {
-        Task<Response<CurrentWeatherResponse>> GetCurrentWeather();
-        string GetIconURL(string iconId, int size = 2);
+        Task<Response<CurrentWeatherResponse>> GetCurrentWeather(CurrentWeatherRequest request);
+
+        Task<Response<HourlyWeatherResponse>> GetHourlyWeather(HourlyForecastRequest request);
     }
 }

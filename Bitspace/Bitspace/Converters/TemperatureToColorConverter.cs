@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Xamarin.Forms;
 
 namespace Bitspace.Converters;
 
+[ExcludeFromCodeCoverage]
 public class TemperatureToColorConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

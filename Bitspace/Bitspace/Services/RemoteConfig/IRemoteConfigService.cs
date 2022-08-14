@@ -1,4 +1,4 @@
-﻿namespace Bitspace.Services.RemoteConfig
+﻿namespace Bitspace.Services
 {
     public interface IRemoteConfigService
     {

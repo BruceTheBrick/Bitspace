@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.APIs.OpenWeather.Models;
-using Bitspace.Services.CurrentWeatherService;
+using Bitspace.APIs;
+using Bitspace.Services;
 using Prism.Navigation;
 
-namespace Bitspace.Pages.WeatherForecast;
+namespace Bitspace.Pages;
 
 public class WeatherForecastPageViewModel : BasePageViewModel
 {
@@ -17,17 +17,19 @@ public class WeatherForecastPageViewModel : BasePageViewModel
     }
 
     public CurrentWeatherViewModel Weather { get; set; }
+    public HourlyForecastViewModel HourlyForecast { get; set; }
 
     public override async Task InitializeAsync(INavigationParameters parameters)
     {
         await base.InitializeAsync(parameters);
-        _ = UpdateCurrentWeather();
+        await UpdateCurrentWeather();
     }
 
     private async Task UpdateCurrentWeather()
     {
         IsBusy = true;
         Weather = await _currentWeatherService.GetCurrentWeather();
+        HourlyForecast = await _currentWeatherService.GetHourlyForecast();
         IsBusy = false;
     }
 }

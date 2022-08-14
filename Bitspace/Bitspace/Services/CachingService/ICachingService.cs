@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace Bitspace.Services.CachingService;
+namespace Bitspace.Services;
 
 public interface ICachingService
 {

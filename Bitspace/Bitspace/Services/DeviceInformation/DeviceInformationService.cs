@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Essentials;
+﻿using Xamarin.Essentials;
 
-namespace Bitspace.Services.DeviceInformation
+namespace Bitspace.Services
 {
     public class DeviceInformationService : IDeviceInformationService
     {

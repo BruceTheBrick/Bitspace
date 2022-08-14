@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Prism.Navigation;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.CommunityToolkit.UI.Views.Options;
 using Xamarin.Forms;
 
-namespace Bitspace.Services.AlertService;
+namespace Bitspace.Services;
 
 public class AlertService : IAlertService
 {

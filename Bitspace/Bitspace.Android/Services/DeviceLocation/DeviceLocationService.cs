@@ -1,5 +1,4 @@
-﻿using Bitspace.Services.DeviceLocation;
-using Bitspace.Services.DeviceLocation.Models;
+﻿using Bitspace.Services;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;

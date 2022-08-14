@@ -1,7 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using System.Diagnostics.CodeAnalysis;
+using Xamarin.Forms;
 
 namespace Bitspace.Controls;
 
+[ExcludeFromCodeCoverage]
 public partial class Divider
 {
     private bool _isVertical;

@@ -1,4 +1,4 @@
-﻿using Bitspace.Pages.Mainpage.Models;
+﻿using Bitspace.Pages;
 using Bogus;
 
 namespace Bitspace.Tests.Factories.Pages.Mainpage.Services;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bitspace.Services.TimeoutService;
+namespace Bitspace.Services;
 
 public class TimeoutService : ITimeoutService
 {
