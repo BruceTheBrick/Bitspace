@@ -7,5 +7,5 @@ public interface ICurrentWeatherService
 {
     public Task<CurrentWeatherViewModel> GetCurrentWeather();
 
-    public Task GetHourlyForecast();
+    public Task<HourlyForecastViewModel> GetHourlyForecast();
 }

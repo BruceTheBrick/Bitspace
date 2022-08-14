@@ -12,4 +12,12 @@ public static class OpenWeatherAPIRequestFactory
             .RuleFor(x => x.Longitude, f => f.Random.Double(-180, 180))
             .Generate();
     }
+
+    public static HourlyForecastRequest HourlyForecastRequest()
+    {
+        return new Faker<HourlyForecastRequest>()
+            .RuleFor(x => x.Latitude, f => f.Random.Double(-90, 90))
+            .RuleFor(x => x.Longitude, f => f.Random.Double(-180, 180))
+            .Generate();
+    }
 }

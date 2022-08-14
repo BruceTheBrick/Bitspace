@@ -21,7 +21,7 @@ namespace Bitspace.APIs
             return await ToResponse<CurrentWeatherResponse>(rawResponse);
         }
 
-        public async Task<Response<HourlyWeatherResponse>> GetHourlyWeather(HourlyWeatherRequest request)
+        public async Task<Response<HourlyWeatherResponse>> GetHourlyWeather(HourlyForecastRequest request)
         {
             var url = $"{Endpoint}/data/2.5/forecast?units=metric&lat={request.Latitude}&lon={request.Longitude}&appid={ApiKey}";
             var rawResponse = await _client.GetAsync(url);

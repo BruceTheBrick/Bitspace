@@ -7,6 +7,6 @@ namespace Bitspace.APIs
     {
         Task<Response<CurrentWeatherResponse>> GetCurrentWeather(CurrentWeatherRequest request);
 
-        Task<Response<HourlyWeatherResponse>> GetHourlyWeather(HourlyWeatherRequest request);
+        Task<Response<HourlyWeatherResponse>> GetHourlyWeather(HourlyForecastRequest request);
     }
 }

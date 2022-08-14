@@ -15,6 +15,8 @@ public class CurrentWeatherService : ICurrentWeatherService
 
     private CurrentWeatherResponse _currentWeatherResponse;
     private CurrentWeatherViewModel _currentWeatherViewModel;
+    private HourlyWeatherResponse _hourlyForecastResponse;
+    private HourlyForecastViewModel _hourlyForecastViewModel;
 
     public CurrentWeatherService(
         IOpenWeatherAPI openWeatherApi,
@@ -42,10 +44,42 @@ public class CurrentWeatherService : ICurrentWeatherService
         return _currentWeatherViewModel;
     }
 
-    public async Task GetHourlyForecast()
+    public async Task<HourlyForecastViewModel> GetHourlyForecast()
     {
-        var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
-        var response = await _openWeatherApi.GetHourlyWeather(new HourlyWeatherRequest(location));
+        if (_timeoutService.IsExpired())
+        {
+            await FetchHourlyForecast();
+        }
+
+        return _hourlyForecastViewModel;
+    }
+
+    private async Task FetchHourlyForecast()
+    {
+        try
+        {
+            if (!await _permissionService.RequestPermission(DevicePermissions.LOCATION))
+            {
+                return;
+            }
+
+            var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
+            var response = await _openWeatherApi.GetHourlyWeather(new HourlyForecastRequest(location));
+            if (response.IsSuccess)
+            {
+                _hourlyForecastResponse = response.Data;
+                _hourlyForecastViewModel = new HourlyForecastViewModel(_hourlyForecastResponse);
+                _timeoutService.Update();
+            }
+        }
+        catch (HttpRequestException)
+        {
+            await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
+        }
+        catch (Exception e)
+        {
+            await _alertService.Snackbar(e.Message);
+        }
     }
 
     private async Task FetchCurrentWeather()
@@ -58,7 +92,7 @@ public class CurrentWeatherService : ICurrentWeatherService
             }
 
             var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
-            var response = await _openWeatherApi.GetCurrentWeather(new CurrentWeatherRequest(location.Latitude, location.Longitude));
+            var response = await _openWeatherApi.GetCurrentWeather(new CurrentWeatherRequest(location));
             if (response.IsSuccess)
             {
                 _currentWeatherResponse = response.Data;

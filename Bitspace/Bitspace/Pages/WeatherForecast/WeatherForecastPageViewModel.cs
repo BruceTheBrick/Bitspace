@@ -17,6 +17,7 @@ public class WeatherForecastPageViewModel : BasePageViewModel
     }
 
     public CurrentWeatherViewModel Weather { get; set; }
+    public HourlyForecastViewModel HourlyForecast { get; set; }
 
     public override async Task InitializeAsync(INavigationParameters parameters)
     {
@@ -28,7 +29,7 @@ public class WeatherForecastPageViewModel : BasePageViewModel
     {
         IsBusy = true;
         Weather = await _currentWeatherService.GetCurrentWeather();
-        await _currentWeatherService.GetHourlyForecast();
+        HourlyForecast = await _currentWeatherService.GetHourlyForecast();
         IsBusy = false;
     }
 }

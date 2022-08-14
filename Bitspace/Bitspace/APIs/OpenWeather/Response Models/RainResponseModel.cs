@@ -1,7 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
 namespace Bitspace.APIs;
 
+[ExcludeFromCodeCoverage
+]
 public class RainResponseModel
 {
     [JsonProperty("1h")]
