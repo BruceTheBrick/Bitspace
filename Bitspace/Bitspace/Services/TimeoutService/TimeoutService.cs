@@ -22,6 +22,20 @@ public class TimeoutService : ITimeoutService
         return (DateTime.Now - DateTimeLastUpdate).Minutes > ExpiryMinutes;
     }
 
+    public bool IsExpired(DateTime dateTimeLastUpdate)
+    {
+        if (ExpiryMinutes == null)
+        {
+            return false;
+        }
+
+        if (dateTimeLastUpdate == DateTime.MinValue)
+        {
+            return true;
+        }
+
+        return (DateTime.Now - dateTimeLastUpdate).Minutes > ExpiryMinutes;
+    }
     public bool IsExpired(DateTime dateTimeLastUpdate, int expiryMinutes)
     {
         if (dateTimeLastUpdate.Equals(DateTime.MinValue))

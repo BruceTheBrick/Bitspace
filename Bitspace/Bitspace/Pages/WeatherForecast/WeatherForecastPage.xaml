@@ -48,6 +48,17 @@
             IsLoading="{Binding IsBusy}">
             <forms:CachedImage Source="{Binding Weather.IconUrl}" />
         </loader:SkeletonSection>
+        <loader:SkeletonSection
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            IsLoading="{Binding IsBusy}">
+            <CarouselView ItemsSource="{Binding HourlyForecast.ForecastItems}">
+                <CarouselView.ItemTemplate>
+                    <controls:ForecastItem />
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </loader:SkeletonSection>
         <controls:InfoCard
             Grid.Row="3"
             Grid.ColumnSpan="3"

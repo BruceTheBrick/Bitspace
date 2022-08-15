@@ -17,6 +17,8 @@ public class CurrentWeatherService : ICurrentWeatherService
     private CurrentWeatherViewModel _currentWeatherViewModel;
     private HourlyWeatherResponse _hourlyForecastResponse;
     private HourlyForecastViewModel _hourlyForecastViewModel;
+    private DateTime _currentWeatherLastUpdate;
+    private DateTime _hourlyForecastLastUpdate;
 
     public CurrentWeatherService(
         IOpenWeatherAPI openWeatherApi,
@@ -36,7 +38,7 @@ public class CurrentWeatherService : ICurrentWeatherService
 
     public async Task<CurrentWeatherViewModel> GetCurrentWeather()
     {
-        if (_timeoutService.IsExpired())
+        if (_timeoutService.IsExpired(_currentWeatherLastUpdate))
         {
             await FetchCurrentWeather();
         }
@@ -46,7 +48,7 @@ public class CurrentWeatherService : ICurrentWeatherService
 
     public async Task<HourlyForecastViewModel> GetHourlyForecast()
     {
-        if (_timeoutService.IsExpired())
+        if (_timeoutService.IsExpired(_hourlyForecastLastUpdate))
         {
             await FetchHourlyForecast();
         }
@@ -69,7 +71,7 @@ public class CurrentWeatherService : ICurrentWeatherService
             {
                 _hourlyForecastResponse = response.Data;
                 _hourlyForecastViewModel = new HourlyForecastViewModel(_hourlyForecastResponse);
-                _timeoutService.Update();
+                _hourlyForecastLastUpdate = DateTime.Now;
             }
         }
         catch (HttpRequestException)
@@ -97,7 +99,7 @@ public class CurrentWeatherService : ICurrentWeatherService
             {
                 _currentWeatherResponse = response.Data;
                 _currentWeatherViewModel = new CurrentWeatherViewModel(_currentWeatherResponse);
-                _timeoutService.Update();
+                _currentWeatherLastUpdate = DateTime.Now;
             }
         }
         catch (HttpRequestException)

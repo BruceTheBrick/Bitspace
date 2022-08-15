@@ -13,7 +13,7 @@ public class HourlyForecastViewModel
         InitForecastItems(response.List);
     }
 
-    private List<ForecastItemViewModel> ForecastItems { get; set; }
+    public List<ForecastItemViewModel> ForecastItems { get; set; }
 
     private void InitForecastItems(IEnumerable<ListObjectResponse> items)
     {
