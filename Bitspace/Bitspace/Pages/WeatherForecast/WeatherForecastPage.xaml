@@ -7,6 +7,7 @@
     xmlns:converters="clr-namespace:Bitspace.Converters;assembly=Bitspace"
     xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:loader="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+    xmlns:models="clr-namespace:Bitspace.APIs;assembly=Bitspace"
     xmlns:weatherforecast="clr-namespace:Bitspace.Pages"
     Title="{Binding Title}"
     x:DataType="weatherforecast:WeatherForecastPageViewModel">
@@ -53,9 +54,15 @@
             Grid.Column="0"
             Grid.ColumnSpan="3"
             IsLoading="{Binding IsBusy}">
-            <CarouselView ItemsSource="{Binding HourlyForecast.ForecastItems}">
+            <CarouselView
+                FlowDirection="LeftToRight"
+                IsScrollAnimated="True"
+                ItemsSource="{Binding HourlyForecast.ForecastItems}"
+                PeekAreaInsets="20, 0">
                 <CarouselView.ItemTemplate>
-                    <controls:ForecastItem />
+                    <DataTemplate x:DataType="models:ForecastItemViewModel">
+                        <controls:ForecastItem />
+                    </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
         </loader:SkeletonSection>
