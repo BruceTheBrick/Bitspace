@@ -57,6 +57,7 @@
             <CarouselView
                 FlowDirection="LeftToRight"
                 IsScrollAnimated="True"
+                HorizontalScrollBarVisibility="Always"
                 ItemsSource="{Binding HourlyForecast.ForecastItems}"
                 PeekAreaInsets="20, 0">
                 <CarouselView.ItemTemplate>
