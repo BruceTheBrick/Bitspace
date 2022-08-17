@@ -3,16 +3,23 @@
     x:Class="Bitspace.Pages.ForecastItem"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:materialFrame="http://sharpnado.com"
     xmlns:models="clr-namespace:Bitspace.APIs;assembly=Bitspace"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:DataType="models:ForecastItemViewModel"
+    BackgroundColor="Transparent"
     Border="{pancakeView:BorderMarkup Color=White,
                                       Thickness=2}"
     CornerRadius="16">
     <Grid
-        BackgroundColor="White"
         ColumnDefinitions="*, *, *"
         RowDefinitions="*, *, *, *">
+        <materialFrame:MaterialFrame
+            Grid.RowSpan="4"
+            Grid.ColumnSpan="3"
+            BackgroundColor="White"
+            MaterialBlurStyle="Dark"
+            Opacity="0.3" />
         <Label
             Grid.Row="0"
             Grid.ColumnSpan="3"
