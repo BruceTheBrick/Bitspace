@@ -103,6 +103,8 @@
     <EmbeddedResource Include="Resources\ic_chevron_right.svg" />
     <None Remove="Resources\ic_weather.svg" />
     <EmbeddedResource Include="Resources\ic_weather.svg" />
+    <None Remove="Resources\ic_thermometer.svg" />
+    <EmbeddedResource Include="Resources\ic_thermometer.svg" />
   </ItemGroup>
 
   <ItemGroup>

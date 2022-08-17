@@ -6,6 +6,7 @@
     xmlns:materialFrame="http://sharpnado.com"
     xmlns:models="clr-namespace:Bitspace.APIs;assembly=Bitspace"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     x:DataType="models:ForecastItemViewModel"
     BackgroundColor="Transparent"
     Border="{pancakeView:BorderMarkup Color=White,
@@ -20,6 +21,7 @@
             BackgroundColor="White"
             MaterialBlurStyle="Dark"
             Opacity="0.3" />
+        <controls:ExtendedImage Source="ic_thermometer"/>
         <Label
             Grid.Row="0"
             Grid.ColumnSpan="3"
