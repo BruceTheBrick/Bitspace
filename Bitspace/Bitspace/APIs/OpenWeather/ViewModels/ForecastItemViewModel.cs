@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Bogus.DataSets;
+using Humanizer;
 
 namespace Bitspace.APIs;
 
@@ -20,7 +20,7 @@ public class ForecastItemViewModel
         TemperatureMax = Math.Round(response.Main.TemperatureMax, 2);
         TemperatureMin = Math.Round(response.Main.TemperatureMin, 2);
         Description = response.Weather.First().Main;
-        ExtendedDescription = response.Weather.First().Description;
+        ExtendedDescription = response.Weather.First().Description.Humanize();
         WindSpeed = Math.Round(response.Wind.Speed, 2);
         GustSpeed = Math.Round(response.Wind.Gust, 2);
     }

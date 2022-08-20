@@ -10,7 +10,7 @@
     x:DataType="models:ForecastItemViewModel"
     BackgroundColor="Transparent"
     Border="{pancakeView:BorderMarkup Color=White,
-                                      Thickness=2}"
+                                      Thickness='1'}"
     CornerRadius="16">
     <Grid
         ColumnDefinitions="*, *, *"
@@ -21,12 +21,16 @@
             BackgroundColor="White"
             MaterialBlurStyle="Dark"
             Opacity="0.3" />
-        <controls:ExtendedImage Source="ic_thermometer"/>
+        <controls:ExtendedImage 
+            TintColor="White"
+            Source="ic_thermometer"/>
         <Label
             Grid.Row="0"
             Grid.ColumnSpan="3"
             HorizontalOptions="CenterAndExpand"
             Text="{Binding Temperature, StringFormat='{0:F0}°'}" />
+        <Label Text="{Binding Description}"/>
+        <Label Grid.Row="2" Text="{Binding ExtendedDescription}"/>
         <Label
             Grid.Row="3"
             Grid.ColumnSpan="3"
