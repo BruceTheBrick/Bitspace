@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using FFImageLoading.Forms;
 using FFImageLoading.Svg.Forms;
+using Xamarin.CommunityToolkit.Effects;
 using Xamarin.Forms;
 
 namespace Bitspace.Controls;
@@ -16,6 +17,14 @@ public class ExtendedImage : SvgCachedImage
         BindingMode.TwoWay,
         propertyChanged: OnSourceUpdated);
 
+    public static readonly BindableProperty TintColorProperty = BindableProperty.Create(
+        nameof(TintColor),
+        typeof(Color),
+        typeof(ExtendedImage),
+        null,
+        BindingMode.TwoWay,
+        propertyChanged: TintColorUpdated);
+
     public static readonly BindableProperty ExtensionProperty = BindableProperty.Create(
         nameof(Extension),
         typeof(string),
@@ -28,6 +37,12 @@ public class ExtendedImage : SvgCachedImage
     {
         get => (string)GetValue(SourceProperty);
         set => SetValue(SourceProperty, value);
+    }
+
+    public Color TintColor
+    {
+        get => (Color)GetValue(TintColorProperty);
+        set => SetValue(TintColorProperty, value);
     }
 
     public string Extension
@@ -45,6 +60,16 @@ public class ExtendedImage : SvgCachedImage
 
         var source = image.FormatSource((string)newvalue);
         image.SetBaseSource(source);
+    }
+
+    private static void TintColorUpdated(BindableObject bindable, object oldvalue, object newvalue)
+    {
+        if (bindable is not ExtendedImage image)
+        {
+            return;
+        }
+
+        IconTintColorEffect.SetTintColor(image, (Color)newvalue);
     }
 
     private string FormatSource(string input)
