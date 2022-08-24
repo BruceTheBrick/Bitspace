@@ -13,6 +13,7 @@ public class ForecastItemViewModel
     public ForecastItemViewModel(ListObjectResponse response)
     {
         DateTime = InitDateTime(response.DT);
+        DisplayDateTime = GetDisplayDateTime(DateTime);
         Temperature = Math.Round(response.Main.Temperature, 2);
         FeelsLike = Math.Round(response.Main.FeelsLike, 2);
         RainChance = Math.Round(response.RainChance, 2);
@@ -26,6 +27,7 @@ public class ForecastItemViewModel
     }
 
     public DateTime DateTime { get; set; }
+    public string DisplayDateTime { get; set; }
     public double Temperature { get; set; }
     public double FeelsLike { get; set; }
     public double RainChance { get; set; }
@@ -40,5 +42,10 @@ public class ForecastItemViewModel
     private DateTime InitDateTime(int utcTime)
     {
         return DateTime.UnixEpoch.AddSeconds(utcTime);
+    }
+
+    private string GetDisplayDateTime(DateTime datetime)
+    {
+        return datetime.ToString("ddd, dd MMM\nhh:mmtt");
     }
 }

@@ -12,28 +12,33 @@
     Border="{pancakeView:BorderMarkup Color=White,
                                       Thickness='1'}"
     CornerRadius="16">
-    <Grid
-        ColumnDefinitions="*, *, *"
-        RowDefinitions="*, *, *, *">
+    <Grid>
         <materialFrame:MaterialFrame
-            Grid.RowSpan="4"
-            Grid.ColumnSpan="3"
             BackgroundColor="White"
             MaterialBlurStyle="Dark"
             Opacity="0.3" />
-        <controls:ExtendedImage 
-            TintColor="White"
-            Source="ic_thermometer"/>
-        <Label
-            Grid.Row="0"
-            Grid.ColumnSpan="3"
-            HorizontalOptions="CenterAndExpand"
-            Text="{Binding Temperature, StringFormat='{0:F0}°'}" />
-        <Label Text="{Binding Description}"/>
-        <Label Grid.Row="2" Text="{Binding ExtendedDescription}"/>
-        <Label
-            Grid.Row="3"
-            Grid.ColumnSpan="3"
-            Text="{Binding DateTime}" />
+        <Grid
+            ColumnDefinitions="*, *, *"
+            RowDefinitions="*, *, *, *"
+            Padding="18">
+            <controls:ExtendedImage 
+                TintColor="White"
+                Source="ic_thermometer"/>
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalOptions="CenterAndExpand"
+                FontAttributes="Bold"
+                Text="{Binding Temperature, StringFormat='{0:F2}°'}" />
+            <Label Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" Text="{Binding TemperatureMin, StringFormat='{0:F2}°'}"/>
+            <Label Grid.Row="1" HorizontalOptions="CenterAndExpand" Grid.Column="2" Text="{Binding TemperatureMax, StringFormat='{0:F2}°'}"/>
+            <Label Grid.Row="2" Text="{Binding ExtendedDescription}"/>
+            <Label
+                Grid.Row="3"
+                Grid.ColumnSpan="3"
+                HorizontalTextAlignment="Center"
+                Text="{Binding DisplayDateTime}" />
+        </Grid>
     </Grid>
+    
 </pancakeView:PancakeView>

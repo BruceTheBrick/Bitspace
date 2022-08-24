@@ -58,11 +58,13 @@
                 FlowDirection="LeftToRight"
                 IsScrollAnimated="True"
                 HorizontalScrollBarVisibility="Always"
-                ItemsSource="{Binding HourlyForecast.ForecastItems}"
-                PeekAreaInsets="20, 0">
+                PeekAreaInsets="16"
+                ItemsSource="{Binding HourlyForecast.ForecastItems}">
                 <CarouselView.ItemTemplate>
                     <DataTemplate x:DataType="models:ForecastItemViewModel">
-                        <controls:ForecastItem />
+                        <StackLayout Padding="8, 24">
+                            <controls:ForecastItem />
+                        </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
