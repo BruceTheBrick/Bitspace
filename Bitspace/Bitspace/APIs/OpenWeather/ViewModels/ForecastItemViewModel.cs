@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
+using Bitspace.Interfaces;
 using Humanizer;
 
 namespace Bitspace.APIs;
 
-public class ForecastItemViewModel
+public class ForecastItemViewModel : IAccessibility
 {
     public ForecastItemViewModel()
     {
@@ -38,6 +39,7 @@ public class ForecastItemViewModel
     public string ExtendedDescription { get; set; }
     public double WindSpeed { get; set; }
     public double GustSpeed { get; set; }
+    public string AccessibilityName => GetAccessibilityName();
 
     private DateTime InitDateTime(int utcTime)
     {
@@ -47,5 +49,10 @@ public class ForecastItemViewModel
     private string GetDisplayDateTime(DateTime datetime)
     {
         return datetime.ToString("ddd, dd MMM\nhh:mmtt");
+    }
+
+    private string GetAccessibilityName()
+    {
+        return string.Empty;
     }
 }

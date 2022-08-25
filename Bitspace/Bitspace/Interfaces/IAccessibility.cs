@@ -2,6 +2,5 @@
 
 public interface IAccessibility
 {
-    public string Name { get; set; }
-    public string HelpText { get; set; }
+    public string AccessibilityName { get; }
 }

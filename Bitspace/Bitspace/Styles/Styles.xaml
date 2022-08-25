@@ -3,7 +3,8 @@
     x:Class="Bitspace.Styles.Styles"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:styles="clr-namespace:Bitspace.Styles;assembly=Bitspace">
+    xmlns:styles="clr-namespace:Bitspace.Styles;assembly=Bitspace"
+    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace">
 
     <!--  Colors  -->
     <styles:ColorRef x:Key="ColorPrimary" Color="{StaticResource SunburnRed}" />
@@ -21,5 +22,10 @@
     <!--  Label  -->
     <Style ApplyToDerivedTypes="True" TargetType="Label">
         <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+    </Style>
+    
+    <!-- Pill -->
+    <Style ApplyToDerivedTypes="True" TargetType="controls:Pill">
+        <Setter Property="CornerRadius" Value="{StaticResource BaseCornerRadius}"/>
     </Style>
 </ResourceDictionary>

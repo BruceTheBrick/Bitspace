@@ -1,80 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="Bitspace.Pages.WeatherForecastPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Bitspace.Pages;assembly=Bitspace"
-    xmlns:converters="clr-namespace:Bitspace.Converters;assembly=Bitspace"
-    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    xmlns:loader="clr-namespace:Bitspace.Controls;assembly=Bitspace"
-    xmlns:models="clr-namespace:Bitspace.APIs;assembly=Bitspace"
-    xmlns:weatherforecast="clr-namespace:Bitspace.Pages"
-    Title="{Binding Title}"
-    x:DataType="weatherforecast:WeatherForecastPageViewModel">
-    <ContentPage.Resources>
-        <converters:TemperatureToColorConverter x:Key="TemperatureToColorConverter" />
-    </ContentPage.Resources>
-    <Grid
-        Padding="24"
-        ColumnDefinitions="*, *, *"
-        RowDefinitions="auto, *, *, auto">
-        <loader:SkeletonSection
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            IsLoading="{Binding IsBusy}">
-            <Label
-                CharacterSpacing="2"
-                FontSize="Subtitle"
-                Text="{Binding Weather.Suburb}"
-                TextTransform="Uppercase" />
-        </loader:SkeletonSection>
-        <loader:SkeletonSection
-            Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            IsLoading="{Binding IsBusy}">
-            <Label
-                FontSize="124"
-                HorizontalOptions="Start"
-                HorizontalTextAlignment="Start"
-                Text="{Binding Weather.Temperature, StringFormat='{0:F0}°'}"
-                TextColor="{Binding Weather.Temperature, Converter={StaticResource TemperatureToColorConverter}}"
-                VerticalOptions="Start" />
-            <Label Text="{Binding Weather.FeelsLike, StringFormat='Feels like {0:F0}°'}" />
-        </loader:SkeletonSection>
-        <loader:SkeletonSection
-            Grid.Row="1"
-            Grid.Column="2"
-            IsLoading="{Binding IsBusy}">
-            <forms:CachedImage Source="{Binding Weather.IconUrl}" />
-        </loader:SkeletonSection>
-        <loader:SkeletonSection
-            Grid.Row="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="3"
-            IsLoading="{Binding IsBusy}">
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             x:DataType="pages:WeatherForecastPageViewModel"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+             xmlns:pages="clr-namespace:Bitspace.Pages;assembly=Bitspace"
+             x:Class="Bitspace.Pages.WeatherForecastPage">
+    <Grid RowDefinitions="*, *, *, *, *">
+        
+        <!-- Day Selection -->
+        <Grid RowDefinitions="*, *" ColumnDefinitions="auto, auto, auto">
+            <Label Text="Today" Grid.Column="0" Grid.Row="0"/>
+            <Label Text="7 days" Grid.Column="2" Grid.Row="0"/>
             <CarouselView
-                FlowDirection="LeftToRight"
-                IsScrollAnimated="True"
-                HorizontalScrollBarVisibility="Always"
-                PeekAreaInsets="16"
-                ItemsSource="{Binding HourlyForecast.ForecastItems}">
+                ItemsSource="{Binding HourlyForecast.ForecastItems}"
+                Grid.Row="1" Grid.ColumnSpan="3">
                 <CarouselView.ItemTemplate>
-                    <DataTemplate x:DataType="models:ForecastItemViewModel">
-                        <StackLayout Padding="8, 24">
-                            <controls:ForecastItem />
-                        </StackLayout>
+                    <DataTemplate>
+                        <controls:Pill Text="Pill item"/>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-        </loader:SkeletonSection>
-        <controls:InfoCard
-            Grid.Row="3"
-            Grid.ColumnSpan="3"
-            Humidity="{Binding Weather.Humidity}"
-            IsLoading="{Binding IsBusy}"
-            Pressure="{Binding Weather.Pressure}"
-            WindSpeed="{Binding Weather.WindSpeed}" />
+        </Grid>
     </Grid>
 </ContentPage>

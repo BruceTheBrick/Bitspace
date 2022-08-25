@@ -46,9 +46,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>APIKeys.resx</DependentUpon>
     </Compile>
-    <Compile Update="Pages\WeatherForecast\WeatherForecastPage.xaml.cs">
-      <DependentUpon>WeatherForecastPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Registers\MainpageRegister.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -67,6 +64,10 @@
       <DependentUpon>SplashPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\WeatherForecast\WeatherForecastPage.xaml.cs">
+      <DependentUpon>WeatherForecastPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -75,9 +76,6 @@
       <LastGenOutput>APIKeys.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Controls\EmptyListPlaceholder.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\WeatherForecast\WeatherForecastPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Styles\Palette.xaml">
