@@ -26,6 +26,6 @@
     
     <!-- Pill -->
     <Style ApplyToDerivedTypes="True" TargetType="controls:Pill">
-        <Setter Property="CornerRadius" Value="{StaticResource BaseCornerRadius}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource Rounded}"/>
     </Style>
 </ResourceDictionary>
