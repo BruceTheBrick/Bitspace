@@ -14,6 +14,7 @@ public class ForecastItemViewModel : IAccessibility
     public ForecastItemViewModel(ListObjectResponse response)
     {
         DateTime = InitDateTime(response.DT);
+        DisplayText = GetDisplayText();
         DisplayDateTime = GetDisplayDateTime(DateTime);
         Temperature = Math.Round(response.Main.Temperature, 2);
         FeelsLike = Math.Round(response.Main.FeelsLike, 2);
@@ -28,6 +29,7 @@ public class ForecastItemViewModel : IAccessibility
     }
 
     public DateTime DateTime { get; set; }
+    public string DisplayText { get; set; }
     public string DisplayDateTime { get; set; }
     public double Temperature { get; set; }
     public double FeelsLike { get; set; }
@@ -44,6 +46,14 @@ public class ForecastItemViewModel : IAccessibility
     private DateTime InitDateTime(int utcTime)
     {
         return DateTime.UnixEpoch.AddSeconds(utcTime);
+    }
+
+    private string GetDisplayText()
+    {
+        var dayName = DateTime.ToString("dddd");
+        var shortMonth = DateTime.ToString("MMM");
+        var date = DateTime.Day;
+        return $"{dayName}, {date} {shortMonth}";
     }
 
     private string GetDisplayDateTime(DateTime datetime)
