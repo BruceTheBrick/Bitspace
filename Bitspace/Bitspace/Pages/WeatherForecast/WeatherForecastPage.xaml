@@ -1,29 +1,66 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             x:DataType="pages:WeatherForecastPageViewModel"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages="clr-namespace:Bitspace.Pages;assembly=Bitspace"
-             xmlns:apIs="clr-namespace:Bitspace.APIs;assembly=Bitspace"
-             xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
-             x:Class="Bitspace.Pages.WeatherForecastPage">
-    <Grid RowDefinitions="*, *, *, *, *">
-        
-        <!-- Day Selection -->
-        <Grid RowDefinitions="*, *" ColumnDefinitions="auto, auto, auto">
-            <Label Text="Today" Grid.Column="0" Grid.Row="0"/>
-            <Label Text="7 days" Grid.Column="2" Grid.Row="0"/>
+<ContentPage
+    x:Class="Bitspace.Pages.WeatherForecastPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:apIs="clr-namespace:Bitspace.APIs;assembly=Bitspace"
+    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+    xmlns:materialFrame="http://sharpnado.com"
+    xmlns:pages="clr-namespace:Bitspace.Pages;assembly=Bitspace"
+    x:DataType="pages:WeatherForecastPageViewModel"
+    NavigationPage.HasNavigationBar="False">
+    <Grid RowDefinitions="*, *, *">
+
+        <!--  Day Selection  -->
+        <Grid ColumnDefinitions="*, *, *" RowDefinitions="*, *, *, *">
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="Don't forget your umbrella today!" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="2"
+                Text="Location" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                Text="Today" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="2"
+                Text="7 days" />
             <CarouselView
-                Loop="False"
+                Grid.Row="3"
+                Grid.ColumnSpan="3"
                 HorizontalScrollBarVisibility="Always"
                 ItemsSource="{Binding HourlyForecast.ForecastItems}"
-                Grid.Row="1" Grid.ColumnSpan="3">
+                Loop="False">
                 <CarouselView.ItemTemplate>
                     <DataTemplate x:DataType="apIs:ForecastItemViewModel">
-                        <controls:Pill CornerRadius="32" Padding="0" Text="{Binding DisplayText}"/>
+                        <controls:Pill
+                            Padding="0"
+                            CornerRadius="32"
+                            Text="{Binding DisplayText}" />
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
         </Grid>
+
+        <!--  Main Content  -->
+        <materialFrame:MaterialFrame Grid.Row="1">
+            <Grid RowDefinitions="2*, *">
+                <Grid ColumnDefinitions="*, *">
+                    <Image Grid.Column="0" />
+                    <Label Grid.Column="1" />
+                </Grid>
+                <Grid Grid.Row="1" ColumnDefinitions="*, *, *">
+                    <materialFrame:MaterialFrame Grid.Column="0" />
+                    <materialFrame:MaterialFrame Grid.Column="1" />
+                    <materialFrame:MaterialFrame Grid.Column="2" />
+                </Grid>
+            </Grid>
+        </materialFrame:MaterialFrame>
+
     </Grid>
 </ContentPage>
