@@ -3,8 +3,8 @@
     x:Class="Bitspace.Styles.Styles"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:styles="clr-namespace:Bitspace.Styles;assembly=Bitspace"
-    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace">
+    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+    xmlns:styles="clr-namespace:Bitspace.Styles;assembly=Bitspace">
 
     <!--  Colors  -->
     <styles:ColorRef x:Key="ColorPrimary" Color="{StaticResource SunburnRed}" />
@@ -12,7 +12,6 @@
     <styles:ColorRef x:Key="BackgroundColor" Color="{StaticResource Dark}" />
     <styles:ColorRef x:Key="TextColor" Color="{StaticResource DodgerBlue}" />
     <styles:ColorRef x:Key="LoadingColor" Color="{StaticResource DarkThemeSkeletonLoader}" />
-
 
     <!--  ContentPage  -->
     <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
@@ -23,9 +22,9 @@
     <Style ApplyToDerivedTypes="True" TargetType="Label">
         <Setter Property="TextColor" Value="{StaticResource TextColor}" />
     </Style>
-    
-    <!-- Pill -->
+
+    <!--  Pill  -->
     <Style ApplyToDerivedTypes="True" TargetType="controls:Pill">
-        <Setter Property="CornerRadius" Value="{StaticResource Rounded}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource Rounded}" />
     </Style>
 </ResourceDictionary>

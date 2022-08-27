@@ -33,7 +33,6 @@
             <CarouselView
                 Grid.Row="3"
                 Grid.ColumnSpan="3"
-                HorizontalScrollBarVisibility="Always"
                 ItemsSource="{Binding HourlyForecast.ForecastItems}"
                 Loop="False">
                 <CarouselView.ItemTemplate>
@@ -41,26 +40,39 @@
                         <controls:Pill
                             Padding="0"
                             CornerRadius="32"
-                            Text="{Binding DisplayText}" />
+                            HorizontalOptions="Start"
+                            Text="{Binding DisplayText}"
+                            VerticalOptions="Start" />
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
         </Grid>
 
         <!--  Main Content  -->
-        <materialFrame:MaterialFrame Grid.Row="1">
+        <materialFrame:MaterialFrame
+            Grid.Row="1"
+            Margin="16"
+            CornerRadius="16">
             <Grid RowDefinitions="2*, *">
                 <Grid ColumnDefinitions="*, *">
                     <Image Grid.Column="0" />
                     <Label Grid.Column="1" />
                 </Grid>
-                <Grid Grid.Row="1" ColumnDefinitions="*, *, *">
+                <Grid Grid.Row="1" ColumnDefinitions="3*, 2*, 3*">
                     <materialFrame:MaterialFrame Grid.Column="0" />
                     <materialFrame:MaterialFrame Grid.Column="1" />
                     <materialFrame:MaterialFrame Grid.Column="2" />
                 </Grid>
             </Grid>
         </materialFrame:MaterialFrame>
+
+        <!--  Hourly Selection  -->
+        <CarouselView Grid.Row="2">
+            <CarouselView.ItemTemplate>
+                <DataTemplate />
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
 
     </Grid>
 </ContentPage>

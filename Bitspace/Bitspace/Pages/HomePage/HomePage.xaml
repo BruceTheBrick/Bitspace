@@ -17,6 +17,7 @@
     <StackLayout Spacing="0">
         <controls1:HomePageHeader />
         <pancakeView:PancakeView
+            Margin="16"
             Padding="0,20"
             BackgroundColor="White"
             CornerRadius="20"
@@ -32,7 +33,8 @@
                     RefreshCommand="{Binding RefreshMenuItemsCommand}"
                     SelectionMode="None"
                     SeparatorColor="DarkGray"
-                    SeparatorVisibility="Default">
+                    SeparatorVisibility="Default"
+                    VerticalScrollBarVisibility="Always">
                     <ListView.Behaviors>
                         <behaviors:EventToCommandBehavior
                             Command="{Binding ItemSelectedCommand}"
