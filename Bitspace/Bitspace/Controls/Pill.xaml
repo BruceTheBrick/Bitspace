@@ -1,16 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Frame
+<pancakeView:PancakeView
     x:Class="Bitspace.Controls.Pill"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Name="This"
     Padding="{Binding Padding, Source={x:Reference This}}"
     AutomationProperties.IsInAccessibleTree="True"
+    Border="{pancakeView:BorderMarkup Color=White,
+                                      Thickness=2}"
     CornerRadius="20"
     HorizontalOptions="Start"
     VerticalOptions="CenterAndExpand">
-    <Frame.GestureRecognizers>
+    <pancakeView:PancakeView.Triggers>
+        <DataTrigger
+            Binding="{Binding IsActive, Source={x:Reference This}}"
+            TargetType="pancakeView:PancakeView"
+            Value="True">
+            <Setter Property="BackgroundColor" Value="{StaticResource ElectricBlue}" />
+        </DataTrigger>
+        <DataTrigger
+            Binding="{Binding IsActive, Source={x:Reference This}}"
+            TargetType="pancakeView:PancakeView"
+            Value="False">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+        </DataTrigger>
+    </pancakeView:PancakeView.Triggers>
+    <pancakeView:PancakeView.GestureRecognizers>
         <TapGestureRecognizer Command="{Binding Command, Source={x:Reference This}}" />
-    </Frame.GestureRecognizers>
-    <Label Text="{Binding Text, Source={x:Reference This}}" />
-</Frame>
+    </pancakeView:PancakeView.GestureRecognizers>
+    <Label
+        HorizontalOptions="Center"
+        Text="{Binding Text, Source={x:Reference This}}"
+        VerticalOptions="Center" />
+</pancakeView:PancakeView>

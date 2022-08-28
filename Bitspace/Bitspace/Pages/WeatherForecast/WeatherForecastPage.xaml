@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-
 <ContentPage
     x:Class="Bitspace.Pages.WeatherForecastPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -30,22 +29,12 @@
                 Grid.Row="2"
                 Grid.Column="2"
                 Text="7 days" />
-            <CarouselView
+            <ScrollView
                 Grid.Row="3"
                 Grid.ColumnSpan="3"
-                ItemsSource="{Binding HourlyForecast.ForecastItems}"
-                Loop="False">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate x:DataType="apIs:ForecastItemViewModel">
-                        <controls:Pill
-                            Padding="0"
-                            CornerRadius="32"
-                            HorizontalOptions="Start"
-                            Text="{Binding DisplayText}"
-                            VerticalOptions="Start" />
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
+                Orientation="Horizontal">
+                <StackLayout BindableLayout.ItemTemplate="Pill" BindableLayout.ItemsSource="{Binding HourlyForecast.ForecastItems}" />
+            </ScrollView>
         </Grid>
 
         <!--  Main Content  -->
