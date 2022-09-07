@@ -3,8 +3,6 @@
     x:Class="Bitspace.Pages.WeatherForecastPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:apIs="clr-namespace:Bitspace.APIs;assembly=Bitspace"
-    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:materialFrame="http://sharpnado.com"
     xmlns:pages="clr-namespace:Bitspace.Pages;assembly=Bitspace"
     x:DataType="pages:WeatherForecastPageViewModel"
@@ -33,7 +31,7 @@
                 Grid.Row="3"
                 Grid.ColumnSpan="3"
                 Orientation="Horizontal">
-                <StackLayout BindableLayout.ItemTemplate="Pill" BindableLayout.ItemsSource="{Binding HourlyForecast.ForecastItems}" />
+                <!-- <StackLayout BindableLayout.ItemTemplate="Pill" BindableLayout.ItemsSource="{Binding HourlyForecast.ForecastItems}" /> -->
             </ScrollView>
         </Grid>
 

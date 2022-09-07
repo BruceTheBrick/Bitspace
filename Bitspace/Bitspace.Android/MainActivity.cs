@@ -1,27 +1,23 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Bitspace.Droid.Services.DeviceLocation;
-using Bitspace.Droid.Services.RemoteConfigService;
-using Bitspace.Services;
 using CarouselView.FormsPlugin.Droid;
 using FFImageLoading.Forms.Platform;
 using FFImageLoading.Svg.Forms;
 using Plugin.Fingerprint;
-using Prism;
-using Prism.Ioc;
 
 namespace Bitspace.Droid
 {
     [Activity(Theme = "@style/MainTheme",
-              ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
+              ConfigurationChanges = ConfigChanges.FontScale | ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             InitNugets(savedInstanceState);
-            LoadApplication(new App(new AndroidInitializer()));
+            LoadApplication(new App(new PlatformInitializer()));
+            TrackFontSize();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
@@ -30,6 +26,15 @@ namespace Bitspace.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        private void TrackFontSize()
+        {
+            var size = Resources?.Configuration?.FontScale;
+            if (size != null)
+            {
+                
+            }
+        }
+        
         public override void OnBackPressed()
         {
             Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
@@ -46,21 +51,6 @@ namespace Bitspace.Droid
             _ = typeof(SvgCachedImage);
             CarouselViewRenderer.Init();
             CrossFingerprint.SetCurrentActivityResolver(() => Xamarin.Essentials.Platform.CurrentActivity);
-        }
-    }
-
-    public class AndroidInitializer : IPlatformInitializer
-    {
-        public void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            // Register any platform specific implementations
-            RegisterServices(containerRegistry);
-        }
-
-        private void RegisterServices(IContainerRegistry containerRegistry)
-        {
-            containerRegistry.Register<IDeviceLocation, DeviceLocationService>();
-            containerRegistry.RegisterSingleton<IRemoteConfigService, RemoteConfigService>();
         }
     }
 }
