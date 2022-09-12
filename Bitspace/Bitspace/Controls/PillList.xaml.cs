@@ -2,26 +2,27 @@
 using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
 
-namespace Bitspace.Controls;
-
-[ExcludeFromCodeCoverage]
-public partial class PillList
+namespace Bitspace.Controls
 {
-    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
-        nameof(ItemsSource),
-        typeof(IList<Pill>),
-        typeof(PillList),
-        null,
-        BindingMode.TwoWay);
-
-    public PillList()
+    [ExcludeFromCodeCoverage]
+    public partial class PillList
     {
-        InitializeComponent();
-    }
+        public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
+            nameof(ItemsSource),
+            typeof(IList<Pill>),
+            typeof(PillList),
+            null,
+            BindingMode.TwoWay);
 
-    public IList<Pill> ItemsSource
-    {
-        get => (IList<Pill>)GetValue(ItemsSourceProperty);
-        set => SetValue(ItemsSourceProperty, value);
+        public PillList()
+        {
+            InitializeComponent();
+        }
+
+        public IList<Pill> ItemsSource
+        {
+            get => (IList<Pill>)GetValue(ItemsSourceProperty);
+            set => SetValue(ItemsSourceProperty, value);
+        }
     }
 }

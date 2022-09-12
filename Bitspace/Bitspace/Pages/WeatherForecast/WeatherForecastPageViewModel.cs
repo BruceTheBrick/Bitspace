@@ -1,35 +1,53 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Bitspace.APIs;
+using Bitspace.Controls;
 using Bitspace.Services;
 using Prism.Navigation;
+using PropertyChanged;
 
-namespace Bitspace.Pages;
-
-public class WeatherForecastPageViewModel : BasePageViewModel
+namespace Bitspace.Pages
 {
-    private readonly ICurrentWeatherService _currentWeatherService;
-    public WeatherForecastPageViewModel(
-        INavigationService navigationService,
-        ICurrentWeatherService currentWeatherService)
-        : base(navigationService)
-    {
-        _currentWeatherService = currentWeatherService;
-    }
 
-    public CurrentWeatherViewModel Weather { get; set; }
-    public HourlyForecastViewModel HourlyForecast { get; set; }
-
-    public override async Task InitializeAsync(INavigationParameters parameters)
+    [AddINotifyPropertyChangedInterface]
+    public class WeatherForecastPageViewModel : BasePageViewModel
     {
-        await base.InitializeAsync(parameters);
-        await UpdateCurrentWeather();
-    }
+        private readonly ICurrentWeatherService _currentWeatherService;
 
-    private async Task UpdateCurrentWeather()
-    {
-        IsBusy = true;
-        Weather = await _currentWeatherService.GetCurrentWeather();
-        HourlyForecast = await _currentWeatherService.GetHourlyForecast();
-        IsBusy = false;
+        public WeatherForecastPageViewModel(
+            INavigationService navigationService,
+            ICurrentWeatherService currentWeatherService)
+            : base(navigationService)
+        {
+            _currentWeatherService = currentWeatherService;
+        }
+
+        public CurrentWeatherViewModel Weather { get; set; }
+        public HourlyForecastViewModel HourlyForecast { get; set; }
+        public ObservableCollection<PillViewModel> DailyPillList { get; set; }
+
+        public override async Task InitializeAsync(INavigationParameters parameters)
+        {
+            await base.InitializeAsync(parameters);
+            await UpdateCurrentWeather();
+        }
+
+        private async Task UpdateCurrentWeather()
+        {
+            IsBusy = true;
+            Weather = await _currentWeatherService.GetCurrentWeather();
+            HourlyForecast = await _currentWeatherService.GetHourlyForecast();
+            InitDailyPillList();
+            IsBusy = false;
+        }
+
+        private void InitDailyPillList()
+        {
+            DailyPillList = new ObservableCollection<PillViewModel>();
+            foreach (var pill in HourlyForecast.ForecastItems)
+            {
+                DailyPillList.Add(new PillViewModel(pill.DisplayText));
+            }
+        }
     }
 }

@@ -34,6 +34,8 @@ namespace Bitspace.iOS
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);
+            
+            UIAccessibilityTrait.
         }
     }
 
