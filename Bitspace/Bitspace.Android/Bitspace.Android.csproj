@@ -103,9 +103,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Bitspace\Services\AccessibilityService\DeviceAccessibility.cs">
+      <Link>Services\AccessibilityService\DeviceAccessibility.cs</Link>
+    </Compile>
     <Compile Include="MainApplication.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="PlatformInitializer.cs" />
+    <Compile Include="Services\AccessibilityService\DeviceAccessibilityImplementation.cs" />
     <Compile Include="Services\DeviceLocation\DeviceLocationService.cs" />
     <Compile Include="Services\RemoteConfigService\RemoteConfigService.cs" />
     <Compile Include="SplashActivity.cs" />
@@ -158,9 +162,6 @@
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>Bitspace</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Effects" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
