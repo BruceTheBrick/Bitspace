@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
+using Bitspace.Services;
 using Prism.AppModel;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace Bitspace.Pages
 {

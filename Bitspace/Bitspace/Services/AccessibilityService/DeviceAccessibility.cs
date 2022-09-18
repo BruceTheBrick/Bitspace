@@ -22,11 +22,7 @@ namespace Bitspace.Services
 
         private static IAccessibilityService CreateAccessibilityService()
         {
-#if DOTNETSTANDARD
-            return null;
-#else
             return new DeviceAccessibilityImplementation();
-#endif
         }
     }
 }
