@@ -106,10 +106,10 @@
     <Compile Include="..\Bitspace\Services\AccessibilityService\DeviceAccessibility.cs">
       <Link>Services\AccessibilityService\DeviceAccessibility.cs</Link>
     </Compile>
+    <Compile Include="Helpers\AccessibilityImplementation.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="PlatformInitializer.cs" />
-    <Compile Include="Services\AccessibilityService\DeviceAccessibilityImplementation.cs" />
     <Compile Include="Services\DeviceLocation\DeviceLocationService.cs" />
     <Compile Include="Services\RemoteConfigService\RemoteConfigService.cs" />
     <Compile Include="SplashActivity.cs" />

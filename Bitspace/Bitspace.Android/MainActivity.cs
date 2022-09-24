@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Bitspace.Helpers;
 using CarouselView.FormsPlugin.Droid;
 using FFImageLoading.Forms.Platform;
 using FFImageLoading.Svg.Forms;
@@ -51,6 +52,11 @@ namespace Bitspace.Droid
             _ = typeof(SvgCachedImage);
             CarouselViewRenderer.Init();
             CrossFingerprint.SetCurrentActivityResolver(() => Xamarin.Essentials.Platform.CurrentActivity);
+        }
+
+        private void InitHelpers()
+        {
+            Accessibility.Current = new Helpers.AccessibilityImplementation();
         }
     }
 }
