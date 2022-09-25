@@ -17,6 +17,7 @@ namespace Bitspace.Droid
         {
             base.OnCreate(savedInstanceState);
             InitNugets(savedInstanceState);
+            InitHelpers();
             LoadApplication(new App(new PlatformInitializer()));
             TrackFontSize();
         }
@@ -32,7 +33,7 @@ namespace Bitspace.Droid
             var size = Resources?.Configuration?.FontScale;
             if (size != null)
             {
-                
+                // var firebaseTracker = 
             }
         }
         

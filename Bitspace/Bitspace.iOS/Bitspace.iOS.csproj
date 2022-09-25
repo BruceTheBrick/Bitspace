@@ -100,9 +100,6 @@
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Bitspace\Services\AccessibilityService\DeviceAccessibility.cs">
-      <Link>Services\AccessibilityService\DeviceAccessibility.cs</Link>
-    </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />

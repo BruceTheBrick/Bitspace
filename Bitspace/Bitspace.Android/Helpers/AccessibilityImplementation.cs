@@ -19,7 +19,7 @@ namespace Bitspace.Droid.Helpers
 
         public override void NavigationAnnouncement(string message)
         {
-            var accessibilityEvent = GetAccessibilityEvent(message, EventTypes.WindowsChanged); 
+            var accessibilityEvent = GetAccessibilityEvent(message, EventTypes.Announcement); 
             _accessibilityManager.SendAccessibilityEvent(accessibilityEvent);
         }
     
