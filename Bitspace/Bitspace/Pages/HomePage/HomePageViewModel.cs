@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Bitspace.Services;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
@@ -12,9 +13,9 @@ namespace Bitspace.Pages
         private readonly IHomePageMenuItems _homePageMenuItemsService;
 
         public HomePageViewModel(
-            INavigationService navigationService,
+            IBaseService baseService,
             IHomePageMenuItems homePageMenuItemsService)
-            : base(navigationService)
+            : base(baseService)
         {
             _homePageMenuItemsService = homePageMenuItemsService;
 
@@ -39,6 +40,8 @@ namespace Bitspace.Pages
             {
                 await NavigationService.NavigateAsync(item.NavigationConstant);
             }
+
+            AnalyticsService.LogEvent("BUTTON_PRESSED", "ID", "MENU_BUTTON_PRESSED");
         }
 
         private void RefreshMenuItems()

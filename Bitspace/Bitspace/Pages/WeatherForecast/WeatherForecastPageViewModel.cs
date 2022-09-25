@@ -8,16 +8,15 @@ using PropertyChanged;
 
 namespace Bitspace.Pages
 {
-
     [AddINotifyPropertyChangedInterface]
     public class WeatherForecastPageViewModel : BasePageViewModel
     {
         private readonly ICurrentWeatherService _currentWeatherService;
 
         public WeatherForecastPageViewModel(
-            INavigationService navigationService,
+            IBaseService baseService,
             ICurrentWeatherService currentWeatherService)
-            : base(navigationService)
+            : base(baseService)
         {
             _currentWeatherService = currentWeatherService;
         }
@@ -29,6 +28,7 @@ namespace Bitspace.Pages
         public override async Task InitializeAsync(INavigationParameters parameters)
         {
             await base.InitializeAsync(parameters);
+            InitDailyPillList();
             await UpdateCurrentWeather();
         }
 
@@ -37,17 +37,29 @@ namespace Bitspace.Pages
             IsBusy = true;
             Weather = await _currentWeatherService.GetCurrentWeather();
             HourlyForecast = await _currentWeatherService.GetHourlyForecast();
-            InitDailyPillList();
+            // InitDailyPillList();
             IsBusy = false;
         }
 
         private void InitDailyPillList()
         {
             DailyPillList = new ObservableCollection<PillViewModel>();
-            foreach (var pill in HourlyForecast.ForecastItems)
-            {
-                DailyPillList.Add(new PillViewModel(pill.DisplayText));
-            }
+            // foreach (var pill in HourlyForecast.ForecastItems)
+            // {
+            //     DailyPillList.Add(new PillViewModel(pill.DisplayText));
+            // }
+            DailyPillList.Add(new PillViewModel("Pill One"));
+            DailyPillList.Add(new PillViewModel("Pill Two"));
+            DailyPillList.Add(new PillViewModel("Pill Three"));
+            DailyPillList.Add(new PillViewModel("Pill One"));
+            DailyPillList.Add(new PillViewModel("Pill Two"));
+            DailyPillList.Add(new PillViewModel("Pill Three"));
+            DailyPillList.Add(new PillViewModel("Pill One"));
+            DailyPillList.Add(new PillViewModel("Pill Two"));
+            DailyPillList.Add(new PillViewModel("Pill Three"));
+            DailyPillList.Add(new PillViewModel("Pill One"));
+            DailyPillList.Add(new PillViewModel("Pill Two"));
+            DailyPillList.Add(new PillViewModel("Pill Three"));
         }
     }
 }

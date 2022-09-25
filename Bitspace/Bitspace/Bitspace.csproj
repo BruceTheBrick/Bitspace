@@ -68,6 +68,11 @@
       <DependentUpon>WeatherForecastPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Registers\AnalyticsRegister.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AnalyticsRegister.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -104,6 +109,10 @@
     <EmbeddedResource Include="Resources\ic_weather.svg" />
     <None Remove="Resources\ic_thermometer.svg" />
     <EmbeddedResource Include="Resources\ic_thermometer.svg" />
+    <EmbeddedResource Update="Registers\AnalyticsRegister.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
+using Bitspace.Registers;
 using Bitspace.Services;
 using Prism.AppModel;
 using Prism.Mvvm;
 using Prism.Navigation;
-using Xamarin.Forms;
 
 namespace Bitspace.Pages
 {
@@ -11,9 +11,11 @@ namespace Bitspace.Pages
     {
         private string _title;
 
-        protected BasePageViewModel(INavigationService navigationService)
+        protected BasePageViewModel(IBaseService baseService)
         {
-            NavigationService = navigationService;
+            NavigationService = baseService.NavigationService;
+            AccessibilityService = baseService.AccessibilityService;
+            AnalyticsService = baseService.AnalyticsService;
         }
 
         public string Title
@@ -25,6 +27,8 @@ namespace Bitspace.Pages
         public bool IsBusy { get; set; }
 
         protected INavigationService NavigationService { get; }
+        protected IAccessibilityService AccessibilityService { get; }
+        protected IFirebaseAnalyticsService AnalyticsService { get; }
 
         public virtual void Initialize(INavigationParameters parameters)
         {
@@ -42,6 +46,7 @@ namespace Bitspace.Pages
 
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
+            AnalyticsService.LogEvent(AnalyticsRegister.SCREEN_VIEW, AnalyticsRegister.ID, _title);
         }
 
         public virtual void Destroy()

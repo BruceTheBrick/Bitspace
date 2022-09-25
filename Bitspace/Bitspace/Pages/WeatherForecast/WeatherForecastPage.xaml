@@ -28,12 +28,10 @@
                 Grid.Row="2"
                 Grid.Column="2"
                 Text="7 days" />
-            <ScrollView
+            <controls:PillList
                 Grid.Row="3"
                 Grid.ColumnSpan="3"
-                Orientation="Horizontal">
-                <controls:PillList ItemsSource="{Binding DailyPillList}" />
-            </ScrollView>
+                ItemsSource="{Binding DailyPillList}" />
         </Grid>
 
         <!--  Main Content  -->

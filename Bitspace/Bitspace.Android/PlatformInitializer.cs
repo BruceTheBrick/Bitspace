@@ -1,4 +1,5 @@
-﻿using Bitspace.Droid.Services.DeviceLocation;
+﻿using Bitspace.Droid.Services;
+using Bitspace.Droid.Services.DeviceLocation;
 using Bitspace.Droid.Services.RemoteConfigService;
 using Bitspace.Services;
 using Prism;
@@ -18,5 +19,6 @@ public class PlatformInitializer : IPlatformInitializer
     {
         containerRegistry.Register<IDeviceLocation, DeviceLocationService>();
         containerRegistry.RegisterSingleton<IRemoteConfigService, RemoteConfigService>();
+        containerRegistry.Register<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
     }
 }

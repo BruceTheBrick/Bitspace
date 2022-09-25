@@ -23,6 +23,7 @@ namespace Bitspace
         {
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
             containerRegistry.RegisterPopupNavigationService();
+            containerRegistry.Register<IBaseService, BaseService>();
             containerRegistry.RegisterSingleton<IDeviceInformationService, DeviceInformationService>();
             containerRegistry.Register<IHttpClient, ExtendedHttpClient>();
             containerRegistry.Register<IHomePageMenuItems, HomePageMenuItemService>();
