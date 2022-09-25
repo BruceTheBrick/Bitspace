@@ -9,7 +9,6 @@
     Padding="16,12"
     x:DataType="controls:PillViewModel"
     AutomationProperties.IsInAccessibleTree="True"
-    BackgroundColor="Red"
     Border="{pancakeView:BorderMarkup Color=White,
                                       Thickness=2}"
     CornerRadius="20"
@@ -18,20 +17,20 @@
     <pancakeView:PancakeView.Resources>
         <converters:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
     </pancakeView:PancakeView.Resources>
-    <!-- <pancakeView:PancakeView.Triggers> -->
-    <!--  <DataTrigger  -->
-    <!--  Binding="{Binding IsActive}"  -->
-    <!--  TargetType="pancakeView:PancakeView"  -->
-    <!--  Value="True">  -->
-    <!--         <Setter Property="BackgroundColor" Value="{StaticResource ElectricBlue}" /> -->
-    <!--     </DataTrigger> -->
-    <!--  <DataTrigger  -->
-    <!--  Binding="{Binding IsActive}"  -->
-    <!--  TargetType="pancakeView:PancakeView"  -->
-    <!--  Value="False">  -->
-    <!--         <Setter Property="BackgroundColor" Value="{StaticResource LightBlue}" /> -->
-    <!--     </DataTrigger> -->
-    <!-- </pancakeView:PancakeView.Triggers> -->
+    <pancakeView:PancakeView.Triggers>
+        <DataTrigger
+            Binding="{Binding IsActive}"
+            TargetType="pancakeView:PancakeView"
+            Value="True">
+            <Setter Property="BackgroundColor" Value="{StaticResource ElectricBlue}" />
+        </DataTrigger>
+        <DataTrigger
+            Binding="{Binding IsActive}"
+            TargetType="pancakeView:PancakeView"
+            Value="False">
+            <Setter Property="BackgroundColor" Value="{StaticResource LightBlue}" />
+        </DataTrigger>
+    </pancakeView:PancakeView.Triggers>
     <pancakeView:PancakeView.GestureRecognizers>
         <TapGestureRecognizer Command="{Binding Command}" />
     </pancakeView:PancakeView.GestureRecognizers>

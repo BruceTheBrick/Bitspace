@@ -5,8 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     x:Name="This"
+    HorizontalScrollBarVisibility="Always"
     Orientation="Horizontal">
-    <StackLayout BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference This}}">
+    <StackLayout BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference This}}" Orientation="Horizontal">
         <BindableLayout.ItemTemplate>
             <DataTemplate x:DataType="controls:PillViewModel">
                 <controls:Pill />

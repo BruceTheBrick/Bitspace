@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
 
@@ -9,9 +9,9 @@ namespace Bitspace.Controls
     {
         public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
             nameof(ItemsSource),
-            typeof(IList<Pill>),
+            typeof(ObservableCollection<PillViewModel>),
             typeof(PillList),
-            null,
+            default,
             BindingMode.TwoWay);
 
         public PillList()
@@ -19,9 +19,9 @@ namespace Bitspace.Controls
             InitializeComponent();
         }
 
-        public IList<Pill> ItemsSource
+        public ObservableCollection<PillViewModel> ItemsSource
         {
-            get => (IList<Pill>)GetValue(ItemsSourceProperty);
+            get => (ObservableCollection<PillViewModel>)GetValue(ItemsSourceProperty);
             set => SetValue(ItemsSourceProperty, value);
         }
     }
