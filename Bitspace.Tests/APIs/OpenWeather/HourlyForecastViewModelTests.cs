@@ -1,6 +1,30 @@
-﻿namespace Bitspace.Tests.APIs.OpenWeather;
+﻿using Bitspace.APIs;
+using Bitspace.Tests.Base;
+using Bitspace.Tests.Factories;
+using FluentAssertions;
+using Xunit;
 
-public class HourlyForecastViewModelTests
+namespace Bitspace.Tests.APIs.OpenWeather
 {
-    
+
+    public class HourlyForecastViewModelTests
+    {
+        
+        #region Constructor
+
+        [Fact]
+        public void Constructor_ShouldInitForecastItems()
+        {
+            //Arrange
+            var hourlyWeatherResponse = HourlyForecastFactory.GetModel();
+            
+            //Act
+            var viewModel = new HourlyForecastViewModel(hourlyWeatherResponse);
+
+            //Assert
+            viewModel.ForecastItems.Count.Should().Be(hourlyWeatherResponse.List.Length);
+        }
+        
+        #endregion
+    }
 }

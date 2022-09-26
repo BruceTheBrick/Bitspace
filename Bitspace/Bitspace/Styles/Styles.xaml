@@ -4,7 +4,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
-    xmlns:styles="clr-namespace:Bitspace.Styles;assembly=Bitspace">
+    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:styles="clr-namespace:Bitspace.Styles;assembly=Bitspace"
+    xmlns:styles1="clr-namespace:Bitspace.Styles;assembly=Bitspace">
 
     <!--  Colors  -->
     <styles:ColorRef x:Key="ColorPrimary" Color="{StaticResource SunburnRed}" />
@@ -12,6 +14,8 @@
     <styles:ColorRef x:Key="BackgroundColor" Color="{StaticResource Dark}" />
     <styles:ColorRef x:Key="TextColor" Color="{StaticResource DodgerBlue}" />
     <styles:ColorRef x:Key="LoadingColor" Color="{StaticResource DarkThemeSkeletonLoader}" />
+    <styles:ColorRef x:Key="PillActiveBackground" Color="{StaticResource TickleMePink}" />
+    <styles:ColorRef x:Key="PillInactiveBackground" Color="{StaticResource Ninja}" />
 
     <!--  ContentPage  -->
     <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
@@ -26,5 +30,13 @@
     <!--  Pill  -->
     <Style ApplyToDerivedTypes="True" TargetType="controls:Pill">
         <Setter Property="CornerRadius" Value="{StaticResource Rounded}" />
+    </Style>
+    <Style Class="InactivePill" TargetType="controls:Pill">
+        <Setter Property="BackgroundColor" Value="{StaticResource PillInactiveBackground}" />
+        <Setter Property="Border" Value="{pancakeView:BorderMarkup Color=DimGray, Thickness=1}" />
+    </Style>
+    <Style Class="ActivePill" TargetType="controls:Pill">
+        <Setter Property="BackgroundColor" Value="{StaticResource PillActiveBackground}" />
+        <Setter Property="Border" Value="{pancakeView:BorderMarkup Color={StaticResource PillActiveBackground}, Thickness=1}" />
     </Style>
 </ResourceDictionary>

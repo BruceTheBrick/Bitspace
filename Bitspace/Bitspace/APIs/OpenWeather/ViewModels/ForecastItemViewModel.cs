@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Bitspace.Extensions;
 using Bitspace.Interfaces;
 using Humanizer;
 
@@ -14,8 +15,8 @@ public class ForecastItemViewModel : IAccessibility
     public ForecastItemViewModel(ListObjectResponse response)
     {
         DateTime = InitDateTime(response.DT);
-        DisplayText = GetDisplayText();
-        DisplayDateTime = GetDisplayDateTime(DateTime);
+        DisplayText = DateTime.ToDisplayString();
+        DisplayDateTime = DateTime.ToDisplayString();
         Temperature = Math.Round(response.Main.Temperature, 2);
         FeelsLike = Math.Round(response.Main.FeelsLike, 2);
         RainChance = Math.Round(response.RainChance, 2);
@@ -28,37 +29,24 @@ public class ForecastItemViewModel : IAccessibility
         GustSpeed = Math.Round(response.Wind.Gust, 2);
     }
 
-    public DateTime DateTime { get; set; }
-    public string DisplayText { get; set; }
+    public DateTime DateTime { get; }
+    public string DisplayText { get; }
     public string DisplayDateTime { get; set; }
     public double Temperature { get; set; }
-    public double FeelsLike { get; set; }
-    public double RainChance { get; set; }
-    public double Humidity { get; set; }
+    public double FeelsLike { get; }
+    public double RainChance { get; }
+    public double Humidity { get; }
     public double TemperatureMax { get; set; }
     public double TemperatureMin { get; set; }
-    public string Description { get; set; }
+    public string Description { get; }
     public string ExtendedDescription { get; set; }
-    public double WindSpeed { get; set; }
-    public double GustSpeed { get; set; }
+    public double WindSpeed { get; }
+    public double GustSpeed { get; }
     public string AccessibilityName => GetAccessibilityName();
 
     private DateTime InitDateTime(int utcTime)
     {
         return DateTime.UnixEpoch.AddSeconds(utcTime);
-    }
-
-    private string GetDisplayText()
-    {
-        var dayName = DateTime.ToString("dddd");
-        var shortMonth = DateTime.ToString("MMM");
-        var date = DateTime.Day;
-        return $"{dayName}, {date} {shortMonth}";
-    }
-
-    private string GetDisplayDateTime(DateTime datetime)
-    {
-        return datetime.ToString("ddd, dd MMM\nhh:mmtt");
     }
 
     private string GetAccessibilityName()

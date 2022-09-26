@@ -14,4 +14,6 @@
     <Color x:Key="NeonYellow">#fff51e</Color>
     <Color x:Key="ElectricBlue">#7ee7fe</Color>
     <Color x:Key="DodgerBlue">#3795f4</Color>
+    <Color x:Key="TickleMePink">#ff82b3</Color>
+    <Color x:Key="Ninja">#03040d</Color>
 </ResourceDictionary>

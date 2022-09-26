@@ -9,28 +9,12 @@
     Padding="16,12"
     x:DataType="controls:PillViewModel"
     AutomationProperties.IsInAccessibleTree="True"
-    Border="{pancakeView:BorderMarkup Color=White,
-                                      Thickness=2}"
-    CornerRadius="20"
+    Border="{pancakeView:BorderMarkup Thickness=1}"
     HorizontalOptions="Start"
     VerticalOptions="CenterAndExpand">
     <pancakeView:PancakeView.Resources>
         <converters:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
     </pancakeView:PancakeView.Resources>
-    <pancakeView:PancakeView.Triggers>
-        <DataTrigger
-            Binding="{Binding IsActive}"
-            TargetType="pancakeView:PancakeView"
-            Value="True">
-            <Setter Property="BackgroundColor" Value="{StaticResource ElectricBlue}" />
-        </DataTrigger>
-        <DataTrigger
-            Binding="{Binding IsActive}"
-            TargetType="pancakeView:PancakeView"
-            Value="False">
-            <Setter Property="BackgroundColor" Value="{StaticResource LightBlue}" />
-        </DataTrigger>
-    </pancakeView:PancakeView.Triggers>
     <pancakeView:PancakeView.GestureRecognizers>
         <TapGestureRecognizer Command="{Binding Command}" />
     </pancakeView:PancakeView.GestureRecognizers>
@@ -44,4 +28,21 @@
             Text="{Binding Text}"
             VerticalOptions="Center" />
     </StackLayout>
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+            <VisualState x:Name="Active">
+                <VisualState.Setters>
+                    <Setter Property="BackgroundColor" Value="{StaticResource PillActiveBackground}" />
+                    <Setter Property="pancakeView:Border.Color" Value="{StaticResource PillActiveBackground}" />
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState x:Name="Inactive">
+                <VisualState.Setters>
+                    <Setter Property="BackgroundColor" Value="{StaticResource PillInactiveBackground}" />
+                    <Setter Property="pancakeView:Border.Color" Value="DimGray" />
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+
+    </VisualStateManager.VisualStateGroups>
 </pancakeView:PancakeView>

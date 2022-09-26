@@ -31,6 +31,8 @@
             <controls:PillList
                 Grid.Row="3"
                 Grid.ColumnSpan="3"
+                Padding="10,6"
+                ItemSelectedCommand="{Binding PillSelectedCommand}"
                 ItemsSource="{Binding DailyPillList}" />
         </Grid>
 
