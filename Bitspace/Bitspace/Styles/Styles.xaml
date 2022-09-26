@@ -5,8 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    xmlns:styles="clr-namespace:Bitspace.Styles;assembly=Bitspace"
-    xmlns:styles1="clr-namespace:Bitspace.Styles;assembly=Bitspace">
+    xmlns:styles="clr-namespace:Bitspace.Styles;assembly=Bitspace">
 
     <!--  Colors  -->
     <styles:ColorRef x:Key="ColorPrimary" Color="{StaticResource SunburnRed}" />
@@ -33,10 +32,14 @@
     </Style>
     <Style Class="InactivePill" TargetType="controls:Pill">
         <Setter Property="BackgroundColor" Value="{StaticResource PillInactiveBackground}" />
-        <Setter Property="Border" Value="{pancakeView:BorderMarkup Color=DimGray, Thickness=1}" />
     </Style>
     <Style Class="ActivePill" TargetType="controls:Pill">
         <Setter Property="BackgroundColor" Value="{StaticResource PillActiveBackground}" />
-        <Setter Property="Border" Value="{pancakeView:BorderMarkup Color={StaticResource PillActiveBackground}, Thickness=1}" />
+    </Style>
+    <Style Class="InactivePill" TargetType="Label">
+        <Setter Property="TextColor" Value="DimGray" />
+    </Style>
+    <Style Class="ActivePill" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Ninja}" />
     </Style>
 </ResourceDictionary>

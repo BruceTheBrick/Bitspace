@@ -55,6 +55,8 @@ namespace Bitspace.Pages
             {
                 DailyPillList.Add(new PillViewModel(day.DateTime.ToDisplayString()));
             }
+
+            DailyPillList.First().IsActive = true;
         }
 
         private void PillSelected(PillViewModel pill)
