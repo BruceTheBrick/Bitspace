@@ -4,7 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
-    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:styles="clr-namespace:Bitspace.Styles;assembly=Bitspace">
 
     <!--  Colors  -->
@@ -29,17 +28,5 @@
     <!--  Pill  -->
     <Style ApplyToDerivedTypes="True" TargetType="controls:Pill">
         <Setter Property="CornerRadius" Value="{StaticResource Rounded}" />
-    </Style>
-    <Style Class="InactivePill" TargetType="controls:Pill">
-        <Setter Property="BackgroundColor" Value="{StaticResource PillInactiveBackground}" />
-    </Style>
-    <Style Class="ActivePill" TargetType="controls:Pill">
-        <Setter Property="BackgroundColor" Value="{StaticResource PillActiveBackground}" />
-    </Style>
-    <Style Class="InactivePill" TargetType="Label">
-        <Setter Property="TextColor" Value="DimGray" />
-    </Style>
-    <Style Class="ActivePill" TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource Ninja}" />
     </Style>
 </ResourceDictionary>

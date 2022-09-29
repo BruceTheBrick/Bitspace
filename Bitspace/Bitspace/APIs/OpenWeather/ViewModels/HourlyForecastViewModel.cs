@@ -36,7 +36,7 @@ namespace Bitspace.APIs
                 if (Days.Any(x => x.DateTime.Date == item.DateTime.Date))
                 {
                     var day = Days.First(x => x.DateTime.Date == item.DateTime.Date);
-                    day.ForecastItems.Add(item);
+                    day.AddForecastItem(item);
                 }
                 else
                 {

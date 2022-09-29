@@ -14,9 +14,6 @@
     <pancakeView:PancakeView.Resources>
         <converters:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
     </pancakeView:PancakeView.Resources>
-    <pancakeView:PancakeView.GestureRecognizers>
-        <TapGestureRecognizer Command="{Binding Command}" />
-    </pancakeView:PancakeView.GestureRecognizers>
     <StackLayout>
         <controls:ExtendedImage
             HorizontalOptions="Start"
@@ -37,7 +34,7 @@
                     Binding="{Binding IsActive}"
                     TargetType="Label"
                     Value="False">
-                    <Setter Property="TextColor" Value="DimGray" />
+                    <Setter Property="TextColor" Value="#B8BACE" />
                 </DataTrigger>
             </Label.Triggers>
         </Label>
@@ -54,6 +51,7 @@
             TargetType="pancakeView:PancakeView"
             Value="False">
             <Setter Property="BackgroundColor" Value="{StaticResource PillInactiveBackground}" />
+            <Setter Property="Border" Value="{pancakeView:BorderMarkup Color='#B8BACE', Thickness='2'}" />
         </DataTrigger>
     </pancakeView:PancakeView.Triggers>
 </pancakeView:PancakeView>

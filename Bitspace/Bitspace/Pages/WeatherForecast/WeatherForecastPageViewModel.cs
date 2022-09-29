@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -30,6 +31,7 @@ namespace Bitspace.Pages
         public HourlyForecastViewModel HourlyForecast { get; set; }
         public DayViewModel SelectedDayViewModel { get; set; }
         public ObservableCollection<PillViewModel> DailyPillList { get; set; }
+        public PillViewModel ActivePill { get; set; }
         public ICommand PillSelectedCommand { get; }
 
         public override async Task InitializeAsync(INavigationParameters parameters)
@@ -53,15 +55,21 @@ namespace Bitspace.Pages
             DailyPillList = new ObservableCollection<PillViewModel>();
             foreach (var day in HourlyForecast.Days)
             {
-                DailyPillList.Add(new PillViewModel(day.DateTime.ToDisplayString()));
+                var pill = new PillViewModel(day.DateTime.ToDisplayString());
+                pill.Id = Guid.NewGuid().ToString();
+                DailyPillList.Add(pill);
             }
 
-            DailyPillList.First().IsActive = true;
+            ActivePill = DailyPillList.First();
+            ActivePill.IsActive = true;
         }
 
         private void PillSelected(PillViewModel pill)
         {
-            var newDay = HourlyForecast.Days.First(x => x.DateTime.ToDisplayString() == pill.Text);
+            ActivePill.IsActive = false;
+            pill.IsActive = true;
+            ActivePill = pill;
+            SelectedDayViewModel = HourlyForecast.Days.First(x => x.DateTime.ToDisplayString() == pill.Text);
         }
     }
 }

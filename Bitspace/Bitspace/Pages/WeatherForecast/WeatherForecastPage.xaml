@@ -44,7 +44,7 @@
             <Grid RowDefinitions="2*, *">
                 <Grid ColumnDefinitions="*, *">
                     <Image Grid.Column="0" />
-                    <Label Grid.Column="1" />
+                    <Label Grid.Column="1" Text="{Binding SelectedDayViewModel.Temperature}" />
                 </Grid>
                 <Grid Grid.Row="1" ColumnDefinitions="3*, 2*, 3*">
                     <materialFrame:MaterialFrame Grid.Column="0" />

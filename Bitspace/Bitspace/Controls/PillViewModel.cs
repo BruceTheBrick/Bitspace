@@ -1,26 +1,27 @@
-﻿using Xamarin.CommunityToolkit.ObjectModel;
+﻿using PropertyChanged;
 
 namespace Bitspace.Controls
 {
+    [AddINotifyPropertyChangedInterface]
     public class PillViewModel
     {
         public PillViewModel()
         {
         }
 
-        public PillViewModel(string text, string iconSource = "", bool isEnabled = true, bool isActive = false, IAsyncCommand command = null)
+        public PillViewModel(string text, string iconSource = "", bool isEnabled = true, bool isActive = false, string id = "")
         {
             Text = text;
             IconSource = iconSource;
             IsEnabled = isEnabled;
             IsActive = isActive;
-            Command = command;
+            Id = id;
         }
 
-        public IAsyncCommand Command { get; }
         public string Text { get; set; }
         public string IconSource { get; set; }
         public bool IsEnabled { get; set; }
         public bool IsActive { get; set; }
+        public string Id { get; set; }
     }
 }
