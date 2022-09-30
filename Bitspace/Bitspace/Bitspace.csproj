@@ -113,6 +113,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Remove="Resources\ic_droplette.svg" />
+    <EmbeddedResource Include="Resources\ic_droplette.svg" />
+    <None Remove="Resources\ic_rain.svg" />
+    <EmbeddedResource Include="Resources\ic_rain.svg" />
+    <None Remove="Resources\ic_wind.svg" />
+    <EmbeddedResource Include="Resources\ic_wind.svg" />
   </ItemGroup>
 
   <ItemGroup>

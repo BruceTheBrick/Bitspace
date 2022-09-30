@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Bitspace.APIs;
@@ -34,6 +35,18 @@ public class CurrentWeatherService : ICurrentWeatherService
         _alertService = alertService;
 
         _timeoutService.ExpiryMinutes = 5;
+    }
+
+    public async Task<string> GetLocationName()
+    {
+        if (!await _permissionService.RequestPermission(DevicePermissions.LOCATION))
+        {
+            return string.Empty;
+        }
+
+        var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
+        var response = await _openWeatherApi.GetCurrentLocationName(new ReverseGeocodeRequest(location));
+        return response.Data.Items.First().Name;
     }
 
     public async Task<CurrentWeatherViewModel> GetCurrentWeather()
@@ -77,10 +90,12 @@ public class CurrentWeatherService : ICurrentWeatherService
         catch (HttpRequestException)
         {
             await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
+            InitForecastItems();
         }
         catch (Exception e)
         {
             await _alertService.Snackbar(e.Message);
+            InitForecastItems();
         }
     }
 
@@ -105,10 +120,24 @@ public class CurrentWeatherService : ICurrentWeatherService
         catch (HttpRequestException)
         {
             await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
+            InitCurrentWeatherItems();
         }
         catch (Exception e)
         {
             await _alertService.Snackbar(e.Message);
+            InitCurrentWeatherItems();
         }
+    }
+
+    private void InitForecastItems()
+    {
+        _hourlyForecastResponse = new HourlyWeatherResponse();
+        _hourlyForecastViewModel = new HourlyForecastViewModel();
+    }
+
+    private void InitCurrentWeatherItems()
+    {
+        _currentWeatherResponse = new CurrentWeatherResponse();
+        _currentWeatherViewModel = new CurrentWeatherViewModel();
     }
 }

@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace Bitspace.APIs
 {
-
     public class HourlyForecastViewModel
     {
         public HourlyForecastViewModel()
@@ -19,7 +18,7 @@ namespace Bitspace.APIs
         public IList<ForecastItemViewModel> ForecastItems { get; set; }
         public IList<DayViewModel> Days { get; set; }
 
-        private void InitForecastItems(IEnumerable<ListObjectResponse> items)
+        private void InitForecastItems(IEnumerable<ForecastListObjectResponse> items)
         {
             ForecastItems = new List<ForecastItemViewModel>();
             foreach (var item in items)

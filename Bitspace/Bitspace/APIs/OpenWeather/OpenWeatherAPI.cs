@@ -27,5 +27,12 @@ namespace Bitspace.APIs
             var rawResponse = await _client.GetAsync(url);
             return await ToResponse<HourlyWeatherResponse>(rawResponse);
         }
+
+        public async Task<Response<ReverseGeocodeResponseModel>> GetCurrentLocationName(ReverseGeocodeRequest request)
+        {
+            var url = $"{Endpoint}/geo/1.0/reverse?lat={request.Latitude}&lon={request.Longitude}&appid={ApiKey}";
+            var rawResponse = await _client.GetAsync(url);
+            return await ToResponse<ReverseGeocodeResponseModel>(rawResponse);
+        }
     }
 }

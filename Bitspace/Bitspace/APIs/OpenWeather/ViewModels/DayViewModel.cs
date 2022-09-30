@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using CarouselView.FormsPlugin.Abstractions;
+using Humanizer;
+using Xamarin.Forms.Internals;
 
 namespace Bitspace.APIs
 {
@@ -19,6 +23,7 @@ namespace Bitspace.APIs
         public double WindSpeed { get; set; }
         public double Humidity { get; set; }
         public double RainChance { get; set; }
+        public string Description { get; set; }
 
         public void AddForecastItem(ForecastItemViewModel item)
         {
@@ -32,12 +37,23 @@ namespace Bitspace.APIs
             var windSpeed = 0.0;
             var humidity = 0.0;
             var rainChance = 0.0;
+            var descriptions = new Dictionary<string, int>();
             foreach (var item in ForecastItems)
             {
                 temp += item.Temperature;
-                windSpeed += item.WindSpeed;
+                windSpeed += item.WindSpeed * 3.6;
                 humidity += item.Humidity;
-                rainChance += item.RainChance;
+                rainChance += item.RainChance * 100;
+                if (descriptions.ContainsKey(item.Description))
+                {
+                    var element = descriptions.First(x => x.Key == item.Description);
+                    descriptions.Remove(element.Key);
+                    descriptions.Add(element.Key, element.Value + 1);
+                }
+                else
+                {
+                    descriptions.Add(item.Description, 1);
+                }
             }
 
             if (ForecastItems.Count == 0)
@@ -49,11 +65,21 @@ namespace Bitspace.APIs
             }
             else
             {
-                Temperature = Math.Round(temp / ForecastItems.Count, 2);
-                WindSpeed = Math.Round(windSpeed / ForecastItems.Count, 2);
-                Humidity = Math.Round(humidity / ForecastItems.Count, 2);
-                RainChance = Math.Round(rainChance / ForecastItems.Count, 2);
+                Temperature = Math.Round(temp / ForecastItems.Count);
+                WindSpeed = Math.Round(windSpeed / ForecastItems.Count);
+                Humidity = Math.Round(humidity / ForecastItems.Count);
+                RainChance = Math.Round(rainChance / ForecastItems.Count);
             }
+
+            SetDescription(descriptions);
+        }
+
+        private void SetDescription(IDictionary<string, int> descriptions)
+        {
+            var counts = descriptions.Values;
+            var sorted = counts.OrderByDescending(x => x);
+            var desc = descriptions.First(x => x.Value == sorted.First());
+            Description = desc.Key.Humanize();
         }
     }
 }

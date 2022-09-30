@@ -20,5 +20,8 @@ namespace Bitspace.APIs
 
         [JsonProperty("sunset")]
         public double Sunset { get; set; }
+
+        [JsonProperty("pod")]
+        public string PartOfDay { get; set; }
     }
 }

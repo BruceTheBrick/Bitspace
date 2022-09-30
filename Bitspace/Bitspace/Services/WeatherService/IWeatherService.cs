@@ -8,4 +8,6 @@ public interface ICurrentWeatherService
     public Task<CurrentWeatherViewModel> GetCurrentWeather();
 
     public Task<HourlyForecastViewModel> GetHourlyForecast();
+
+    public Task<string> GetLocationName();
 }

@@ -6,6 +6,10 @@ namespace Bitspace.APIs;
 
 public class CurrentWeatherViewModel
 {
+    public CurrentWeatherViewModel()
+    {
+    }
+
     public CurrentWeatherViewModel(CurrentWeatherResponse response)
     {
         IconUrl = GetIconURL(response.Weather.FirstOrDefault()?.Icon, 4);

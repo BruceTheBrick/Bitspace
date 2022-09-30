@@ -10,7 +10,7 @@ public class DailyForecastViewModel
     {
     }
 
-    public DailyForecastViewModel(DateTime dateTime, IList<ListObjectResponse> HourlyForecastItemResponse)
+    public DailyForecastViewModel(DateTime dateTime, IList<ForecastListObjectResponse> HourlyForecastItemResponse)
     {
         SetDisplayTextDateTime(dateTime);
         SetHourlyForecastItems(HourlyForecastItemResponse);
@@ -20,7 +20,7 @@ public class DailyForecastViewModel
     public ForecastItemViewModel SelectedForecastItem { get; set; }
     public IList<ForecastItemViewModel> HourlyForecastItems { get; set; }
 
-    private void SetHourlyForecastItems(IList<ListObjectResponse> forecastItems)
+    private void SetHourlyForecastItems(IList<ForecastListObjectResponse> forecastItems)
     {
         HourlyForecastItems = new List<ForecastItemViewModel>();
         foreach (var item in forecastItems)

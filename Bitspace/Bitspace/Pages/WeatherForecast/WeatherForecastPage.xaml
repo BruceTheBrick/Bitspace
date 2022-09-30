@@ -4,32 +4,28 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
-    xmlns:materialFrame="http://sharpnado.com"
     xmlns:pages="clr-namespace:Bitspace.Pages;assembly=Bitspace"
     x:DataType="pages:WeatherForecastPageViewModel"
+    BackgroundColor="{StaticResource Ninja}"
     NavigationPage.HasNavigationBar="False">
     <Grid RowDefinitions="*, *, *">
 
         <!--  Day Selection  -->
-        <Grid ColumnDefinitions="*, *, *" RowDefinitions="*, *, *, *">
+        <Grid
+            Padding="16"
+            ColumnDefinitions="*, *, *"
+            RowDefinitions="3*, 2*">
             <Label
                 Grid.Row="0"
                 Grid.Column="0"
-                Text="Don't forget your umbrella today!" />
-            <Button
+                Text="{Binding SelectedDayViewModel.Description}" />
+            <Label
                 Grid.Row="0"
                 Grid.Column="2"
-                Text="Location" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="0"
-                Text="Today" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="2"
-                Text="7 days" />
+                Text="{Binding Location}"
+                TextColor="White" />
             <controls:PillList
-                Grid.Row="3"
+                Grid.Row="1"
                 Grid.ColumnSpan="3"
                 Padding="10,6"
                 ItemSelectedCommand="{Binding PillSelectedCommand}"
@@ -37,22 +33,117 @@
         </Grid>
 
         <!--  Main Content  -->
-        <materialFrame:MaterialFrame
+        <Grid
             Grid.Row="1"
-            Margin="16"
-            CornerRadius="16">
-            <Grid RowDefinitions="2*, *">
-                <Grid ColumnDefinitions="*, *">
-                    <Image Grid.Column="0" />
-                    <Label Grid.Column="1" Text="{Binding SelectedDayViewModel.Temperature}" />
-                </Grid>
-                <Grid Grid.Row="1" ColumnDefinitions="3*, 2*, 3*">
-                    <materialFrame:MaterialFrame Grid.Column="0" />
-                    <materialFrame:MaterialFrame Grid.Column="1" />
-                    <materialFrame:MaterialFrame Grid.Column="2" />
-                </Grid>
+            Margin="24"
+            Padding="0"
+            RowDefinitions="5*, 4*">
+            <BoxView
+                Grid.RowSpan="2"
+                BackgroundColor="{StaticResource Xiketic}"
+                CornerRadius="12"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand" />
+            <Grid ColumnDefinitions="*, *">
+                <controls:ExtendedImage
+                    Grid.Column="0"
+                    HorizontalOptions="Center"
+                    Source="ic_weather"
+                    TintColor="White"
+                    TranslationY="-20" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="60"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding SelectedDayViewModel.Temperature, StringFormat='{0}°'}"
+                    TextColor="#B2CFE6"
+                    VerticalOptions="Center" />
             </Grid>
-        </materialFrame:MaterialFrame>
+            <Grid
+                Grid.Row="1"
+                Margin="16,0,16,16"
+                ColumnDefinitions="3*, 2*, 3*"
+                ColumnSpacing="16"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Frame
+                    Grid.Column="0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource SpaceCadet}"
+                    CornerRadius="8">
+                    <Grid
+                        Padding="8"
+                        RowDefinitions="*, *, *"
+                        VerticalOptions="CenterAndExpand">
+                        <controls:ExtendedImage Source="ic_wind" TintColor="{StaticResource VibrantBlue}" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="Micro"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="Wind" />
+                        <Label
+                            Grid.Row="2"
+                            FontAttributes="Bold"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding SelectedDayViewModel.WindSpeed, StringFormat='{0} km/h'}"
+                            TextColor="#B2CFE6" />
+                    </Grid>
+                </Frame>
+                <Frame
+                    Grid.Column="1"
+                    Padding="0"
+                    BackgroundColor="{StaticResource SpaceCadet}"
+                    CornerRadius="8">
+                    <Grid
+                        Padding="8"
+                        RowDefinitions="*, *, *"
+                        VerticalOptions="CenterAndExpand">
+                        <controls:ExtendedImage Source="ic_droplette" TintColor="{StaticResource VibrantBlue}" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="Micro"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="Humidity" />
+                        <Label
+                            Grid.Row="2"
+                            FontAttributes="Bold"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding SelectedDayViewModel.Humidity, StringFormat='{0}%'}"
+                            TextColor="#B2CFE6" />
+                    </Grid>
+                </Frame>
+                <Frame
+                    Grid.Column="2"
+                    Padding="0"
+                    BackgroundColor="{StaticResource SpaceCadet}"
+                    CornerRadius="8">
+                    <Grid
+                        Padding="8"
+                        RowDefinitions="*, *, *"
+                        VerticalOptions="CenterAndExpand">
+                        <controls:ExtendedImage Source="ic_rain" TintColor="{StaticResource VibrantBlue}" />
+                        <Label
+                            Grid.Row="1"
+                            FontSize="Micro"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="Chance of rain" />
+                        <Label
+                            Grid.Row="2"
+                            FontAttributes="Bold"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding SelectedDayViewModel.RainChance, StringFormat='{0}%'}"
+                            TextColor="#B2CFE6" />
+                    </Grid>
+                </Frame>
+            </Grid>
+        </Grid>
 
         <!--  Hourly Selection  -->
         <CarouselView Grid.Row="2">

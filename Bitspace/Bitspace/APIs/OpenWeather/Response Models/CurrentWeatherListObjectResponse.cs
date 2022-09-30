@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace Bitspace.APIs;
 
 [ExcludeFromCodeCoverage]
-public class ListObjectResponse
+public class CurrentWeatherListObjectResponse
 {
     [JsonProperty("dt")]
     public int DT { get; set; }

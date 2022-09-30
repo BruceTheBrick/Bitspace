@@ -16,7 +16,7 @@ public class HourlyWeatherResponse
     public int Cnt { get; set; }
 
     [JsonProperty("list")]
-    public ListObjectResponse[] List { get; set; }
+    public ForecastListObjectResponse[] List { get; set; }
 
     [JsonProperty("city")]
     public CityResponseModel City { get; set; }

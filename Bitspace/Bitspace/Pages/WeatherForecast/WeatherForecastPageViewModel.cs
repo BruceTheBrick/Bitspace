@@ -27,11 +27,11 @@ namespace Bitspace.Pages
             PillSelectedCommand = new Command<PillViewModel>(PillSelected);
         }
 
-        public CurrentWeatherViewModel Weather { get; set; }
         public HourlyForecastViewModel HourlyForecast { get; set; }
         public DayViewModel SelectedDayViewModel { get; set; }
         public ObservableCollection<PillViewModel> DailyPillList { get; set; }
         public PillViewModel ActivePill { get; set; }
+        public string Location { get; set; }
         public ICommand PillSelectedCommand { get; }
 
         public override async Task InitializeAsync(INavigationParameters parameters)
@@ -43,9 +43,9 @@ namespace Bitspace.Pages
         private async Task UpdateCurrentWeather()
         {
             IsBusy = true;
-            Weather = await _currentWeatherService.GetCurrentWeather();
             HourlyForecast = await _currentWeatherService.GetHourlyForecast();
             SelectedDayViewModel = HourlyForecast.Days.First();
+            Location = await _currentWeatherService.GetLocationName();
             InitDailyPillList();
             IsBusy = false;
         }
