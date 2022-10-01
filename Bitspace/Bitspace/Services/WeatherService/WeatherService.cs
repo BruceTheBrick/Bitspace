@@ -3,128 +3,129 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Bitspace.APIs;
 
-namespace Bitspace.Services;
-
-public class CurrentWeatherService : ICurrentWeatherService
+namespace Bitspace.Services
 {
-    private readonly IOpenWeatherAPI _openWeatherApi;
-    private readonly ITimeoutService _timeoutService;
-    private readonly IPermissionService _permissionService;
-    private readonly IAlertService _alertService;
-    private readonly IDeviceLocation _deviceLocationService;
-
-    private CurrentWeatherResponse _currentWeatherResponse;
-    private CurrentWeatherViewModel _currentWeatherViewModel;
-    private HourlyWeatherResponse _hourlyForecastResponse;
-    private HourlyForecastViewModel _hourlyForecastViewModel;
-    private DateTime _currentWeatherLastUpdate;
-    private DateTime _hourlyForecastLastUpdate;
-
-    public CurrentWeatherService(
-        IOpenWeatherAPI openWeatherApi,
-        ITimeoutService timeoutService,
-        IPermissionService permissionService,
-        IDeviceLocation deviceLocationService,
-        IAlertService alertService)
+    public class CurrentWeatherService : ICurrentWeatherService
     {
-        _openWeatherApi = openWeatherApi;
-        _timeoutService = timeoutService;
-        _permissionService = permissionService;
-        _deviceLocationService = deviceLocationService;
-        _alertService = alertService;
+        private readonly IOpenWeatherAPI _openWeatherApi;
+        private readonly ITimeoutService _timeoutService;
+        private readonly IPermissionService _permissionService;
+        private readonly IAlertService _alertService;
+        private readonly IDeviceLocation _deviceLocationService;
 
-        _timeoutService.ExpiryMinutes = 5;
-    }
+        private CurrentWeatherResponse _currentWeatherResponse;
+        private CurrentWeatherViewModel _currentWeatherViewModel;
+        private HourlyWeatherResponse _hourlyForecastResponse;
+        private HourlyForecastViewModel _hourlyForecastViewModel;
+        private DateTime _currentWeatherLastUpdate;
+        private DateTime _hourlyForecastLastUpdate;
 
-    public async Task<CurrentWeatherViewModel> GetCurrentWeather()
-    {
-        if (_timeoutService.IsExpired(_currentWeatherLastUpdate))
+        public CurrentWeatherService(
+            IOpenWeatherAPI openWeatherApi,
+            ITimeoutService timeoutService,
+            IPermissionService permissionService,
+            IDeviceLocation deviceLocationService,
+            IAlertService alertService)
         {
-            await FetchCurrentWeather();
+            _openWeatherApi = openWeatherApi;
+            _timeoutService = timeoutService;
+            _permissionService = permissionService;
+            _deviceLocationService = deviceLocationService;
+            _alertService = alertService;
+
+            _timeoutService.ExpiryMinutes = 5;
         }
 
-        return _currentWeatherViewModel;
-    }
-
-    public async Task<HourlyForecastViewModel> GetHourlyForecast()
-    {
-        if (_timeoutService.IsExpired(_hourlyForecastLastUpdate))
+        public async Task<CurrentWeatherViewModel> GetCurrentWeather()
         {
-            await FetchHourlyForecast();
-        }
-
-        return _hourlyForecastViewModel;
-    }
-
-    private async Task FetchHourlyForecast()
-    {
-        try
-        {
-            if (!await _permissionService.RequestPermission(DevicePermissions.LOCATION))
+            if (_timeoutService.IsExpired(_currentWeatherLastUpdate))
             {
-                return;
+                await FetchCurrentWeather();
             }
 
-            var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
-            var response = await _openWeatherApi.GetHourlyWeather(new HourlyForecastRequest(location));
-            if (response.IsSuccess)
-            {
-                _hourlyForecastResponse = response.Data;
-                _hourlyForecastViewModel = new HourlyForecastViewModel(_hourlyForecastResponse);
-                _hourlyForecastLastUpdate = DateTime.Now;
-            }
+            return _currentWeatherViewModel;
         }
-        catch (HttpRequestException)
-        {
-            await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
-            InitForecastItems();
-        }
-        catch (Exception e)
-        {
-            await _alertService.Snackbar(e.Message);
-            InitForecastItems();
-        }
-    }
 
-    private async Task FetchCurrentWeather()
-    {
-        try
+        public async Task<HourlyForecastViewModel> GetHourlyForecast()
         {
-            if (!await _permissionService.RequestPermission(DevicePermissions.LOCATION))
+            if (_timeoutService.IsExpired(_hourlyForecastLastUpdate))
             {
-                return;
+                await FetchHourlyForecast();
             }
 
-            var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
-            var response = await _openWeatherApi.GetCurrentWeather(new CurrentWeatherRequest(location));
-            if (response.IsSuccess)
+            return _hourlyForecastViewModel;
+        }
+
+        private async Task FetchHourlyForecast()
+        {
+            try
             {
-                _currentWeatherResponse = response.Data;
-                _currentWeatherViewModel = new CurrentWeatherViewModel(_currentWeatherResponse);
-                _currentWeatherLastUpdate = DateTime.Now;
+                if (!await _permissionService.RequestPermission(DevicePermissions.LOCATION))
+                {
+                    return;
+                }
+
+                var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
+                var response = await _openWeatherApi.GetHourlyWeather(new HourlyForecastRequest(location));
+                if (response.IsSuccess)
+                {
+                    _hourlyForecastResponse = response.Data;
+                    _hourlyForecastViewModel = new HourlyForecastViewModel(_hourlyForecastResponse);
+                    _hourlyForecastLastUpdate = DateTime.Now;
+                }
+            }
+            catch (HttpRequestException)
+            {
+                await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
+                InitForecastItems();
+            }
+            catch (Exception e)
+            {
+                await _alertService.Snackbar(e.Message);
+                InitForecastItems();
             }
         }
-        catch (HttpRequestException)
-        {
-            await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
-            InitCurrentWeatherItems();
-        }
-        catch (Exception e)
-        {
-            await _alertService.Snackbar(e.Message);
-            InitCurrentWeatherItems();
-        }
-    }
 
-    private void InitForecastItems()
-    {
-        _hourlyForecastResponse = new HourlyWeatherResponse();
-        _hourlyForecastViewModel = new HourlyForecastViewModel();
-    }
+        private async Task FetchCurrentWeather()
+        {
+            try
+            {
+                if (!await _permissionService.RequestPermission(DevicePermissions.LOCATION))
+                {
+                    return;
+                }
 
-    private void InitCurrentWeatherItems()
-    {
-        _currentWeatherResponse = new CurrentWeatherResponse();
-        _currentWeatherViewModel = new CurrentWeatherViewModel();
+                var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
+                var response = await _openWeatherApi.GetCurrentWeather(new CurrentWeatherRequest(location));
+                if (response.IsSuccess)
+                {
+                    _currentWeatherResponse = response.Data;
+                    _currentWeatherViewModel = new CurrentWeatherViewModel(_currentWeatherResponse);
+                    _currentWeatherLastUpdate = DateTime.Now;
+                }
+            }
+            catch (HttpRequestException)
+            {
+                await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
+                InitCurrentWeatherItems();
+            }
+            catch (Exception e)
+            {
+                await _alertService.Snackbar(e.Message);
+                InitCurrentWeatherItems();
+            }
+        }
+
+        private void InitForecastItems()
+        {
+            _hourlyForecastResponse = new HourlyWeatherResponse();
+            _hourlyForecastViewModel = new HourlyForecastViewModel();
+        }
+
+        private void InitCurrentWeatherItems()
+        {
+            _currentWeatherResponse = new CurrentWeatherResponse();
+            _currentWeatherViewModel = new CurrentWeatherViewModel();
+        }
     }
 }

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using CarouselView.FormsPlugin.Abstractions;
 using Humanizer;
-using Xamarin.Forms.Internals;
 
 namespace Bitspace.APIs
 {

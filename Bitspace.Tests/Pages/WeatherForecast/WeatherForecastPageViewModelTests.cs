@@ -2,6 +2,7 @@
 using Bitspace.Services;
 using Bitspace.Tests.Base;
 using Bitspace.Tests.Factories;
+using Bitspace.Tests.Factories.APIs.OpenWeatherAPI;
 using FluentAssertions;
 using Moq;
 using Prism.Navigation;
@@ -14,17 +15,17 @@ public class WeatherForecastPageViewModelTests : UnitTestBase<WeatherForecastPag
     #region InitializeAsync
 
     [Fact]
-    public async Task InitializeAsync_ShouldUpdateWeather()
+    public async Task InitializeAsync_ShouldUpdateHourlyForecast()
     {
-        // Arrange
-        var currentWeatherResponse = CurrentWeatherFactory.GetViewModel();
-        Mocker.GetMock<ICurrentWeatherService>().Setup(x => x.GetCurrentWeather()).ReturnsAsync(currentWeatherResponse);
+        //Arrange
+        var forecastViewModel = HourlyForecastViewModelFactory.GetModel();
+        Mocker.GetMock<ICurrentWeatherService>().Setup(x => x.GetHourlyForecast()).ReturnsAsync(forecastViewModel);
 
-        // Act
-        await Sut.InitializeAsync(It.IsAny<INavigationParameters>());
+        //Act
+        await Sut.InitializeAsync(new NavigationParameters());
 
-        // Assert
-        Sut.Weather.Should().Be(currentWeatherResponse);
+        //Assert
+        Sut.HourlyForecast.Should().Be(forecastViewModel);
     }
     
     #endregion

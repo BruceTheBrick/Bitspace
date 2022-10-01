@@ -1,5 +1,4 @@
-﻿using System.Security;
-using Bitspace.APIs;
+﻿using Bitspace.APIs;
 using Bitspace.Services;
 using Bitspace.Tests.Base;
 using Bitspace.Tests.Factories;
@@ -29,7 +28,7 @@ public class CurrentWeatherServiceTests : UnitTestBase<CurrentWeatherService>
     public async Task GetCurrentWeather_ShouldCallAPI_WhenIsExpired()
     {
         //Arrange
-        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired()).Returns(true);
+        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
         Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(true);
         
         //Act

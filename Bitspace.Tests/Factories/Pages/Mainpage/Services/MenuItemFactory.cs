@@ -16,7 +16,7 @@ public static class MenuItemFactory
             .RuleFor(x => x.Icon, f => f.Image.PicsumUrl())
             .RuleFor(x => x.Text, f => f.Person.FirstName)
             .RuleFor(x => x.ActionIcon, f => f.Image.PicsumUrl())
-            .RuleFor(x => x.NavigationConstant, f => f.Lorem.Word())
+            .RuleFor(x => x.NavigationConstant, f => f.Company.CompanyName())
             .Generate(count).ToArray();
     }
 }

@@ -3,16 +3,16 @@ using Bogus;
 
 namespace Bitspace.Tests.Factories.APIs.OpenWeatherAPI;
 
-public static class ListObjectResponseFactory
+public static class CurrentWeatherListObjectResponseFactory
 {
-    public static ListObjectResponse GetModel()
+    public static CurrentWeatherListObjectResponse GetModel()
     {
         return GetModels(1).First();
     }
 
-    public static ListObjectResponse[] GetModels(int count = 5)
+    public static CurrentWeatherListObjectResponse[] GetModels(int count = 5)
     {
-        return new Faker<ListObjectResponse>()
+        return new Faker<CurrentWeatherListObjectResponse>()
             .RuleFor(x => x.DT, f => f.Random.Int())
             .RuleFor(x => x.Main, MainResponseModelFactory.GetModel())
             .RuleFor(x => x.Weather, WeatherResponseModelFactory.GetModels())

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Bitspace.Pages;
+using Bitspace.Services;
 using Bitspace.Tests.Base;
 using Bitspace.Tests.Factories.Pages.Mainpage.Services;
 using FluentAssertions;
@@ -42,7 +43,7 @@ public class MainPageViewModelTests : UnitTestBase<HomePageViewModel>
         Sut.ItemSelectedCommand.Execute(menuItem);
 
         //Assert
-        Mocker.GetMock<INavigationService>().Verify(x => x.NavigateAsync(menuItem.NavigationConstant), Times.Once);
+        Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.NavigateAsync(menuItem.NavigationConstant), Times.Once);
     }
 
     [Fact]
@@ -56,7 +57,7 @@ public class MainPageViewModelTests : UnitTestBase<HomePageViewModel>
         Sut.ItemSelectedCommand.Execute(menuItem);
 
         //Assert
-        Mocker.GetMock<INavigationService>().Verify(x => x.NavigateAsync(It.IsAny<string>()), Times.Never);
+        Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.NavigateAsync(It.IsAny<string>()), Times.Never);
     }
 
     #endregion

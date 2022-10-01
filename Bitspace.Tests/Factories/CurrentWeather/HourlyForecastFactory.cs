@@ -17,7 +17,7 @@ public static class HourlyForecastFactory
             .RuleFor(x => x.Cod, f => f.Random.Int())
             .RuleFor(x => x.Message, f => f.Random.Double())
             .RuleFor(x => x.Cnt, f => f.Random.Int())
-            .RuleFor(x => x.List, f => ListObjectResponseFactory.GetModels(f.Random.Int(1, 10)))
+            .RuleFor(x => x.List, f => ForecastListObjectResponseFactory.GetModels(f.Random.Int(1, 10)))
             .RuleFor(x => x.City, CityResponseModelFactory.GetModel())
             .Generate(count).ToArray();
     }
