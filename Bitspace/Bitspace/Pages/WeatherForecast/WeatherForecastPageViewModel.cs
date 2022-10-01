@@ -7,6 +7,7 @@ using Bitspace.APIs;
 using Bitspace.Controls;
 using Bitspace.Extensions;
 using Bitspace.Services;
+using Bitspace.Services.GeocodeService;
 using Prism.Navigation;
 using PropertyChanged;
 using Xamarin.Forms;
@@ -17,13 +18,16 @@ namespace Bitspace.Pages
     public class WeatherForecastPageViewModel : BasePageViewModel
     {
         private readonly ICurrentWeatherService _currentWeatherService;
+        private readonly IGeocodeService _geocodeService;
 
         public WeatherForecastPageViewModel(
             IBaseService baseService,
-            ICurrentWeatherService currentWeatherService)
+            ICurrentWeatherService currentWeatherService,
+            IGeocodeService geodGeocodeService)
             : base(baseService)
         {
             _currentWeatherService = currentWeatherService;
+            _geocodeService = geodGeocodeService;
             PillSelectedCommand = new Command<PillViewModel>(PillSelected);
         }
 
@@ -31,7 +35,7 @@ namespace Bitspace.Pages
         public DayViewModel SelectedDayViewModel { get; set; }
         public ObservableCollection<PillViewModel> DailyPillList { get; set; }
         public PillViewModel ActivePill { get; set; }
-        public string Location { get; set; }
+        public ReverseGeocodeViewModel Location { get; set; }
         public ICommand PillSelectedCommand { get; }
 
         public override async Task InitializeAsync(INavigationParameters parameters)
@@ -45,7 +49,7 @@ namespace Bitspace.Pages
             IsBusy = true;
             HourlyForecast = await _currentWeatherService.GetHourlyForecast();
             SelectedDayViewModel = HourlyForecast.Days.First();
-            Location = await _currentWeatherService.GetLocationName();
+            Location = await _geocodeService.GetCurrentLocationName();
             InitDailyPillList();
             IsBusy = false;
         }

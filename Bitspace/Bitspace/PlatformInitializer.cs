@@ -1,6 +1,7 @@
 ﻿using Bitspace.APIs;
 using Bitspace.Pages;
 using Bitspace.Services;
+using Bitspace.Services.GeocodeService;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
 using Xamarin.Essentials.Implementation;
@@ -53,6 +54,7 @@ namespace Bitspace
         private void RegisterDataLayers(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<ICurrentWeatherService, CurrentWeatherService>();
+            containerRegistry.RegisterSingleton<IGeocodeService, GeocodeService>();
         }
     }
 }

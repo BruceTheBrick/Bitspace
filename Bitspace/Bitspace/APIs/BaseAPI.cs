@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Bitspace.Services;
 using Newtonsoft.Json;
@@ -10,6 +11,7 @@ public class BaseAPI
     protected readonly IHttpClient _client;
     protected int TimeoutSeconds = 10;
 
+    [ExcludeFromCodeCoverage]
     protected BaseAPI(
         IHttpClient client,
         IApiKeyManagerService keyManagerService,
@@ -27,30 +29,7 @@ public class BaseAPI
     {
         var content = await rawResponse.Content.ReadAsStringAsync();
         var data = JsonConvert.DeserializeObject<T>(content) ?? new T();
-        var response = new Response<T>(data, rawResponse.StatusCode, StringToMethod(rawResponse.RequestMessage.Method.Method), rawResponse.IsSuccessStatusCode);
+        var response = new Response<T>(data, rawResponse.StatusCode, rawResponse.RequestMessage.Method.Method, rawResponse.IsSuccessStatusCode);
         return response;
-    }
-
-    private HttpMethod StringToMethod(string methodString)
-    {
-        switch (methodString)
-        {
-            case "GET":
-                return HttpMethod.Get;
-            case "POST":
-                return HttpMethod.Post;
-            case "PUT":
-                return HttpMethod.Put;
-            case "HEAD":
-                return HttpMethod.Head;
-            case "DELETE":
-                return HttpMethod.Delete;
-            case "PATCH":
-                return HttpMethod.Patch;
-            case "OPTIONS":
-                return HttpMethod.Options;
-        }
-
-        return null;
     }
 }

@@ -1,9 +1,15 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
 namespace Bitspace.APIs
 {
+    [ExcludeFromCodeCoverage]
     public class ReverseGeocodeResponseItemModel
     {
+        public ReverseGeocodeResponseItemModel()
+        {
+        }
+
         [JsonProperty("name")]
         public string Name { get; set; }
 

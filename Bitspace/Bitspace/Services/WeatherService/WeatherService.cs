@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Bitspace.APIs;
@@ -35,18 +34,6 @@ public class CurrentWeatherService : ICurrentWeatherService
         _alertService = alertService;
 
         _timeoutService.ExpiryMinutes = 5;
-    }
-
-    public async Task<string> GetLocationName()
-    {
-        if (!await _permissionService.RequestPermission(DevicePermissions.LOCATION))
-        {
-            return string.Empty;
-        }
-
-        var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
-        var response = await _openWeatherApi.GetCurrentLocationName(new ReverseGeocodeRequest(location));
-        return response.Data.Items.First().Name;
     }
 
     public async Task<CurrentWeatherViewModel> GetCurrentWeather()

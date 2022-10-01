@@ -22,7 +22,7 @@
             <Label
                 Grid.Row="0"
                 Grid.Column="2"
-                Text="{Binding Location}"
+                Text="{Binding Location.Name}"
                 TextColor="White" />
             <controls:PillList
                 Grid.Row="1"

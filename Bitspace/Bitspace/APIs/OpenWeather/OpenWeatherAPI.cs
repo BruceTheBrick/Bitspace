@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Bitspace.Services;
+using Newtonsoft.Json;
 
 namespace Bitspace.APIs
 {
@@ -28,11 +30,14 @@ namespace Bitspace.APIs
             return await ToResponse<HourlyWeatherResponse>(rawResponse);
         }
 
-        public async Task<Response<ReverseGeocodeResponseModel>> GetCurrentLocationName(ReverseGeocodeRequest request)
+        public async Task<Response<ReverseGeocodeResponseItemModel[]>> GetCurrentLocationName(ReverseGeocodeRequest request)
         {
             var url = $"{Endpoint}/geo/1.0/reverse?lat={request.Latitude}&lon={request.Longitude}&appid={ApiKey}";
             var rawResponse = await _client.GetAsync(url);
-            return await ToResponse<ReverseGeocodeResponseModel>(rawResponse);
+            var content = await rawResponse.Content.ReadAsStringAsync();
+            var data = JsonConvert.DeserializeObject<ReverseGeocodeResponseItemModel[]>(content) ?? Array.Empty<ReverseGeocodeResponseItemModel>();
+            var response = new Response<ReverseGeocodeResponseItemModel[]>(data, rawResponse.StatusCode, rawResponse.RequestMessage.Method.Method, rawResponse.IsSuccessStatusCode);
+            return response;
         }
     }
 }
