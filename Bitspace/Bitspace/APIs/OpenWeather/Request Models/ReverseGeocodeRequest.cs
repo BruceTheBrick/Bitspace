@@ -1,7 +1,9 @@
-﻿using Bitspace.Services;
+﻿using System.Diagnostics.CodeAnalysis;
+using Bitspace.Services;
 
 namespace Bitspace.APIs
 {
+    [ExcludeFromCodeCoverage]
     public class ReverseGeocodeRequest
     {
         public ReverseGeocodeRequest()

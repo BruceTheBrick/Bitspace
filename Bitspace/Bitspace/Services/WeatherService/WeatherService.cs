@@ -56,36 +56,6 @@ namespace Bitspace.Services
             return _hourlyForecastViewModel;
         }
 
-        private async Task FetchHourlyForecast()
-        {
-            try
-            {
-                if (!await _permissionService.RequestPermission(DevicePermissions.LOCATION))
-                {
-                    return;
-                }
-
-                var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
-                var response = await _openWeatherApi.GetHourlyWeather(new HourlyForecastRequest(location));
-                if (response.IsSuccess)
-                {
-                    _hourlyForecastResponse = response.Data;
-                    _hourlyForecastViewModel = new HourlyForecastViewModel(_hourlyForecastResponse);
-                    _hourlyForecastLastUpdate = DateTime.Now;
-                }
-            }
-            catch (HttpRequestException)
-            {
-                await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
-                InitForecastItems();
-            }
-            catch (Exception e)
-            {
-                await _alertService.Snackbar(e.Message);
-                InitForecastItems();
-            }
-        }
-
         private async Task FetchCurrentWeather()
         {
             try
@@ -113,6 +83,36 @@ namespace Bitspace.Services
             {
                 await _alertService.Snackbar(e.Message);
                 InitCurrentWeatherItems();
+            }
+        }
+
+        private async Task FetchHourlyForecast()
+        {
+            try
+            {
+                if (!await _permissionService.RequestPermission(DevicePermissions.LOCATION))
+                {
+                    return;
+                }
+
+                var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
+                var response = await _openWeatherApi.GetHourlyWeather(new HourlyForecastRequest(location));
+                if (response.IsSuccess)
+                {
+                    _hourlyForecastResponse = response.Data;
+                    _hourlyForecastViewModel = new HourlyForecastViewModel(_hourlyForecastResponse);
+                    _hourlyForecastLastUpdate = DateTime.Now;
+                }
+            }
+            catch (HttpRequestException)
+            {
+                await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
+                InitForecastItems();
+            }
+            catch (Exception e)
+            {
+                await _alertService.Snackbar(e.Message);
+                InitForecastItems();
             }
         }
 

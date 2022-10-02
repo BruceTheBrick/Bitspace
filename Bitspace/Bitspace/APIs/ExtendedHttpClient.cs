@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Bitspace.APIs
 {
+    [ExcludeFromCodeCoverage]
     public class ExtendedHttpClient : IHttpClient
     {
         private HttpClient _client;

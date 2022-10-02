@@ -1,7 +1,6 @@
 ﻿using Bitspace.APIs;
 using Bitspace.Services;
 using Bitspace.Tests.Base;
-using Bitspace.Tests.Factories;
 using Moq;
 using Xunit;
 
@@ -15,7 +14,7 @@ public class CurrentWeatherServiceTests : UnitTestBase<CurrentWeatherService>
     public async Task GetCurrentWeather_ShouldRequestLocationPermission_WhenIsExpired()
     {
         // Arrange
-        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired()).Returns(true);
+        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
 
         // Act
         await Sut.GetCurrentWeather();
@@ -37,29 +36,13 @@ public class CurrentWeatherServiceTests : UnitTestBase<CurrentWeatherService>
         //Assert
         Mocker.GetMock<IOpenWeatherAPI>().Verify(x => x.GetCurrentWeather(It.IsAny<CurrentWeatherRequest>()), Times.Once);
     }
-
-    [Fact]
-    public async Task GetCurrentWeather_ShouldCallUpdate_WhenAPIIsSuccessful()
-    {
-        // Arrange
-        var data = CurrentWeatherFactory.GetModel();
-        var response = ResponseFactory.GetSuccessfulResponse(data);
-        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired()).Returns(true);
-        Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(true);
-        Mocker.GetMock<IOpenWeatherAPI>().Setup(x => x.GetCurrentWeather(It.IsAny<CurrentWeatherRequest>())).ReturnsAsync(response);
-        
-        // Act
-        await Sut.GetCurrentWeather();
-        
-        //Assert
-        Mocker.GetMock<ITimeoutService>().Verify(x => x.Update(), Times.Once);
-    }
+    
 
     [Fact]
     public async Task GetCurrentWeather_ShouldDisplaySnackbar_WhenExpiredAndHttpRequestExceptionThrown()
     {
         // Arrange
-        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired()).Returns(true);
+        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
         Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(true);
         Mocker.GetMock<IOpenWeatherAPI>().Setup(x => x.GetCurrentWeather(It.IsAny<CurrentWeatherRequest>())).Throws<HttpRequestException>();
 
@@ -74,7 +57,7 @@ public class CurrentWeatherServiceTests : UnitTestBase<CurrentWeatherService>
     public async Task GetCurrentWeather_ShouldDisplaySnackbar_WhenExpiredAndExceptionThrown()
     {
         // Arrange
-        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired()).Returns(true);
+        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
         Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(true);
         Mocker.GetMock<IOpenWeatherAPI>().Setup(x => x.GetCurrentWeather(It.IsAny<CurrentWeatherRequest>())).Throws<Exception>();
 
@@ -106,7 +89,7 @@ public class CurrentWeatherServiceTests : UnitTestBase<CurrentWeatherService>
     public async Task GetHourlyForecast_ShouldRequestLocationPermissions_WhenIsExpired()
     {
         // Arrange
-        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired()).Returns(true);
+        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
 
         // Act
         await Sut.GetHourlyForecast();
@@ -119,7 +102,7 @@ public class CurrentWeatherServiceTests : UnitTestBase<CurrentWeatherService>
     public async Task GetHourlyForecast_ShouldCallAPI_WhenIsExpired()
     {
         // Arrange
-        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired()).Returns(true);
+        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
         Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(true);
 
         // Act
@@ -130,27 +113,10 @@ public class CurrentWeatherServiceTests : UnitTestBase<CurrentWeatherService>
     }
 
     [Fact]
-    public async Task GetHourlyForecast_ShouldCallUpdate_WhenAPIIsSuccessful()
-    {
-        // Arrange
-        var data = HourlyForecastFactory.GetModel();
-        var response = ResponseFactory.GetSuccessfulResponse(data);
-        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired()).Returns(true);
-        Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(true);
-        Mocker.GetMock<IOpenWeatherAPI>().Setup(x => x.GetHourlyWeather(It.IsAny<HourlyForecastRequest>())).ReturnsAsync(response);
-
-        // Act
-        await Sut.GetHourlyForecast();
-
-        // Assert
-        Mocker.GetMock<ITimeoutService>().Verify(x => x.Update(), Times.Once);
-    }
-
-    [Fact]
     public async Task GetHourlyForecast_ShouldDisplaySnackbar_WhenExpiredAndHttpRequestExceptionThrown()
     {
         // Arrange
-        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired()).Returns(true);
+        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
         Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(true);
         Mocker.GetMock<IOpenWeatherAPI>().Setup(x => x.GetHourlyWeather(It.IsAny<HourlyForecastRequest>())).Throws<HttpRequestException>();
 
@@ -165,7 +131,7 @@ public class CurrentWeatherServiceTests : UnitTestBase<CurrentWeatherService>
     public async Task GetHourlyForecast_ShouldDisplaySnackbar_WhenExpiredAndExceptionThrown()
     {
         // Arrange
-        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired()).Returns(true);
+        Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
         Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(true);
         Mocker.GetMock<IOpenWeatherAPI>().Setup(x => x.GetHourlyWeather(It.IsAny<HourlyForecastRequest>())).Throws<Exception>();
 

@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Bitspace.APIs
 {
+    [ExcludeFromCodeCoverage]
     public class ReverseGeocodeViewModel
     {
         public ReverseGeocodeViewModel()

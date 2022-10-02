@@ -11,5 +11,11 @@ namespace Bitspace.Extensions
             var date = datetime.Day;
             return $"{dayName}, {date} {shortMonth}";
         }
+
+        public static long ToUnixSeconds(this DateTime dateTime)
+        {
+            var offset = new DateTimeOffset(dateTime);
+            return offset.ToUnixTimeSeconds();
+        }
     }
 }

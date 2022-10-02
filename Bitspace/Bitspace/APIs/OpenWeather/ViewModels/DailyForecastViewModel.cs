@@ -1,44 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bitspace.Extensions;
 
-namespace Bitspace.APIs;
-
-public class DailyForecastViewModel
+namespace Bitspace.APIs
 {
-    public DailyForecastViewModel()
+    public class DailyForecastViewModel
     {
-    }
-
-    public DailyForecastViewModel(DateTime dateTime, IList<ForecastListObjectResponse> HourlyForecastItemResponse)
-    {
-        SetDisplayTextDateTime(dateTime);
-        SetHourlyForecastItems(HourlyForecastItemResponse);
-    }
-
-    public string DisplayDateTime { get; set; }
-    public ForecastItemViewModel SelectedForecastItem { get; set; }
-    public IList<ForecastItemViewModel> HourlyForecastItems { get; set; }
-
-    private void SetHourlyForecastItems(IList<ForecastListObjectResponse> forecastItems)
-    {
-        HourlyForecastItems = new List<ForecastItemViewModel>();
-        foreach (var item in forecastItems)
+        public DailyForecastViewModel(DateTime dateTime, IList<ForecastListObjectResponse> forecastListObjectResponse)
         {
-            HourlyForecastItems.Add(new ForecastItemViewModel(item));
+            DisplayDateTime = dateTime.ToDisplayString();
+            SetHourlyForecastItems(forecastListObjectResponse);
         }
 
-        if (HourlyForecastItems != null)
-        {
-            SelectedForecastItem = HourlyForecastItems.First();
-        }
-    }
+        public string DisplayDateTime { get; }
+        public ForecastItemViewModel SelectedForecastItem { get; set; }
+        public IList<ForecastItemViewModel> HourlyForecastItems { get; set; }
 
-    private void SetDisplayTextDateTime(DateTime dateTime)
-    {
-        var dayName = dateTime.ToString("dddd");
-        var shortMonth = dateTime.ToString("MMM");
-        var date = dateTime.Day;
-        DisplayDateTime = $"{dayName}, {date} {shortMonth}";
+        private void SetHourlyForecastItems(IList<ForecastListObjectResponse> forecastItems)
+        {
+            HourlyForecastItems = new List<ForecastItemViewModel>();
+            foreach (var item in forecastItems)
+            {
+                HourlyForecastItems.Add(new ForecastItemViewModel(item));
+            }
+
+            if (HourlyForecastItems != null)
+            {
+                SelectedForecastItem = HourlyForecastItems.First();
+            }
+        }
     }
 }

@@ -3,58 +3,59 @@ using Bitspace.Tests.Factories;
 using FluentAssertions;
 using Xunit;
 
-namespace Bitspace.Tests.APIs.OpenWeather;
-
-public class CurrentWeatherViewModelTests
+namespace Bitspace.Tests.APIs.OpenWeather
 {
-    #region Constructor
-
-    [Fact]
-    public void Constructor_ShouldSetProperties()
+    public class CurrentWeatherViewModelTests
     {
-        // Arrange
-        var currentWeatherResponse = CurrentWeatherFactory.GetModel();
+        #region Constructor
 
-        // Act
-        var viewModel = new CurrentWeatherViewModel(currentWeatherResponse);
+        [Fact]
+        public void Constructor_ShouldSetProperties()
+        {
+            // Arrange
+            var currentWeatherResponse = CurrentWeatherFactory.GetModel();
 
-        // Assert
-        viewModel.Suburb.Should().Be(currentWeatherResponse.Name);
-        viewModel.Temperature.Should().Be(currentWeatherResponse.Main.Temperature);
-        viewModel.FeelsLike.Should().Be(currentWeatherResponse.Main.FeelsLike);
-        viewModel.Humidity.Should().Be(currentWeatherResponse.Main.Humidity);
-        viewModel.Pressure.Should().Be(currentWeatherResponse.Main.Pressure);
-        viewModel.WindSpeed.Should().Be(currentWeatherResponse.Wind.Speed);
-        viewModel.Description.Should().Be(currentWeatherResponse.Weather.First().Description);
-    }
+            // Act
+            var viewModel = new CurrentWeatherViewModel(currentWeatherResponse);
 
-    [Fact]
-    public void Constructor_ShouldSetIconURL()
-    {
-        // Arrange
-        var currentWeatherResponse = CurrentWeatherFactory.GetModel();
+            // Assert
+            viewModel.Suburb.Should().Be(currentWeatherResponse.Name);
+            viewModel.Temperature.Should().Be(currentWeatherResponse.Main.Temperature);
+            viewModel.FeelsLike.Should().Be(currentWeatherResponse.Main.FeelsLike);
+            viewModel.Humidity.Should().Be(currentWeatherResponse.Main.Humidity);
+            viewModel.Pressure.Should().Be(currentWeatherResponse.Main.Pressure);
+            viewModel.WindSpeed.Should().Be(currentWeatherResponse.Wind.Speed);
+            viewModel.Description.Should().Be(currentWeatherResponse.Weather.First().Description);
+        }
 
-        // Act
-        var viewModel = new CurrentWeatherViewModel(currentWeatherResponse);
+        [Fact]
+        public void Constructor_ShouldSetDescriptionList()
+        {
+            // Arrange
+            var currentWeatherResponse = CurrentWeatherFactory.GetModel();
+            var descriptionList = currentWeatherResponse.Weather.Select(x => x.Description.ToUpper()).ToList();
 
-        // Assert
-        viewModel.IconUrl.Should()
-            .Be($"http://openweathermap.org/img/wn/{currentWeatherResponse.Weather.First().Icon}@4x.png");
-    }
+            // Act
+            var viewModel = new CurrentWeatherViewModel(currentWeatherResponse);
 
-    [Fact]
-    public void Constructor_ShouldSetDescriptionList()
-    {
-        // Arrange
-        var currentWeatherResponse = CurrentWeatherFactory.GetModel();
-        var descriptionList = currentWeatherResponse.Weather.Select(x => x.Description.ToUpper()).ToList();
+            // Assert
+            viewModel.DescriptionList.Should().BeEquivalentTo(descriptionList);
+        }
 
-        // Act
-        var viewModel = new CurrentWeatherViewModel(currentWeatherResponse);
+        [Fact]
+        public void Constructor_ShouldSetIconUrl()
+        {
+            // Arrange
+            var currentWeatherResponse = CurrentWeatherFactory.GetModel();
+            var icon = currentWeatherResponse.Weather.First().Icon;
 
-        // Assert
-        viewModel.DescriptionList.Should().BeEquivalentTo(descriptionList);
-    }
+            // Act
+            var viewModel = new CurrentWeatherViewModel(currentWeatherResponse);
+
+            // Assert
+            viewModel.IconUrl.Should().Be($"http://openweathermap.org/img/wn/{icon}@4x.png");
+        }
     
-    #endregion
+        #endregion
+    }
 }

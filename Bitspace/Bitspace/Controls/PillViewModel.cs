@@ -1,7 +1,9 @@
-﻿using PropertyChanged;
+﻿using System.Diagnostics.CodeAnalysis;
+using PropertyChanged;
 
 namespace Bitspace.Controls
 {
+    [ExcludeFromCodeCoverage]
     [AddINotifyPropertyChangedInterface]
     public class PillViewModel
     {

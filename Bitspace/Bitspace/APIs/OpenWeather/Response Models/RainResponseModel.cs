@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 
 namespace Bitspace.APIs
 {
-
     [ExcludeFromCodeCoverage]
     public class RainResponseModel
     {

@@ -1,4 +1,4 @@
-﻿using Prism.Navigation;
+﻿using Bitspace.Services.NavigationService;
 
 namespace Bitspace.Services
 {
@@ -13,5 +13,9 @@ namespace Bitspace.Services
             AccessibilityService = accessibilityService;
             AnalyticsService = analyticsService;
         }
+
+        public INavigationService NavigationService { get; }
+        public IAccessibilityService AccessibilityService { get; }
+        public IFirebaseAnalyticsService AnalyticsService { get; }
     }
 }

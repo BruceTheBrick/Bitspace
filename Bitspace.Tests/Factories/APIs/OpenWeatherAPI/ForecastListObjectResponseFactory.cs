@@ -1,4 +1,5 @@
 ﻿using Bitspace.APIs;
+using Bitspace.Extensions;
 using Bogus;
 
 namespace Bitspace.Tests.Factories.APIs.OpenWeatherAPI
@@ -13,7 +14,7 @@ namespace Bitspace.Tests.Factories.APIs.OpenWeatherAPI
         public static ForecastListObjectResponse[] GetModels(int count = 5)
         {
             return new Faker<ForecastListObjectResponse>()
-                .RuleFor(x => x.DT, f => f.Random.Int())
+                .RuleFor(x => x.DT, f => f.Date.Future().ToUnixSeconds())
                 .RuleFor(x => x.Main, MainResponseModelFactory.GetModel())
                 .RuleFor(x => x.Weather, WeatherResponseModelFactory.GetModels())
                 .RuleFor(x => x.Clouds, CloudsResponseModelFactory.GetModel())

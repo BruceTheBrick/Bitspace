@@ -5,74 +5,109 @@ using Bitspace.Tests.Factories;
 using Moq;
 using Xunit;
 
-namespace Bitspace.Tests.APIs.OpenWeather;
-
-public class OpenWeatherAPITests : UnitTestBase<OpenWeatherAPI>
+namespace Bitspace.Tests.APIs.OpenWeather
 {
-    #region GetCurrentWeather
-
-    [Fact]
-    public async Task GetCurrentWeather_ShouldGetAsync()
+    public class OpenWeatherAPITests : UnitTestBase<OpenWeatherAPI>
     {
-        // Arrange
-        var request = OpenWeatherAPIRequestFactory.CurrentWeatherRequest();
-        var response = HttpResponseMessageFactory.GetModel();
-        Mocker.GetMock<IHttpClient>().Setup(x => x.GetAsync(It.IsAny<string>())).ReturnsAsync(response);
-        // Act
-        await Sut.GetCurrentWeather(request);
+        #region GetCurrentWeather
 
-        // Assert
-        Mocker.GetMock<IHttpClient>().Verify(x => x.GetAsync(It.IsAny<string>()), Times.Once);
-    }
+        [Fact]
+        public async Task GetCurrentWeather_ShouldGetAsync()
+        {
+            // Arrange
+            var request = OpenWeatherAPIRequestFactory.CurrentWeatherRequest();
+            var response = HttpResponseMessageFactory.GetModel();
+            Mocker.GetMock<IHttpClient>().Setup(x => x.GetAsync(It.IsAny<string>())).ReturnsAsync(response);
+            // Act
+            await Sut.GetCurrentWeather(request);
 
-    [Fact]
-    public async Task GetCurrentWeather_ShouldUseRequest()
-    {
-        // Arrange
-        var request = OpenWeatherAPIRequestFactory.CurrentWeatherRequest();
-        var response = HttpResponseMessageFactory.GetModel();
-        Mocker.GetMock<IHttpClient>().Setup(x => x.GetAsync(It.IsAny<string>())).ReturnsAsync(response);
+            // Assert
+            Mocker.GetMock<IHttpClient>().Verify(x => x.GetAsync(It.IsAny<string>()), Times.Once);
+        }
 
-        // Act
-        await Sut.GetCurrentWeather(request);
+        [Fact]
+        public async Task GetCurrentWeather_ShouldUseRequest()
+        {
+            // Arrange
+            var request = OpenWeatherAPIRequestFactory.CurrentWeatherRequest();
+            var response = HttpResponseMessageFactory.GetModel();
+            Mocker.GetMock<IHttpClient>().Setup(x => x.GetAsync(It.IsAny<string>())).ReturnsAsync(response);
 
-        // Assert
-        Mocker.GetMock<IHttpClient>().Verify(x => x.GetAsync(It.Is<string>(z => z.Contains(request.Latitude.ToString(CultureInfo.InvariantCulture)) && z.Contains(request.Longitude.ToString(CultureInfo.InvariantCulture)))), Times.Once);
-    }
+            // Act
+            await Sut.GetCurrentWeather(request);
 
-    #endregion
+            // Assert
+            Mocker.GetMock<IHttpClient>().Verify(x => x.GetAsync(It.Is<string>(z => z.Contains(request.Latitude.ToString(CultureInfo.InvariantCulture)) && z.Contains(request.Longitude.ToString(CultureInfo.InvariantCulture)))), Times.Once);
+        }
+
+        #endregion
     
-    #region GetHourlyForecast
+        #region GetHourlyForecast
 
-    [Fact]
-    public async Task GetHourlyWeather_ShouldGetAsync()
-    {
-        // Arrange
-        var request = OpenWeatherAPIRequestFactory.HourlyForecastRequest();
-        var response = HttpResponseMessageFactory.GetModel();
-        Mocker.GetMock<IHttpClient>().Setup(x => x.GetAsync(It.IsAny<string>())).ReturnsAsync(response);
+        [Fact]
+        public async Task GetHourlyWeather_ShouldGetAsync()
+        {
+            // Arrange
+            var request = OpenWeatherAPIRequestFactory.HourlyForecastRequest();
+            var response = HttpResponseMessageFactory.GetModel();
+            Mocker.GetMock<IHttpClient>().Setup(x => x.GetAsync(It.IsAny<string>())).ReturnsAsync(response);
 
-        // Act
-        await Sut.GetHourlyWeather(request);
+            // Act
+            await Sut.GetHourlyWeather(request);
 
-        // Assert
-        Mocker.GetMock<IHttpClient>().Verify(x => x.GetAsync(It.IsAny<string>()), Times.Once);
-    }
+            // Assert
+            Mocker.GetMock<IHttpClient>().Verify(x => x.GetAsync(It.IsAny<string>()), Times.Once);
+        }
     
-    [Fact]
-    public async Task GetHourlyWeather_ShouldUseRequest()
-    {
-        // Arrange
-        var request = OpenWeatherAPIRequestFactory.HourlyForecastRequest();
-        var response = HttpResponseMessageFactory.GetModel();
-        Mocker.GetMock<IHttpClient>().Setup(x => x.GetAsync(It.IsAny<string>())).ReturnsAsync(response);
+        [Fact]
+        public async Task GetHourlyWeather_ShouldUseRequest()
+        {
+            // Arrange
+            var request = OpenWeatherAPIRequestFactory.HourlyForecastRequest();
+            var response = HttpResponseMessageFactory.GetModel();
+            Mocker.GetMock<IHttpClient>().Setup(x => x.GetAsync(It.IsAny<string>())).ReturnsAsync(response);
 
-        // Act
-        await Sut.GetHourlyWeather(request);
+            // Act
+            await Sut.GetHourlyWeather(request);
 
-        // Assert
-        Mocker.GetMock<IHttpClient>().Verify(x => x.GetAsync(It.Is<string>(z => z.Contains(request.Latitude.ToString(CultureInfo.InvariantCulture)) && z.Contains(request.Longitude.ToString(CultureInfo.InvariantCulture)))), Times.Once);
-    }
+            // Assert
+            Mocker.GetMock<IHttpClient>().Verify(x => x.GetAsync(It.Is<string>(z => z.Contains(request.Latitude.ToString(CultureInfo.InvariantCulture)) && z.Contains(request.Longitude.ToString(CultureInfo.InvariantCulture)))), Times.Once);
+        }
     
-    #endregion
+        #endregion
+        
+        #region GetCurrentLocationName
+        
+        [Fact]
+        public async Task GetCurrentLocationName_ShouldGetAsync()
+        {
+            // Arrange
+            var request = OpenWeatherAPIRequestFactory.CurrentLocationNameRequest();
+            var response = HttpResponseMessageFactory.GetModel();
+            Mocker.GetMock<IHttpClient>().Setup(x => x.GetAsync(It.IsAny<string>())).ReturnsAsync(response);
+
+            // Act
+            await Sut.GetCurrentLocationName(request);
+
+            // Assert
+            Mocker.GetMock<IHttpClient>().Verify(x => x.GetAsync(It.IsAny<string>()), Times.Once);
+        }
+    
+        [Fact]
+        public async Task GetCurrentLocationName_ShouldUseRequest()
+        {
+            // Arrange
+            var request = OpenWeatherAPIRequestFactory.CurrentLocationNameRequest();
+            var response = HttpResponseMessageFactory.GetModel();
+            Mocker.GetMock<IHttpClient>().Setup(x => x.GetAsync(It.IsAny<string>())).ReturnsAsync(response);
+
+            // Act
+            await Sut.GetCurrentLocationName(request);
+
+            // Assert
+            Mocker.GetMock<IHttpClient>().Verify(x => x.GetAsync(It.Is<string>(z => z.Contains(request.Latitude.ToString(CultureInfo.InvariantCulture)) && z.Contains(request.Longitude.ToString(CultureInfo.InvariantCulture)))), Times.Once);
+        }
+        
+        #endregion
+    }
 }

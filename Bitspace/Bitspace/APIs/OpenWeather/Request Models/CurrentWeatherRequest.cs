@@ -1,25 +1,28 @@
-﻿using Bitspace.Services;
+﻿using System.Diagnostics.CodeAnalysis;
+using Bitspace.Services;
 
-namespace Bitspace.APIs;
-
-public class CurrentWeatherRequest
+namespace Bitspace.APIs
 {
-    public CurrentWeatherRequest()
+    [ExcludeFromCodeCoverage]
+    public class CurrentWeatherRequest
     {
-    }
+        public CurrentWeatherRequest()
+        {
+        }
 
-    public CurrentWeatherRequest(double latitude, double longitude)
-    {
-        Latitude = latitude;
-        Longitude = longitude;
-    }
+        public CurrentWeatherRequest(double latitude, double longitude)
+        {
+            Latitude = latitude;
+            Longitude = longitude;
+        }
 
-    public CurrentWeatherRequest(LocationModel location)
-    {
-        Latitude = location.Latitude;
-        Longitude = location.Longitude;
-    }
+        public CurrentWeatherRequest(LocationModel location)
+        {
+            Latitude = location.Latitude;
+            Longitude = location.Longitude;
+        }
 
-    public double Latitude { get; set; }
-    public double Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+    }
 }

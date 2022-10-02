@@ -1,11 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
 namespace Bitspace.APIs
 {
+    [ExcludeFromCodeCoverage]
     public class ForecastListObjectResponse
     {
         [JsonProperty("dt")]
-        public int DT { get; set; }
+        public long DT { get; set; }
 
         [JsonProperty("main")]
         public MainResponseModel Main { get; set; }

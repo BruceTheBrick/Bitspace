@@ -4,6 +4,7 @@ using Bitspace.Services;
 using Prism.AppModel;
 using Prism.Mvvm;
 using Prism.Navigation;
+using INavigationService = Bitspace.Services.NavigationService.INavigationService;
 
 namespace Bitspace.Pages
 {

@@ -1,7 +1,9 @@
-﻿using Bitspace.APIs;
+﻿using System.Diagnostics.CodeAnalysis;
+using Bitspace.APIs;
 using Bitspace.Pages;
 using Bitspace.Services;
 using Bitspace.Services.GeocodeService;
+using Bitspace.Services.NavigationService;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
 using Xamarin.Essentials.Implementation;
@@ -10,6 +12,7 @@ using Xamarin.Forms;
 
 namespace Bitspace
 {
+    [ExcludeFromCodeCoverage]
     public class PlatformInitializer
     {
         public PlatformInitializer(IContainerRegistry containerRegistry)
@@ -36,6 +39,7 @@ namespace Bitspace
             containerRegistry.Register<IAnimationService, AnimationService>();
             containerRegistry.Register<IAlertService, AlertService>();
             containerRegistry.Register<IAccessibilityService, AccessibilityService>();
+            containerRegistry.Register<INavigationService, NavigationService>();
         }
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)

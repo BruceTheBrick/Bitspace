@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Humanizer;
 
 namespace Bitspace.APIs
 {
-    [ExcludeFromCodeCoverage]
     public class DayViewModel
     {
+        public DayViewModel()
+        {
+            ForecastItems = new List<ForecastItemViewModel>();
+        }
+
         public DayViewModel(DateTime dateTime, IList<ForecastItemViewModel> forecastItems)
         {
             DateTime = dateTime;
@@ -54,20 +57,10 @@ namespace Bitspace.APIs
                 }
             }
 
-            if (ForecastItems.Count == 0)
-            {
-                Temperature = 0;
-                WindSpeed = 0;
-                Humidity = 0;
-                RainChance = 0;
-            }
-            else
-            {
-                Temperature = Math.Round(temp / ForecastItems.Count);
-                WindSpeed = Math.Round(windSpeed / ForecastItems.Count);
-                Humidity = Math.Round(humidity / ForecastItems.Count);
-                RainChance = Math.Round(rainChance / ForecastItems.Count);
-            }
+            Temperature = Math.Round(temp / ForecastItems.Count);
+            WindSpeed = Math.Round(windSpeed / ForecastItems.Count);
+            Humidity = Math.Round(humidity / ForecastItems.Count);
+            RainChance = Math.Round(rainChance / ForecastItems.Count);
 
             SetDescription(descriptions);
         }

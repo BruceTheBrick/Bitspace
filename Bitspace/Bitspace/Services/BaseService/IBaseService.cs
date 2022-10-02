@@ -1,11 +1,12 @@
-﻿using Prism.Navigation;
+﻿
+using Bitspace.Services.NavigationService;
 
 namespace Bitspace.Services
 {
-    public class IBaseService
+    public interface IBaseService
     {
-        public INavigationService NavigationService;
-        public IAccessibilityService AccessibilityService;
-        public IFirebaseAnalyticsService AnalyticsService;
+         INavigationService NavigationService { get; }
+         IAccessibilityService AccessibilityService { get; }
+         IFirebaseAnalyticsService AnalyticsService { get; }
     }
 }

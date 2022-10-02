@@ -20,4 +20,12 @@ public static class OpenWeatherAPIRequestFactory
             .RuleFor(x => x.Longitude, f => f.Random.Double(-180, 180))
             .Generate();
     }
+
+    public static ReverseGeocodeRequest CurrentLocationNameRequest()
+    {
+        return new Faker<ReverseGeocodeRequest>()
+            .RuleFor(x => x.Latitude, f => f.Random.Double(-90, 90))
+            .RuleFor(x => x.Longitude, f => f.Random.Double(-180, 180))
+            .Generate();
+    }
 }
