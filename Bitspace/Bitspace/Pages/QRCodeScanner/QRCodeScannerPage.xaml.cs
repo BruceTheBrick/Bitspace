@@ -1,12 +1,13 @@
-﻿using Xamarin.Forms.Xaml;
+﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Pages;
-
-[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class QRCodeScannerPage
+namespace Bitspace.Pages
 {
-    public QRCodeScannerPage()
+    [ExcludeFromCodeCoverage]
+    public partial class QRCodeScannerPage
     {
-        InitializeComponent();
+        public QRCodeScannerPage()
+        {
+            InitializeComponent();
+        }
     }
 }
