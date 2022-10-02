@@ -4,6 +4,7 @@ trigger:
 variables:
   buildConfiguration: "Release"
   outputDirectory: "$(build.binariesDirectory)/$(buildConfiguration)"
+  versionCodeNumber: "$(Date:yyyyMMdd).$(Rev:r)"
 
 pool:
   #  vmImage: macos-latest
@@ -19,7 +20,7 @@ steps:
     inputs:
       sourcePath: 'Bitspace/Bitspace.Android/Properties/AndroidManifest.xml'
       versionCodeOption: 'buildid'
-      versionCode: '$(Date:yyyyMMdd).$(Rev.r)'
+      versionCode: '$(versionCodeNumber)'
       printFile: true
 
   - task: XamarinAndroid@1
