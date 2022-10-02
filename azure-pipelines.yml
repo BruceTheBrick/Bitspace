@@ -6,13 +6,21 @@ variables:
   outputDirectory: "$(build.binariesDirectory)/$(buildConfiguration)"
 
 pool:
-    vmImage: windows-latest
+  #  vmImage: macos-latest
+  vmImage: windows-latest
 steps:
   - task: NuGetToolInstaller@1
 
   - task: NuGetCommand@2
     inputs:
       restoreSolution: "**/*.sln"
+
+  - task: android-manifest-version@1
+    inputs:
+      sourcePath: 'Bitspace/Bitspace.Android/Properties/AndroidManifest.xml'
+      versionCodeOption: 'buildid'
+      versionCode: '$(Build.BuildId)'
+      printFile: true
 
   - task: XamarinAndroid@1
     inputs:
