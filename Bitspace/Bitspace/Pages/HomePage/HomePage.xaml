@@ -17,7 +17,7 @@
     <StackLayout Spacing="0">
         <controls1:HomePageHeader />
         <pancakeView:PancakeView
-            Margin="16"
+            Margin="16,0,16,32"
             Padding="0,20"
             BackgroundColor="White"
             CornerRadius="20"
@@ -65,5 +65,6 @@
                 </pancakeView:PancakeView>
             </Grid>
         </pancakeView:PancakeView>
+        <Label HorizontalOptions="End" Text="{Binding VersionNumber}" />
     </StackLayout>
 </ContentPage>

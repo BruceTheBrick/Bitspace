@@ -4,6 +4,8 @@ using System.Windows.Input;
 using Bitspace.Services;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Essentials;
+using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
 
 namespace Bitspace.Pages
@@ -19,10 +21,12 @@ namespace Bitspace.Pages
         {
             _homePageMenuItemsService = homePageMenuItemsService;
 
+            SetVersionNumber();
             ItemSelectedCommand = new AsyncCommand<MenuListItemViewModel>(ItemSelected);
             RefreshMenuItemsCommand = new Command(RefreshMenuItems);
         }
 
+        public string VersionNumber { get; set; }
         public ObservableCollection<MenuListItemViewModel> MenuItems { get; set; }
         public ICommand ItemSelectedCommand { get; }
         public ICommand RefreshMenuItemsCommand { get; }
@@ -49,6 +53,11 @@ namespace Bitspace.Pages
             IsRefreshing = true;
             MenuItems = _homePageMenuItemsService.ForceUpdateGetMenuItems();
             IsRefreshing = false;
+        }
+
+        private void SetVersionNumber()
+        {
+            VersionNumber = $"Version Number: {AppInfo.BuildString}";
         }
     }
 }
