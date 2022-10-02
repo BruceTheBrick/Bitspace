@@ -16,6 +16,7 @@
     <Color x:Key="DodgerBlue">#3795f4</Color>
     <Color x:Key="TickleMePink">#ff82b3</Color>
     <Color x:Key="Ninja">#03040d</Color>
+    <Color x:Key="BedazzledBlue">#395683</Color>
     <Color x:Key="OxfordBlue">#0B0F32</Color>
     <Color x:Key="RoyalBlueDark">#121954</Color>
     <Color x:Key="Xiketic">#080A21</Color>

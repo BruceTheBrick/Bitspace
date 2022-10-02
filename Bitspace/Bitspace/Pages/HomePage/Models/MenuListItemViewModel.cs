@@ -5,6 +5,10 @@ namespace Bitspace.Pages
     [ExcludeFromCodeCoverage]
     public class MenuListItemViewModel
     {
+        public MenuListItemViewModel()
+        {
+        }
+
         public MenuListItemViewModel(string text, string icon, string actionIcon, string navigationConstant)
         {
             Text = text;

@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:pages="clr-namespace:Bitspace.Pages;assembly=Bitspace"
+    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:DataType="pages:WeatherForecastPageViewModel"
     BackgroundColor="{StaticResource Ninja}"
     NavigationPage.HasNavigationBar="False">
@@ -19,11 +20,6 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Text="{Binding SelectedDayViewModel.Description}" />
-            <Label
-                Grid.Row="0"
-                Grid.Column="2"
-                Text="{Binding Location.Name}"
-                TextColor="White" />
             <controls:PillList
                 Grid.Row="1"
                 Grid.ColumnSpan="3"
@@ -146,10 +142,42 @@
         </Grid>
 
         <!--  Hourly Selection  -->
-        <CarouselView Grid.Row="2">
-            <CarouselView.ItemTemplate>
-                <DataTemplate />
-            </CarouselView.ItemTemplate>
-        </CarouselView>
+        <Grid
+            Grid.Row="2"
+            Margin="24"
+            RowDefinitions="3*, *, 2*">
+            <ScrollView Grid.Row="0" Orientation="Horizontal">
+                <StackLayout
+                    BindableLayout.ItemsSource="{Binding SelectedDayViewModel.ForecastItems}"
+                    Orientation="Horizontal"
+                    Spacing="16">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <pages:ForecastItem />
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+            <pancakeView:PancakeView
+                Grid.Row="2"
+                BackgroundColor="{StaticResource Xiketic}"
+                CornerRadius="16">
+                <Grid
+                    Padding="20"
+                    ColumnDefinitions="*, *, *, *"
+                    HorizontalOptions="FillAndExpand">
+                    <controls:ExtendedImage
+                        Grid.Column="1"
+                        Source="ic_home"
+                        TintColor="{StaticResource BedazzledBlue}"
+                        VerticalOptions="Center" />
+                    <controls:ExtendedImage
+                        Grid.Column="2"
+                        Source="ic_magnifying_glass"
+                        TintColor="{StaticResource BedazzledBlue}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </pancakeView:PancakeView>
+        </Grid>
     </Grid>
 </ContentPage>

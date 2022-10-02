@@ -119,6 +119,12 @@
     <EmbeddedResource Include="Resources\ic_rain.svg" />
     <None Remove="Resources\ic_wind.svg" />
     <EmbeddedResource Include="Resources\ic_wind.svg" />
+    <None Remove="Resources\ic_location.svg" />
+    <EmbeddedResource Include="Resources\ic_location.svg" />
+    <None Remove="Resources\ic_home.svg" />
+    <EmbeddedResource Include="Resources\ic_home.svg" />
+    <None Remove="Resources\ic_magnifying_glass.svg" />
+    <EmbeddedResource Include="Resources\ic_magnifying_glass.svg" />
   </ItemGroup>
 
   <ItemGroup>
