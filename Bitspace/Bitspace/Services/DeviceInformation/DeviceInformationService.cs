@@ -1,7 +1,9 @@
-﻿using Xamarin.Essentials;
+﻿using System.Diagnostics.CodeAnalysis;
+using Xamarin.Essentials;
 
 namespace Bitspace.Services
 {
+    [ExcludeFromCodeCoverage]
     public class DeviceInformationService : IDeviceInformationService
     {
         public DeviceInformationService()

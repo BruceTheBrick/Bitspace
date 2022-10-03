@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
 
 namespace Bitspace.Services;
 
+[ExcludeFromCodeCoverage]
 public class BiometricService : IBiometricService
 {
     public async Task<AuthenticationType> BiometricType()

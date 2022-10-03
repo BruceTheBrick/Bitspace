@@ -1,7 +1,9 @@
-﻿using Bitspace.Services.NavigationService;
+﻿using System.Diagnostics.CodeAnalysis;
+using Bitspace.Services.NavigationService;
 
 namespace Bitspace.Services
 {
+    [ExcludeFromCodeCoverage]
     public class BaseService : IBaseService
     {
         public BaseService(

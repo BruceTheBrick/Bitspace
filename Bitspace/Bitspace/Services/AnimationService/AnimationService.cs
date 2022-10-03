@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Bitspace.Services;
 
+[ExcludeFromCodeCoverage]
 public class AnimationService : IAnimationService
 {
     public async Task FadeIn(View view, int milliseconds, Easing easing = null)

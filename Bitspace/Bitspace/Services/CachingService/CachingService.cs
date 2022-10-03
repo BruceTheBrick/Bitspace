@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace Bitspace.Services;
 
+[ExcludeFromCodeCoverage]
 public class CachingService : ICachingService
 {
     public void Add(string itemName, string value)

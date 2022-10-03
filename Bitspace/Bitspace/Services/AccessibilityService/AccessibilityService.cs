@@ -1,7 +1,9 @@
-﻿using Bitspace.Helpers;
+﻿using System.Diagnostics.CodeAnalysis;
+using Bitspace.Helpers;
 
 namespace Bitspace.Services
 {
+    [ExcludeFromCodeCoverage]
     public class AccessibilityService : IAccessibilityService
     {
         public bool IsScreenReaderEnabled()
