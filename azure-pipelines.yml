@@ -21,7 +21,7 @@ steps:
       sourcePath: 'Bitspace/Bitspace.Android/Properties/AndroidManifest.xml'
       versionCodeOption: 'buildid'
       versionCode: '$(Build.BuildId)'
-      versionName: '$(versionCodeNumber)'
+      versionName: $(versionCodeNumber)
       printFile: true
 
   - task: XamarinAndroid@1
