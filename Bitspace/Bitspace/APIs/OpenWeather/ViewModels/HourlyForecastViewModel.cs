@@ -7,16 +7,19 @@ namespace Bitspace.APIs
     {
         public HourlyForecastViewModel()
         {
+            Location = new LocationViewModel();
         }
 
         public HourlyForecastViewModel(HourlyWeatherResponse response)
         {
             InitForecastItems(response.List);
             InitDays();
+            Location = new LocationViewModel();
         }
 
         public IList<ForecastItemViewModel> ForecastItems { get; set; }
         public IList<DayViewModel> Days { get; set; }
+        public LocationViewModel Location { get; set; }
 
         private void InitForecastItems(IEnumerable<ForecastListObjectResponse> items)
         {

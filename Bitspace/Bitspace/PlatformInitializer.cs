@@ -57,7 +57,7 @@ namespace Bitspace
 
         private void RegisterDataLayers(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<ICurrentWeatherService, CurrentWeatherService>();
+            containerRegistry.RegisterSingleton<ICurrentWeatherService, WeatherService>();
             containerRegistry.RegisterSingleton<IGeocodeService, GeocodeService>();
         }
     }

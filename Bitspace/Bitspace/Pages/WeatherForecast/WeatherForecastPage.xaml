@@ -13,13 +13,17 @@
 
         <!--  Day Selection  -->
         <Grid
-            Padding="16"
+            Padding="16,16,0,16"
             ColumnDefinitions="*, *, *"
             RowDefinitions="3*, 2*">
             <Label
                 Grid.Row="0"
                 Grid.Column="0"
                 Text="{Binding SelectedDayViewModel.Description}" />
+            <Label
+                Grid.Row="0"
+                Grid.Column="2"
+                Text="{Binding HourlyForecast.Location.Name}" />
             <controls:PillList
                 Grid.Row="1"
                 Grid.ColumnSpan="3"
@@ -169,7 +173,7 @@
                     <controls:ExtendedImage
                         Grid.Column="1"
                         Source="ic_home"
-                        TintColor="{StaticResource BedazzledBlue}"
+                        TintColor="{StaticResource PillActiveBackground}"
                         VerticalOptions="Center" />
                     <controls:ExtendedImage
                         Grid.Column="2"

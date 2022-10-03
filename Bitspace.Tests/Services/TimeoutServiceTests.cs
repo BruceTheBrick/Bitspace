@@ -103,7 +103,7 @@ public class TimeoutServiceTests : UnitTestBase<TimeoutService>
         // Assert
         isExpired.Should().BeTrue();
     }
-
+    
     #endregion
 
     #region Update

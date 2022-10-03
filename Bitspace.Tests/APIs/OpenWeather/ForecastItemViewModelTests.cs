@@ -24,7 +24,7 @@ namespace Bitspace.Tests.APIs.OpenWeather
             viewModel.DateTime.Should().Be(DateTime.UnixEpoch.AddSeconds(forecastListObjectResponse.DT));
             viewModel.DisplayText.Should().Be(viewModel.DateTime.ToDisplayString());
             viewModel.DisplayDateTime.Should().Be(viewModel.DateTime.ToDisplayString());
-            viewModel.Temperature.Should().Be(Math.Round(forecastListObjectResponse.Main.Temperature, 2));
+            viewModel.Temperature.Should().Be(Math.Round(forecastListObjectResponse.Main.Temperature));
             viewModel.FeelsLike.Should().Be(Math.Round(forecastListObjectResponse.Main.FeelsLike, 2));
             viewModel.RainChance.Should().Be(Math.Round(forecastListObjectResponse.Rain.RainVolume3H, 2));
             viewModel.Humidity.Should().Be(forecastListObjectResponse.Main.Humidity);

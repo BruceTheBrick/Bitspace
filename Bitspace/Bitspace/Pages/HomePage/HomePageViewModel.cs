@@ -57,7 +57,7 @@ namespace Bitspace.Pages
 
         private void SetVersionNumber()
         {
-            VersionNumber = $"Version Number: {AppInfo.BuildString}";
+            // VersionNumber = $"Version Number: {AppInfo.BuildString}";
         }
     }
 }

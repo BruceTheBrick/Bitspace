@@ -49,20 +49,6 @@ namespace Bitspace.Tests.Pages.WeatherForecast
         }
 
         [Fact]
-        public async Task InitializeAsync_ShouldCallGetCurrentLocationName()
-        {
-            // Arrange
-            var hourlyForecastViewModel = HourlyForecastFactory.GetViewModel();
-            Mocker.GetMock<ICurrentWeatherService>().Setup(x => x.GetHourlyForecast()).ReturnsAsync(hourlyForecastViewModel);
-
-            // Act
-            await Sut.InitializeAsync(new NavigationParameters());
-
-            // Assert
-            Mocker.GetMock<IGeocodeService>().Verify(x => x.GetCurrentLocationName(), Times.Once);
-        }
-
-        [Fact]
         public async Task InitializeAsync_ShouldUpdateDailyPillList()
         {
             // Arrange

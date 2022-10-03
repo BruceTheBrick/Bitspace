@@ -1,26 +1,26 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Bitspace.APIs;
 
 namespace Bitspace.Services
 {
-    public class CurrentWeatherService : ICurrentWeatherService
+    public class WeatherService : ICurrentWeatherService
     {
         private readonly IOpenWeatherAPI _openWeatherApi;
         private readonly ITimeoutService _timeoutService;
         private readonly IPermissionService _permissionService;
         private readonly IAlertService _alertService;
         private readonly IDeviceLocation _deviceLocationService;
-
-        private CurrentWeatherResponse _currentWeatherResponse;
-        private CurrentWeatherViewModel _currentWeatherViewModel;
         private HourlyWeatherResponse _hourlyForecastResponse;
         private HourlyForecastViewModel _hourlyForecastViewModel;
-        private DateTime _currentWeatherLastUpdate;
+        private ReverseGeocodeResponseItemModel[] _locationResponseModel;
+        private LocationViewModel _locationViewModel;
+        private DateTime _locationLastUpdate;
         private DateTime _hourlyForecastLastUpdate;
 
-        public CurrentWeatherService(
+        public WeatherService(
             IOpenWeatherAPI openWeatherApi,
             ITimeoutService timeoutService,
             IPermissionService permissionService,
@@ -36,27 +36,17 @@ namespace Bitspace.Services
             _timeoutService.ExpiryMinutes = 5;
         }
 
-        public async Task<CurrentWeatherViewModel> GetCurrentWeather()
-        {
-            if (_timeoutService.IsExpired(_currentWeatherLastUpdate))
-            {
-                await FetchCurrentWeather();
-            }
-
-            return _currentWeatherViewModel;
-        }
-
         public async Task<HourlyForecastViewModel> GetHourlyForecast()
         {
             if (_timeoutService.IsExpired(_hourlyForecastLastUpdate))
             {
-                await FetchHourlyForecast();
+                await FetchWeatherAndLocation();
             }
 
             return _hourlyForecastViewModel;
         }
 
-        private async Task FetchCurrentWeather()
+        private async Task FetchWeatherAndLocation()
         {
             try
             {
@@ -65,55 +55,60 @@ namespace Bitspace.Services
                     return;
                 }
 
-                var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
-                var response = await _openWeatherApi.GetCurrentWeather(new CurrentWeatherRequest(location));
-                if (response.IsSuccess)
-                {
-                    _currentWeatherResponse = response.Data;
-                    _currentWeatherViewModel = new CurrentWeatherViewModel(_currentWeatherResponse);
-                    _currentWeatherLastUpdate = DateTime.Now;
-                }
+                var currentLocation = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
+                var forecastTask = FetchAndUpdateForecastItems(currentLocation);
+                var locationTask = FetchAndUpdateLocationItems(currentLocation);
+                await Task.WhenAll(forecastTask, locationTask);
+                _hourlyForecastViewModel.Location = _locationViewModel;
             }
             catch (HttpRequestException)
             {
                 await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
-                InitCurrentWeatherItems();
+                InitForecastItems();
             }
             catch (Exception e)
             {
                 await _alertService.Snackbar(e.Message);
-                InitCurrentWeatherItems();
+                InitForecastItems();
             }
         }
 
-        private async Task FetchHourlyForecast()
+        private async Task FetchAndUpdateForecastItems(LocationModel location)
         {
-            try
+            if (!_timeoutService.IsExpired(_hourlyForecastLastUpdate))
             {
-                if (!await _permissionService.RequestPermission(DevicePermissions.LOCATION))
-                {
-                    return;
-                }
+                return;
+            }
 
-                var location = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
-                var response = await _openWeatherApi.GetHourlyWeather(new HourlyForecastRequest(location));
-                if (response.IsSuccess)
-                {
-                    _hourlyForecastResponse = response.Data;
-                    _hourlyForecastViewModel = new HourlyForecastViewModel(_hourlyForecastResponse);
-                    _hourlyForecastLastUpdate = DateTime.Now;
-                }
-            }
-            catch (HttpRequestException)
+            var response = await _openWeatherApi.GetHourlyWeather(new HourlyForecastRequest(location));
+            if (!response.IsSuccess)
             {
-                await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
                 InitForecastItems();
+                return;
             }
-            catch (Exception e)
+
+            _hourlyForecastResponse = response.Data;
+            _hourlyForecastViewModel = new HourlyForecastViewModel(_hourlyForecastResponse);
+            _hourlyForecastLastUpdate = DateTime.Now;
+        }
+
+        private async Task FetchAndUpdateLocationItems(LocationModel location)
+        {
+            if (!_timeoutService.IsExpired(_locationLastUpdate))
             {
-                await _alertService.Snackbar(e.Message);
-                InitForecastItems();
+                return;
             }
+
+            var response = await _openWeatherApi.GetCurrentLocationName(new ReverseGeocodeRequest(location));
+            if (!response.IsSuccess)
+            {
+                InitLocationItems();
+                return;
+            }
+
+            _locationResponseModel = response.Data;
+            _locationViewModel = new LocationViewModel(_locationResponseModel.First());
+            _locationLastUpdate = DateTime.Now;
         }
 
         private void InitForecastItems()
@@ -122,10 +117,10 @@ namespace Bitspace.Services
             _hourlyForecastViewModel = new HourlyForecastViewModel();
         }
 
-        private void InitCurrentWeatherItems()
+        private void InitLocationItems()
         {
-            _currentWeatherResponse = new CurrentWeatherResponse();
-            _currentWeatherViewModel = new CurrentWeatherViewModel();
+            _locationResponseModel = Array.Empty<ReverseGeocodeResponseItemModel>();
+            _locationViewModel = new LocationViewModel();
         }
     }
 }
