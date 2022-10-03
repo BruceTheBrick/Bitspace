@@ -19,6 +19,13 @@ steps:
     inputs:
       sourcePath: 'Bitspace/Bitspace.Android/Properties/AndroidManifest.xml'
       versionCodeOption: 'buildid'
+      versionCode: '$(Date:yyyyMMdd)$(Rev:.r)'
+      printFile: true
+
+  - task: android-manifest-version@1
+    inputs:
+      sourcePath: 'Bitspace/Bitspace.Android/Properties/AndroidManifest.xml'
+      versionCodeOption: 'buildid'
       versionCode: '$(Build.BuildId)'
       printFile: true
 
