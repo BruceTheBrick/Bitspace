@@ -8,11 +8,26 @@
     x:Name="This"
     HorizontalScrollBarVisibility="Always"
     Orientation="Horizontal">
-    <StackLayout BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference This}}" Orientation="Horizontal">
-        <BindableLayout.ItemTemplate>
-            <DataTemplate x:DataType="controls:PillViewModel">
-                <controls:Pill effects:TouchEffect.Command="{Binding ItemSelectedCommand, Source={x:Reference This}}" effects:TouchEffect.CommandParameter="{Binding}" />
-            </DataTemplate>
-        </BindableLayout.ItemTemplate>
+    <StackLayout>
+        <StackLayout
+            BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference This}}"
+            IsVisible="{Binding IsLoading, Converter={effects:InvertedBoolConverter}, Source={x:Reference This}}"
+            Orientation="Horizontal">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="controls:PillViewModel">
+                    <controls:Pill effects:TouchEffect.Command="{Binding ItemSelectedCommand, Source={x:Reference This}}" effects:TouchEffect.CommandParameter="{Binding}" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+        <StackLayout
+            BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference This}}"
+            IsVisible="{Binding IsLoading, Source={x:Reference This}}"
+            Orientation="Horizontal">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="controls:PillViewModel">
+                    <controls:LoadingPill />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
     </StackLayout>
 </ScrollView>

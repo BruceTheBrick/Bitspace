@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pancakeView:PancakeView
+    x:Class="Bitspace.Controls.LoadingPill"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Padding="16,12"
+    x:DataType="controls:PillViewModel"
+    AutomationProperties.IsInAccessibleTree="True"
+    HorizontalOptions="Start"
+    VerticalOptions="CenterAndExpand"
+    WidthRequest="30">
+    <StackLayout>
+        <Label Text="Placeholder" />
+        <controls:SkeletonSection
+            HorizontalOptions="FillAndExpand"
+            IsLoading="True"
+            IsVisible="True"
+            LoadingBackgroundColor="Aquamarine"
+            VerticalOptions="FillAndExpand" />
+    </StackLayout>
+</pancakeView:PancakeView>

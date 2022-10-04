@@ -9,6 +9,7 @@
     xmlns:mainpage="clr-namespace:Bitspace.Pages;assembly=Bitspace"
     xmlns:models="clr-namespace:Bitspace.Pages;assembly=Bitspace"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Padding="8"
     x:DataType="mainpage:HomePageViewModel"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>

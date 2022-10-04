@@ -23,11 +23,13 @@
             <Label
                 Grid.Row="0"
                 Grid.Column="2"
+                FontSize="Title"
                 Text="{Binding HourlyForecast.Location.Name}" />
             <controls:PillList
                 Grid.Row="1"
                 Grid.ColumnSpan="3"
                 Padding="10,6"
+                IsLoading="{Binding IsBusy}"
                 ItemSelectedCommand="{Binding PillSelectedCommand}"
                 ItemsSource="{Binding DailyPillList}" />
         </Grid>
