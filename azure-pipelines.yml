@@ -1,5 +1,6 @@
 trigger:
   - "*"
+name: $(Date:yyyyMMdd)$(Rev:r)
 
 variables:
   buildConfiguration: "Release"
