@@ -20,6 +20,7 @@ namespace Bitspace.Droid
             base.OnCreate(savedInstanceState);
             InitNugets(savedInstanceState);
             InitHelpers();
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             LoadApplication(new App(new PlatformInitializer()));
             TrackFontSize();
         }

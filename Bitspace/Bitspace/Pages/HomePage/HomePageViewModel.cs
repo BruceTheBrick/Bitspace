@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Bitspace.Services;
+using Bitspace.Services.Essentials;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Essentials;
-using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
 
 namespace Bitspace.Pages
@@ -13,13 +12,16 @@ namespace Bitspace.Pages
     public class HomePageViewModel : BasePageViewModel
     {
         private readonly IHomePageMenuItems _homePageMenuItemsService;
+        private readonly IEssentialsVersion _essentialsVersionService;
 
         public HomePageViewModel(
             IBaseService baseService,
-            IHomePageMenuItems homePageMenuItemsService)
+            IHomePageMenuItems homePageMenuItemsService,
+            IEssentialsVersion essentialsVersion)
             : base(baseService)
         {
             _homePageMenuItemsService = homePageMenuItemsService;
+            _essentialsVersionService = essentialsVersion;
 
             SetVersionNumber();
             ItemSelectedCommand = new AsyncCommand<MenuListItemViewModel>(ItemSelected);
@@ -57,7 +59,8 @@ namespace Bitspace.Pages
 
         private void SetVersionNumber()
         {
-            // VersionNumber = $"Version Number: {AppInfo.BuildString}";
+            VersionNumber =
+                $"{_essentialsVersionService.CurrentVersion()} {_essentialsVersionService.CurrentBuildNumber()}";
         }
     }
 }

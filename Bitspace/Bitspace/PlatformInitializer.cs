@@ -2,6 +2,7 @@
 using Bitspace.APIs;
 using Bitspace.Pages;
 using Bitspace.Services;
+using Bitspace.Services.Essentials;
 using Bitspace.Services.GeocodeService;
 using Bitspace.Services.NavigationService;
 using Prism.Ioc;
@@ -40,6 +41,7 @@ namespace Bitspace
             containerRegistry.Register<IAlertService, AlertService>();
             containerRegistry.Register<IAccessibilityService, AccessibilityService>();
             containerRegistry.Register<INavigationService, NavigationService>();
+            containerRegistry.RegisterSingleton<IEssentialsVersion, EssentialsVersion>();
         }
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)

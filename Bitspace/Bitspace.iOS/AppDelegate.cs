@@ -6,7 +6,6 @@ using Prism;
 using Prism.Ioc;
 using UIKit;
 
-
 namespace Bitspace.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
