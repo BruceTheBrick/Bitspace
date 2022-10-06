@@ -27,10 +27,10 @@ namespace Bitspace.Controls
             typeof(PillList),
             propertyChanged: OnIsLoadingChanged);
 
-        private List<PillViewModel> _skeletonPills;
         public PillList()
         {
             InitializeComponent();
+            AddSkeletonPills();
         }
 
         public ObservableCollection<PillViewModel> ItemsSource
@@ -51,6 +51,8 @@ namespace Bitspace.Controls
             set => SetValue(IsLoadingProperty, value);
         }
 
+        public List<PillViewModel> SkeletonPills { get; set; }
+
         private static void OnIsLoadingChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
             if (!(bindable is PillList view) || newvalue == null)
@@ -70,7 +72,7 @@ namespace Bitspace.Controls
 
         private void AddSkeletonPills()
         {
-            _skeletonPills = new List<PillViewModel>
+            SkeletonPills = new List<PillViewModel>
             {
                 new (), new (), new (), new (),
             };
@@ -78,7 +80,7 @@ namespace Bitspace.Controls
 
         private void ClearSkeletonPills()
         {
-            _skeletonPills.Clear();
+            SkeletonPills.Clear();
         }
     }
 }

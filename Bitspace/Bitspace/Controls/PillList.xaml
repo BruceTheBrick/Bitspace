@@ -10,6 +10,7 @@
     Orientation="Horizontal">
     <StackLayout>
         <StackLayout
+            Padding="0,8,0,8"
             BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference This}}"
             IsVisible="{Binding IsLoading, Converter={effects:InvertedBoolConverter}, Source={x:Reference This}}"
             Orientation="Horizontal">
@@ -20,7 +21,8 @@
             </BindableLayout.ItemTemplate>
         </StackLayout>
         <StackLayout
-            BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference This}}"
+            Padding="0,8,0,8"
+            BindableLayout.ItemsSource="{Binding SkeletonPills, Source={x:Reference This}}"
             IsVisible="{Binding IsLoading, Source={x:Reference This}}"
             Orientation="Horizontal">
             <BindableLayout.ItemTemplate>
