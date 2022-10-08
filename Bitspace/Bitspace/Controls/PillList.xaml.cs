@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
@@ -24,13 +24,11 @@ namespace Bitspace.Controls
         public static readonly BindableProperty IsLoadingProperty = BindableProperty.Create(
             nameof(IsLoading),
             typeof(bool),
-            typeof(PillList),
-            propertyChanged: OnIsLoadingChanged);
+            typeof(PillList));
 
         public PillList()
         {
             InitializeComponent();
-            AddSkeletonPills();
         }
 
         public ObservableCollection<PillViewModel> ItemsSource
@@ -49,38 +47,6 @@ namespace Bitspace.Controls
         {
             get => (bool)GetValue(IsLoadingProperty);
             set => SetValue(IsLoadingProperty, value);
-        }
-
-        public List<PillViewModel> SkeletonPills { get; set; }
-
-        private static void OnIsLoadingChanged(BindableObject bindable, object oldvalue, object newvalue)
-        {
-            if (!(bindable is PillList view) || newvalue == null)
-            {
-                return;
-            }
-
-            if ((bool)newvalue)
-            {
-                view.AddSkeletonPills();
-            }
-            else
-            {
-                view.ClearSkeletonPills();
-            }
-        }
-
-        private void AddSkeletonPills()
-        {
-            SkeletonPills = new List<PillViewModel>
-            {
-                new (), new (), new (), new (),
-            };
-        }
-
-        private void ClearSkeletonPills()
-        {
-            SkeletonPills.Clear();
         }
     }
 }
