@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Bitspace.Styles;
+using Bitspace.Resources;
 using Xamarin.Forms;
 
 namespace Bitspace.Controls;

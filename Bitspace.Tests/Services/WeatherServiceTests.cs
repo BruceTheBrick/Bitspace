@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Bitspace.APIs;
+using Bitspace.Features;
 using Bitspace.Services;
 using Bitspace.Tests.Base;
 using FluentAssertions;
@@ -63,7 +64,7 @@ namespace Bitspace.Tests.Services
         public async Task GetHourlyForecast_ShouldInitForecastItems_WhenHourlyForecastApiIsUnsuccessful()
         {
             //Arrange
-            var response = new Response<HourlyWeatherResponse>(null, HttpStatusCode.BadRequest, HttpMethod.Get, false, string.Empty);
+            var response = new Response<HourlyWeatherResponse>(null!, HttpStatusCode.BadRequest, HttpMethod.Get, false, string.Empty);
             Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION))
                 .ReturnsAsync(true);
             Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
@@ -80,7 +81,7 @@ namespace Bitspace.Tests.Services
         public async Task GetHourlyForecast_ShouldInitLocationItems_WhenCurrentLocationNameApiIsUnsuccessful()
         {
             //Arrange
-            var response = new Response<ReverseGeocodeResponseItemModel[]>(null, HttpStatusCode.BadRequest, HttpMethod.Get, false, string.Empty);
+            var response = new Response<ReverseGeocodeResponseItemModel[]>(null!, HttpStatusCode.BadRequest, HttpMethod.Get, false, string.Empty);
             Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(true);
             Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
             Mocker.GetMock<IOpenWeatherAPI>().Setup(x => x.GetCurrentLocationName(It.IsAny<ReverseGeocodeRequest>())).ReturnsAsync(response);

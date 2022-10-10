@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Bitspace.APIs;
-using Bitspace.Pages;
-using Bitspace.Pages.ConnectFour;
+using Bitspace.Features;
 using Bitspace.Services;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
@@ -57,7 +56,6 @@ namespace Bitspace
         private void RegisterDataLayers(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<ICurrentWeatherService, WeatherService>();
-            containerRegistry.RegisterSingleton<IGeocodeService, GeocodeService>();
         }
     }
 }

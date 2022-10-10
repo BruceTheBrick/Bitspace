@@ -1,19 +1,15 @@
-﻿using System.Security;
-using Bitspace.APIs;
-using Bitspace.Controls;
+﻿using Bitspace.Controls;
 using Bitspace.Extensions;
-using Bitspace.Pages;
+using Bitspace.Features;
 using Bitspace.Services;
 using Bitspace.Tests.Base;
 using Bitspace.Tests.Factories;
-using Bitspace.Tests.Factories.APIs.OpenWeatherAPI;
-using Bitspace.Tests.Factories.Controls;
 using FluentAssertions;
 using Moq;
 using Prism.Navigation;
 using Xunit;
 
-namespace Bitspace.Tests.Pages.WeatherForecast
+namespace Bitspace.Tests.Pages
 {
     public class WeatherForecastPageViewModelTests : UnitTestBase<WeatherForecastPageViewModel>
     {

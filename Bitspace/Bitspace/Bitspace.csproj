@@ -38,6 +38,8 @@
 
   <ItemGroup>
     <Folder Include="APIs\OpenWeather\ViewModels\" />
+    <Folder Include="Core" />
+    <Folder Include="Features\WeatherForecast\Services" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,10 +57,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>WeatherForecastPageRegister.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Styles\Sizes.xaml.cs">
-      <DependentUpon>Sizes.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\SplashPage\SplashPage.xaml.cs">
       <DependentUpon>SplashPage.xaml</DependentUpon>
@@ -81,12 +79,6 @@
       <LastGenOutput>APIKeys.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Controls\EmptyListPlaceholder.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Styles\Palette.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Styles\Styles.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Registers\MainpageRegister.resx">
@@ -127,6 +119,18 @@
     <None Remove="Resources\ic_home.svg" />
     <None Remove="Resources\ic_magnifying_glass.svg" />
     <None Remove="Resources\ic_martini.svg" />
+    <EmbeddedResource Update="Resources\Registers\HomePageRegister.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomePageRegister.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Registers\WeatherForecastPageRegister.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WeatherForecastPageRegister.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Registers\AnalyticsRegister.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

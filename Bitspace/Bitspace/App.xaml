@@ -2,15 +2,15 @@
 <prism:PrismApplication
     x:Class="Bitspace.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms">
     <Application.Resources>
 
         <!--  Application resource dictionary  -->
         <ResourceDictionary>
-            <ResourceDictionary Source="./Styles/Palette.xaml" />
-            <ResourceDictionary Source="./Styles/Sizes.xaml" />
-            <ResourceDictionary Source="./Styles/Styles.xaml" />
+            <ResourceDictionary Source="./Resources/Styles/Palette.xaml" />
+            <ResourceDictionary Source="./Resources/Styles/Sizes.xaml" />
+            <ResourceDictionary Source="./Resources/Styles/Styles.xaml" />
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

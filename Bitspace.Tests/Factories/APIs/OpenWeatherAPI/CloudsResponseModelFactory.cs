@@ -1,19 +1,20 @@
 ﻿using Bitspace.APIs;
 using Bogus;
 
-namespace Bitspace.Tests.Factories.APIs.OpenWeatherAPI;
-
-public static class CloudsResponseModelFactory
+namespace Bitspace.Tests.Factories
 {
-    public static CloudsResponseModel GetModel()
+    public static class CloudsResponseModelFactory
     {
-        return GetModels(1).First();
-    }
+        public static CloudsResponseModel GetModel()
+        {
+            return GetModels(1).First();
+        }
 
-    public static CloudsResponseModel[] GetModels(int count = 5)
-    {
-        return new Faker<CloudsResponseModel>()
-            .RuleFor(x => x.All, f => f.Random.Int())
-            .Generate(count).ToArray();
+        public static CloudsResponseModel[] GetModels(int count = 5)
+        {
+            return new Faker<CloudsResponseModel>()
+                .RuleFor(x => x.All, f => f.Random.Int())
+                .Generate(count).ToArray();
+        }
     }
 }

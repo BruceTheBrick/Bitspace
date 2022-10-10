@@ -6,26 +6,26 @@ namespace Bitspace.Controls;
 [ExcludeFromCodeCoverage]
 public partial class Divider
 {
-    private bool _isVertical;
-
-    public static readonly BindableProperty ColorProperty = BindableProperty.Create(
+    private static new readonly BindableProperty ColorProperty = BindableProperty.Create(
         nameof(Color),
         typeof(Color),
         typeof(Divider),
         Color.White,
         BindingMode.TwoWay);
 
-    public static readonly BindableProperty ThicknessProperty = BindableProperty.Create(
+    private static readonly BindableProperty ThicknessProperty = BindableProperty.Create(
         nameof(Thickness),
         typeof(int),
         typeof(Divider),
         1,
         BindingMode.TwoWay);
 
+    private bool _isVertical;
+
     public Divider()
     {
         InitializeComponent();
-        UpdateUI();
+        UpdateUi();
     }
 
     public bool IsVertical
@@ -39,11 +39,11 @@ public partial class Divider
             }
 
             _isVertical = value;
-            UpdateUI();
+            UpdateUi();
         }
     }
 
-    public Color Color
+    public new Color Color
     {
         get => (Color)GetValue(ColorProperty);
         set => SetValue(ColorProperty, value);
@@ -55,7 +55,7 @@ public partial class Divider
         set => SetValue(ThicknessProperty, value);
     }
 
-    private void UpdateUI()
+    private void UpdateUi()
     {
         if (IsVertical)
         {

@@ -1,7 +1,7 @@
 ﻿using Bitspace.APIs;
 using Bogus;
 
-namespace Bitspace.Tests.Factories.APIs.OpenWeatherAPI
+namespace Bitspace.Tests.Factories
 {
     public static class HourlyWeatherResponseFactory
     {

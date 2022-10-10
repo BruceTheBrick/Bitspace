@@ -1,22 +1,24 @@
-﻿using Bitspace.Pages;
+﻿using Bitspace.Features;
 using Bogus;
 
-namespace Bitspace.Tests.Factories.Pages.Mainpage.Services;
-
-public static class MenuItemFactory
+namespace Bitspace.Tests.Factories
 {
-    public static MenuListItemViewModel GetViewModel()
+    public static class MenuItemFactory
     {
-        return GetViewModels(1).First();
-    }
+        public static MenuListItemViewModel GetViewModel()
+        {
+            return GetViewModels(1).First();
+        }
 
-    public static MenuListItemViewModel[] GetViewModels(int count = 5)
-    {
-        return new Faker<MenuListItemViewModel>()
-            .RuleFor(x => x.Icon, f => f.Image.PicsumUrl())
-            .RuleFor(x => x.Text, f => f.Person.FirstName)
-            .RuleFor(x => x.ActionIcon, f => f.Image.PicsumUrl())
-            .RuleFor(x => x.NavigationConstant, f => f.Company.CompanyName())
-            .Generate(count).ToArray();
+        public static MenuListItemViewModel[] GetViewModels(int count = 5)
+        {
+            return new Faker<MenuListItemViewModel>()
+                .CustomInstantiator(x => new MenuListItemViewModel(
+                    x.Image.PicsumUrl(),
+                    x.Person.FirstName,
+                    x.Image.PicsumUrl(),
+                    x.Company.CompanyName()))
+                .Generate(count).ToArray();
+        }
     }
 }

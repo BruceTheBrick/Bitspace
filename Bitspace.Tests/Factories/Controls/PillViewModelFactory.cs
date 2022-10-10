@@ -1,7 +1,7 @@
 ﻿using Bitspace.Controls;
 using Bogus;
 
-namespace Bitspace.Tests.Factories.Controls
+namespace Bitspace.Tests.Factories
 {
     public static class PillViewModelFactory
     {

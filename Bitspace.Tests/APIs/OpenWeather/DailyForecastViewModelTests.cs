@@ -1,7 +1,7 @@
 ﻿using Bitspace.APIs;
 using Bitspace.Extensions;
 using Bitspace.Tests.Extensions;
-using Bitspace.Tests.Factories.APIs.OpenWeatherAPI;
+using Bitspace.Tests.Factories;
 using FluentAssertions;
 using Xunit;
 

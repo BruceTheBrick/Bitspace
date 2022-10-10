@@ -1,5 +1,4 @@
-﻿
-namespace Bitspace.Services
+﻿namespace Bitspace.Services
 {
     public interface IBaseService
     {

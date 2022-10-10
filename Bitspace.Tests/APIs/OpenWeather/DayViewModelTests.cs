@@ -1,5 +1,5 @@
 ﻿using Bitspace.APIs;
-using Bitspace.Tests.Factories.APIs.OpenWeatherAPI;
+using Bitspace.Tests.Factories;
 using FluentAssertions;
 using Humanizer;
 using Xunit;

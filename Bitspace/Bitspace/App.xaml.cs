@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using Bitspace.Pages;
+using Bitspace.Features;
 using DLToolkit.Forms.Controls;
 using Prism;
 using Prism.Ioc;

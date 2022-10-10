@@ -1,6 +1,6 @@
 ﻿using Bitspace.APIs;
 
-namespace Bitspace.Tests.Factories.APIs.OpenWeatherAPI
+namespace Bitspace.Tests.Factories
 {
     public static class ForecastItemViewModelFactory
     {

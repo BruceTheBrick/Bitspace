@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pancakeView:PancakeView
+    x:Class="Bitspace.Features.InfoCard"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+    xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:materialFrame="http://sharpnado.com"
+    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:registers="clr-namespace:Bitspace.Resources;assembly=Bitspace"
+    x:Name="This"
+    Border="{pancakeView:BorderMarkup Color=White,
+                                      Thickness='1'}"
+    CornerRadius="12">
+    <pancakeView:PancakeView.Resources>
+        <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+    </pancakeView:PancakeView.Resources>
+    <Grid>
+        <controls:SkeletonSection
+            CornerRadius="0"
+            IsLoading="{Binding IsLoading, Source={x:Reference This}}"
+            IsVisible="{Binding IsLoading, Source={x:Reference This}}"
+            LoadingBackgroundColor="DarkGray" />
+        <materialFrame:MaterialFrame
+            BackgroundColor="White"
+            MaterialBlurStyle="Dark"
+            Opacity="0.3" />
+        <Grid
+            Padding="12"
+            ColumnDefinitions="*, auto, *, auto, *"
+            HorizontalOptions="FillAndExpand">
+            <Grid
+                Grid.Column="0"
+                IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}, Source={x:Reference This}}"
+                RowDefinitions="*, *">
+                <Label
+                    Grid.Row="0"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Humidity, StringFormat='{0}%', Source={x:Reference This}}" />
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static registers:WeatherForecastPageRegister.HUMIDITY}" />
+            </Grid>
+            <controls:Divider
+                Grid.Column="1"
+                HorizontalOptions="CenterAndExpand"
+                IsVertical="True"
+                Thickness="1" />
+            <Grid
+                Grid.Column="2"
+                IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}, Source={x:Reference This}}"
+                RowDefinitions="*, *">
+                <Label
+                    Grid.Row="0"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding WindSpeed, StringFormat='{0} m/s', Source={x:Reference This}}" />
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static registers:WeatherForecastPageRegister.WIND_SPEED}" />
+            </Grid>
+            <controls:Divider
+                Grid.Column="3"
+                HorizontalOptions="CenterAndExpand"
+                IsVertical="True"
+                Thickness="1" />
+            <Grid
+                Grid.Column="4"
+                IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}, Source={x:Reference This}}"
+                RowDefinitions="*, *">
+                <Label
+                    Grid.Row="0"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Pressure, StringFormat='{0} hPa', Source={x:Reference This}}" />
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static registers:WeatherForecastPageRegister.PRESSURE}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</pancakeView:PancakeView>

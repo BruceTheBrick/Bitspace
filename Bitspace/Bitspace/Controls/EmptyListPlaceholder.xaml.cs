@@ -3,25 +3,24 @@ using Xamarin.Forms;
 
 namespace Bitspace.Controls
 {
-
     [ExcludeFromCodeCoverage]
     public partial class EmptyListPlaceholder
     {
-        BindableProperty ImageProperty = BindableProperty.Create(
+        private readonly BindableProperty ImageProperty = BindableProperty.Create(
             nameof(Image),
             typeof(string),
             typeof(EmptyListPlaceholder),
             string.Empty,
             BindingMode.TwoWay);
 
-        BindableProperty TitleProperty = BindableProperty.Create(
+        private readonly BindableProperty TitleProperty = BindableProperty.Create(
             nameof(Title),
             typeof(string),
             typeof(EmptyListPlaceholder),
             string.Empty,
             BindingMode.TwoWay);
 
-        BindableProperty SubtitleProperty = BindableProperty.Create(
+        private readonly BindableProperty SubtitleProperty = BindableProperty.Create(
             nameof(Subtitle),
             typeof(string),
             typeof(EmptyListPlaceholder),

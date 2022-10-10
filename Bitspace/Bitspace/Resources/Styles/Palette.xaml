@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="Bitspace.Resources.Palette"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Color x:Key="Dark">#27292a</Color>
+    <Color x:Key="DarkThemeSkeletonLoader">#4d4d4f</Color>
+    <Color x:Key="White">#f4f5f4</Color>
+    <Color x:Key="Blue">#1c58b9</Color>
+    <Color x:Key="Green">#3aaa57</Color>
+    <Color x:Key="LightBlue">#ace3ec</Color>
+    <Color x:Key="Orange">#ed9230</Color>
+    <Color x:Key="SunburnRed">#ec3e40</Color>
+    <Color x:Key="NeonYellow">#fff51e</Color>
+    <Color x:Key="ElectricBlue">#7ee7fe</Color>
+    <Color x:Key="DodgerBlue">#3795f4</Color>
+    <Color x:Key="TickleMePink">#ff82b3</Color>
+    <Color x:Key="Ninja">#03040d</Color>
+    <Color x:Key="BedazzledBlue">#395683</Color>
+    <Color x:Key="OxfordBlue">#0B0F32</Color>
+    <Color x:Key="RoyalBlueDark">#121954</Color>
+    <Color x:Key="Xiketic">#080A21</Color>
+    <Color x:Key="SpaceCadet">#101442</Color>
+    <Color x:Key="VibrantBlue">#0038FF</Color>
+</ResourceDictionary>

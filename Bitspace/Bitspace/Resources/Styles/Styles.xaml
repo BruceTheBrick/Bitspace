@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="Bitspace.Resources.Styles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+    xmlns:resources="clr-namespace:Bitspace.Resources;assembly=Bitspace">
+
+    <!--  Colors  -->
+    <resources:ColorRef x:Key="ColorPrimary" Color="{StaticResource SunburnRed}" />
+    <resources:ColorRef x:Key="ColorSecondary" Color="{StaticResource NeonYellow}" />
+    <resources:ColorRef x:Key="BackgroundColor" Color="{StaticResource Dark}" />
+    <resources:ColorRef x:Key="TextColor" Color="{StaticResource DodgerBlue}" />
+    <resources:ColorRef x:Key="LoadingColor" Color="{StaticResource DarkThemeSkeletonLoader}" />
+    <resources:ColorRef x:Key="PillActiveBackground" Color="{StaticResource TickleMePink}" />
+    <resources:ColorRef x:Key="PillInactiveBackground" Color="{StaticResource Ninja}" />
+
+    <!--  ContentPage  -->
+    <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
+    </Style>
+
+    <!--  Label  -->
+    <Style ApplyToDerivedTypes="True" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+    </Style>
+
+    <!--  Pill  -->
+    <Style ApplyToDerivedTypes="True" TargetType="controls:Pill">
+        <Setter Property="CornerRadius" Value="{StaticResource Rounded}" />
+    </Style>
+</ResourceDictionary>

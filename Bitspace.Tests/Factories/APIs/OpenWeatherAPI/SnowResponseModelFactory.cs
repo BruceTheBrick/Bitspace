@@ -1,19 +1,20 @@
 ﻿using Bitspace.APIs;
 using Bogus;
 
-namespace Bitspace.Tests.Factories.APIs.OpenWeatherAPI;
-
-public static class SnowResponseModelFactory
+namespace Bitspace.Tests.Factories
 {
-    public static SnowResponseModel GetModel()
+    public static class SnowResponseModelFactory
     {
-        return GetModels(1).First();
-    }
+        public static SnowResponseModel GetModel()
+        {
+            return GetModels(1).First();
+        }
 
-    public static SnowResponseModel[] GetModels(int count = 5)
-    {
-        return new Faker<SnowResponseModel>()
-            .RuleFor(x => x.SnowVolume, f => f.Random.Double())
-            .Generate(count).ToArray();
+        public static SnowResponseModel[] GetModels(int count = 5)
+        {
+            return new Faker<SnowResponseModel>()
+                .RuleFor(x => x.SnowVolume, f => f.Random.Double())
+                .Generate(count).ToArray();
+        }
     }
 }

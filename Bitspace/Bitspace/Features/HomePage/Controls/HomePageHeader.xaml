@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="Bitspace.Features.HomePageHeader"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+    xmlns:resources="clr-namespace:Bitspace.Resources;assembly=Bitspace"
+    Margin="0,24"
+    Padding="18"
+    RowDefinitions="auto, auto, auto"
+    RowSpacing="12">
+    <Label
+        Grid.Row="0"
+        FontSize="Header"
+        HorizontalOptions="CenterAndExpand"
+        Text="{x:Static resources:HomePageRegister.WELCOME_TO}" />
+    <Frame
+        Grid.Row="1"
+        BackgroundColor="White"
+        CornerRadius="100"
+        HorizontalOptions="Center"
+        Opacity="0.3">
+        <controls:AppIcon x:Name="AppIcon" HeightRequest="60" />
+    </Frame>
+    <Label
+        x:Name="AppName"
+        Grid.Row="2"
+        FontAttributes="Bold"
+        FontSize="Large"
+        HorizontalOptions="CenterAndExpand"
+        Text="{x:Static resources:HomePageRegister.BITSPACE}" />
+</Grid>
