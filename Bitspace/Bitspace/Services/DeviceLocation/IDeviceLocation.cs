@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.Services.DeviceLocation.Models;
 
-namespace Bitspace.Services.DeviceLocation
+namespace Bitspace.Services
 {
     public enum LocationAccuracy
     {

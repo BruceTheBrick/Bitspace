@@ -1,57 +1,66 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Bitspace.Droid.Services.DeviceLocation;
-using Bitspace.Droid.Services.RemoteConfigService;
-using Bitspace.Services.DeviceLocation;
-using Bitspace.Services.RemoteConfig;
+using Bitspace.Helpers;
 using CarouselView.FormsPlugin.Droid;
+using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;
 using Plugin.Fingerprint;
-using Prism;
-using Prism.Ioc;
 
 namespace Bitspace.Droid
 {
-    [Activity(Theme = "@style/MainTheme",
-              ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
+    [Activity(
+        Theme = "@style/MainTheme",
+        ScreenOrientation = ScreenOrientation.Portrait,
+        ConfigurationChanges = ConfigChanges.FontScale | ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Rg.Plugins.Popup.Popup.Init(this);
-            Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            InitNugets(savedInstanceState);
+            InitHelpers();
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            CarouselViewRenderer.Init();
-            CrossFingerprint.SetCurrentActivityResolver(() => Xamarin.Essentials.Platform.CurrentActivity);
-            LoadApplication(new App(new AndroidInitializer()));
+            LoadApplication(new App(new PlatformInitializer()));
+            TrackFontSize();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        private void TrackFontSize()
+        {
+            var size = Resources?.Configuration?.FontScale;
+            if (size != null)
+            {
+                // var firebaseTracker = 
+            }
+        }
+        
         public override void OnBackPressed()
         {
             Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
         }
-    }
 
-    public class AndroidInitializer : IPlatformInitializer
-    {
-        public void RegisterTypes(IContainerRegistry containerRegistry)
+        private void InitNugets(Bundle savedInstanceState)
         {
-            // Register any platform specific implementations
-            RegisterServices(containerRegistry);
+            AndroidX.Core.SplashScreen.SplashScreen.InstallSplashScreen(this);
+            Rg.Plugins.Popup.Popup.Init(this);
+            Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            CachedImageRenderer.Init(enableFastRenderer: true);
+            SvgCachedImage.Init();
+            _ = typeof(SvgCachedImage);
+            CarouselViewRenderer.Init();
+            CrossFingerprint.SetCurrentActivityResolver(() => Xamarin.Essentials.Platform.CurrentActivity);
         }
 
-        private void RegisterServices(IContainerRegistry containerRegistry)
+        private void InitHelpers()
         {
-            containerRegistry.Register<IDeviceLocation, DeviceLocationService>();
-            containerRegistry.RegisterSingleton<IRemoteConfigService, RemoteConfigService>();
+            Accessibility.Current = new Helpers.AccessibilityImplementation();
         }
     }
 }

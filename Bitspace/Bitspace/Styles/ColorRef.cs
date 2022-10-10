@@ -1,7 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using System.Diagnostics.CodeAnalysis;
+using Xamarin.Forms;
 
 namespace Bitspace.Styles
 {
+    [ExcludeFromCodeCoverage]
     public struct ColorRef
     {
         public ColorRef(Color color)

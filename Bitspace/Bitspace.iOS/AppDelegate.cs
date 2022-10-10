@@ -1,9 +1,10 @@
 ﻿using CarouselView.FormsPlugin.iOS;
+using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;
 using Foundation;
 using Prism;
 using Prism.Ioc;
 using UIKit;
-
 
 namespace Bitspace.iOS
 {
@@ -25,9 +26,11 @@ namespace Bitspace.iOS
             Rg.Plugins.Popup.Popup.Init();
             Xamarin.Forms.Forms.Init();
             Sharpnado.MaterialFrame.iOS.iOSMaterialFrameRenderer.Init();
+            CachedImageRenderer.Init();
+            SvgCachedImage.Init();
+            _ = typeof(SvgCachedImage);
             CarouselViewRenderer.Init();
             LoadApplication(new App(new iOSInitializer()));
-
             return base.FinishedLaunching(app, options);
         }
     }

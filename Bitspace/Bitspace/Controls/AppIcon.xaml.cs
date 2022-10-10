@@ -1,11 +1,11 @@
 ﻿using System;
-using Bitspace.Services.AnimationService;
+using System.Diagnostics.CodeAnalysis;
+using Bitspace.Services;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Bitspace.Controls;
 
-[XamlCompilation(XamlCompilationOptions.Compile)]
+[ExcludeFromCodeCoverage]
 public partial class AppIcon
 {
     private readonly IAnimationService _animationService;

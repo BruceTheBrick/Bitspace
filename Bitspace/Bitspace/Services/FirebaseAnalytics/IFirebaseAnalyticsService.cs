@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Bitspace.Services.FirebaseAnalytics
+namespace Bitspace.Services
 {
     public interface IFirebaseAnalyticsService
     {

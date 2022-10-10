@@ -1,12 +1,50 @@
 trigger:
-  - '*'
+  - "*"
+name: $(Date:yyyyMMdd)$(Rev:r)
+
+variables:
+  buildConfiguration: "Release"
+  outputDirectory: "$(build.binariesDirectory)/$(buildConfiguration)"
+  androidVersionCode: '$(Build.BuildNumber)'
 
 pool:
+  #  vmImage: macos-latest
   vmImage: windows-latest
+steps:
+  - task: NuGetToolInstaller@1
 
-steps:    
-- task: gitsync@1
-  inputs:
-    GitRepoUrl: 'https://drtardis1:$(GithubPAT)@github.com/DrTardis1/Bitspace.git'
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: "**/*.sln"
 
+  - task: android-manifest-version@1
+    inputs:
+      sourcePath: 'Bitspace/Bitspace.Android/Properties/AndroidManifest.xml'
+      versionCodeOption: 'buildid'
+      versionCode: "$(androidVersionCode)"
+      printFile: true
 
+  - task: XamarinAndroid@1
+    inputs:
+      projectFile: "**/*droid*.csproj"
+      outputDirectory: "$(outputDirectory)"
+      configuration: "$(buildConfiguration)"
+
+  - task: AndroidSigning@3
+    inputs:
+      apkFiles: "$(outputDirectory)/*.apk"
+      apksignerKeystoreFile: "Bitspace.keystore"
+      apksignerKeystorePassword: "$(KEYSTOREPASSWORD)"
+      apksignerKeyPassword: "$(KEYSTOREPASSWORD)"
+      apksignerKeystoreAlias: "Bitspace"
+      zipalign: true
+
+  - task: AppCenterDistribute@3
+    inputs:
+      serverEndpoint: "App Center Connection"
+      appSlug: "drtardis1/Bitspace"
+      appFile: "$(outputDirectory)/*.apk"
+      symbolsOption: "Android"
+      releaseNotesOption: input
+      releaseNotesInput: "Release notes would go here, if there were any!"
+      destinationType: "groups"

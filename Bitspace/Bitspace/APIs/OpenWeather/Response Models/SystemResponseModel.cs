@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
-namespace Bitspace.APIs.OpenWeather.Response_Models
+namespace Bitspace.APIs
 {
+    [ExcludeFromCodeCoverage]
     public class SystemResponseModel
     {
         [JsonProperty("type")]
@@ -18,5 +20,8 @@ namespace Bitspace.APIs.OpenWeather.Response_Models
 
         [JsonProperty("sunset")]
         public double Sunset { get; set; }
+
+        [JsonProperty("pod")]
+        public string PartOfDay { get; set; }
     }
 }

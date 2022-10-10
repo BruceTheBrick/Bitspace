@@ -1,20 +1,12 @@
-﻿using Bitspace.Services.AnimationService;
+﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Pages.WeatherForecast
+namespace Bitspace.Pages;
+
+[ExcludeFromCodeCoverage]
+public partial class WeatherForecastPage
 {
-    public partial class WeatherForecastPage
+    public WeatherForecastPage()
     {
-        private AnimationService _animations;
-        public WeatherForecastPage()
-        {
-            _animations = new AnimationService();
-            InitializeComponent();
-        }
-
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            await _animations.FadeIn(InfoCard, 550);
-        }
+        InitializeComponent();
     }
 }

@@ -1,4 +1,4 @@
-﻿using Bitspace.Services.TimeoutService;
+﻿using Bitspace.Services;
 using Bitspace.Tests.Base;
 using FluentAssertions;
 using Xunit;
@@ -9,6 +9,31 @@ public class TimeoutServiceTests : UnitTestBase<TimeoutService>
 {
     #region IsExpired
 
+    [Fact]
+    public void IsExpired_ShouldReturnFalse_WhenExpiryMinutesIsNull()
+    {
+        // Arrange
+        
+        // Act
+        var isExpired = Sut.IsExpired();
+
+        // Assert
+        isExpired.Should().BeFalse();
+    }
+
+    [Fact]
+    public void IsExpired_ShouldReturnTrue_WhenDateTimeLastUpdateIsNull()
+    {
+        // Arrange
+        Sut.ExpiryMinutes = 5;
+
+        // Act
+        var isExpired = Sut.IsExpired();
+
+        // Assert
+        isExpired.Should().BeTrue();
+    }
+    
     [Fact]
     public void IsExpired_ShouldReturnTrue_WhenTimeElapsedIsOverThreshold()
     {
@@ -36,7 +61,7 @@ public class TimeoutServiceTests : UnitTestBase<TimeoutService>
         //Assert
         isExpired.Should().BeFalse();
     }
-    
+
     [Fact]
     public void IsExpiredOverload_ShouldReturnTrue_WhenTimeElapsedIsOverThreshold()
     {
@@ -65,6 +90,20 @@ public class TimeoutServiceTests : UnitTestBase<TimeoutService>
         isExpired.Should().BeFalse();
     }
 
+    [Fact]
+    public void IsExpiredOverload_ShouldReturnTrue_WhenDateTimeLastUpdateIsNull()
+    {
+        // Arrange
+        var expiryMins = 5;
+        var dateTimeLastUpdated = DateTime.MinValue;
+
+        // Act
+        var isExpired = Sut.IsExpired(dateTimeLastUpdated, expiryMins);
+
+        // Assert
+        isExpired.Should().BeTrue();
+    }
+    
     #endregion
 
     #region Update

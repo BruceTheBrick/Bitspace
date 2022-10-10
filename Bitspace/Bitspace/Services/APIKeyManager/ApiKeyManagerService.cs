@@ -1,7 +1,6 @@
 ﻿using Bitspace.APIs;
-using Bitspace.Services.RemoteConfig;
 
-namespace Bitspace.Services.APIKeyManager;
+namespace Bitspace.Services;
 
 public class ApiKeyManagerService : IApiKeyManagerService
 {

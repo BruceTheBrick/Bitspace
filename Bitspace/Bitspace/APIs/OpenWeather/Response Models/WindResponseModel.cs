@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
-namespace Bitspace.APIs.OpenWeather.Response_Models
+namespace Bitspace.APIs
 {
+    [ExcludeFromCodeCoverage]
     public class WindResponseModel
     {
         [JsonProperty("speed")]

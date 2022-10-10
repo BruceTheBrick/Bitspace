@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ScrollView
+    x:Class="Bitspace.Controls.PillList"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+    xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="This"
+    HorizontalScrollBarVisibility="Always"
+    Orientation="Horizontal">
+    <StackLayout>
+        <StackLayout
+            Padding="0,8,0,8"
+            BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference This}}"
+            IsVisible="{Binding IsLoading, Converter={effects:InvertedBoolConverter}, Source={x:Reference This}}"
+            Orientation="Horizontal">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="controls:PillViewModel">
+                    <controls:Pill effects:TouchEffect.Command="{Binding ItemSelectedCommand, Source={x:Reference This}}" effects:TouchEffect.CommandParameter="{Binding}" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+        <StackLayout
+            Padding="0,8,0,8"
+            IsVisible="{Binding IsLoading, Source={x:Reference This}}"
+            Orientation="Horizontal">
+            <controls:LoadingPill />
+            <controls:LoadingPill />
+            <controls:LoadingPill />
+            <controls:LoadingPill />
+            <controls:LoadingPill />
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bitspace.Services.TimeoutService;
+namespace Bitspace.Services;
 
 public class TimeoutService : ITimeoutService
 {
@@ -20,6 +20,21 @@ public class TimeoutService : ITimeoutService
         }
 
         return (DateTime.Now - DateTimeLastUpdate).Minutes > ExpiryMinutes;
+    }
+
+    public bool IsExpired(DateTime dateTimeLastUpdate)
+    {
+        if (ExpiryMinutes == null)
+        {
+            return false;
+        }
+
+        if (dateTimeLastUpdate == DateTime.MinValue)
+        {
+            return true;
+        }
+
+        return (DateTime.Now - dateTimeLastUpdate).Minutes > ExpiryMinutes;
     }
 
     public bool IsExpired(DateTime dateTimeLastUpdate, int expiryMinutes)

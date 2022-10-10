@@ -1,33 +1,74 @@
-﻿using System.Threading.Tasks;
-using Bitspace.APIs.OpenWeather.Models;
-using Bitspace.Services.CurrentWeatherService;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Bitspace.APIs;
+using Bitspace.Controls;
+using Bitspace.Extensions;
+using Bitspace.Services;
+using Bitspace.Services.GeocodeService;
 using Prism.Navigation;
+using PropertyChanged;
+using Xamarin.Forms;
 
-namespace Bitspace.Pages.WeatherForecast;
-
-public class WeatherForecastPageViewModel : BasePageViewModel
+namespace Bitspace.Pages
 {
-    private readonly ICurrentWeatherService _currentWeatherService;
-    public WeatherForecastPageViewModel(
-        INavigationService navigationService,
-        ICurrentWeatherService currentWeatherService)
-        : base(navigationService)
+    [AddINotifyPropertyChangedInterface]
+    public class WeatherForecastPageViewModel : BasePageViewModel
     {
-        _currentWeatherService = currentWeatherService;
-    }
+        private readonly ICurrentWeatherService _currentWeatherService;
 
-    public CurrentWeatherViewModel Weather { get; set; }
+        public WeatherForecastPageViewModel(
+            IBaseService baseService,
+            ICurrentWeatherService currentWeatherService)
+            : base(baseService)
+        {
+            _currentWeatherService = currentWeatherService;
+            PillSelectedCommand = new Command<PillViewModel>(PillSelected);
+        }
 
-    public override async Task InitializeAsync(INavigationParameters parameters)
-    {
-        await base.InitializeAsync(parameters);
-        _ = UpdateCurrentWeather();
-    }
+        public HourlyForecastViewModel HourlyForecast { get; set; }
+        public DayViewModel SelectedDayViewModel { get; set; }
+        public ObservableCollection<PillViewModel> DailyPillList { get; set; }
+        public PillViewModel ActivePill { get; set; }
+        public ICommand PillSelectedCommand { get; }
 
-    private async Task UpdateCurrentWeather()
-    {
-        IsBusy = true;
-        Weather = await _currentWeatherService.GetCurrentWeather();
-        IsBusy = false;
+        public override async Task InitializeAsync(INavigationParameters parameters)
+        {
+            await base.InitializeAsync(parameters);
+            await UpdateCurrentWeather();
+        }
+
+        private async Task UpdateCurrentWeather()
+        {
+            IsBusy = true;
+            HourlyForecast = await _currentWeatherService.GetHourlyForecast();
+            SelectedDayViewModel = HourlyForecast.Days.First();
+            InitDailyPillList();
+            IsBusy = false;
+        }
+
+        private void InitDailyPillList()
+        {
+            DailyPillList = new ObservableCollection<PillViewModel>();
+            foreach (var day in HourlyForecast.Days)
+            {
+                var pill = new PillViewModel(day.DateTime.ToDisplayString());
+                pill.Id = Guid.NewGuid().ToString();
+                DailyPillList.Add(pill);
+            }
+
+            ActivePill = DailyPillList.First();
+            ActivePill.IsActive = true;
+        }
+
+        private void PillSelected(PillViewModel pill)
+        {
+            ActivePill.IsActive = false;
+            pill.IsActive = true;
+            ActivePill = pill;
+            SelectedDayViewModel = HourlyForecast.Days.First(x => x.DateTime.ToDisplayString() == pill.Text);
+        }
     }
 }

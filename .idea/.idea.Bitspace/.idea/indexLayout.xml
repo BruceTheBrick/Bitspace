@@ -9,6 +9,7 @@
       <Path>.idea</Path>
       <Path>Bitspace.sln.DotSettings.user</Path>
       <Path>README.md</Path>
+      <Path>appcenter-post-clone.sh</Path>
       <Path>azure-pipelines.yml</Path>
       <Path>global.json</Path>
     </explicitIncludes>

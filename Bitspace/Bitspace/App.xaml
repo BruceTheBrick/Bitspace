@@ -9,8 +9,8 @@
         <!--  Application resource dictionary  -->
         <ResourceDictionary>
             <ResourceDictionary Source="./Styles/Palette.xaml" />
-            <ResourceDictionary Source="./Styles/Styles.xaml" />
             <ResourceDictionary Source="./Styles/Sizes.xaml" />
+            <ResourceDictionary Source="./Styles/Styles.xaml" />
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

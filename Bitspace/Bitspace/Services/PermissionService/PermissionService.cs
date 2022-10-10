@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace Bitspace.Services.PermissionService;
+namespace Bitspace.Services;
 
+[ExcludeFromCodeCoverage]
 public class PermissionService : IPermissionService
 {
     public async Task<bool> RequestPermission(DevicePermissions permission)

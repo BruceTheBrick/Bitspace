@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Bitspace.Styles;
 using Xamarin.Forms;
 
 namespace Bitspace.Controls;
 
+[ExcludeFromCodeCoverage]
 [ContentProperty("Contents")]
 public partial class SkeletonSection
 {
@@ -20,6 +21,13 @@ public partial class SkeletonSection
         typeof(Color),
         typeof(SkeletonSection),
         default,
+        BindingMode.TwoWay);
+
+    public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(
+        nameof(CornerRadius),
+        typeof(int),
+        typeof(SkeletonSection),
+        16,
         BindingMode.TwoWay);
 
     public SkeletonSection()
@@ -40,6 +48,12 @@ public partial class SkeletonSection
     {
         get => (Color)GetValue(LoadingBackgroundColorProperty);
         set => SetValue(LoadingBackgroundColorProperty, value);
+    }
+
+    public int CornerRadius
+    {
+        get => (int)GetValue(CornerRadiusProperty);
+        set => SetValue(CornerRadiusProperty, value);
     }
 
     private void SetDefaultLoadingColor()
