@@ -39,6 +39,7 @@
   <ItemGroup>
     <Folder Include="APIs\OpenWeather\ViewModels\" />
     <Folder Include="Core" />
+    <Folder Include="Features\ConnectFour\Services" />
     <Folder Include="Features\WeatherForecast\Services" />
   </ItemGroup>
 

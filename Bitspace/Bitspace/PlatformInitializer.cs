@@ -37,6 +37,7 @@ namespace Bitspace
             containerRegistry.Register<IAccessibilityService, AccessibilityService>();
             containerRegistry.Register<INavigationService, NavigationService>();
             containerRegistry.RegisterSingleton<IEssentialsVersion, EssentialsVersion>();
+            containerRegistry.Register<IBoard, Board>();
         }
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)
