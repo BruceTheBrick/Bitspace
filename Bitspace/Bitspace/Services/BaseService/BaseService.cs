@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Bitspace.Services.NavigationService;
 
 namespace Bitspace.Services
 {

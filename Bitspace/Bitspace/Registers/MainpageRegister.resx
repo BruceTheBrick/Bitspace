@@ -30,4 +30,7 @@
     <data name="QR_CODE_SCANNER_TITLE" xml:space="preserve">
         <value>QR Code Scanner</value>
     </data>
+    <data name="MARTINI" xml:space="preserve">
+        <value>Martini</value>
+    </data>
 </root>

@@ -1,4 +1,4 @@
-﻿namespace Bitspace.Services.Essentials
+﻿namespace Bitspace.Services
 {
     public interface IEssentialsVersion
     {

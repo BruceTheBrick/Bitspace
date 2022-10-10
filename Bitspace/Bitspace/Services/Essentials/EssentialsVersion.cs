@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Services.Essentials
+namespace Bitspace.Services
 {
     [ExcludeFromCodeCoverage]
     public class EssentialsVersion : IEssentialsVersion

@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.Registers;
 using Bitspace.Services;
 using Prism.AppModel;
 using Prism.Mvvm;
 using Prism.Navigation;
-using INavigationService = Bitspace.Services.NavigationService.INavigationService;
 
 namespace Bitspace.Pages
 {
@@ -27,7 +25,7 @@ namespace Bitspace.Pages
 
         public bool IsBusy { get; set; }
 
-        protected INavigationService NavigationService { get; }
+        protected Services.INavigationService NavigationService { get; }
         protected IAccessibilityService AccessibilityService { get; }
         protected IFirebaseAnalyticsService AnalyticsService { get; }
 
@@ -47,7 +45,6 @@ namespace Bitspace.Pages
 
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
-            AnalyticsService.LogEvent(AnalyticsRegister.SCREEN_VIEW, AnalyticsRegister.ID, _title);
         }
 
         public virtual void Destroy()

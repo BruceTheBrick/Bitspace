@@ -1,10 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Bitspace.APIs;
 using Bitspace.Pages;
+using Bitspace.Pages.ConnectFour;
 using Bitspace.Services;
-using Bitspace.Services.Essentials;
-using Bitspace.Services.GeocodeService;
-using Bitspace.Services.NavigationService;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
 using Xamarin.Essentials.Implementation;
@@ -29,10 +27,8 @@ namespace Bitspace
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
             containerRegistry.RegisterPopupNavigationService();
             containerRegistry.Register<IBaseService, BaseService>();
-            containerRegistry.RegisterSingleton<IDeviceInformationService, DeviceInformationService>();
             containerRegistry.Register<IHttpClient, ExtendedHttpClient>();
             containerRegistry.Register<IHomePageMenuItems, HomePageMenuItemService>();
-            containerRegistry.RegisterSingleton<ICachingService, CachingService>();
             containerRegistry.Register<IBiometricService, BiometricService>();
             containerRegistry.Register<ITimeoutService, TimeoutService>();
             containerRegistry.RegisterSingleton<IApiKeyManagerService, ApiKeyManagerService>();
@@ -50,6 +46,7 @@ namespace Bitspace
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>();
             containerRegistry.RegisterForNavigation<QRCodeScannerPage, QRCodeScannerPageViewModel>();
+            containerRegistry.RegisterForNavigation<ConnectFourPage, ConnectFourPageViewModel>();
         }
 
         private void RegisterAPIs(IContainerRegistry containerRegistry)

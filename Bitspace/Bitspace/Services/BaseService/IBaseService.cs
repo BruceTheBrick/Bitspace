@@ -1,6 +1,4 @@
 ﻿
-using Bitspace.Services.NavigationService;
-
 namespace Bitspace.Services
 {
     public interface IBaseService

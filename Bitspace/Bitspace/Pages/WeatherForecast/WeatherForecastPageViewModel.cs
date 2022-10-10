@@ -7,7 +7,6 @@ using Bitspace.APIs;
 using Bitspace.Controls;
 using Bitspace.Extensions;
 using Bitspace.Services;
-using Bitspace.Services.GeocodeService;
 using Prism.Navigation;
 using PropertyChanged;
 using Xamarin.Forms;

@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Bitspace.APIs;
 
-namespace Bitspace.Services.GeocodeService
+namespace Bitspace.Services
 {
     public class GeocodeService : IGeocodeService
     {

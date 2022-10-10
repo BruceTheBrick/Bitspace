@@ -1,23 +1,24 @@
 ﻿using Bitspace.APIs;
 
-namespace Bitspace.Services;
-
-public class ApiKeyManagerService : IApiKeyManagerService
+namespace Bitspace.Services
 {
-    private IRemoteConfigService _remoteConfigService;
-
-    public ApiKeyManagerService(IRemoteConfigService remoteConfigService)
+    public class ApiKeyManagerService : IApiKeyManagerService
     {
-        _remoteConfigService = remoteConfigService;
-    }
+        private readonly IRemoteConfigService _remoteConfigService;
 
-    public string GetKey(API_Endpoints api)
-    {
-        return _remoteConfigService.GetValue(api.ToString());
-    }
+        public ApiKeyManagerService(IRemoteConfigService remoteConfigService)
+        {
+            _remoteConfigService = remoteConfigService;
+        }
 
-    public bool HasKey(API_Endpoints api)
-    {
-        return _remoteConfigService.Exists(api.ToString());
+        public string GetKey(API_Endpoints api)
+        {
+            return _remoteConfigService.GetValue(api.ToString());
+        }
+
+        public bool HasKey(API_Endpoints api)
+        {
+            return _remoteConfigService.Exists(api.ToString());
+        }
     }
 }

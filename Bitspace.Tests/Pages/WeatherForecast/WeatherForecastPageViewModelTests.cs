@@ -4,7 +4,6 @@ using Bitspace.Controls;
 using Bitspace.Extensions;
 using Bitspace.Pages;
 using Bitspace.Services;
-using Bitspace.Services.GeocodeService;
 using Bitspace.Tests.Base;
 using Bitspace.Tests.Factories;
 using Bitspace.Tests.Factories.APIs.OpenWeatherAPI;

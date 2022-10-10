@@ -97,34 +97,36 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>WeatherForecastPageRegister.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Images\logo.svg" />
     <None Remove="Resources\ic_rocket.svg" />
-    <EmbeddedResource Include="Resources\ic_rocket.svg" />
     <None Remove="Resources\logo.svg" />
-    <EmbeddedResource Include="Resources\logo.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_chevron_right.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_droplette.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_home.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_location.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_magnifying_glass.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_martini.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_qrcode.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_rain.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_rocket.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_thermometer.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_weather.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_wind.svg" />
     <None Remove="Resources\ic_qrcode.svg" />
-    <EmbeddedResource Include="Resources\ic_qrcode.svg" />
     <None Remove="Resources\ic_chevron_right.svg" />
-    <EmbeddedResource Include="Resources\ic_chevron_right.svg" />
     <None Remove="Resources\ic_weather.svg" />
-    <EmbeddedResource Include="Resources\ic_weather.svg" />
     <None Remove="Resources\ic_thermometer.svg" />
-    <EmbeddedResource Include="Resources\ic_thermometer.svg" />
     <EmbeddedResource Update="Registers\AnalyticsRegister.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Remove="Resources\ic_droplette.svg" />
-    <EmbeddedResource Include="Resources\ic_droplette.svg" />
     <None Remove="Resources\ic_rain.svg" />
-    <EmbeddedResource Include="Resources\ic_rain.svg" />
     <None Remove="Resources\ic_wind.svg" />
-    <EmbeddedResource Include="Resources\ic_wind.svg" />
     <None Remove="Resources\ic_location.svg" />
-    <EmbeddedResource Include="Resources\ic_location.svg" />
     <None Remove="Resources\ic_home.svg" />
-    <EmbeddedResource Include="Resources\ic_home.svg" />
     <None Remove="Resources\ic_magnifying_glass.svg" />
-    <EmbeddedResource Include="Resources\ic_magnifying_glass.svg" />
+    <None Remove="Resources\ic_martini.svg" />
   </ItemGroup>
 
   <ItemGroup>

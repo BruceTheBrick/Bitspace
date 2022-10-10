@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Bitspace.APIs;
 
-namespace Bitspace.Services.GeocodeService
+namespace Bitspace.Services
 {
     public interface IGeocodeService
     {

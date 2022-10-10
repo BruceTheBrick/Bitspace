@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Prism.Navigation;
 
-namespace Bitspace.Services.NavigationService
+namespace Bitspace.Services
 {
-
     public interface INavigationService
     {
         public Task<INavigationResult> NavigateAsync(string url);

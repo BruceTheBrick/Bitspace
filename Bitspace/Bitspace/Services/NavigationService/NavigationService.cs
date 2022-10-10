@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Prism.Navigation;
 
-namespace Bitspace.Services.NavigationService
+namespace Bitspace.Services
 {
     public class NavigationService : INavigationService
     {

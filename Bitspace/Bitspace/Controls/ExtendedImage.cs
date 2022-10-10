@@ -32,7 +32,7 @@ public class ExtendedImage : SvgCachedImage
         "svg",
         BindingMode.TwoWay);
 
-    private const string SourcePrefix = "resource://Bitspace.Resources.";
+    private const string SourcePrefix = "resource://Bitspace.Resources.Images.";
     public new string Source
     {
         get => (string)GetValue(SourceProperty);

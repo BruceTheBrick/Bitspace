@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Bitspace.Pages.ConnectFour;
 using Bitspace.Registers;
 using Bitspace.Services;
 
@@ -24,13 +25,13 @@ namespace Bitspace.Pages
                     nameof(WeatherForecastPage)));
             }
 
-            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.HOMEPAGE_MENUITEM_QR_CODE_SCANNER))
+            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.HOMEPAGE_MENUITEM_MARTINI))
             {
                 items.Add(new MenuListItemViewModel(
-                    MainpageRegister.QR_CODE_SCANNER_TITLE,
-                    "ic_qrcode",
+                    MainpageRegister.MARTINI,
+                    "ic_martini",
                     "ic_chevron_right",
-                    nameof(QRCodeScannerPage)));
+                    nameof(ConnectFourPage)));
             }
 
             return items;

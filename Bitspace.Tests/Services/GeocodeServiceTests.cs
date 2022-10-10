@@ -1,6 +1,5 @@
 ﻿using Bitspace.APIs;
 using Bitspace.Services;
-using Bitspace.Services.GeocodeService;
 using Bitspace.Tests.Base;
 using Moq;
 using Xunit;

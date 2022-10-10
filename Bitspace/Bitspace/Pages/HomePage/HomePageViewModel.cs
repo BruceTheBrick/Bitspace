@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Bitspace.Services;
-using Bitspace.Services.Essentials;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
