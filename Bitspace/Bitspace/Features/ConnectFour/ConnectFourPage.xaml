@@ -6,11 +6,16 @@
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     x:DataType="features:ConnectFourPageViewModel">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Label
+                FontSize="Title"
                 HorizontalOptions="CenterAndExpand"
-                Text="{Binding BoardString}"
-                VerticalOptions="CenterAndExpand" />
+                Text="{Binding BoardString}" />
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Label Text="Is Column Full?" />
+                <Label Text="{Binding ColumnIsFull}" />
+                <Button Command="{Binding PlacePieceCommand}" Text="Place Piece in Column 2" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
