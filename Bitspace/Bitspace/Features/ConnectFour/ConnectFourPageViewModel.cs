@@ -1,30 +1,39 @@
 ﻿using System.Windows.Input;
 using Bitspace.Services;
+using PropertyChanged;
 using Xamarin.Forms;
 
 namespace Bitspace.Features
 {
+    [AddINotifyPropertyChangedInterface]
     public class ConnectFourPageViewModel : BasePageViewModel
     {
-        private readonly IBoard _board;
-        public ConnectFourPageViewModel(IBaseService baseService, IBoard board)
+        public ConnectFourPageViewModel(IBaseService baseService)
             : base(baseService)
         {
-            _board = board;
-            _board.Setup();
-            BoardString = _board.ToString();
-            ColumnIsFull = _board.ColumnIsFull(0) ? "True" : "False";
-            PlacePieceCommand = new Command(PlacePiece);
+            Board = new Board();
+            Board.Setup();
+            BoardString = Board.ToString();
+            ColumnIsFull = Board.ColumnIsFull(0) ? "True" : "False";
+
+            Columns = 7;
+            Rows = 6;
+            PlacePieceCommand = new Command<int>(PlacePiece);
         }
 
+        public IBoard Board { get; set; }
         public ICommand PlacePieceCommand { get; set; }
         public string BoardString { get; set; }
         public string ColumnIsFull { get; set; }
+        public int Columns { get; set; }
+        public int Rows { get; set; }
+        public bool UpdateButtons { get; set; }
 
-        private void PlacePiece()
+        private void PlacePiece(int column)
         {
-            _board.PlacePiece(1, 1);
-            BoardString = _board.ToString();
+            Board.PlacePiece(1, column);
+            UpdateButtons = !UpdateButtons;
+            BoardString = Board.ToString();
         }
     }
 }

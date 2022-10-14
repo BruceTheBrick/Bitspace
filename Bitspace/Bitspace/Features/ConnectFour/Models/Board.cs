@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Bitspace.Resources;
 
 namespace Bitspace.Features
 {
@@ -24,7 +25,8 @@ namespace Bitspace.Features
         {
             if (!ColumnIsInRange(column))
             {
-                throw new ArgumentException("Column out of range", nameof(column));
+                var message = string.Format(ConnectFourPageRegister.CF_COL_EX, column, 0, _numCols);
+                throw new ArgumentOutOfRangeException(nameof(column), message);
             }
 
             var rowNum = GetNextAvailableSpace(column);
@@ -41,13 +43,18 @@ namespace Bitspace.Features
             return _board;
         }
 
+        public int GetPiece(int column, int row)
+        {
+            return _board[row, column];
+        }
+
         public void Setup(int numColumns = 7, int numRows = 6)
         {
             _numCols = numColumns;
             _numRows = numRows;
             _maxIndex = (_numCols * _numRows) - 1;
             _board = new int[_numRows, _numCols];
-            InitDebugBoard();
+            // InitDebugBoard();
         }
 
         public void Reset()

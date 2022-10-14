@@ -72,6 +72,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AnalyticsRegister.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Registers\ConnectFourPageRegister.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ConnectFourPageRegister.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -131,6 +136,10 @@
     <EmbeddedResource Update="Resources\Registers\AnalyticsRegister.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Registers\ConnectFourPageRegister.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConnectFourPageRegister.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
