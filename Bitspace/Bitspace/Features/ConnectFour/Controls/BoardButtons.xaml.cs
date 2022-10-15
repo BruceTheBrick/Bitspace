@@ -116,9 +116,9 @@ namespace Bitspace.Features.Controls
         {
             foreach (var btn in Children)
             {
-                var x = GetRow(btn);
-                var y = GetColumn(btn);
-                btn.BackgroundColor = GetColor(x, y);
+                var row = GetRow(btn);
+                var col = GetColumn(btn);
+                btn.BackgroundColor = GetColor(row, col);
             }
         }
 
@@ -137,7 +137,7 @@ namespace Bitspace.Features.Controls
         private RowDefinitionCollection GetRowDefinitions()
         {
             var rows = new RowDefinitionCollection();
-            for (var i = 0; i < Columns; i++)
+            for (var i = 0; i < Rows; i++)
             {
                 var definition = new RowDefinition { Height = GridLength.Star };
                 rows.Add(definition);
@@ -146,19 +146,22 @@ namespace Bitspace.Features.Controls
             return rows;
         }
 
-        private Color GetColor(int x, int y)
+        private Color GetColor(int row, int col)
         {
             if (Board == null)
             {
                 return Color.Default;
             }
 
-            if (Board.GetPiece(y, x) != 0)
+            var piece = Board.GetPiece(row, col);
+            if (piece == 0)
             {
-                return Color.Blue;
+                return Color.Default;
             }
 
-            return Color.Default;
+            return piece == 1
+                ? Color.Blue
+                : Color.Red;
         }
     }
 }

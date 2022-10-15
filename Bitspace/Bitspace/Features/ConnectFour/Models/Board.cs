@@ -11,22 +11,11 @@ namespace Bitspace.Features
         private int _maxIndex;
         private int[,] _board;
 
-        public bool ColumnIsFull(int column)
-        {
-            if (!ColumnIsInRange(column))
-            {
-                throw new ArgumentException("Column out of range", nameof(column));
-            }
-
-            return GetNextAvailableSpace(column) == -1;
-        }
-
         public void PlacePiece(int player, int column)
         {
             if (!ColumnIsInRange(column))
             {
-                var message = string.Format(ConnectFourPageRegister.CF_COL_EX, column, 0, _numCols);
-                throw new ArgumentOutOfRangeException(nameof(column), message);
+                ThrowColumnException(column);
             }
 
             var rowNum = GetNextAvailableSpace(column);
@@ -38,19 +27,24 @@ namespace Bitspace.Features
             _board[rowNum, column] = player;
         }
 
-        public int[,] GetBoard()
+        public bool IsColumnFull(int column)
         {
-            return _board;
+            if (!ColumnIsInRange(column))
+            {
+                ThrowColumnException(column);
+            }
+
+            return GetNextAvailableSpace(column) == -1;
         }
 
-        public int GetPiece(int column, int row)
+        public int GetPiece(int row, int column)
         {
             return _board[row, column];
         }
 
-        public void Setup(int numColumns = 7, int numRows = 6)
+        public void Setup(int numRows = 6, int numCols = 7)
         {
-            _numCols = numColumns;
+            _numCols = numCols;
             _numRows = numRows;
             _maxIndex = (_numCols * _numRows) - 1;
             _board = new int[_numRows, _numCols];
@@ -113,6 +107,12 @@ namespace Bitspace.Features
             _board[3, 0] = 1;
             _board[4, 0] = 1;
             _board[5, 0] = 1;
+        }
+
+        private void ThrowColumnException(int column)
+        {
+            var message = string.Format(ConnectFourPageRegister.CF_COL_EX, column, 0, _numCols);
+            throw new ArgumentOutOfRangeException(nameof(column), message);
         }
     }
 }

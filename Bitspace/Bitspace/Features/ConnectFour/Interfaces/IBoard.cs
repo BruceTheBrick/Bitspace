@@ -2,11 +2,10 @@
 {
     public interface IBoard
     {
-        public bool ColumnIsFull(int column);
         public void PlacePiece(int player, int column);
-        public int[,] GetBoard();
-        public int GetPiece(int column, int row);
-        public void Setup(int numColumns = 7, int numRows = 6);
+        public bool IsColumnFull(int column);
+        public int GetPiece(int row, int column);
+        public void Setup(int numRows = 6, int numCols = 7);
         public void Reset();
         public string ToString();
     }

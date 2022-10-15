@@ -11,29 +11,32 @@ namespace Bitspace.Features
         public ConnectFourPageViewModel(IBaseService baseService)
             : base(baseService)
         {
-            Board = new Board();
-            Board.Setup();
-            BoardString = Board.ToString();
-            ColumnIsFull = Board.ColumnIsFull(0) ? "True" : "False";
-
-            Columns = 7;
-            Rows = 6;
+            InitializeBoard();
             PlacePieceCommand = new Command<int>(PlacePiece);
         }
 
         public IBoard Board { get; set; }
         public ICommand PlacePieceCommand { get; set; }
-        public string BoardString { get; set; }
-        public string ColumnIsFull { get; set; }
         public int Columns { get; set; }
         public int Rows { get; set; }
         public bool UpdateButtons { get; set; }
+        public bool Player { get; set; }
+
 
         private void PlacePiece(int column)
         {
-            Board.PlacePiece(1, column);
+            var player = Player ? 1 : 2;
+            Board.PlacePiece(player, column);
             UpdateButtons = !UpdateButtons;
-            BoardString = Board.ToString();
+            Player = !Player;
+        }
+
+        private void InitializeBoard()
+        {
+            Columns = 4;
+            Rows = 4;
+            Board = new Board();
+            Board.Setup(Rows, Columns);
         }
     }
 }
