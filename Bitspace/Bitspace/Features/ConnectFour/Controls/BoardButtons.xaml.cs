@@ -35,6 +35,16 @@ namespace Bitspace.Features.Controls
             typeof(BoardButtons),
             propertyChanged: UpdateButtonColors);
 
+        public static readonly BindableProperty PlayerOneColorProperty = BindableProperty.Create(
+            nameof(PlayerOneColor),
+            typeof(Color),
+            typeof(BoardButtons));
+
+        public static readonly BindableProperty PlayerTwoColorProperty = BindableProperty.Create(
+            nameof(PlayerTwoColor),
+            typeof(Color),
+            typeof(BoardButtons));
+
         public BoardButtons()
         {
             InitializeComponent();
@@ -68,6 +78,18 @@ namespace Bitspace.Features.Controls
         {
             get => (bool)GetValue(UpdateButtonStateProperty);
             set => SetValue(UpdateButtonStateProperty, value);
+        }
+
+        public Color PlayerOneColor
+        {
+            get => (Color)GetValue(PlayerOneColorProperty);
+            set => SetValue(PlayerOneColorProperty, value);
+        }
+
+        public Color PlayerTwoColor
+        {
+            get => (Color)GetValue(PlayerTwoColorProperty);
+            set => SetValue(PlayerTwoColorProperty, value);
         }
 
         private static void BoardDimensionsUpdated(BindableObject bindable, object oldvalue, object newvalue)
@@ -154,14 +176,16 @@ namespace Bitspace.Features.Controls
             }
 
             var piece = Board.GetPiece(row, col);
-            if (piece == 0)
+            switch (piece)
             {
-                return Color.Default;
+                case Piece.One:
+                    return PlayerOneColor;
+                case Piece.Two:
+                    return PlayerTwoColor;
+                default:
+                case Piece.Empty:
+                    return Color.Default;
             }
-
-            return piece == 1
-                ? Color.Blue
-                : Color.Red;
         }
     }
 }

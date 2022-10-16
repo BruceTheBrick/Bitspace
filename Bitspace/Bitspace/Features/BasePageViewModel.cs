@@ -15,6 +15,7 @@ namespace Bitspace.Features
             NavigationService = baseService.NavigationService;
             AccessibilityService = baseService.AccessibilityService;
             AnalyticsService = baseService.AnalyticsService;
+            AlertService = baseService.AlertService;
         }
 
         public string Title
@@ -28,6 +29,7 @@ namespace Bitspace.Features
         protected Services.INavigationService NavigationService { get; }
         protected IAccessibilityService AccessibilityService { get; }
         protected IFirebaseAnalyticsService AnalyticsService { get; }
+        protected IAlertService AlertService { get; }
 
         public virtual void Initialize(INavigationParameters parameters)
         {
