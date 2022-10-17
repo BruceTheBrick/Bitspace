@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Bitspace.Core;
 using Bitspace.Resources;
 
 namespace Bitspace.Features
 {
     public class Board : IBoard
     {
+        private const int NumWinningPieces = 4;
         private int _numCols;
         private int _numRows;
         private int _maxIndex;
-        private int _numWinningPieces = 4;
         private Piece[,] _board;
 
         public void PlacePiece(Piece piece, int column)
@@ -53,7 +54,9 @@ namespace Bitspace.Features
                 {
                     var horizontalWin = HasHorizontalWin(x, y);
                     var verticalWin = HasVerticalWin(x, y);
-                    if (horizontalWin || verticalWin)
+                    var diagUpWin = HasDiagonalUpWin(x, y);
+                    var diagDownWin = HasDiagonalDownWin(x, y);
+                    if (horizontalWin || verticalWin || diagUpWin || diagDownWin)
                     {
                         return _board[x, y];
                     }
@@ -69,7 +72,6 @@ namespace Bitspace.Features
             _numRows = numRows;
             _maxIndex = (_numCols * _numRows) - 1;
             _board = new Piece[numRows, numCols];
-            // _board = ArrayExtensions.Init2DArray(numRows, numCols, Piece.Empty);
         }
 
         public void Reset()
@@ -121,47 +123,71 @@ namespace Bitspace.Features
 
         private bool HasHorizontalWin(int row, int column)
         {
-            if (column + _numWinningPieces > _numCols)
+            if (column + NumWinningPieces > _numCols)
             {
                 return false;
             }
 
             var pieces = new List<Piece>();
-            for (var i = 0; i < _numWinningPieces; i++)
+            for (var i = 0; i < NumWinningPieces; i++)
             {
                 pieces.Add(_board[row, column + i]);
             }
 
-            var uniquePieces = pieces.Select(x => x).Distinct();
+            var uniquePieces = pieces.GetDistinctElements();
             return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
         }
 
         private bool HasVerticalWin(int row, int column)
         {
-            if (row + _numWinningPieces > _numRows)
+            if (row + NumWinningPieces > _numRows)
             {
                 return false;
             }
 
             var pieces = new List<Piece>();
-            for (var i = 0; i < _numWinningPieces; i++)
+            for (var i = 0; i < NumWinningPieces; i++)
             {
                 pieces.Add(_board[row + i, column]);
             }
 
-            var uniquePieces = pieces.Select(x => x).Distinct();
+            var uniquePieces = pieces.GetDistinctElements();
             return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
         }
 
-        // private bool HasDiagonalUpWin(int row, int column)
-        // {
-        //     
-        // }
-        //
-        // private bool HasDiagonalDownWin(int row, int column)
-        // {
-        //     
-        // }
+        private bool HasDiagonalUpWin(int row, int column)
+        {
+            if (row - NumWinningPieces < 0 || column + NumWinningPieces > _numCols)
+            {
+                return false;
+            }
+
+            var pieces = new List<Piece>();
+            for (var i = 0; i < NumWinningPieces; i++)
+            {
+                pieces.Add(_board[row - i, column + i]);
+            }
+
+            var uniquePieces = pieces.GetDistinctElements();
+            return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
+        }
+
+        private bool HasDiagonalDownWin(int row, int column)
+        {
+            if (row + NumWinningPieces > _numRows || column + NumWinningPieces > _numCols)
+            {
+                return false;
+            }
+
+            var pieces = new List<Piece>();
+            for (var i = 0; i < NumWinningPieces; i++)
+            {
+                pieces.Add(_board[row + i, column + i]);
+            }
+
+            var uniquePieces = pieces.GetDistinctElements();
+            return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
+        }
 
         private void InitDebugBoard()
         {

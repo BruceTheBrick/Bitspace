@@ -14,7 +14,6 @@ namespace Bitspace.Features
             InitializeComponent();
             _animationService = new AnimationService();
             AppIcon.Opacity = 0;
-
             _ = StartAnimation();
         }
 

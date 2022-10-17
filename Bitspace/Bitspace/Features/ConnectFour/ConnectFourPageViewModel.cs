@@ -16,6 +16,22 @@ namespace Bitspace.Features
             CheckWinCommand = new Command(CheckWin);
         }
 
+        public IBoard Board { get; set; }
+        public ICommand PlacePieceCommand { get; set; }
+        public ICommand CheckWinCommand { get; set; }
+        public int Columns { get; set; }
+        public int Rows { get; set; }
+        public bool UpdateButtons { get; set; }
+        private bool Player { get; set; }
+
+        private void PlacePiece(int column)
+        {
+            var player = Player ? Piece.One : Piece.Two;
+            Board.PlacePiece(player, column);
+            UpdateButtons = !UpdateButtons;
+            Player = !Player;
+        }
+
         private void CheckWin()
         {
             var winner = Board.HasWin();
@@ -26,23 +42,6 @@ namespace Bitspace.Features
             }
 
             AlertService.Toast("No winner yet...");
-        }
-
-        public IBoard Board { get; set; }
-        public ICommand PlacePieceCommand { get; set; }
-        public ICommand CheckWinCommand { get; set; }
-        public int Columns { get; set; }
-        public int Rows { get; set; }
-        public bool UpdateButtons { get; set; }
-        public bool Player { get; set; }
-
-
-        private void PlacePiece(int column)
-        {
-            var player = Player ? Piece.One : Piece.Two;
-            Board.PlacePiece(player, column);
-            UpdateButtons = !UpdateButtons;
-            Player = !Player;
         }
 
         private void InitializeBoard()
