@@ -10,7 +10,7 @@
 
     <OutputType>Library</OutputType>
 
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
