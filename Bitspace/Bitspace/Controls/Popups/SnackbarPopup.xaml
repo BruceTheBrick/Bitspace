@@ -1,18 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:pages="http://rotorgames.com"
-                 BackgroundInputTransparent="True"
-                 BackgroundColor="Transparent"
-                 CloseWhenBackgroundIsClicked="False"
-                 xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
-                 x:DataType="controls:SnackbarPopupViewModel"
-                 x:Class="Bitspace.Controls.SnackbarPopup">
-    <Frame Margin="8, 0, 8, 20" Style="{StaticResource SnackbarStyle}" Padding="12">
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Bitspace.Controls.SnackbarPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+    xmlns:pages="http://rotorgames.com"
+    x:DataType="controls:SnackbarPopupViewModel"
+    BackgroundColor="Transparent"
+    BackgroundInputTransparent="True"
+    CloseWhenBackgroundIsClicked="False">
+    <Frame
+        Margin="8,0,8,20"
+        Padding="12"
+        Style="{StaticResource SnackbarStyle}">
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <controls:ExtendedImage Style="{StaticResource SnackbarIcon}" Source="{Binding Icon}" IsVisible="{Binding IsLeftIconVisible}"/>
-        <Label Text="{Binding Message}" Style="{StaticResource SnackbarLabel}"/>
-        <controls:ExtendedImage Style="{StaticResource SnackbarIcon}" Source="{Binding Icon}" IsVisible="{Binding IsRightIconVisible}"/>
+            <controls:ExtendedImage
+                IsVisible="{Binding IsLeftIconVisible}"
+                Source="{Binding Icon}"
+                Style="{StaticResource SnackbarIcon}" />
+            <Label Style="{StaticResource SnackbarLabel}" Text="{Binding Message}" />
+            <controls:ExtendedImage
+                IsVisible="{Binding IsRightIconVisible}"
+                Source="{Binding Icon}"
+                Style="{StaticResource SnackbarIcon}" />
         </StackLayout>
     </Frame>
 </pages:PopupPage>

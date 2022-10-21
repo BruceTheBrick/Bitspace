@@ -3,6 +3,7 @@ using Bitspace.APIs;
 using Bitspace.Controls;
 using Bitspace.Features;
 using Bitspace.Services;
+using Bitspace.Services.TimerService;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
 using Xamarin.Essentials.Implementation;
@@ -39,6 +40,7 @@ namespace Bitspace
             containerRegistry.Register<INavigationService, NavigationService>();
             containerRegistry.RegisterSingleton<IEssentialsVersion, EssentialsVersion>();
             containerRegistry.Register<IBoard, Board>();
+            containerRegistry.Register<ITimerService, TimerService>();
         }
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)

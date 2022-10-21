@@ -2,15 +2,18 @@ using System.Timers;
 using Bitspace.Core;
 using Bitspace.Features;
 using Bitspace.Services;
+using Bitspace.Services.TimerService;
 using Prism.Navigation;
 
 namespace Bitspace.Controls
 {
     public class SnackbarPopupViewModel : BasePageViewModel
     {
-        public SnackbarPopupViewModel(IBaseService baseService)
+        private readonly ITimerService _timerService;
+        public SnackbarPopupViewModel(ITimerService timerService, IBaseService baseService)
             : base(baseService)
         {
+            _timerService = timerService;
         }
 
         public string Message { get; set; }
@@ -21,6 +24,7 @@ namespace Bitspace.Controls
 
         public override void Initialize(INavigationParameters parameters)
         {
+            base.Initialize(parameters);
             if (parameters.TryGetValue<string>(NavigationConstants.Message, out var message))
             {
                 Message = message;
@@ -37,11 +41,7 @@ namespace Bitspace.Controls
             }
 
             SetIconVisibility();
-
-            base.Initialize(parameters);
-            var timer = new Timer(6000);
-            timer.Elapsed += TimerOnElapsed;
-            timer.Start();
+            _timerService.Timer(6000, TimerOnElapsed).Start();
         }
 
         private async void TimerOnElapsed(object sender, ElapsedEventArgs e)
@@ -57,6 +57,7 @@ namespace Bitspace.Controls
             }
 
             IsLeftIconVisible = Position == Position.LEFT;
+            IsRightIconVisible = Position == Position.RIGHT;
         }
     }
 }
