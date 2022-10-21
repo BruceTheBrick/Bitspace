@@ -1,4 +1,5 @@
-﻿using Bitspace.Services;
+﻿using System;
+using Bitspace.Services;
 using Bitspace.Tests.Base;
 using FluentAssertions;
 using Xunit;

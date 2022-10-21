@@ -22,4 +22,5 @@
     <Color x:Key="Xiketic">#080A21</Color>
     <Color x:Key="SpaceCadet">#101442</Color>
     <Color x:Key="VibrantBlue">#0038FF</Color>
+    <Color x:Key="SnackbarGray">#333333</Color>
 </ResourceDictionary>

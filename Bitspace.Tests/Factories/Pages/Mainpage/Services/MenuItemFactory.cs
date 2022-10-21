@@ -1,4 +1,5 @@
-﻿using Bitspace.Features;
+﻿using System.Linq;
+using Bitspace.Features;
 using Bogus;
 
 namespace Bitspace.Tests.Factories

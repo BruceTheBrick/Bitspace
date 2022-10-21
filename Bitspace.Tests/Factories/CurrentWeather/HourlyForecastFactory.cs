@@ -1,4 +1,6 @@
-﻿using Bitspace.APIs;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Bitspace.APIs;
 using Bogus;
 
 namespace Bitspace.Tests.Factories

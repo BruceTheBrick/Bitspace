@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Bitspace.Controls;
+using Bitspace.Core;
+using Prism.Navigation;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.CommunityToolkit.UI.Views.Options;
 using Xamarin.Forms;
@@ -9,23 +12,17 @@ namespace Bitspace.Services
 {
     public class AlertService : IAlertService
     {
-        public async Task<bool> Snackbar(string message)
+        private readonly INavigationService _navigationService;
+
+        public AlertService(INavigationService navigationService)
         {
-            var options = new SnackBarOptions { MessageOptions = { Message = message } };
-            return await Application.Current.MainPage.DisplaySnackBarAsync(options);
+            _navigationService = navigationService;
         }
 
-        public async Task<bool> Snackbar(string message, IEnumerable<Func<Task>> actions)
+        public Task<INavigationResult> Snackbar(string message)
         {
-            var options = new SnackBarOptions
-            {
-                MessageOptions =
-                {
-                    Message = message,
-                },
-                Actions = MakeActionOptions(actions),
-            };
-            return await Application.Current.MainPage.DisplaySnackBarAsync(options);
+            var parameters = new NavigationParameters { { NavigationConstants.Message, message }, };
+            return _navigationService.NavigateAsync(nameof(SnackbarPopup), parameters);
         }
 
         public async Task Toast(string message)

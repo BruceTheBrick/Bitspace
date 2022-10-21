@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="http://rotorgames.com"
+                 BackgroundInputTransparent="True"
+                 BackgroundColor="Transparent"
+                 CloseWhenBackgroundIsClicked="False"
+                 xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
+                 x:DataType="controls:SnackbarPopupViewModel"
+                 x:Class="Bitspace.Controls.SnackbarPopup">
+    <Frame Margin="8, 0, 8, 20" Style="{StaticResource SnackbarStyle}" Padding="12">
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <controls:ExtendedImage Style="{StaticResource SnackbarIcon}" Source="{Binding Icon}" IsVisible="{Binding IsLeftIconVisible}"/>
+        <Label Text="{Binding Message}" Style="{StaticResource SnackbarLabel}"/>
+        <controls:ExtendedImage Style="{StaticResource SnackbarIcon}" Source="{Binding Icon}" IsVisible="{Binding IsRightIconVisible}"/>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

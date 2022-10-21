@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Bitspace.APIs;
+using Bitspace.Controls;
 using Bitspace.Features;
 using Bitspace.Services;
 using Prism.Ioc;
@@ -47,6 +48,7 @@ namespace Bitspace
             containerRegistry.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>();
             containerRegistry.RegisterForNavigation<QRCodeScannerPage, QRCodeScannerPageViewModel>();
             containerRegistry.RegisterForNavigation<ConnectFourPage, ConnectFourPageViewModel>();
+            containerRegistry.RegisterForNavigation<SnackbarPopup, SnackbarPopupViewModel>();
         }
 
         private void RegisterAPIs(IContainerRegistry containerRegistry)

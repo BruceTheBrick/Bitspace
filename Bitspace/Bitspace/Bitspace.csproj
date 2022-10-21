@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>default</LangVersion>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,7 +38,6 @@
 
   <ItemGroup>
     <Folder Include="APIs\OpenWeather\ViewModels\" />
-    <Folder Include="Core" />
     <Folder Include="Features\WeatherForecast\Services" />
   </ItemGroup>
 

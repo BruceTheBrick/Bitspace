@@ -1,4 +1,6 @@
-﻿using Bitspace.APIs;
+﻿using System;
+using System.Linq;
+using Bitspace.APIs;
 using Bitspace.Extensions;
 using Bitspace.Tests.Factories;
 using FluentAssertions;

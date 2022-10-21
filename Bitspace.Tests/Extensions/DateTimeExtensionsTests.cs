@@ -1,4 +1,5 @@
-﻿using Bitspace.Extensions;
+﻿using System;
+using Bitspace.Extensions;
 using FluentAssertions;
 using Xunit;
 

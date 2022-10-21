@@ -26,6 +26,7 @@ namespace Bitspace.Features
 
         private void PlacePiece(int column)
         {
+            AlertService.Snackbar("Piece placed!");
             var player = Player ? Piece.One : Piece.Two;
             Board.PlacePiece(player, column);
             UpdateButtons = !UpdateButtons;
