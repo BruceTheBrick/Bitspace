@@ -20,7 +20,7 @@ namespace Bitspace
             InitializeComponent();
             FlowListView.Init();
             Sharpnado.MaterialFrame.Initializer.Initialize(false, true);
-            await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(HomePage)}");
+            var t = await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(HomePage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

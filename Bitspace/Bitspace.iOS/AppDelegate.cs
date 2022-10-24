@@ -1,9 +1,8 @@
 ﻿using CarouselView.FormsPlugin.iOS;
 using FFImageLoading.Forms.Platform;
 using FFImageLoading.Svg.Forms;
+using Firebase.Core;
 using Foundation;
-using Prism;
-using Prism.Ioc;
 using UIKit;
 
 namespace Bitspace.iOS
@@ -30,16 +29,14 @@ namespace Bitspace.iOS
             SvgCachedImage.Init();
             _ = typeof(SvgCachedImage);
             CarouselViewRenderer.Init();
-            LoadApplication(new App(new iOSInitializer()));
+            ConfigureFirebase();
+            LoadApplication(new App(new PlatformInitializer()));
             return base.FinishedLaunching(app, options);
         }
-    }
 
-    public class iOSInitializer : IPlatformInitializer
-    {
-        public void RegisterTypes(IContainerRegistry containerRegistry)
+        private void ConfigureFirebase()
         {
-            // Register any platform specific implementations
+            Firebase.Core.App.Configure();
         }
     }
 }
