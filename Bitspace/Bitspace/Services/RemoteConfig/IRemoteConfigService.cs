@@ -1,10 +1,12 @@
-﻿namespace Bitspace.Services
+﻿using System.Threading.Tasks;
+
+namespace Bitspace.Services
 {
     public interface IRemoteConfigService
     {
+        public Task Initialize();
         public bool IsEnabled(string featureName);
         public string GetValue(string featureName);
-        public void Update();
-        public bool Exists(string featureName);
+        public Task FetchAndActivate();
     }
 }

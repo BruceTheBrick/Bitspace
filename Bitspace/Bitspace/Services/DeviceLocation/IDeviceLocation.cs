@@ -1,16 +1,10 @@
 ﻿using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace Bitspace.Services
 {
-    public enum LocationAccuracy
-    {
-        High,
-        Medium,
-        Low,
-    }
-
     public interface IDeviceLocation
     {
-        Task<LocationModel> GetCurrentLocation(LocationAccuracy accuracy, int timeout = 5);
+        Task<Location> GetCurrentLocation(GeolocationAccuracy accuracy, int timeout = 5);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Bitspace.Services;
+using Xamarin.Essentials;
 
 namespace Bitspace.APIs
 {
@@ -16,7 +16,7 @@ namespace Bitspace.APIs
             Longitude = longitude;
         }
 
-        public HourlyForecastRequest(LocationModel location)
+        public HourlyForecastRequest(Location location)
         {
             Latitude = location.Latitude;
             Longitude = location.Longitude;

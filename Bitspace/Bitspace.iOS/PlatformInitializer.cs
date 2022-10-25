@@ -1,4 +1,4 @@
-using Bitspace.iOS.Services.FirebaseAnalytics;
+using Bitspace.iOS.Services;
 using Bitspace.Services;
 using Prism;
 using Prism.Ioc;
@@ -15,6 +15,7 @@ namespace Bitspace.iOS
         private void RegisterServices(IContainerRegistry containerRegister)
         {
             containerRegister.Register<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
+            containerRegister.Register<IRemoteConfigService, RemoteConfigService>();
         }
     }
 }

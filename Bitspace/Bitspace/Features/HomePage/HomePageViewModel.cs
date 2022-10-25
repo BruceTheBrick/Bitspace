@@ -43,7 +43,7 @@ namespace Bitspace.Features
         {
             if (!string.IsNullOrEmpty(item.NavigationConstant))
             {
-                await NavigationService.NavigateAsync(item.NavigationConstant);
+                var t = await NavigationService.NavigateAsync(item.NavigationConstant);
             }
 
             AnalyticsService.LogEvent("BUTTON_PRESSED", "ID", "MENU_BUTTON_PRESSED");

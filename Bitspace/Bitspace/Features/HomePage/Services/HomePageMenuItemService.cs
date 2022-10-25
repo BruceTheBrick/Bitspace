@@ -38,7 +38,7 @@ namespace Bitspace.Features
 
         public ObservableCollection<MenuListItemViewModel> ForceUpdateGetMenuItems()
         {
-            _remoteConfigService.Update();
+            _remoteConfigService.FetchAndActivate();
             return GetMenuItems();
         }
     }

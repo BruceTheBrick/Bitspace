@@ -4,7 +4,7 @@ using Bitspace.Services;
 using Firebase.Analytics;
 using Foundation;
 
-namespace Bitspace.iOS.Services.FirebaseAnalytics
+namespace Bitspace.iOS.Services
 {
     public class FirebaseAnalyticsService : IFirebaseAnalyticsService
     {

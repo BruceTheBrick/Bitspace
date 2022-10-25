@@ -18,7 +18,7 @@ namespace Bitspace.Services
 
         public bool HasKey(API_Endpoints api)
         {
-            return _remoteConfigService.Exists(api.ToString());
+            return !string.IsNullOrWhiteSpace(_remoteConfigService.GetValue(api.ToString()));
         }
     }
 }

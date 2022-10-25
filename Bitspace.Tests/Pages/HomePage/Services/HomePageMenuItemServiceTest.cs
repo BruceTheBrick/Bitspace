@@ -5,79 +5,80 @@ using FluentAssertions;
 using Moq;
 using Xunit;
 
-namespace Bitspace.Tests.Pages;
-
-public class HomePageMenuItemServiceTest : UnitTestBase<HomePageMenuItemService>
+namespace Bitspace.Tests.Pages
 {
-    #region GetMenuItems
-
-    [Fact]
-    public void GetMenuItems_ShouldReturnMenuItems_WhenFeaturesAreEnabled()
+    public class HomePageMenuItemServiceTest : UnitTestBase<HomePageMenuItemService>
     {
-        // Arrange
-        Mocker.GetMock<IRemoteConfigService>().Setup(x => x.IsEnabled(It.IsAny<string>())).Returns(true);
+        #region GetMenuItems
 
-        // Act
-        var items = Sut.GetMenuItems();
+        [Fact]
+        public void GetMenuItems_ShouldReturnMenuItems_WhenFeaturesAreEnabled()
+        {
+            // Arrange
+            Mocker.GetMock<IRemoteConfigService>().Setup(x => x.IsEnabled(It.IsAny<string>())).Returns(true);
 
-        // Assert
-        items.Should().NotBeNullOrEmpty();
-    }
+            // Act
+            var items = Sut.GetMenuItems();
 
-    [Fact]
-    public void GetMenuItems_ShouldNotReturnMenuItems_WhenFeaturesAreDisabled()
-    {
-        // Arrange
-        Mocker.GetMock<IRemoteConfigService>().Setup(x => x.IsEnabled(It.IsAny<string>())).Returns(false);
+            // Assert
+            items.Should().NotBeNullOrEmpty();
+        }
 
-        // Act
-        var items = Sut.GetMenuItems();
+        [Fact]
+        public void GetMenuItems_ShouldNotReturnMenuItems_WhenFeaturesAreDisabled()
+        {
+            // Arrange
+            Mocker.GetMock<IRemoteConfigService>().Setup(x => x.IsEnabled(It.IsAny<string>())).Returns(false);
 
-        // Assert
-        items.Should().BeNullOrEmpty();
-    }
+            // Act
+            var items = Sut.GetMenuItems();
+
+            // Assert
+            items.Should().BeNullOrEmpty();
+        }
     
-    #endregion
+        #endregion
     
-    #region ForceUpdateGetMenuItems
+        #region ForceUpdateGetMenuItems
 
-    [Fact]
-    public void ForceUpdateGetMenuItems_ShouldUpdateRemoteConfig()
-    {
-        // Arrange
+        [Fact]
+        public void ForceUpdateGetMenuItems_ShouldUpdateRemoteConfig()
+        {
+            // Arrange
         
-        // Act
-        Sut.ForceUpdateGetMenuItems();
+            // Act
+            Sut.ForceUpdateGetMenuItems();
 
-        // Assert
-        Mocker.GetMock<IRemoteConfigService>().Verify(x => x.Update(), Times.Once);
-    }
+            // Assert
+            Mocker.GetMock<IRemoteConfigService>().Verify(x => x.FetchAndActivate(), Times.Once);
+        }
 
-    [Fact]
-    public void ForceUpdateGetMenuItems_ShouldReturnMenuItems_WhenFeaturesAreEnabled()
-    {
-        // Arrange
-        Mocker.GetMock<IRemoteConfigService>().Setup(x => x.IsEnabled(It.IsAny<string>())).Returns(true);
+        [Fact]
+        public void ForceUpdateGetMenuItems_ShouldReturnMenuItems_WhenFeaturesAreEnabled()
+        {
+            // Arrange
+            Mocker.GetMock<IRemoteConfigService>().Setup(x => x.IsEnabled(It.IsAny<string>())).Returns(true);
 
-        // Act
-        var items = Sut.ForceUpdateGetMenuItems();
+            // Act
+            var items = Sut.ForceUpdateGetMenuItems();
 
-        // Assert
-        items.Should().NotBeNullOrEmpty();
-    }
+            // Assert
+            items.Should().NotBeNullOrEmpty();
+        }
 
-    [Fact]
-    public void ForceUpdateGetMenuItems_ShouldNotReturnMenuItems_WhenFeaturesAreDisabled()
-    {
-        // Arrange
-        Mocker.GetMock<IRemoteConfigService>().Setup(x => x.IsEnabled(It.IsAny<string>())).Returns(false);
+        [Fact]
+        public void ForceUpdateGetMenuItems_ShouldNotReturnMenuItems_WhenFeaturesAreDisabled()
+        {
+            // Arrange
+            Mocker.GetMock<IRemoteConfigService>().Setup(x => x.IsEnabled(It.IsAny<string>())).Returns(false);
 
-        // Act
-        var items = Sut.ForceUpdateGetMenuItems();
+            // Act
+            var items = Sut.ForceUpdateGetMenuItems();
 
-        // Assert
-        items.Should().BeNullOrEmpty();
-    }
+            // Assert
+            items.Should().BeNullOrEmpty();
+        }
     
-    #endregion
+        #endregion
+    }
 }

@@ -93,7 +93,7 @@ namespace Bitspace.Tests.Services
             var hourlyForecast = await Sut.GetHourlyForecast();
 
             //Assert
-            hourlyForecast.Location.Should().BeEquivalentTo(new LocationModel());
+            hourlyForecast.Location.Should().BeEquivalentTo(new LocationViewModel());
         }
 
         [Fact]

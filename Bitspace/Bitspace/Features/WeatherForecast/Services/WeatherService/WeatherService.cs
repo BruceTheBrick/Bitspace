@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Bitspace.APIs;
 using Bitspace.Services;
+using Xamarin.Essentials;
 
 namespace Bitspace.Features
 {
@@ -56,7 +57,7 @@ namespace Bitspace.Features
                     return;
                 }
 
-                var currentLocation = await _deviceLocationService.GetCurrentLocation(LocationAccuracy.High);
+                var currentLocation = await _deviceLocationService.GetCurrentLocation(GeolocationAccuracy.Best);
                 var forecastTask = FetchAndUpdateForecastItems(currentLocation);
                 var locationTask = FetchAndUpdateLocationItems(currentLocation);
                 await Task.WhenAll(forecastTask, locationTask);
@@ -74,7 +75,7 @@ namespace Bitspace.Features
             }
         }
 
-        private async Task FetchAndUpdateForecastItems(LocationModel location)
+        private async Task FetchAndUpdateForecastItems(Location location)
         {
             if (!_timeoutService.IsExpired(_hourlyForecastLastUpdate))
             {
@@ -93,7 +94,7 @@ namespace Bitspace.Features
             _hourlyForecastLastUpdate = DateTime.Now;
         }
 
-        private async Task FetchAndUpdateLocationItems(LocationModel location)
+        private async Task FetchAndUpdateLocationItems(Location location)
         {
             if (!_timeoutService.IsExpired(_locationLastUpdate))
             {

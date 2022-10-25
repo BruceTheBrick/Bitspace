@@ -103,6 +103,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Services\RemoteConfigService\RemoteConfigService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <LinkDescription Include="LinkerSettings.xml" />
@@ -235,6 +236,9 @@
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Services\FirebaseAnalytics\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GoogleService-Info.plist" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

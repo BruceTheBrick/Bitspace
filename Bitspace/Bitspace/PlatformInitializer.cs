@@ -41,6 +41,7 @@ namespace Bitspace
             containerRegistry.RegisterSingleton<IEssentialsVersion, EssentialsVersion>();
             containerRegistry.Register<IBoard, Board>();
             containerRegistry.Register<ITimerService, TimerService>();
+            containerRegistry.Register<IDeviceLocation, DeviceLocationService>();
         }
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)

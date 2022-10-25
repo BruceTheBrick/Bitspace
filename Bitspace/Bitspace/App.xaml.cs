@@ -18,7 +18,7 @@ namespace Bitspace
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            FlowListView.Init();
+            //FlowListView.Init();
             Sharpnado.MaterialFrame.Initializer.Initialize(false, true);
             var t = await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(HomePage)}");
         }

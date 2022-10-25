@@ -108,7 +108,6 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="PlatformInitializer.cs" />
-    <Compile Include="Services\DeviceLocation\DeviceLocationService.cs" />
     <Compile Include="Services\FirebaseAnalytics\FirebaseAnalyticsService.cs" />
     <Compile Include="Services\RemoteConfigService\RemoteConfigService.cs" />
     <Compile Include="SplashActivity.cs" />

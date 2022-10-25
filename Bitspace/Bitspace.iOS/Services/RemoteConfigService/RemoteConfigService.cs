@@ -5,7 +5,7 @@ using Bitspace.Core;
 using Bitspace.Services;
 using Firebase.RemoteConfig;
 
-namespace Bitspace.Droid.Services
+namespace Bitspace.iOS.Services
 {
     public class RemoteConfigService : IRemoteConfigService
     {
@@ -14,12 +14,13 @@ namespace Bitspace.Droid.Services
         {
             _timeoutService = timeoutService;
             _timeoutService.ExpiryMinutes = 5;
+            RemoteConfig.SharedInstance.ConfigSettings = GetFirebaseSettings();
+            RemoteConfig.SharedInstance.Init();
         }
 
-        public Task Initialize()
+        public async Task Initialize()
         {
-            FirebaseRemoteConfig.Instance.SetConfigSettingsAsync(GetFirebaseSettings());
-            return Task.CompletedTask;
+            await RemoteConfig.SharedInstance.FetchAndActivateAsync();
         }
 
         public bool IsEnabled(string featureName)
@@ -28,11 +29,10 @@ namespace Bitspace.Droid.Services
             {
                 if (_timeoutService.IsExpired())
                 {
-                    FirebaseRemoteConfig.Instance.FetchAndActivate();
                     _timeoutService.Update();
                 }
 
-                return FirebaseRemoteConfig.Instance.GetBoolean(featureName);
+                return  RemoteConfig.SharedInstance.GetConfigValue(featureName).BoolValue;;
             }
             catch (Exception e)
             {
@@ -43,21 +43,20 @@ namespace Bitspace.Droid.Services
 
         public string GetValue(string featureName)
         {
-            return FirebaseRemoteConfig.Instance.GetString(featureName);
+            return RemoteConfig.SharedInstance.GetConfigValue(featureName).StringValue;
         }
 
         public Task FetchAndActivate()
         {
-            FirebaseRemoteConfig.Instance.FetchAndActivate();
-            return Task.CompletedTask;
+            return RemoteConfig.SharedInstance.FetchAndActivateAsync();
         }
 
-        private FirebaseRemoteConfigSettings GetFirebaseSettings()
+        private RemoteConfigSettings GetFirebaseSettings()
         {
-            return new FirebaseRemoteConfigSettings.Builder()
-                .SetMinimumFetchIntervalInSeconds(TimeoutConstants.REMOTECONFIG_MIN_FETCH_INTERVAL)
-                .SetFetchTimeoutInSeconds(TimeoutConstants.REMOTECONFIG_TIMEOUT)
-                .Build();
+            var settings = new RemoteConfigSettings();
+            settings.FetchTimeout = TimeoutConstants.REMOTECONFIG_TIMEOUT;
+            settings.MinimumFetchInterval = TimeoutConstants.REMOTECONFIG_MIN_FETCH_INTERVAL;
+            return settings;
         }
     }
 }
