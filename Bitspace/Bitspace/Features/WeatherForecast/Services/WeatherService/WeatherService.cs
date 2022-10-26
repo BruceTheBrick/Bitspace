@@ -13,8 +13,8 @@ namespace Bitspace.Features
         private readonly IOpenWeatherAPI _openWeatherApi;
         private readonly ITimeoutService _timeoutService;
         private readonly IPermissionService _permissionService;
-        private readonly IAlertService _alertService;
         private readonly IDeviceLocation _deviceLocationService;
+        private readonly IAlertService _alertService;
         private HourlyWeatherResponse _hourlyForecastResponse;
         private HourlyForecastViewModel _hourlyForecastViewModel;
         private ReverseGeocodeResponseItemModel[] _locationResponseModel;
@@ -23,19 +23,20 @@ namespace Bitspace.Features
         private DateTime _hourlyForecastLastUpdate;
 
         public WeatherService(
-            IOpenWeatherAPI openWeatherApi,
-            ITimeoutService timeoutService,
-            IPermissionService permissionService,
-            IDeviceLocation deviceLocationService,
-            IAlertService alertService)
+            // IOpenWeatherAPI openWeatherApi,
+            // ITimeoutService timeoutService,
+            // IPermissionService permissionService,
+            // IDeviceLocation deviceLocationService,
+            // IAlertService alertService)
+            )
         {
-            _openWeatherApi = openWeatherApi;
-            _timeoutService = timeoutService;
-            _permissionService = permissionService;
-            _deviceLocationService = deviceLocationService;
-            _alertService = alertService;
-
-            _timeoutService.ExpiryMinutes = 5;
+            // _openWeatherApi = openWeatherApi;
+            // _timeoutService = timeoutService;
+            // _permissionService = permissionService;
+            // _deviceLocationService = deviceLocationService;
+            // _alertService = alertService;
+            //
+            // _timeoutService.ExpiryMinutes = 5;
         }
 
         public async Task<HourlyForecastViewModel> GetHourlyForecast()

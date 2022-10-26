@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Bitspace.APIs;
 
-namespace Bitspace.Services
+namespace Bitspace.Features
 {
     public interface ICurrentWeatherService
     {

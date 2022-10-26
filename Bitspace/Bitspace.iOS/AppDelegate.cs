@@ -26,7 +26,7 @@ namespace Bitspace.iOS
             SvgCachedImage.Init();
             _ = typeof(SvgCachedImage);
             CarouselViewRenderer.Init();
-            ConfigureFirebase();
+             ConfigureFirebase();
             LoadApplication(new App(new PlatformInitializer()));
             return base.FinishedLaunching(app, options);
         }

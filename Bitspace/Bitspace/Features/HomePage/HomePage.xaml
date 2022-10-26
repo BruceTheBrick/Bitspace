@@ -24,6 +24,7 @@
                                               Offset='10,10'}">
             <Grid>
                 <ListView
+                    BackgroundColor="Transparent"
                     HasUnevenRows="True"
                     HorizontalOptions="Center"
                     IsPullToRefreshEnabled="True"
