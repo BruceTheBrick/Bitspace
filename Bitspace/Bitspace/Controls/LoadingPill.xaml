@@ -10,6 +10,7 @@
     CornerRadius="40"
     HeightRequest="40"
     HorizontalOptions="Start"
+    SizeChanged="LoadingPill_OnSizeChanged"
     VerticalOptions="CenterAndExpand"
     WidthRequest="120">
     <controls:SkeletonSection

@@ -23,20 +23,19 @@ namespace Bitspace.Features
         private DateTime _hourlyForecastLastUpdate;
 
         public WeatherService(
-            // IOpenWeatherAPI openWeatherApi,
-            // ITimeoutService timeoutService,
-            // IPermissionService permissionService,
-            // IDeviceLocation deviceLocationService,
-            // IAlertService alertService)
-            )
+            IOpenWeatherAPI openWeatherApi,
+            ITimeoutService timeoutService,
+            IPermissionService permissionService,
+            IDeviceLocation deviceLocationService,
+            IAlertService alertService)
         {
-            // _openWeatherApi = openWeatherApi;
-            // _timeoutService = timeoutService;
-            // _permissionService = permissionService;
-            // _deviceLocationService = deviceLocationService;
-            // _alertService = alertService;
-            //
-            // _timeoutService.ExpiryMinutes = 5;
+            _openWeatherApi = openWeatherApi;
+            _timeoutService = timeoutService;
+            _permissionService = permissionService;
+            _deviceLocationService = deviceLocationService;
+            _alertService = alertService;
+
+            _timeoutService.ExpiryMinutes = 5;
         }
 
         public async Task<HourlyForecastViewModel> GetHourlyForecast()

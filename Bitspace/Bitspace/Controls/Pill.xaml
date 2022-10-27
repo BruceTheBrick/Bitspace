@@ -10,6 +10,7 @@
     x:DataType="controls:PillViewModel"
     AutomationProperties.IsInAccessibleTree="True"
     HorizontalOptions="Start"
+    SizeChanged="Pill_OnSizeChanged"
     VerticalOptions="CenterAndExpand">
     <pancakeView:PancakeView.Resources>
         <converters:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />

@@ -21,16 +21,13 @@ public class ExtendedImage : SvgCachedImage
         nameof(TintColor),
         typeof(Color),
         typeof(ExtendedImage),
-        null,
-        BindingMode.TwoWay,
         propertyChanged: TintColorUpdated);
 
     public static readonly BindableProperty ExtensionProperty = BindableProperty.Create(
         nameof(Extension),
         typeof(string),
         typeof(ExtendedImage),
-        "svg",
-        BindingMode.TwoWay);
+        "svg");
 
     private const string SourcePrefix = "resource://Bitspace.Resources.Images.";
     public new string Source
@@ -69,7 +66,7 @@ public class ExtendedImage : SvgCachedImage
             return;
         }
 
-        IconTintColorEffect.SetTintColor(image, (Color)newvalue);
+        // IconTintColorEffect.SetTintColor(image, (Color)newvalue);
     }
 
     private string FormatSource(string input)

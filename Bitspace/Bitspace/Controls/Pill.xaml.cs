@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Bitspace.Controls
 {
@@ -8,6 +9,11 @@ namespace Bitspace.Controls
         public Pill()
         {
             InitializeComponent();
+        }
+
+        private void Pill_OnSizeChanged(object sender, EventArgs e)
+        {
+            CornerRadius = (float)Height / 2;
         }
     }
 }

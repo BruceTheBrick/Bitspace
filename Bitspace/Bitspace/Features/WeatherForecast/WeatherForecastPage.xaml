@@ -51,6 +51,7 @@
                     Grid.Column="0"
                     HorizontalOptions="Center"
                     Source="ic_weather"
+                    TintColor="White"
                     TranslationY="-20" />
                 <Label
                     Grid.Column="1"
@@ -77,7 +78,7 @@
                         Padding="8"
                         RowDefinitions="*, *, *"
                         VerticalOptions="CenterAndExpand">
-                        <controls:ExtendedImage Source="ic_wind" />
+                        <controls:ExtendedImage Source="ic_wind" TintColor="{StaticResource VibrantBlue}" />
                         <Label
                             Grid.Row="1"
                             FontSize="Micro"
@@ -102,7 +103,7 @@
                         Padding="8"
                         RowDefinitions="*, *, *"
                         VerticalOptions="CenterAndExpand">
-                        <controls:ExtendedImage Source="ic_droplette" />
+                        <controls:ExtendedImage Source="ic_droplette" TintColor="{StaticResource VibrantBlue}" />
                         <Label
                             Grid.Row="1"
                             FontSize="Micro"
@@ -127,7 +128,7 @@
                         Padding="8"
                         RowDefinitions="*, *, *"
                         VerticalOptions="CenterAndExpand">
-                        <controls:ExtendedImage Source="ic_rain" />
+                        <controls:ExtendedImage Source="ic_rain" TintColor="{StaticResource VibrantBlue}" />
                         <Label
                             Grid.Row="1"
                             FontSize="Micro"
@@ -174,10 +175,12 @@
                     <controls:ExtendedImage
                         Grid.Column="1"
                         Source="ic_home"
+                        TintColor="{StaticResource PillActiveBackground}"
                         VerticalOptions="Center" />
                     <controls:ExtendedImage
                         Grid.Column="2"
                         Source="ic_magnifying_glass"
+                        TintColor="{StaticResource BedazzledBlue}"
                         VerticalOptions="Center" />
                 </Grid>
             </pancakeView:PancakeView>
