@@ -41,5 +41,7 @@
 	<string>Used to provide weather forecast information.</string>
 	<key>NSUserNotificationsUsageDescription</key>
 	<string>Provide alerts and reminders for updates or news.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to provide weather forecast information.</string>
 </dict>
 </plist>
