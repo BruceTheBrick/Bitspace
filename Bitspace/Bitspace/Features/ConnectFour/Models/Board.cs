@@ -48,6 +48,9 @@ namespace Bitspace.Features
 
         public Piece HasWin()
         {
+            // TODO Implement this to only use the last
+            // piece placed instead of iterating
+            // over the whole board.
             for (var x = 0; x < _numRows; x++)
             {
                 for (var y = 0; y < _numCols; y++)
@@ -172,6 +175,11 @@ namespace Bitspace.Features
             return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
         }
 
+        private bool DiagUpLeftWin(int row, int column)
+        {
+            throw new NotImplementedException();
+        }
+
         private bool HasDiagonalDownWin(int row, int column)
         {
             if (row + NumWinningPieces > _numRows || column + NumWinningPieces > _numCols)
@@ -187,6 +195,11 @@ namespace Bitspace.Features
 
             var uniquePieces = pieces.GetDistinctElements();
             return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
+        }
+
+        private bool DiagDownLeftWin(int row, int col)
+        {
+            throw new NotImplementedException();
         }
 
         private void InitDebugBoard()
