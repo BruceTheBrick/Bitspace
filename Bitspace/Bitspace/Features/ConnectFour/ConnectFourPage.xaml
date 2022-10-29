@@ -17,7 +17,6 @@
                 PlayerTwoColor="HotPink"
                 Rows="{Binding Rows}"
                 UpdateButtonState="{Binding UpdateButtons}" />
-            <Button Command="{Binding CheckWinCommand}" Text="Check for Win" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,7 +1,11 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
+using Bitspace.Controls;
+using Bitspace.Core;
 using Bitspace.Services;
+using Prism.Navigation;
 using PropertyChanged;
-using Xamarin.Forms;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace Bitspace.Features
 {
@@ -12,37 +16,27 @@ namespace Bitspace.Features
             : base(baseService)
         {
             InitializeBoard();
-            PlacePieceCommand = new Command<int>(PlacePiece);
-            CheckWinCommand = new Command(CheckWin);
+            PlacePieceCommand = new AsyncCommand<int>(PlacePiece);
         }
 
         public IBoard Board { get; set; }
         public ICommand PlacePieceCommand { get; set; }
-        public ICommand CheckWinCommand { get; set; }
         public int Columns { get; set; }
         public int Rows { get; set; }
         public bool UpdateButtons { get; set; }
         private bool Player { get; set; }
 
-        private void PlacePiece(int column)
+        private async Task PlacePiece(int column)
         {
-            AlertService.Snackbar("Piece placed!");
             var player = Player ? Piece.One : Piece.Two;
-            Board.PlacePiece(player, column);
-            UpdateButtons = !UpdateButtons;
-            Player = !Player;
-        }
-
-        private void CheckWin()
-        {
-            var winner = Board.HasWin();
-            if (winner != Piece.Empty)
+            var winningPiece = Board.PlacePiece(player, column);
+            if (winningPiece != Piece.Empty)
             {
-                AlertService.Snackbar($"{winner} is the winner!");
-                return;
+                await DisplayWinnerBanner(winningPiece);
             }
 
-            AlertService.Toast("No winner yet...");
+            UpdateButtons = !UpdateButtons;
+            Player = !Player;
         }
 
         private void InitializeBoard()
@@ -51,6 +45,16 @@ namespace Bitspace.Features
             Rows = 6;
             Board = new Board();
             Board.Setup(Rows, Columns);
+        }
+
+        private Task DisplayWinnerBanner(Piece winner)
+        {
+            var name = winner == Piece.One
+                ? "Player one"
+                : "Player two";
+            var message = $"Congratulations {name}, you won!";
+            var parameters = new NavigationParameters { { NavigationConstants.Message, message } };
+            return NavigationService.NavigateAsync(nameof(SnackbarPopup), parameters);
         }
     }
 }

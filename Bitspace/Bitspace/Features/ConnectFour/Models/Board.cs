@@ -12,10 +12,12 @@ namespace Bitspace.Features
         private const int NumWinningPieces = 4;
         private int _numCols;
         private int _numRows;
-        private int _maxIndex;
         private Piece[,] _board;
+        private Piece _lastPieceType;
+        private int _lastPieceRow;
+        private int _lastPieceColumn;
 
-        public void PlacePiece(Piece piece, int column)
+        public Piece PlacePiece(Piece piece, int column)
         {
             if (!ColumnIsInRange(column))
             {
@@ -25,10 +27,12 @@ namespace Bitspace.Features
             var rowNum = GetNextAvailableSpace(column);
             if (rowNum == -1)
             {
-                return;
+                return Piece.Empty;
             }
 
             _board[rowNum, column] = piece;
+            UpdateLastPieceDetails(piece, rowNum, column);
+            return HasWin(rowNum, column);
         }
 
         public bool IsColumnFull(int column)
@@ -46,34 +50,10 @@ namespace Bitspace.Features
             return _board[row, column];
         }
 
-        public Piece HasWin()
-        {
-            // TODO Implement this to only use the last
-            // piece placed instead of iterating
-            // over the whole board.
-            for (var x = 0; x < _numRows; x++)
-            {
-                for (var y = 0; y < _numCols; y++)
-                {
-                    var horizontalWin = HasHorizontalWin(x, y);
-                    var verticalWin = HasVerticalWin(x, y);
-                    var diagUpWin = HasDiagonalUpWin(x, y);
-                    var diagDownWin = HasDiagonalDownWin(x, y);
-                    if (horizontalWin || verticalWin || diagUpWin || diagDownWin)
-                    {
-                        return _board[x, y];
-                    }
-                }
-            }
-
-            return Piece.Empty;
-        }
-
         public void Setup(int numRows = 6, int numCols = 7)
         {
             _numCols = numCols;
             _numRows = numRows;
-            _maxIndex = (_numCols * _numRows) - 1;
             _board = new Piece[numRows, numCols];
         }
 
@@ -113,104 +93,116 @@ namespace Bitspace.Features
             return -1;
         }
 
-        private int GetNextAvailableIndex(int column)
-        {
-            var index = column + (_numCols * (_numRows - 1));
-            return 0;
-        }
-
         private bool ColumnIsInRange(int column)
         {
             return column >= 0 && column <= (_numCols - 1);
         }
 
-        private bool HasHorizontalWin(int row, int column)
+        private Piece HasWin(int row, int colum)
+        {
+            try
+            {
+                for (var x = 0; x < _numRows; x++)
+                {
+                    for (var y = 0; y < _numCols; y++)
+                    {
+                        if (Horizontal(row, colum)
+                            || Vertical(row, colum)
+                            || DiagDownLeft(row, colum)
+                            || DiagDownRight(row, colum)
+                            || DiagUpLeft(row, colum)
+                            || DiagUpRight(row, colum))
+                        {
+                            return _board[row, colum];
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return Piece.Empty;
+            }
+
+            return Piece.Empty;
+        }
+
+        private bool Horizontal(int row, int column)
         {
             if (column + NumWinningPieces > _numCols)
             {
                 return false;
             }
 
-            var pieces = new List<Piece>();
-            for (var i = 0; i < NumWinningPieces; i++)
-            {
-                pieces.Add(_board[row, column + i]);
-            }
-
-            var uniquePieces = pieces.GetDistinctElements();
-            return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
+            return CheckWin(row, column, 0, 1);
         }
 
-        private bool HasVerticalWin(int row, int column)
+        private bool Vertical(int row, int column)
         {
             if (row + NumWinningPieces > _numRows)
             {
                 return false;
             }
 
-            var pieces = new List<Piece>();
-            for (var i = 0; i < NumWinningPieces; i++)
-            {
-                pieces.Add(_board[row + i, column]);
-            }
-
-            var uniquePieces = pieces.GetDistinctElements();
-            return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
+            return CheckWin(row, column, 1, 0);
         }
 
-        private bool HasDiagonalUpWin(int row, int column)
+        private bool DiagUpRight(int row, int column)
         {
             if (row - NumWinningPieces < 0 || column + NumWinningPieces > _numCols)
             {
                 return false;
             }
 
-            var pieces = new List<Piece>();
-            for (var i = 0; i < NumWinningPieces; i++)
+            return CheckWin(row, column, -1, 1);
+        }
+
+        private bool DiagUpLeft(int row, int column)
+        {
+            if (row - NumWinningPieces < 0 || column - NumWinningPieces < 0)
             {
-                pieces.Add(_board[row - i, column + i]);
+                return false;
             }
 
-            var uniquePieces = pieces.GetDistinctElements();
-            return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
+            return CheckWin(row, column, -1, -1);
         }
 
-        private bool DiagUpLeftWin(int row, int column)
-        {
-            throw new NotImplementedException();
-        }
-
-        private bool HasDiagonalDownWin(int row, int column)
+        private bool DiagDownRight(int row, int column)
         {
             if (row + NumWinningPieces > _numRows || column + NumWinningPieces > _numCols)
             {
                 return false;
             }
 
+            return CheckWin(row, column, 1, 1);
+        }
+
+        private bool DiagDownLeft(int row, int column)
+        {
+            if (row + NumWinningPieces > _numRows || column - NumWinningPieces < 0)
+            {
+                return false;
+            }
+
+            return CheckWin(row, column, 1, -1);
+        }
+
+        private bool CheckWin(int row, int column, int rowIncrement, int colIncrement)
+        {
             var pieces = new List<Piece>();
             for (var i = 0; i < NumWinningPieces; i++)
             {
-                pieces.Add(_board[row + i, column + i]);
+                pieces.Add(_board[row + rowIncrement, column + colIncrement]);
             }
 
             var uniquePieces = pieces.GetDistinctElements();
-            return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
+            return uniquePieces.Count() == 1 && uniquePieces.First() == Piece.Empty;
         }
 
-        private bool DiagDownLeftWin(int row, int col)
+        private void UpdateLastPieceDetails(Piece piece, int row, int column)
         {
-            throw new NotImplementedException();
-        }
-
-        private void InitDebugBoard()
-        {
-            _board = new Piece[_numRows, _numCols];
-            _board[0, 0] = Piece.One;
-            _board[1, 0] = Piece.One;
-            _board[2, 0] = Piece.One;
-            _board[3, 0] = Piece.One;
-            _board[4, 0] = Piece.One;
-            _board[5, 0] = Piece.One;
+            _lastPieceType = piece;
+            _lastPieceRow = row;
+            _lastPieceColumn = column;
         }
 
         private void ThrowColumnException(int column)

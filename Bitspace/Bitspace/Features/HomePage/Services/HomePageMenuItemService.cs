@@ -15,7 +15,7 @@ namespace Bitspace.Features
         public ObservableCollection<MenuListItemViewModel> GetMenuItems()
         {
             var items = new ObservableCollection<MenuListItemViewModel>();
-            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.HOMEPAGE_MENUITEM_WEATHER) || true)
+            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.HOMEPAGE_MENUITEM_WEATHER))
             {
                 items.Add(new MenuListItemViewModel(
                     HomePageRegister.WEATHER_FORECAST_TITLE,
@@ -24,7 +24,7 @@ namespace Bitspace.Features
                     nameof(WeatherForecastPage)));
             }
 
-            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.HOMEPAGE_MENUITEM_MARTINI) || true)
+            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.HOMEPAGE_MENUITEM_MARTINI))
             {
                 items.Add(new MenuListItemViewModel(
                     HomePageRegister.MARTINI,
