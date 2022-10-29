@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Bitspace.Core;
-using Bitspace.Resources;
 
 namespace Bitspace.Features
 {
@@ -13,15 +10,12 @@ namespace Bitspace.Features
         private int _numCols;
         private int _numRows;
         private Piece[,] _board;
-        private Piece _lastPieceType;
-        private int _lastPieceRow;
-        private int _lastPieceColumn;
 
         public Piece PlacePiece(Piece piece, int column)
         {
             if (!ColumnIsInRange(column))
             {
-                ThrowColumnException(column);
+                return Piece.Empty;
             }
 
             var rowNum = GetNextAvailableSpace(column);
@@ -31,7 +25,6 @@ namespace Bitspace.Features
             }
 
             _board[rowNum, column] = piece;
-            UpdateLastPieceDetails(piece, rowNum, column);
             return HasWin(rowNum, column);
         }
 
@@ -39,7 +32,7 @@ namespace Bitspace.Features
         {
             if (!ColumnIsInRange(column))
             {
-                ThrowColumnException(column);
+                return false;
             }
 
             return GetNextAvailableSpace(column) == -1;
@@ -62,24 +55,6 @@ namespace Bitspace.Features
             _board = new Piece[_numRows, _numCols];
         }
 
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            for (var y = 0; y < _numRows; y++)
-            {
-                sb.Append("|");
-                for (var x = 0; x < _numCols; x++)
-                {
-                    var element = _board[y, x];
-                    sb.Append($" {element} |");
-                }
-
-                sb.AppendLine();
-            }
-
-            return sb.ToString();
-        }
-
         private int GetNextAvailableSpace(int column)
         {
             for (var i = _numRows - 1; i >= 0; i--)
@@ -100,27 +75,20 @@ namespace Bitspace.Features
 
         private Piece HasWin(int row, int colum)
         {
-            try
+            for (var x = 0; x < _numRows; x++)
             {
-                for (var x = 0; x < _numRows; x++)
+                for (var y = 0; y < _numCols; y++)
                 {
-                    for (var y = 0; y < _numCols; y++)
+                    if (Horizontal(row, colum)
+                        || Vertical(row, colum)
+                        || DiagDownLeft(row, colum)
+                        || DiagDownRight(row, colum)
+                        || DiagUpLeft(row, colum)
+                        || DiagUpRight(row, colum))
                     {
-                        if (Horizontal(row, colum)
-                            || Vertical(row, colum)
-                            || DiagDownLeft(row, colum)
-                            || DiagDownRight(row, colum)
-                            || DiagUpLeft(row, colum)
-                            || DiagUpRight(row, colum))
-                        {
-                            return _board[row, colum];
-                        }
+                        return _board[row, colum];
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                return Piece.Empty;
             }
 
             return Piece.Empty;
@@ -196,19 +164,6 @@ namespace Bitspace.Features
 
             var uniquePieces = pieces.GetDistinctElements();
             return uniquePieces.Count() == 1 && uniquePieces.First() == Piece.Empty;
-        }
-
-        private void UpdateLastPieceDetails(Piece piece, int row, int column)
-        {
-            _lastPieceType = piece;
-            _lastPieceRow = row;
-            _lastPieceColumn = column;
-        }
-
-        private void ThrowColumnException(int column)
-        {
-            var message = string.Format(ConnectFourPageRegister.CF_COL_EX, column, 0, _numCols);
-            throw new ArgumentOutOfRangeException(nameof(column), message);
         }
     }
 }
