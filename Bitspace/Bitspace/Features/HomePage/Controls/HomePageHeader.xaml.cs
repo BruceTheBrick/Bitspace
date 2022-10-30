@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Bitspace.Services;
 using Xamarin.Forms;
@@ -33,6 +34,11 @@ namespace Bitspace.Features
             await HideIcon();
             _ = _animationService.FadeIn(AppIcon, 250);
             await AppIcon.TranslateTo(0, 0, 750, Easing.CubicInOut);
+        }
+
+        private void Frame_OnSizeChanged(object sender, EventArgs e)
+        {
+            Frame.CornerRadius = (float)Frame.Height / 2;
         }
     }
 }

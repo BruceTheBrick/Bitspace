@@ -239,7 +239,7 @@
     <Folder Include="Services\FirebaseAnalytics\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GoogleService-Info.plist" />
+    <BundleResource Include="GoogleService-Info.plist" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

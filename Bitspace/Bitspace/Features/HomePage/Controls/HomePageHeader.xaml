@@ -15,11 +15,13 @@
         HorizontalOptions="CenterAndExpand"
         Text="{x:Static resources:HomePageRegister.WELCOME_TO}" />
     <Frame
+        x:Name="Frame"
         Grid.Row="1"
         BackgroundColor="White"
         CornerRadius="100"
         HorizontalOptions="Center"
-        Opacity="0.3">
+        Opacity="0.3"
+        SizeChanged="Frame_OnSizeChanged">
         <controls:AppIcon x:Name="AppIcon" HeightRequest="60" />
     </Frame>
     <Label
