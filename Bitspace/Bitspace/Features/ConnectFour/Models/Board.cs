@@ -25,7 +25,7 @@ namespace Bitspace.Features
             }
 
             _board[rowNum, column] = piece;
-            return HasWin(rowNum, column);
+            return HasWin();
         }
 
         public bool IsColumnFull(int column)
@@ -55,6 +55,26 @@ namespace Bitspace.Features
             _board = new Piece[_numRows, _numCols];
         }
 
+        private Piece HasWin()
+        {
+            for (var x = 0; x < _numRows; x++)
+            {
+                for (var y = 0; y < _numCols; y++)
+                {
+                    var h = Horizontal(x, y);
+                    var v = Vertical(x, y);
+                    var ur = DiagUpRight(x, y);
+                    var dr = DiagDownRight(x, y);
+                    if (h || v || ur || dr)
+                    {
+                        return _board[x, y];
+                    }
+                }
+            }
+
+            return Piece.Empty;
+        }
+
         private int GetNextAvailableSpace(int column)
         {
             for (var i = _numRows - 1; i >= 0; i--)
@@ -71,27 +91,6 @@ namespace Bitspace.Features
         private bool ColumnIsInRange(int column)
         {
             return column >= 0 && column <= (_numCols - 1);
-        }
-
-        private Piece HasWin(int row, int colum)
-        {
-            for (var x = 0; x < _numRows; x++)
-            {
-                for (var y = 0; y < _numCols; y++)
-                {
-                    if (Horizontal(row, colum)
-                        || Vertical(row, colum)
-                        || DiagDownLeft(row, colum)
-                        || DiagDownRight(row, colum)
-                        || DiagUpLeft(row, colum)
-                        || DiagUpRight(row, colum))
-                    {
-                        return _board[row, colum];
-                    }
-                }
-            }
-
-            return Piece.Empty;
         }
 
         private bool Horizontal(int row, int column)
@@ -163,7 +162,7 @@ namespace Bitspace.Features
             }
 
             var uniquePieces = pieces.GetDistinctElements();
-            return uniquePieces.Count() == 1 && uniquePieces.First() == Piece.Empty;
+            return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
         }
     }
 }
