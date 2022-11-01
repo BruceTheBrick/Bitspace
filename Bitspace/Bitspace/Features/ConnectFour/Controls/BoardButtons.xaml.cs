@@ -45,6 +45,17 @@ namespace Bitspace.Features.Controls
             typeof(Color),
             typeof(BoardButtons));
 
+        public static readonly BindableProperty IsGameOverProperty = BindableProperty.Create(
+            nameof(IsGameOver),
+            typeof(bool),
+            typeof(BoardButtons));
+
+        public bool IsGameOver
+        {
+            get => (bool)GetValue(IsGameOverProperty);
+            set => SetValue(IsGameOverProperty, value);
+        }
+
         public BoardButtons()
         {
             InitializeComponent();
@@ -126,6 +137,7 @@ namespace Bitspace.Features.Controls
                         CommandParameter = y,
                         Text = $"C:{y}, R:{x}",
                         BackgroundColor = GetColor(x, y),
+                        IsEnabled = !IsGameOver,
                     };
                     SetRow(btn, x);
                     SetColumn(btn, y);

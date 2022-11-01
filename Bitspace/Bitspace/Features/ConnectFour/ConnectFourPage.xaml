@@ -13,6 +13,7 @@
                 Columns="{Binding Columns}"
                 Command="{Binding PlacePieceCommand}"
                 HorizontalOptions="Center"
+                IsGameOver="{Binding IsGameOver}"
                 PlayerOneColor="Blue"
                 PlayerTwoColor="HotPink"
                 Rows="{Binding Rows}"

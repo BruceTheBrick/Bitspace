@@ -24,7 +24,8 @@ namespace Bitspace.Features
         public int Columns { get; set; }
         public int Rows { get; set; }
         public bool UpdateButtons { get; set; }
-        private bool Player { get; set; }
+        public bool IsGameOver { get; set; }
+        private bool Player { get; set; } = true;
 
         private async Task PlacePiece(int column)
         {
@@ -32,7 +33,7 @@ namespace Bitspace.Features
             var winningPiece = Board.PlacePiece(player, column);
             if (winningPiece != Piece.Empty)
             {
-                await DisplayWinnerBanner(winningPiece);
+                await FinishGame(winningPiece);
             }
 
             UpdateButtons = !UpdateButtons;
@@ -47,8 +48,9 @@ namespace Bitspace.Features
             Board.Setup(Rows, Columns);
         }
 
-        private Task DisplayWinnerBanner(Piece winner)
+        private Task FinishGame(Piece winner)
         {
+            IsGameOver = true;
             var name = winner == Piece.One
                 ? "Player one"
                 : "Player two";

@@ -158,7 +158,7 @@ namespace Bitspace.Features
             var pieces = new List<Piece>();
             for (var i = 0; i < NumWinningPieces; i++)
             {
-                pieces.Add(_board[row + rowIncrement, column + colIncrement]);
+                pieces.Add(_board[row + (i * rowIncrement), column + (i * colIncrement)]);
             }
 
             var uniquePieces = pieces.GetDistinctElements();
