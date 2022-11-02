@@ -23,6 +23,13 @@ steps:
       versionCodeOption: 'buildid'
       versionCode: "$(androidVersionCode)"
       printFile: true
+      
+  - task: ios-bundle-version@1
+    inputs:
+      sourcePath: 'Bitspace/Bitspace.iOS/Info.plist'
+      versionName: 'buildid'
+      versionCode: '$(Date:yyyyMMdd)$(Rev:.r)'
+      printFile: true
 
   - task: XamarinAndroid@1
     inputs:
