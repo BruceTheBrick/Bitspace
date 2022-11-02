@@ -4,39 +4,51 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace Bitspace.Services;
-
-[ExcludeFromCodeCoverage]
-public class PermissionService : IPermissionService
+namespace Bitspace.Services
 {
-    public async Task<bool> RequestPermission(DevicePermissions permission)
+    [ExcludeFromCodeCoverage]
+    public class PermissionService : IPermissionService
     {
-        return permission switch
+        public async Task<bool> RequestPermission(DevicePermissions permission)
         {
-            DevicePermissions.LOCATION => await RequestLocationPermissions(),
-            DevicePermissions.STORAGE => await RequestStoragePermissions(),
-            _ => false
-        };
-    }
+            switch (permission)
+            {
+                case DevicePermissions.STORAGE:
+                {
+                    return await RequestStoragePermissions();
+                }
 
-    private async Task<bool> RequestLocationPermissions()
-    {
-        try
-        {
-            var result = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
-            return result == PermissionStatus.Granted;
-        }
-        catch (Exception e)
-        {
-            Debug.WriteLine(e.Message);
-            return false;
-        }
-    }
+                case DevicePermissions.LOCATION:
+                {
+                    return await RequestLocationPermissions();
+                }
 
-    private async Task<bool> RequestStoragePermissions()
-    {
-        var readResult = await Permissions.RequestAsync<Permissions.StorageRead>();
-        var writeResult = await Permissions.RequestAsync<Permissions.StorageWrite>();
-        return readResult == PermissionStatus.Granted && writeResult == PermissionStatus.Granted;
+                default:
+                {
+                    return false;
+                }
+            }
+        }
+
+        private async Task<bool> RequestLocationPermissions()
+        {
+            try
+            {
+                var result = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                return result == PermissionStatus.Granted;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        private async Task<bool> RequestStoragePermissions()
+        {
+            var readResult = await Permissions.RequestAsync<Permissions.StorageRead>();
+            var writeResult = await Permissions.RequestAsync<Permissions.StorageWrite>();
+            return readResult == PermissionStatus.Granted && writeResult == PermissionStatus.Granted;
+        }
     }
 }
