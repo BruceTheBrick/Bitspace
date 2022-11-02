@@ -38,6 +38,13 @@ steps:
       apksignerKeyPassword: "$(KEYSTOREPASSWORD)"
       apksignerKeystoreAlias: "Bitspace"
       zipalign: true
+      
+  - task: XamariniOS@2
+    inputs:
+      solutionFile: '**/*iOS*.csproj'
+      configuration: 'Release'
+      packageApp: true
+      runNugetRestore: true
 
   - task: AppCenterDistribute@3
     inputs:
