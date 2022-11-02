@@ -1,6 +1,7 @@
-﻿namespace Bitspace.APIs;
-
-public enum API_Endpoints
+﻿namespace Bitspace.APIs
 {
-    OPEN_WEATHER,
+    public enum API_Endpoints
+    {
+        OPEN_WEATHER,
+    }
 }

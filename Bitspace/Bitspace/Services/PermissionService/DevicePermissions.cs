@@ -1,7 +1,8 @@
-﻿namespace Bitspace.Services;
-
-public enum DevicePermissions
+﻿namespace Bitspace.Services
 {
-    LOCATION,
-    STORAGE,
+    public enum DevicePermissions
+    {
+        LOCATION,
+        STORAGE,
+    }
 }

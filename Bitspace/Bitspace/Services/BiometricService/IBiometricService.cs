@@ -1,13 +1,14 @@
 ﻿using System.Threading.Tasks;
 using Plugin.Fingerprint.Abstractions;
 
-namespace Bitspace.Services;
-
-public interface IBiometricService
+namespace Bitspace.Services
 {
-    public Task<AuthenticationType> BiometricType();
+    public interface IBiometricService
+    {
+        public Task<AuthenticationType> BiometricType();
 
-    public Task<bool> HasBiometrics();
+        public Task<bool> HasBiometrics();
 
-    public Task<FingerprintAuthenticationResult> Authenticate(string title = "Authenticate", string message = "Please authenticate to continue.");
+        public Task<FingerprintAuthenticationResult> Authenticate(string title = "Authenticate", string message = "Please authenticate to continue.");
+    }
 }

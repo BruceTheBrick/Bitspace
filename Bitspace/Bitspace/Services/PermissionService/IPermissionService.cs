@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
 
-namespace Bitspace.Services;
-
-public interface IPermissionService
+namespace Bitspace.Services
 {
-    public Task<bool> RequestPermission(DevicePermissions permission);
+    public interface IPermissionService
+    {
+        public Task<bool> RequestPermission(DevicePermissions permission);
+    }
 }

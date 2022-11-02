@@ -1,6 +1,7 @@
-﻿namespace Bitspace.Interfaces;
-
-public interface IAccessibility
+﻿namespace Bitspace.Interfaces
 {
-    public string AccessibilityName { get; }
+    public interface IAccessibility
+    {
+        public string AccessibilityName { get; }
+    }
 }

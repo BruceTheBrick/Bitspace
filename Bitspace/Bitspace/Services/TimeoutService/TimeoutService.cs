@@ -1,54 +1,55 @@
 ﻿using System;
 
-namespace Bitspace.Services;
-
-public class TimeoutService : ITimeoutService
+namespace Bitspace.Services
 {
-    public DateTime DateTimeLastUpdate { get; set; }
-    public int? ExpiryMinutes { get; set; }
-
-    public bool IsExpired()
+    public class TimeoutService : ITimeoutService
     {
-        if (ExpiryMinutes == null)
+        public DateTime DateTimeLastUpdate { get; set; }
+        public int? ExpiryMinutes { get; set; }
+
+        public bool IsExpired()
         {
-            return false;
+            if (ExpiryMinutes == null)
+            {
+                return false;
+            }
+
+            if (DateTimeLastUpdate.Equals(DateTime.MinValue))
+            {
+                return true;
+            }
+
+            return (DateTime.Now - DateTimeLastUpdate).Minutes > ExpiryMinutes;
         }
 
-        if (DateTimeLastUpdate.Equals(DateTime.MinValue))
+        public bool IsExpired(DateTime dateTimeLastUpdate)
         {
-            return true;
+            if (ExpiryMinutes == null)
+            {
+                return false;
+            }
+
+            if (dateTimeLastUpdate == DateTime.MinValue)
+            {
+                return true;
+            }
+
+            return (DateTime.Now - dateTimeLastUpdate).Minutes > ExpiryMinutes;
         }
 
-        return (DateTime.Now - DateTimeLastUpdate).Minutes > ExpiryMinutes;
-    }
-
-    public bool IsExpired(DateTime dateTimeLastUpdate)
-    {
-        if (ExpiryMinutes == null)
+        public bool IsExpired(DateTime dateTimeLastUpdate, int expiryMinutes)
         {
-            return false;
+            if (dateTimeLastUpdate.Equals(DateTime.MinValue))
+            {
+                return true;
+            }
+
+            return (DateTime.Now - dateTimeLastUpdate).Minutes > expiryMinutes;
         }
 
-        if (dateTimeLastUpdate == DateTime.MinValue)
+        public void Update()
         {
-            return true;
+            DateTimeLastUpdate = DateTime.Now;
         }
-
-        return (DateTime.Now - dateTimeLastUpdate).Minutes > ExpiryMinutes;
-    }
-
-    public bool IsExpired(DateTime dateTimeLastUpdate, int expiryMinutes)
-    {
-        if (dateTimeLastUpdate.Equals(DateTime.MinValue))
-        {
-            return true;
-        }
-
-        return (DateTime.Now - dateTimeLastUpdate).Minutes > expiryMinutes;
-    }
-
-    public void Update()
-    {
-        DateTimeLastUpdate = DateTime.Now;
     }
 }

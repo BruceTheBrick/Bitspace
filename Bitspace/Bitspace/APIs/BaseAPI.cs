@@ -4,32 +4,33 @@ using System.Threading.Tasks;
 using Bitspace.Services;
 using Newtonsoft.Json;
 
-namespace Bitspace.APIs;
-
-public class BaseAPI
+namespace Bitspace.APIs
 {
-    protected readonly IHttpClient _client;
-    protected int TimeoutSeconds = 10;
-
-    [ExcludeFromCodeCoverage]
-    protected BaseAPI(
-        IHttpClient client,
-        IApiKeyManagerService keyManagerService,
-        API_Endpoints api)
+    public class BaseAPI
     {
-        _client = client;
+        protected readonly IHttpClient _client;
+        protected int TimeoutSeconds = 10;
 
-        _client.SetTimeout(TimeoutSeconds);
-        ApiKey = keyManagerService.GetKey(api);
-    }
+        [ExcludeFromCodeCoverage]
+        protected BaseAPI(
+            IHttpClient client,
+            IApiKeyManagerService keyManagerService,
+            API_Endpoints api)
+        {
+            _client = client;
 
-    protected string ApiKey { get; }
+            _client.SetTimeout(TimeoutSeconds);
+            ApiKey = keyManagerService.GetKey(api);
+        }
 
-    protected async Task<Response<T>> ToResponse<T>(HttpResponseMessage rawResponse) where T : class, new()
-    {
-        var content = await rawResponse.Content.ReadAsStringAsync();
-        var data = JsonConvert.DeserializeObject<T>(content) ?? new T();
-        var response = new Response<T>(data, rawResponse.StatusCode, rawResponse.RequestMessage.Method.Method, rawResponse.IsSuccessStatusCode);
-        return response;
+        protected string ApiKey { get; }
+
+        protected async Task<Response<T>> ToResponse<T>(HttpResponseMessage rawResponse) where T : class, new()
+        {
+            var content = await rawResponse.Content.ReadAsStringAsync();
+            var data = JsonConvert.DeserializeObject<T>(content) ?? new T();
+            var response = new Response<T>(data, rawResponse.StatusCode, rawResponse.RequestMessage.Method.Method, rawResponse.IsSuccessStatusCode);
+            return response;
+        }
     }
 }
