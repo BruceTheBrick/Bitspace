@@ -14,8 +14,8 @@ steps:
   - task: NuGetToolInstaller@1
 
   - task: NuGetCommand@2
-    inputs:
-      restoreSolution: "**/*.sln"
+#    inputs:
+#      restoreSolution: "**/*.sln"
 
   - task: android-manifest-version@1
     inputs:
