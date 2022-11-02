@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.Converters;
 using Xamarin.Forms;
 
 namespace Bitspace.Features.Controls
@@ -50,12 +51,6 @@ namespace Bitspace.Features.Controls
             typeof(bool),
             typeof(BoardButtons));
 
-        public bool IsGameOver
-        {
-            get => (bool)GetValue(IsGameOverProperty);
-            set => SetValue(IsGameOverProperty, value);
-        }
-
         public BoardButtons()
         {
             InitializeComponent();
@@ -103,6 +98,12 @@ namespace Bitspace.Features.Controls
             set => SetValue(PlayerTwoColorProperty, value);
         }
 
+        public bool IsGameOver
+        {
+            get => (bool)GetValue(IsGameOverProperty);
+            set => SetValue(IsGameOverProperty, value);
+        }
+
         private static void BoardDimensionsUpdated(BindableObject bindable, object oldvalue, object newvalue)
         {
             if (!(bindable is BoardButtons view))
@@ -131,17 +132,7 @@ namespace Bitspace.Features.Controls
             {
                 for (var y = 0; y < Columns; y++)
                 {
-                    var btn = new Button
-                    {
-                        Command = Command,
-                        CommandParameter = y,
-                        Text = $"C:{y}, R:{x}",
-                        BackgroundColor = GetColor(x, y),
-                        IsEnabled = !IsGameOver,
-                    };
-                    SetRow(btn, x);
-                    SetColumn(btn, y);
-                    Children.Add(btn);
+                    CreateNewButton(x, y);
                 }
             }
         }
@@ -198,6 +189,25 @@ namespace Bitspace.Features.Controls
                 case Piece.Empty:
                     return Color.Default;
             }
+        }
+
+        private void CreateNewButton(int row, int column)
+        {
+            var btn = new Button
+            {
+                Command = Command,
+                CommandParameter = column,
+                Text = $"C:{column}, R:{row}",
+                BackgroundColor = GetColor(row, column),
+            };
+            var binding = new Binding(nameof(IsGameOver))
+            {
+                Converter = new InvertedBoolConverter(),
+            };
+            btn.SetBinding(IsEnabledProperty, binding);
+            SetRow(btn, row);
+            SetColumn(btn, column);
+            Children.Add(btn);
         }
     }
 }
