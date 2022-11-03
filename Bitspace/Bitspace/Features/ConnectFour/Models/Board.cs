@@ -7,9 +7,10 @@ namespace Bitspace.Features
     public class Board : IBoard
     {
         private const int NumWinningPieces = 4;
-        private int _numCols;
-        private int _numRows;
         private Piece[,] _board;
+
+        public int Columns { get; set; }
+        public int Rows { get; set; }
 
         public Piece PlacePiece(Piece piece, int column)
         {
@@ -45,21 +46,21 @@ namespace Bitspace.Features
 
         public void Setup(int numRows = 6, int numCols = 7)
         {
-            _numCols = numCols;
-            _numRows = numRows;
+            Columns = numCols;
+            Rows = numRows;
             _board = new Piece[numRows, numCols];
         }
 
         public void Reset()
         {
-            _board = new Piece[_numRows, _numCols];
+            _board = new Piece[Rows, Columns];
         }
 
         private Piece HasWin()
         {
-            for (var x = 0; x < _numRows; x++)
+            for (var x = 0; x < Rows; x++)
             {
-                for (var y = 0; y < _numCols; y++)
+                for (var y = 0; y < Columns; y++)
                 {
                     var h = Horizontal(x, y);
                     var v = Vertical(x, y);
@@ -77,7 +78,7 @@ namespace Bitspace.Features
 
         private int GetNextAvailableSpace(int column)
         {
-            for (var i = _numRows - 1; i >= 0; i--)
+            for (var i = Rows - 1; i >= 0; i--)
             {
                 if (_board[i, column] == 0)
                 {
@@ -90,12 +91,12 @@ namespace Bitspace.Features
 
         private bool ColumnIsInRange(int column)
         {
-            return column >= 0 && column <= (_numCols - 1);
+            return column >= 0 && column <= (Columns - 1);
         }
 
         private bool Horizontal(int row, int column)
         {
-            if (column + NumWinningPieces > _numCols)
+            if (column + NumWinningPieces > Columns)
             {
                 return false;
             }
@@ -105,7 +106,7 @@ namespace Bitspace.Features
 
         private bool Vertical(int row, int column)
         {
-            if (row + NumWinningPieces > _numRows)
+            if (row + NumWinningPieces > Rows)
             {
                 return false;
             }
@@ -115,7 +116,7 @@ namespace Bitspace.Features
 
         private bool DiagUpRight(int row, int column)
         {
-            if (row - NumWinningPieces < 0 || column + NumWinningPieces > _numCols)
+            if (row - NumWinningPieces < 0 || column + NumWinningPieces > Columns)
             {
                 return false;
             }
@@ -135,7 +136,7 @@ namespace Bitspace.Features
 
         private bool DiagDownRight(int row, int column)
         {
-            if (row + NumWinningPieces > _numRows || column + NumWinningPieces > _numCols)
+            if (row + NumWinningPieces > Rows || column + NumWinningPieces > Columns)
             {
                 return false;
             }
@@ -145,7 +146,7 @@ namespace Bitspace.Features
 
         private bool DiagDownLeft(int row, int column)
         {
-            if (row + NumWinningPieces > _numRows || column - NumWinningPieces < 0)
+            if (row + NumWinningPieces > Rows || column - NumWinningPieces < 0)
             {
                 return false;
             }
