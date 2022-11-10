@@ -18,6 +18,7 @@
                 PlayerTwoColor="HotPink"
                 Rows="{Binding Rows}"
                 UpdateButtonState="{Binding UpdateButtons}" />
+            <Button Command="{Binding UndoCommand}" Text="Undo" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

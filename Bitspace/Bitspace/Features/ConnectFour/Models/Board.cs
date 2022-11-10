@@ -8,11 +8,14 @@ namespace Bitspace.Features
     {
         private const int NumWinningPieces = 4;
         private Piece[,] _board;
+        private Stack<KeyValuePair<int, int>> _moves;
+        private int _lastColumn = -1;
+        private int _lastRow = -1;
 
         public int Columns { get; set; }
         public int Rows { get; set; }
 
-        public Piece PlacePiece(Piece piece, int column)
+        public Piece PlacePiece(int column, Piece piece)
         {
             if (!ColumnIsInRange(column))
             {
@@ -26,7 +29,19 @@ namespace Bitspace.Features
             }
 
             _board[rowNum, column] = piece;
+            UpdateLastPiece(rowNum, column);
             return HasWin();
+        }
+
+        public void Undo()
+        {
+            if (_moves.Count == 0)
+            {
+                return;
+            }
+
+            var move = _moves.Pop();
+            _board[move.Key, move.Value] = Piece.Empty;
         }
 
         public bool IsColumnFull(int column)
@@ -49,6 +64,7 @@ namespace Bitspace.Features
             Columns = numCols;
             Rows = numRows;
             _board = new Piece[numRows, numCols];
+            _moves = new Stack<KeyValuePair<int, int>>();
         }
 
         public void Reset()
@@ -164,6 +180,11 @@ namespace Bitspace.Features
 
             var uniquePieces = pieces.GetDistinctElements();
             return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
+        }
+
+        private void UpdateLastPiece(int row, int column)
+        {
+            _moves.Push(new KeyValuePair<int, int>(row, column));
         }
     }
 }
