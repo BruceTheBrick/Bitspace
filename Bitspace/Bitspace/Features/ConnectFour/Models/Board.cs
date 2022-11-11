@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Bitspace.Core;
+using PropertyChanged;
 
 namespace Bitspace.Features
 {
+    [AddINotifyPropertyChangedInterface]
     public class Board : IBoard
     {
         private const int NumWinningPieces = 4;
@@ -52,6 +55,19 @@ namespace Bitspace.Features
             }
 
             return GetNextAvailableSpace(column) == -1;
+        }
+
+        public bool IsFull()
+        {
+            for (var i = 0; i < Columns; i++)
+            {
+                if (!IsColumnFull(i))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public Piece GetPiece(int row, int column)

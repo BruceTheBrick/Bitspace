@@ -17,13 +17,16 @@ namespace Bitspace.Features
             : base(baseService)
         {
             InitializeBoard();
+            Martini = new ConnectFourEngine();
+            Martini.Initialize(Piece.Two);
             PlacePieceCommand = new AsyncCommand<int>(PlacePiece);
             UndoCommand = new Command(Undo);
         }
 
-        public IBoard Board { get; set; }
         public ICommand PlacePieceCommand { get; }
         public ICommand UndoCommand { get; }
+        public IBoard Board { get; set; }
+        public IConnectFourEngine Martini { get; }
         public int Columns { get; set; }
         public int Rows { get; set; }
         public bool UpdateButtons { get; set; }
@@ -32,15 +35,8 @@ namespace Bitspace.Features
 
         private async Task PlacePiece(int column)
         {
-            var player = Player ? Piece.One : Piece.Two;
-            var winningPiece = Board.PlacePiece(column, player);
-            if (winningPiece != Piece.Empty)
-            {
-                await FinishGame(winningPiece);
-            }
-
-            UpdateButtons = !UpdateButtons;
-            Player = !Player;
+            await MakeMove(column, Piece.One);
+            await MakeMove(Martini.GetNextMove(Board, Piece.Two), Piece.Two);
         }
 
         private void InitializeBoard()
@@ -55,6 +51,16 @@ namespace Bitspace.Features
         {
             Board.Undo();
             UpdateButtons = !UpdateButtons;
+        }
+
+        private async Task MakeMove(int column, Piece player)
+        {
+            var win = Board.PlacePiece(column, player);
+            UpdateButtons = !UpdateButtons;
+            if (win != Piece.Empty)
+            {
+                await FinishGame(win);
+            }
         }
 
         private Task FinishGame(Piece winner)

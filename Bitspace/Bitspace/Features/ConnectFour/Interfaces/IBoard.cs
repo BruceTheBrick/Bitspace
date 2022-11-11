@@ -7,6 +7,7 @@
         public Piece PlacePiece(int column, Piece piece);
         public void Undo();
         public bool IsColumnFull(int column);
+        public bool IsFull();
         public Piece GetPiece(int row, int column);
         public void Setup(int numRows = 6, int numCols = 7);
         public void Reset();

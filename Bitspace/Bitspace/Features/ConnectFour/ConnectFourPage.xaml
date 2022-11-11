@@ -6,19 +6,21 @@
     xmlns:controls="clr-namespace:Bitspace.Features.Controls;assembly=Bitspace"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     x:DataType="features:ConnectFourPageViewModel">
-    <ContentPage.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <controls:BoardButtons
-                Board="{Binding Board}"
-                Columns="{Binding Columns}"
-                Command="{Binding PlacePieceCommand}"
-                HorizontalOptions="Center"
-                IsGameOver="{Binding IsGameOver}"
-                PlayerOneColor="Blue"
-                PlayerTwoColor="HotPink"
-                Rows="{Binding Rows}"
-                UpdateButtonState="{Binding UpdateButtons}" />
-            <Button Command="{Binding UndoCommand}" Text="Undo" />
-        </StackLayout>
-    </ContentPage.Content>
+    <StackLayout
+        Padding="16"
+        BackgroundColor="DarkRed"
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="CenterAndExpand">
+        <controls:BoardButtons
+            Board="{Binding Board}"
+            Columns="{Binding Columns}"
+            Command="{Binding PlacePieceCommand}"
+            HorizontalOptions="Center"
+            IsGameOver="{Binding IsGameOver}"
+            PlayerOneColor="Blue"
+            PlayerTwoColor="HotPink"
+            Rows="{Binding Rows}"
+            UpdateButtonState="{Binding UpdateButtons}" />
+        <Button Command="{Binding UndoCommand}" Text="Undo" />
+    </StackLayout>
 </ContentPage>

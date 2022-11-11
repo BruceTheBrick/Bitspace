@@ -1,4 +1,6 @@
-﻿namespace Bitspace.Features
+﻿using System;
+
+namespace Bitspace.Features
 {
     public class ConnectFourEngine : IConnectFourEngine
     {
@@ -29,7 +31,7 @@
 
                     board.PlacePiece(i, player);
                     var score = Mini(board, GetDepth(), int.MinValue, int.MaxValue, GetOtherPlayer(player));
-                    if (score > bestScore)
+                    if (score >= bestScore)
                     {
                         bestScore = score;
                         column = i;
@@ -50,7 +52,7 @@
 
                     board.PlacePiece(i, player);
                     var score = Max(board, GetDepth(), int.MinValue, int.MaxValue, player);
-                    if (score < bestScore)
+                    if (score <= bestScore)
                     {
                         bestScore = score;
                         column = i;
@@ -63,25 +65,70 @@
             return column;
         }
 
-        public int Evaluate(IBoard board, Piece player)
-        {
-            if (player == _player)
-            {
-                // return Max(board, Get);
-            }
-
-            // return Mini(board, GetDepth());
-            return 1;
-        }
-
         public int Mini(IBoard board, int depth, int alpha, int beta, Piece player)
         {
-            throw new System.NotImplementedException();
+            if (depth == 0 || board.IsFull())
+            {
+                return Evaluate(board, depth);
+            }
+
+            var min = int.MinValue;
+            for (var i = 0; i < board.Columns; i++)
+            {
+                if (board.IsColumnFull(i))
+                {
+                    continue;
+                }
+
+                board.PlacePiece(i, player);
+                var score = Max(board, depth - 1, alpha, beta, GetOtherPlayer(player));
+                min = Math.Min(min, score);
+                beta = Math.Min(beta, min);
+                board.Undo();
+                if (beta >= alpha)
+                {
+                    break;
+                }
+            }
+
+            return min;
         }
 
         public int Max(IBoard board, int depth, int alpha, int beta, Piece player)
         {
-            throw new System.NotImplementedException();
+            if (depth == 0 || board.IsFull())
+            {
+                return Evaluate(board, depth);
+            }
+
+            var max = int.MinValue;
+            for (var i = 0; i < board.Columns; i++)
+            {
+                if (board.IsColumnFull(i))
+                {
+                    continue;
+                }
+
+                board.PlacePiece(i, player);
+
+                var score = Mini(board, depth - 1, alpha, beta, GetOtherPlayer(player));
+                max = Math.Max(max, score);
+                alpha = Math.Max(alpha, max);
+                board.Undo();
+                if (beta <= alpha)
+                {
+                    break;
+                }
+            }
+
+            return max;
+        }
+
+        public int Evaluate(IBoard board, int depth)
+        {
+            var maximisingPlayerScore = CurrentPiecesScore(board, _player);
+            var minimizingPlayerScore = CurrentPiecesScore(board, GetOtherPlayer(_player));
+            return maximisingPlayerScore - minimizingPlayerScore;
         }
 
         private int CurrentPiecesScore(IBoard board, Piece player)
@@ -98,14 +145,12 @@
                 }
             }
 
-            return player == _player
-                ? score
-                : score * -1;
+            return score;
         }
 
         private int GetDepth()
         {
-            return 3;
+            return 1;
         }
 
         private Piece GetOtherPlayer(Piece player)

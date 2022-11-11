@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.Converters;
 using Xamarin.Forms;
@@ -187,7 +188,7 @@ namespace Bitspace.Features.Controls
                     return PlayerTwoColor;
                 default:
                 case Piece.Empty:
-                    return Color.Default;
+                    return Color.Gray;
             }
         }
 
@@ -197,7 +198,7 @@ namespace Bitspace.Features.Controls
             {
                 Command = Command,
                 CommandParameter = column,
-                Text = $"C:{column}, R:{row}",
+                // Text = $"C:{column}, R:{row}",
                 BackgroundColor = GetColor(row, column),
             };
             var binding = new Binding(nameof(IsGameOver))
@@ -205,9 +206,20 @@ namespace Bitspace.Features.Controls
                 Converter = new InvertedBoolConverter(),
             };
             btn.SetBinding(IsEnabledProperty, binding);
+            btn.SizeChanged += BtnOnSizeChanged;
             SetRow(btn, row);
             SetColumn(btn, column);
             Children.Add(btn);
+        }
+
+        private void BtnOnSizeChanged(object sender, EventArgs e)
+        {
+            if (!(sender is Button btn))
+            {
+                return;
+            }
+
+            btn.CornerRadius = (int)btn.Height / 2;
         }
     }
 }
