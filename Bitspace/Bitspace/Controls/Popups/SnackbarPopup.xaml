@@ -23,22 +23,24 @@
             VerticalOptions="FillAndExpand">
             <controls:ExtendedImage
                 AutomationProperties.IsInAccessibleTree="False"
-                HeightRequest="24"
+                HeightRequest="18"
                 IsVisible="{Binding IsLeftIconVisible}"
                 Source="{Binding Icon}"
                 Style="{StaticResource SnackbarIcon}"
-                WidthRequest="24" />
+                TintColor="White"
+                WidthRequest="18" />
             <Label
                 AutomationProperties.IsInAccessibleTree="False"
                 Style="{StaticResource SnackbarLabel}"
                 Text="{Binding Message}" />
             <controls:ExtendedImage
                 AutomationProperties.IsInAccessibleTree="False"
-                HeightRequest="24"
+                HeightRequest="18"
                 IsVisible="{Binding IsRightIconVisible}"
                 Source="{Binding Icon}"
                 Style="{StaticResource SnackbarIcon}"
-                WidthRequest="24" />
+                TintColor="White"
+                WidthRequest="18" />
         </StackLayout>
         <Frame.GestureRecognizers>
             <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_OnSwiped" />
