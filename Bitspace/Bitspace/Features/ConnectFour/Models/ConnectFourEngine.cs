@@ -11,6 +11,7 @@ namespace Bitspace.Features
         public void Initialize(Piece player)
         {
             _player = player;
+            PrecomputedIndexes.Init();
             _precomputedIndexes = PrecomputedIndexes.GetStandardPrecomputedIndexes();
         }
 
@@ -18,7 +19,6 @@ namespace Bitspace.Features
         {
             int bestScore;
             var column = -1;
-            // var isMaximising = player != _player;
 
             if (_player == player)
             {
@@ -146,6 +146,7 @@ namespace Bitspace.Features
                 }
             }
 
+            score += numOfTwos(board, _player) * ConnectFourScoreConstants.TWO_CONSECUTIVE_VALUE;
             return score;
         }
 
@@ -159,6 +160,44 @@ namespace Bitspace.Features
             return player == Piece.One
                 ? Piece.Two
                 : Piece.One;
+        }
+
+        private int numOfTwos(IBoard board, Piece player)
+        {
+            var sum = 0;
+            for (var i = 0; i < PrecomputedIndexes.twoInARow.Length; i++)
+            {
+                if (board.GetPiece(i, 0) != player)
+                {
+                    continue;
+                }
+
+                try
+                {
+                    for (var j = 0; j < PrecomputedIndexes.twoInARow[i].Count; j++)
+                    {
+                        var coords = IndexToCoordinates(board, PrecomputedIndexes.twoInARow[i][j]);
+
+                        if (board.GetPiece(coords.Item1, coords.Item2) == player)
+                        {
+                            sum++;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    // ignored
+                }
+            }
+
+            return sum;
+        }
+
+        private (int, int) IndexToCoordinates(IBoard board, int num)
+        {
+            var col = num % board.Columns;
+            var row = num % board.Rows;
+            return (row, col);
         }
     }
 }

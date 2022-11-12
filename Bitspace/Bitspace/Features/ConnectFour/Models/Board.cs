@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Bitspace.Core;
-using PropertyChanged;
 
 namespace Bitspace.Features
 {
-    [AddINotifyPropertyChangedInterface]
     public class Board : IBoard
     {
         private const int NumWinningPieces = 4;
@@ -83,6 +81,7 @@ namespace Bitspace.Features
         public void Reset()
         {
             _board = new Piece[Rows, Columns];
+            _moves.Clear();
         }
 
         private Piece HasWin()
