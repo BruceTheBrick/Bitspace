@@ -21,17 +21,28 @@ namespace Bitspace.Features
             Martini.Initialize(Piece.Two);
             PlacePieceCommand = new AsyncCommand<int>(PlacePiece);
             UndoCommand = new Command(Undo);
+            SnackbarCommand = new AsyncCommand(Snackbar);
+        }
+
+        private Task Snackbar()
+        {
+            var parameters = new NavigationParameters
+            {
+                { NavigationConstants.Message, "Debug message here!" },
+                { NavigationConstants.Icon, "ic_info" },
+            };
+            return NavigationService.NavigateAsync(nameof(SnackbarPopup), parameters);
         }
 
         public ICommand PlacePieceCommand { get; }
         public ICommand UndoCommand { get; }
+        public IAsyncCommand SnackbarCommand { get; }
         public IBoard Board { get; set; }
         public IConnectFourEngine Martini { get; }
         public int Columns { get; set; }
         public int Rows { get; set; }
         public bool UpdateButtons { get; set; }
         public bool IsGameOver { get; set; }
-        private bool Player { get; set; } = true;
 
         private async Task PlacePiece(int column)
         {
@@ -70,13 +81,13 @@ namespace Bitspace.Features
 
             UpdateButtons = !UpdateButtons;
 
-            if (win != Piece.Empty)
+            if (win == Piece.Empty)
             {
-                await FinishGame(win);
-                return false;
+                return true;
             }
 
-            return true;
+            await FinishGame(win);
+            return false;
         }
 
         private Task FinishGame(Piece winner)

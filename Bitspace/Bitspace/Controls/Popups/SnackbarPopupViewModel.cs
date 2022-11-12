@@ -12,6 +12,7 @@ namespace Bitspace.Controls
     public class SnackbarPopupViewModel : BasePageViewModel
     {
         private readonly ITimerService _timerService;
+        private Timer _timer;
         public SnackbarPopupViewModel(ITimerService timerService, IBaseService baseService)
             : base(baseService)
         {
@@ -46,17 +47,7 @@ namespace Bitspace.Controls
             }
 
             SetIconVisibility();
-            _timerService.Timer(6000, TimerOnElapsed).Start();
-        }
-
-        private Task Dismiss()
-        {
-            return NavigationService.GoBack();
-        }
-
-        private async void TimerOnElapsed(object sender, ElapsedEventArgs e)
-        {
-            await Dismiss();
+            InitializeTimer();
         }
 
         private void SetIconVisibility()
@@ -68,6 +59,23 @@ namespace Bitspace.Controls
 
             IsLeftIconVisible = Position == Position.LEFT;
             IsRightIconVisible = Position == Position.RIGHT;
+        }
+
+        private void InitializeTimer()
+        {
+            _timer = _timerService.Timer(6000, TimerOnElapsed);
+            _timer.Start();
+        }
+
+        private Task Dismiss()
+        {
+            _timer.Stop();
+            return NavigationService.GoBack();
+        }
+
+        private async void TimerOnElapsed(object sender, ElapsedEventArgs e)
+        {
+            await Dismiss();
         }
     }
 }

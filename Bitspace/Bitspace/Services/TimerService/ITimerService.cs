@@ -1,4 +1,3 @@
-using System;
 using System.Timers;
 
 namespace Bitspace.Services.TimerService

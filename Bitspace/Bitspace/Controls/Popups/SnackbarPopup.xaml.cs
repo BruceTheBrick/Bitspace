@@ -31,12 +31,12 @@ namespace Bitspace.Controls
 
         private Task SlideLeft()
         {
-            return Frame.TranslateTo(Frame.Width, 0, 200);
+            return Frame.TranslateTo(-Frame.Width, 0, 200);
         }
 
         private Task SlideRight()
         {
-            return Frame.TranslateTo(-Frame.Width, 0, 200);
+            return Frame.TranslateTo(Frame.Width, 0, 200);
         }
     }
 }

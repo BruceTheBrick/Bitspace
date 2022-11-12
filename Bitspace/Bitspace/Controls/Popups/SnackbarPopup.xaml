@@ -13,20 +13,36 @@
         x:Name="Frame"
         Margin="8,0,8,20"
         Padding="12"
+        AutomationProperties.IsInAccessibleTree="True"
+        AutomationProperties.Name="{Binding Message}"
         Style="{StaticResource SnackbarStyle}">
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout
+            HorizontalOptions="FillAndExpand"
+            Orientation="Horizontal"
+            Spacing="12"
+            VerticalOptions="FillAndExpand">
             <controls:ExtendedImage
+                AutomationProperties.IsInAccessibleTree="False"
+                HeightRequest="24"
                 IsVisible="{Binding IsLeftIconVisible}"
                 Source="{Binding Icon}"
-                Style="{StaticResource SnackbarIcon}" />
-            <Label Style="{StaticResource SnackbarLabel}" Text="{Binding Message}" />
+                Style="{StaticResource SnackbarIcon}"
+                WidthRequest="24" />
+            <Label
+                AutomationProperties.IsInAccessibleTree="False"
+                Style="{StaticResource SnackbarLabel}"
+                Text="{Binding Message}" />
             <controls:ExtendedImage
+                AutomationProperties.IsInAccessibleTree="False"
+                HeightRequest="24"
                 IsVisible="{Binding IsRightIconVisible}"
                 Source="{Binding Icon}"
-                Style="{StaticResource SnackbarIcon}" />
+                Style="{StaticResource SnackbarIcon}"
+                WidthRequest="24" />
         </StackLayout>
         <Frame.GestureRecognizers>
             <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_OnSwiped" />
+            <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_OnSwiped" />
         </Frame.GestureRecognizers>
     </Frame>
 </pages:PopupPage>
