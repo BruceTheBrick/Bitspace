@@ -35,8 +35,10 @@ namespace Bitspace.Features
 
         private async Task PlacePiece(int column)
         {
-            await MakeMove(column, Piece.One);
-            await MakeMove(Martini.GetNextMove(Board, Piece.Two), Piece.Two);
+            if (await MakeMove(column, Piece.One))
+            {
+                await MakeMove(Martini.GetNextMove(Board, Piece.Two), Piece.Two);
+            }
         }
 
         private void InitializeBoard()
@@ -53,14 +55,28 @@ namespace Bitspace.Features
             UpdateButtons = !UpdateButtons;
         }
 
-        private async Task MakeMove(int column, Piece player)
+        private async Task<bool> MakeMove(int column, Piece player)
         {
+            if (IsGameOver)
+            {
+                return false;
+            }
+
             var win = Board.PlacePiece(column, player);
+            if (win == Piece.Invalid)
+            {
+                return false;
+            }
+
             UpdateButtons = !UpdateButtons;
+
             if (win != Piece.Empty)
             {
                 await FinishGame(win);
+                return false;
             }
+
+            return true;
         }
 
         private Task FinishGame(Piece winner)

@@ -5,5 +5,6 @@
         Empty,
         One,
         Two,
+        Invalid,
     }
 }

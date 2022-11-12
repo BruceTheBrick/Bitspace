@@ -1,9 +1,11 @@
+using System.Threading.Tasks;
 using System.Timers;
 using Bitspace.Core;
 using Bitspace.Features;
 using Bitspace.Services;
 using Bitspace.Services.TimerService;
 using Prism.Navigation;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace Bitspace.Controls
 {
@@ -14,7 +16,10 @@ namespace Bitspace.Controls
             : base(baseService)
         {
             _timerService = timerService;
+            DismissCommand = new AsyncCommand(Dismiss);
         }
+
+        public IAsyncCommand DismissCommand { get; }
 
         public string Message { get; set; }
         public string Icon { get; set; }
@@ -44,9 +49,14 @@ namespace Bitspace.Controls
             _timerService.Timer(6000, TimerOnElapsed).Start();
         }
 
+        private Task Dismiss()
+        {
+            return NavigationService.GoBack();
+        }
+
         private async void TimerOnElapsed(object sender, ElapsedEventArgs e)
         {
-            await NavigationService.GoBack();
+            await Dismiss();
         }
 
         private void SetIconVisibility()

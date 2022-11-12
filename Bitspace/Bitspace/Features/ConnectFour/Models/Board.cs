@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Bitspace.Core;
 using PropertyChanged;
@@ -12,8 +11,6 @@ namespace Bitspace.Features
         private const int NumWinningPieces = 4;
         private Piece[,] _board;
         private Stack<KeyValuePair<int, int>> _moves;
-        private int _lastColumn = -1;
-        private int _lastRow = -1;
 
         public int Columns { get; set; }
         public int Rows { get; set; }
@@ -22,13 +19,13 @@ namespace Bitspace.Features
         {
             if (!ColumnIsInRange(column))
             {
-                return Piece.Empty;
+                return Piece.Invalid;
             }
 
             var rowNum = GetNextAvailableSpace(column);
             if (rowNum == -1)
             {
-                return Piece.Empty;
+                return Piece.Invalid;
             }
 
             _board[rowNum, column] = piece;

@@ -198,7 +198,6 @@ namespace Bitspace.Features.Controls
             {
                 Command = Command,
                 CommandParameter = column,
-                // Text = $"C:{column}, R:{row}",
                 BackgroundColor = GetColor(row, column),
             };
             var binding = new Binding(nameof(IsGameOver))

@@ -1,4 +1,5 @@
 ﻿using System;
+using Bitspace.Features.Constants;
 
 namespace Bitspace.Features
 {
@@ -15,11 +16,11 @@ namespace Bitspace.Features
 
         public int GetNextMove(IBoard board, Piece player)
         {
-            var isMaximising = player == _player;
-            var bestScore = 0;
+            int bestScore;
             var column = -1;
+            // var isMaximising = player != _player;
 
-            if (isMaximising)
+            if (_player == player)
             {
                 bestScore = int.MinValue;
                 for (var i = 0; i < board.Columns; i++)
@@ -39,27 +40,27 @@ namespace Bitspace.Features
 
                     board.Undo();
                 }
+
+                return column;
             }
-            else
+
+            bestScore = int.MaxValue;
+            for (var i = 0; i < board.Columns; i++)
             {
-                bestScore = int.MaxValue;
-                for (var i = 0; i < board.Columns; i++)
+                if (board.IsColumnFull(i))
                 {
-                    if (board.IsColumnFull(i))
-                    {
-                        continue;
-                    }
-
-                    board.PlacePiece(i, player);
-                    var score = Max(board, GetDepth(), int.MinValue, int.MaxValue, player);
-                    if (score <= bestScore)
-                    {
-                        bestScore = score;
-                        column = i;
-                    }
-
-                    board.Undo();
+                    continue;
                 }
+
+                board.PlacePiece(i, player);
+                var score = Max(board, GetDepth(), int.MinValue, int.MaxValue, player);
+                if (score <= bestScore)
+                {
+                    bestScore = score;
+                    column = i;
+                }
+
+                board.Undo();
             }
 
             return column;
@@ -126,9 +127,9 @@ namespace Bitspace.Features
 
         public int Evaluate(IBoard board, int depth)
         {
-            var maximisingPlayerScore = CurrentPiecesScore(board, _player);
-            var minimizingPlayerScore = CurrentPiecesScore(board, GetOtherPlayer(_player));
-            return maximisingPlayerScore - minimizingPlayerScore;
+            var score = CurrentPiecesScore(board, _player);
+            score -= (int)(CurrentPiecesScore(board, GetOtherPlayer(_player)) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
+            return score;
         }
 
         private int CurrentPiecesScore(IBoard board, Piece player)
@@ -150,7 +151,7 @@ namespace Bitspace.Features
 
         private int GetDepth()
         {
-            return 1;
+            return 0;
         }
 
         private Piece GetOtherPlayer(Piece player)

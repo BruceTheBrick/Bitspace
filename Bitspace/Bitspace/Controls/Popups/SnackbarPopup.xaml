@@ -10,6 +10,7 @@
     BackgroundInputTransparent="True"
     CloseWhenBackgroundIsClicked="False">
     <Frame
+        x:Name="Frame"
         Margin="8,0,8,20"
         Padding="12"
         Style="{StaticResource SnackbarStyle}">
@@ -24,5 +25,8 @@
                 Source="{Binding Icon}"
                 Style="{StaticResource SnackbarIcon}" />
         </StackLayout>
+        <Frame.GestureRecognizers>
+            <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_OnSwiped" />
+        </Frame.GestureRecognizers>
     </Frame>
 </pages:PopupPage>
