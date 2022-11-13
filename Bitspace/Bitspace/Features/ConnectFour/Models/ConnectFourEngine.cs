@@ -146,7 +146,7 @@ namespace Bitspace.Features
                 }
             }
 
-            score += numOfTwos(board, _player) * ConnectFourScoreConstants.TWO_CONSECUTIVE_VALUE;
+            // score += numOfTwos(board, _player) * ConnectFourScoreConstants.TWO_CONSECUTIVE_VALUE;
             return score;
         }
 
@@ -167,26 +167,20 @@ namespace Bitspace.Features
             var sum = 0;
             for (var i = 0; i < PrecomputedIndexes.twoInARow.Length; i++)
             {
-                if (board.GetPiece(i, 0) != player)
+                var coords = IndexToCoordinates(board, i);
+                if (board.GetPiece(coords.Item1, coords.Item2) != player)
                 {
                     continue;
                 }
 
-                try
+                for (var j = 0; j < PrecomputedIndexes.twoInARow[i].Count; j++)
                 {
-                    for (var j = 0; j < PrecomputedIndexes.twoInARow[i].Count; j++)
-                    {
-                        var coords = IndexToCoordinates(board, PrecomputedIndexes.twoInARow[i][j]);
+                    coords = IndexToCoordinates(board, PrecomputedIndexes.twoInARow[i][j]);
 
-                        if (board.GetPiece(coords.Item1, coords.Item2) == player)
-                        {
-                            sum++;
-                        }
+                    if (board.GetPiece(coords.Item1, coords.Item2) == player)
+                    {
+                        sum++;
                     }
-                }
-                catch (Exception e)
-                {
-                    // ignored
                 }
             }
 
@@ -195,8 +189,8 @@ namespace Bitspace.Features
 
         private (int, int) IndexToCoordinates(IBoard board, int num)
         {
-            var col = num % board.Columns;
-            var row = num % board.Rows;
+            var col = (num % board.Columns) - 1;
+            var row = (num % board.Rows) - 1;
             return (row, col);
         }
     }

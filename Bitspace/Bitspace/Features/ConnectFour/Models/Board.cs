@@ -67,6 +67,16 @@ namespace Bitspace.Features
 
         public Piece GetPiece(int row, int column)
         {
+            if (!RowIsInRange(row))
+            {
+                return Piece.Invalid;
+            }
+
+            if (!IsColumnFull(column) || IsColumnFull(column))
+            {
+                return Piece.Invalid;
+            }
+
             return _board[row, column];
         }
 
@@ -120,6 +130,11 @@ namespace Bitspace.Features
         private bool ColumnIsInRange(int column)
         {
             return column >= 0 && column <= (Columns - 1);
+        }
+
+        private bool RowIsInRange(int row)
+        {
+            return row >= 0 && row <= (Rows - 1);
         }
 
         private bool Horizontal(int row, int column)
