@@ -22,6 +22,5 @@
             Rows="{Binding Rows}"
             UpdateButtonState="{Binding UpdateButtons}" />
         <Button Command="{Binding UndoCommand}" Text="Undo" />
-        <Button Command="{Binding SnackbarCommand}" Text="Snackbar" />
     </StackLayout>
 </ContentPage>

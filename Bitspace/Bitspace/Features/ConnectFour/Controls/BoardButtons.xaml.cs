@@ -144,7 +144,8 @@ namespace Bitspace.Features.Controls
             {
                 var row = GetRow(btn);
                 var col = GetColumn(btn);
-                btn.BackgroundColor = GetColor(row, col);
+                var color = GetColor(row, col);
+                btn.BackgroundColor = color;
             }
         }
 
@@ -187,7 +188,6 @@ namespace Bitspace.Features.Controls
                 case Piece.Two:
                     return PlayerTwoColor;
                 default:
-                case Piece.Empty:
                     return Color.Gray;
             }
         }

@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using Bitspace.Core;
+using PropertyChanged;
 
 namespace Bitspace.Features
 {
+    [AddINotifyPropertyChangedInterface]
     public class Board : IBoard
     {
         private const int NumWinningPieces = 4;
@@ -28,6 +32,7 @@ namespace Bitspace.Features
 
             _board[rowNum, column] = piece;
             UpdateLastPiece(rowNum, column);
+            Debug.WriteLine(ToString());
             return HasWin();
         }
 
@@ -67,12 +72,7 @@ namespace Bitspace.Features
 
         public Piece GetPiece(int row, int column)
         {
-            if (!RowIsInRange(row))
-            {
-                return Piece.Invalid;
-            }
-
-            if (!IsColumnFull(column) || IsColumnFull(column))
+            if (!RowIsInRange(row) || !ColumnIsInRange(column))
             {
                 return Piece.Invalid;
             }
@@ -92,6 +92,31 @@ namespace Bitspace.Features
         {
             _board = new Piece[Rows, Columns];
             _moves.Clear();
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            for (var y = 0; y < Rows; y++)
+            {
+                sb.Append("|");
+                for (var x = 0; x < Columns; x++)
+                {
+                    var element = _board[y, x];
+                    var symbol = element switch
+                    {
+                        Piece.One => "X",
+                        Piece.Two => "O",
+                        _ => " "
+                    };
+
+                    sb.Append($" {symbol} |");
+                }
+
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
         }
 
         private Piece HasWin()
