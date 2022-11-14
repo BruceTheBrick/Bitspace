@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Bitspace.Features.GameOverPopupPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
+    xmlns:pages="http://rotorgames.com"
+    xmlns:resources="clr-namespace:Bitspace.Resources;assembly=Bitspace"
+    x:DataType="features:GameOverPopupPageViewModel"
+    CloseWhenBackgroundIsClicked="False">
+    <Frame
+        Margin="{StaticResource Base}"
+        Padding="{StaticResource BaseThickness}"
+        VerticalOptions="Center">
+        <Grid ColumnDefinitions="*, *" RowDefinitions="auto, auto, auto, *">
+            <Label
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Center"
+                Text="{x:Static resources:ConnectFourRegister.CF_CONGRATS}" />
+            <Label
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Center"
+                Text="{Binding Winner}" />
+            <Label
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Center"
+                Text="{x:Static resources:ConnectFourRegister.CF_PLAY_AGAIN}" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="0"
+                Command="{Binding PlayAgainCommand}"
+                Text="{x:Static resources:ConnectFourRegister.CF_NEW_GAME}" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="1"
+                Command="{Binding QuitCommand}"
+                Text="{x:Static resources:ConnectFourRegister.CF_QUIT}" />
+        </Grid>
+    </Frame>
+</pages:PopupPage>

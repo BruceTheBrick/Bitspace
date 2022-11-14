@@ -2,9 +2,9 @@
 {
     public enum Piece
     {
-        Empty,
-        One,
-        Two,
-        Invalid,
+        EMPTY,
+        ONE,
+        TWO,
+        INVALID,
     }
 }

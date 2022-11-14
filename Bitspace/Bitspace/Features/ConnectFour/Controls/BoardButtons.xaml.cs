@@ -183,9 +183,9 @@ namespace Bitspace.Features.Controls
             var piece = Board.GetPiece(row, col);
             switch (piece)
             {
-                case Piece.One:
+                case Piece.ONE:
                     return PlayerOneColor;
-                case Piece.Two:
+                case Piece.TWO:
                     return PlayerTwoColor;
                 default:
                     return Color.Gray;

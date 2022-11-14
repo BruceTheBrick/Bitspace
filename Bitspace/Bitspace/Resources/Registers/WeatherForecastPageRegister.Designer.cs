@@ -22,21 +22,21 @@ namespace Bitspace.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class WeatherForecastPageRegister {
+    public class WeatherForecastPageRegister {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal WeatherForecastPageRegister() {
+        public WeatherForecastPageRegister() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bitspace.Registers.WeatherForecastPageRegister", typeof(WeatherForecastPageRegister).Assembly);
@@ -51,7 +51,7 @@ namespace Bitspace.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Humidity.
         /// </summary>
-        internal static string HUMIDITY {
+        public static string HUMIDITY {
             get {
                 return ResourceManager.GetString("HUMIDITY", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Pressure.
         /// </summary>
-        internal static string PRESSURE {
+        public static string PRESSURE {
             get {
                 return ResourceManager.GetString("PRESSURE", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to UV Index.
         /// </summary>
-        internal static string UVIndex {
+        public static string UVIndex {
             get {
                 return ResourceManager.GetString("UVIndex", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Wind Speed.
         /// </summary>
-        internal static string WIND_SPEED {
+        public static string WIND_SPEED {
             get {
                 return ResourceManager.GetString("WIND_SPEED", resourceCulture);
             }

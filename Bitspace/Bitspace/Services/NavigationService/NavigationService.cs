@@ -35,5 +35,10 @@ namespace Bitspace.Services
         {
             return _navigationService.GoBackAsync();
         }
+
+        public Task<INavigationResult> GoBack(INavigationParameters parameters)
+        {
+            return _navigationService.GoBackAsync(parameters);
+        }
     }
 }

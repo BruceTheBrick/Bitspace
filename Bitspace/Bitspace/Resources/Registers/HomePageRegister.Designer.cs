@@ -21,21 +21,21 @@ namespace Bitspace.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class HomePageRegister {
+    public class HomePageRegister {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal HomePageRegister() {
+        public HomePageRegister() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bitspace.Resources.Registers.HomePageRegister", typeof(HomePageRegister).Assembly);
@@ -50,7 +50,7 @@ namespace Bitspace.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -62,7 +62,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to BITSPACE.
         /// </summary>
-        internal static string BITSPACE {
+        public static string BITSPACE {
             get {
                 return ResourceManager.GetString("BITSPACE", resourceCulture);
             }
@@ -71,7 +71,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Martini.
         /// </summary>
-        internal static string MARTINI {
+        public static string MARTINI {
             get {
                 return ResourceManager.GetString("MARTINI", resourceCulture);
             }
@@ -80,7 +80,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to QR Code Scanner.
         /// </summary>
-        internal static string QR_CODE_SCANNER_TITLE {
+        public static string QR_CODE_SCANNER_TITLE {
             get {
                 return ResourceManager.GetString("QR_CODE_SCANNER_TITLE", resourceCulture);
             }
@@ -89,7 +89,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Weather Forecast.
         /// </summary>
-        internal static string WEATHER_FORECAST_TITLE {
+        public static string WEATHER_FORECAST_TITLE {
             get {
                 return ResourceManager.GetString("WEATHER_FORECAST_TITLE", resourceCulture);
             }
@@ -98,7 +98,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Welcome to.
         /// </summary>
-        internal static string WELCOME_TO {
+        public static string WELCOME_TO {
             get {
                 return ResourceManager.GetString("WELCOME_TO", resourceCulture);
             }

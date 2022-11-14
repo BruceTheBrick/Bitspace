@@ -2,14 +2,14 @@
 {
     public interface IBoard
     {
-        public int Columns { get; set; }
-        public int Rows { get; set; }
-        public Piece PlacePiece(int column, Piece piece);
-        public void Undo();
+        public int Columns { get; }
+        public int Rows { get; }
+        public void PlacePiece(int column, Piece piece);
+        public Piece GetPiece(int row, int column);
+        public Piece HasWin();
         public bool IsColumnFull(int column);
         public bool IsFull();
-        public Piece GetPiece(int row, int column);
-        public void Setup(int numRows = 6, int numCols = 7);
+        public void Undo();
         public void Reset();
     }
 }

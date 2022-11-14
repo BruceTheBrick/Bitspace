@@ -52,6 +52,7 @@ namespace Bitspace
             containerRegistry.RegisterForNavigation<QRCodeScannerPage, QRCodeScannerPageViewModel>();
             containerRegistry.RegisterForNavigation<ConnectFourPage, ConnectFourPageViewModel>();
             containerRegistry.RegisterForNavigation<SnackbarPopup, SnackbarPopupViewModel>();
+            containerRegistry.RegisterForNavigation<GameOverPopupPage, GameOverPopupPageViewModel>();
         }
 
         private void RegisterAPIs(IContainerRegistry containerRegistry)

@@ -157,9 +157,9 @@ namespace Bitspace.Features
 
         private Piece GetOtherPlayer(Piece player)
         {
-            return player == Piece.One
-                ? Piece.Two
-                : Piece.One;
+            return player == Piece.ONE
+                ? Piece.TWO
+                : Piece.ONE;
         }
 
         private int numOfTwos(IBoard board, Piece player)

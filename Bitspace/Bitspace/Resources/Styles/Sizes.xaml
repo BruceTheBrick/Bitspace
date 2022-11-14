@@ -3,6 +3,10 @@
     x:Class="Bitspace.Resources.Sizes"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <CornerRadius x:Key="BaseCornerRadius">16</CornerRadius>
+    <x:Double x:Key="Base">16</x:Double>
+
+    <CornerRadius x:Key="BaseCornerRadius" />
     <CornerRadius x:Key="Rounded">64</CornerRadius>
+
+    <Thickness x:Key="BaseThickness">16</Thickness>
 </ResourceDictionary>

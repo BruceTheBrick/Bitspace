@@ -3,25 +3,19 @@ using Bitspace.Services;
 using Prism.AppModel;
 using Prism.Mvvm;
 using Prism.Navigation;
+using PropertyChanged;
 
 namespace Bitspace.Features
 {
+    [AddINotifyPropertyChangedInterface]
     public class BasePageViewModel : BindableBase, IInitialize, INavigationAware, IDestructible, IPageLifecycleAware
     {
-        private string _title;
-
         protected BasePageViewModel(IBaseService baseService)
         {
             NavigationService = baseService.NavigationService;
             AccessibilityService = baseService.AccessibilityService;
             AnalyticsService = baseService.AnalyticsService;
             AlertService = baseService.AlertService;
-        }
-
-        public string Title
-        {
-            get => _title;
-            set => SetProperty(ref _title, value);
         }
 
         public bool IsBusy { get; set; }
@@ -33,7 +27,7 @@ namespace Bitspace.Features
 
         public virtual void Initialize(INavigationParameters parameters)
         {
-            InitializeAsync(parameters).ConfigureAwait(false);
+            _ = InitializeAsync(parameters);
         }
 
         public virtual Task InitializeAsync(INavigationParameters parameters)
@@ -43,10 +37,22 @@ namespace Bitspace.Features
 
         public virtual void OnNavigatedFrom(INavigationParameters parameters)
         {
+            _ = OnNavigatedFromAsync(parameters);
+        }
+
+        public virtual Task OnNavigatedFromAsync(INavigationParameters parameters)
+        {
+            return Task.CompletedTask;
         }
 
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
+            _ = OnNavigatedToAsync(parameters);
+        }
+
+        public virtual Task OnNavigatedToAsync(INavigationParameters parameters)
+        {
+            return Task.CompletedTask;
         }
 
         public virtual void Destroy()

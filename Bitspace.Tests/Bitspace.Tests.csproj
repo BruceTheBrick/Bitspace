@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bitspace\Bitspace\Bitspace.csproj" />
+    <Reference Include="..\Bitspace\Bitspce\Resources"/>
   </ItemGroup>
 
 </Project>
