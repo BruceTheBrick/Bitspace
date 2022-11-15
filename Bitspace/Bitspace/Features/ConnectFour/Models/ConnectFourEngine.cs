@@ -12,7 +12,7 @@ namespace Bitspace.Features
             _scoringService = scoringService;
         }
 
-        public void Initialize(Piece player)
+        public void SetPlayer(Piece player)
         {
             _player = player;
         }
@@ -21,7 +21,7 @@ namespace Bitspace.Features
         {
             var bestScore = int.MinValue;
             var move = -1;
-            for (var x = 0; x < board.Rows; x++)
+            for (var x = 0; x < board.Columns; x++)
             {
                 if (board.IsColumnFull(x))
                 {

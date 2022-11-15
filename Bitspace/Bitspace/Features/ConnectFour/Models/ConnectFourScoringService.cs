@@ -1,3 +1,5 @@
+using Bitspace.Features.Constants;
+
 namespace Bitspace.Features
 {
     public class ConnectFourScoringService : IConnectFourScoringService
@@ -11,13 +13,13 @@ namespace Bitspace.Features
 
         public int GetScore(IBoard board, bool isMaximisingPlayer)
         {
+            var score = 0;
             var player = isMaximisingPlayer
                 ? Piece.ONE
                 : Piece.TWO;
-            var score = GetBaseScore(board, player);
-            return isMaximisingPlayer
-                ? score
-                : score * -1;
+            score += GetBaseScore(board, player);
+            score += GetWinnerScore(board, player);
+            return score;
         }
 
         private int GetBaseScore(IBoard board, Piece player)
@@ -36,7 +38,12 @@ namespace Bitspace.Features
 
             return score;
         }
-        
+
+        private int GetWinnerScore(IBoard board, Piece player)
+        {
+            return board.HasWin() == player ? ConnectFourScoreConstants.WIN_VALUE : 0;
+        }
+
         private int numOfTwos(IBoard board, Piece player)
         {
             var sum = 0;

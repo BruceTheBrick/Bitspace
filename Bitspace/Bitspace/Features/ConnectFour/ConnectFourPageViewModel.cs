@@ -17,7 +17,7 @@ namespace Bitspace.Features
             Martini = martini;
             Columns = 7;
             Rows = 6;
-            Martini.Initialize(Piece.TWO);
+            Martini.SetPlayer(Piece.TWO);
             PlacePieceCommand = new AsyncCommand<int>(PlacePiece);
             UndoCommand = new Command(Undo);
         }
@@ -61,13 +61,14 @@ namespace Bitspace.Features
 
             Board.PlacePiece(column, player);
             var winningPiece = Board.HasWin();
+            UpdateButtons = !UpdateButtons;
             if (winningPiece == Piece.INVALID || winningPiece == Piece.EMPTY)
             {
                 return;
             }
 
             Winner = winningPiece;
-            UpdateButtons = !UpdateButtons;
+            IsGameOver = true;
         }
 
         private Task FinishGame()
