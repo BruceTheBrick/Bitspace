@@ -10,11 +10,13 @@ namespace Bitspace.Features
 {
     public class ConnectFourPageViewModel : BasePageViewModel
     {
-        public ConnectFourPageViewModel(IBaseService baseService)
+        public ConnectFourPageViewModel(IBoard board, IConnectFourEngine martini, IBaseService baseService)
             : base(baseService)
         {
-            InitializeBoard();
-            Martini = new ConnectFourEngine();
+            Board = board;
+            Martini = martini;
+            Columns = 7;
+            Rows = 6;
             Martini.Initialize(Piece.TWO);
             PlacePieceCommand = new AsyncCommand<int>(PlacePiece);
             UndoCommand = new Command(Undo);
@@ -50,19 +52,6 @@ namespace Bitspace.Features
             MakeMove(Martini.GetNextMove(Board, Piece.TWO), Piece.TWO);
         }
 
-        private void InitializeBoard()
-        {
-            Columns = 7;
-            Rows = 6;
-            Board = new Board(Rows, Columns);
-        }
-
-        private void Undo()
-        {
-            Board.Undo();
-            UpdateButtons = !UpdateButtons;
-        }
-
         private void MakeMove(int column, Piece player)
         {
             if (IsGameOver)
@@ -96,6 +85,12 @@ namespace Bitspace.Features
             Board.Reset();
             UpdateButtons = !UpdateButtons;
             IsGameOver = false;
+        }
+
+        private void Undo()
+        {
+            Board.Undo();
+            UpdateButtons = !UpdateButtons;
         }
     }
 }

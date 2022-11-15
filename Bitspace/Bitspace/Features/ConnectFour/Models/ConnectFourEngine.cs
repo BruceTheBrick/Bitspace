@@ -1,158 +1,102 @@
 ﻿using System;
-using Bitspace.Features.Constants;
 
 namespace Bitspace.Features
 {
     public class ConnectFourEngine : IConnectFourEngine
     {
-        private int[][] _precomputedIndexes;
+        private readonly IConnectFourScoringService _scoringService;
         private Piece _player;
+
+        public ConnectFourEngine(IConnectFourScoringService scoringService)
+        {
+            _scoringService = scoringService;
+        }
 
         public void Initialize(Piece player)
         {
             _player = player;
-            PrecomputedIndexes.Init();
-            _precomputedIndexes = PrecomputedIndexes.GetStandardPrecomputedIndexes();
         }
 
         public int GetNextMove(IBoard board, Piece player)
         {
-            int bestScore;
-            var column = -1;
+            var bestScore = int.MinValue;
+            var move = -1;
+            for (var x = 0; x < board.Rows; x++)
+            {
+                if (board.IsColumnFull(x))
+                {
+                    continue;
+                }
 
-            if (_player == player)
+                board.PlacePiece(x, player);
+                var score = Minimax(board, GetDepth(), true);
+                board.Undo();
+                if (score <= bestScore)
+                {
+                    continue;
+                }
+
+                bestScore = score;
+                move = x;
+            }
+
+            return move;
+        }
+
+        public int Minimax(IBoard board, int depth, bool isMaximising)
+        {
+            if (depth == 0 || board.IsFull())
+            {
+                return Evaluate(board, isMaximising);
+            }
+
+            int bestScore;
+            if (isMaximising)
             {
                 bestScore = int.MinValue;
-                for (var i = 0; i < board.Columns; i++)
+                for (var x = 0; x < board.Rows; x++)
                 {
-                    if (board.IsColumnFull(i))
+                    if (board.IsColumnFull(x))
                     {
                         continue;
                     }
 
-                    board.PlacePiece(i, player);
-                    var score = Mini(board, GetDepth(), int.MinValue, int.MaxValue, GetOtherPlayer(player));
-                    if (score >= bestScore)
-                    {
-                        bestScore = score;
-                        column = i;
-                    }
-
+                    board.PlacePiece(x, _player);
+                    var score = Minimax(board, depth - 1, false);
                     board.Undo();
+                    bestScore = Math.Max(score, bestScore);
                 }
 
-                return column;
+                return bestScore;
             }
 
             bestScore = int.MaxValue;
-            for (var i = 0; i < board.Columns; i++)
-            {
-                if (board.IsColumnFull(i))
-                {
-                    continue;
-                }
-
-                board.PlacePiece(i, player);
-                var score = Max(board, GetDepth(), int.MinValue, int.MaxValue, player);
-                if (score <= bestScore)
-                {
-                    bestScore = score;
-                    column = i;
-                }
-
-                board.Undo();
-            }
-
-            return column;
-        }
-
-        public int Mini(IBoard board, int depth, int alpha, int beta, Piece player)
-        {
-            if (depth == 0 || board.IsFull())
-            {
-                return Evaluate(board, depth);
-            }
-
-            var min = int.MinValue;
-            for (var i = 0; i < board.Columns; i++)
-            {
-                if (board.IsColumnFull(i))
-                {
-                    continue;
-                }
-
-                board.PlacePiece(i, player);
-                var score = Max(board, depth - 1, alpha, beta, GetOtherPlayer(player));
-                min = Math.Min(min, score);
-                beta = Math.Min(beta, min);
-                board.Undo();
-                if (beta >= alpha)
-                {
-                    break;
-                }
-            }
-
-            return min;
-        }
-
-        public int Max(IBoard board, int depth, int alpha, int beta, Piece player)
-        {
-            if (depth == 0 || board.IsFull())
-            {
-                return Evaluate(board, depth);
-            }
-
-            var max = int.MinValue;
-            for (var i = 0; i < board.Columns; i++)
-            {
-                if (board.IsColumnFull(i))
-                {
-                    continue;
-                }
-
-                board.PlacePiece(i, player);
-
-                var score = Mini(board, depth - 1, alpha, beta, GetOtherPlayer(player));
-                max = Math.Max(max, score);
-                alpha = Math.Max(alpha, max);
-                board.Undo();
-                if (beta <= alpha)
-                {
-                    break;
-                }
-            }
-
-            return max;
-        }
-
-        public int Evaluate(IBoard board, int depth)
-        {
-            var score = CurrentPiecesScore(board, _player);
-            score -= (int)(CurrentPiecesScore(board, GetOtherPlayer(_player)) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
-            return score;
-        }
-
-        private int CurrentPiecesScore(IBoard board, Piece player)
-        {
-            var score = 0;
             for (var x = 0; x < board.Rows; x++)
             {
-                for (var y = 0; y < board.Columns; y++)
+                if (board.IsColumnFull(x))
                 {
-                    if (board.GetPiece(x, y) == player)
-                    {
-                        score += _precomputedIndexes[x][y];
-                    }
+                    continue;
                 }
+
+                board.PlacePiece(x, GetOtherPlayer(_player));
+                var score = Minimax(board, depth - 1, true);
+                board.Undo();
+                bestScore = Math.Min(score, bestScore);
             }
 
-            // score += numOfTwos(board, _player) * ConnectFourScoreConstants.TWO_CONSECUTIVE_VALUE;
-            return score;
+            return bestScore;
+        }
+
+        public int Evaluate(IBoard board, bool isMaximising)
+        {
+            var currentPlayerScore = _scoringService.GetScore(board, true);
+            var minimisingPlayerScore = _scoringService.GetScore(board, false);
+            return currentPlayerScore - minimisingPlayerScore;
         }
 
         private int GetDepth()
         {
-            return 0;
+            return 1;
         }
 
         private Piece GetOtherPlayer(Piece player)
@@ -160,38 +104,6 @@ namespace Bitspace.Features
             return player == Piece.ONE
                 ? Piece.TWO
                 : Piece.ONE;
-        }
-
-        private int numOfTwos(IBoard board, Piece player)
-        {
-            var sum = 0;
-            for (var i = 0; i < PrecomputedIndexes.twoInARow.Length; i++)
-            {
-                var coords = IndexToCoordinates(board, i);
-                if (board.GetPiece(coords.Item1, coords.Item2) != player)
-                {
-                    continue;
-                }
-
-                for (var j = 0; j < PrecomputedIndexes.twoInARow[i].Count; j++)
-                {
-                    coords = IndexToCoordinates(board, PrecomputedIndexes.twoInARow[i][j]);
-
-                    if (board.GetPiece(coords.Item1, coords.Item2) == player)
-                    {
-                        sum++;
-                    }
-                }
-            }
-
-            return sum;
-        }
-
-        private (int, int) IndexToCoordinates(IBoard board, int num)
-        {
-            var col = (num % board.Columns) - 1;
-            var row = (num % board.Rows) - 1;
-            return (row, col);
         }
     }
 }

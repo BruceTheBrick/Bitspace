@@ -40,6 +40,8 @@ namespace Bitspace
             containerRegistry.Register<INavigationService, NavigationService>();
             containerRegistry.RegisterSingleton<IEssentialsVersion, EssentialsVersion>();
             containerRegistry.Register<IBoard, Board>();
+            containerRegistry.Register<IConnectFourEngine, ConnectFourEngine>();
+            containerRegistry.Register<IConnectFourScoringService, ConnectFourScoringService>();
             containerRegistry.Register<ITimerService, TimerService>();
             containerRegistry.Register<IDeviceLocation, DeviceLocationService>();
         }

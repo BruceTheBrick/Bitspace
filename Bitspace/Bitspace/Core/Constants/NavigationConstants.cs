@@ -3,6 +3,7 @@ using Xamarin.Forms.PlatformConfiguration.TizenSpecific;
 
 namespace Bitspace.Core
 {
+    [ExcludeFromCodeCoverage]
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:Fields should be private", Justification = "NavigationConstants need static scoping")]
     public static class NavigationConstants
     {
