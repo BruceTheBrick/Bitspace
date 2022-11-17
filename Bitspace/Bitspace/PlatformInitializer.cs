@@ -18,28 +18,27 @@ namespace Bitspace
         public PlatformInitializer(IContainerRegistry containerRegistry)
         {
             RegisterServices(containerRegistry);
-            RegisterAPIs(containerRegistry);
+            RegisterApis(containerRegistry);
             RegisterDataLayers(containerRegistry);
             RegisterNavigation(containerRegistry);
         }
 
         private void RegisterServices(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
             containerRegistry.RegisterPopupNavigationService();
+            containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
+            containerRegistry.RegisterSingleton<IApiKeyManagerService, ApiKeyManagerService>();
+            containerRegistry.RegisterSingleton<IEssentialsVersion, EssentialsVersion>();
             containerRegistry.Register<IBaseService, BaseService>();
             containerRegistry.Register<IHttpClient, ExtendedHttpClient>();
             containerRegistry.Register<IHomePageMenuItems, HomePageMenuItemService>();
             containerRegistry.Register<IBiometricService, BiometricService>();
             containerRegistry.Register<ITimeoutService, TimeoutService>();
-            containerRegistry.RegisterSingleton<IApiKeyManagerService, ApiKeyManagerService>();
             containerRegistry.Register<IPermissionService, PermissionService>();
             containerRegistry.Register<IAnimationService, AnimationService>();
             containerRegistry.Register<IAlertService, AlertService>();
             containerRegistry.Register<IAccessibilityService, AccessibilityService>();
             containerRegistry.Register<INavigationService, NavigationService>();
-            containerRegistry.RegisterSingleton<IEssentialsVersion, EssentialsVersion>();
-            containerRegistry.Register<IBoard, Board>();
             containerRegistry.Register<IConnectFourEngine, ConnectFourEngine>();
             containerRegistry.Register<IConnectFourScoringService, ConnectFourScoringService>();
             containerRegistry.Register<ITimerService, TimerService>();
@@ -57,7 +56,7 @@ namespace Bitspace
             containerRegistry.RegisterForNavigation<GameOverPopupPage, GameOverPopupPageViewModel>();
         }
 
-        private void RegisterAPIs(IContainerRegistry containerRegistry)
+        private void RegisterApis(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IOpenWeatherAPI, OpenWeatherAPI>();
         }

@@ -89,6 +89,7 @@ namespace Bitspace.Features
 
         public int Evaluate(IBoard board, bool isMaximising)
         {
+            return _scoringService.GetScore(board, isMaximising);
             var currentPlayerScore = _scoringService.GetScore(board, true);
             var minimisingPlayerScore = _scoringService.GetScore(board, false);
             return currentPlayerScore - minimisingPlayerScore;
@@ -96,7 +97,7 @@ namespace Bitspace.Features
 
         private int GetDepth()
         {
-            return 1;
+            return 0;
         }
 
         private Piece GetOtherPlayer(Piece player)

@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Bitspace.Features;
 using Xamarin.Forms.PlatformConfiguration.TizenSpecific;
 
 namespace Bitspace.Core
@@ -22,6 +23,6 @@ namespace Bitspace.Core
 
         #endregion
 
-        public static string Homepage = $"/{nameof(NavigationPage)}/{nameof(Homepage)}";
+        public static string Homepage = $"/{nameof(NavigationPage)}/{nameof(HomePage)}";
     }
 }

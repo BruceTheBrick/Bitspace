@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <x:Double x:Key="Base">16</x:Double>
 
-    <CornerRadius x:Key="BaseCornerRadius" />
+    <x:Single x:Key="BaseCornerRadius">16</x:Single>
     <CornerRadius x:Key="Rounded">64</CornerRadius>
 
     <Thickness x:Key="BaseThickness">16</Thickness>

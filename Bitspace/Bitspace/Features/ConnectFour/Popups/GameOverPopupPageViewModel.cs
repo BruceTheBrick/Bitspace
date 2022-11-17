@@ -35,9 +35,10 @@ namespace Bitspace.Features
             return NavigationService.GoBack(parameters);
         }
 
-        private Task Quit()
+        private async Task Quit()
         {
-            return NavigationService.NavigateAsync(NavigationConstants.Homepage);
+            var t = await NavigationService.NavigateAsync(NavigationConstants.Homepage);
+            // return NavigationService.NavigateAsync(NavigationConstants.Homepage);
         }
     }
 }

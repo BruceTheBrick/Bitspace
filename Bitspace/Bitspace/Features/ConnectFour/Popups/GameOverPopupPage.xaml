@@ -11,6 +11,7 @@
     <Frame
         Margin="{StaticResource Base}"
         Padding="{StaticResource BaseThickness}"
+        CornerRadius="{StaticResource BaseCornerRadius}"
         VerticalOptions="Center">
         <Grid ColumnDefinitions="*, *" RowDefinitions="auto, auto, auto, *">
             <Label

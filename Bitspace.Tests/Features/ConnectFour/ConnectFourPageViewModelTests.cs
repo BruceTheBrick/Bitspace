@@ -16,13 +16,15 @@ namespace Bitspace.Tests.Features.ConnectFour
         private void OnNavigatedTo_ShouldResetBoard_WhenResetIsPassed()
         {
             //Arrange
+            var mockBoard = Mocker.GetMock<IBoard>();
+            Sut.Board = mockBoard.Object;
             var parameters = new NavigationParameters { { NavigationConstants.Reset, true } };
 
             //Act
             Sut.OnNavigatedTo(parameters);
 
             //Assert
-            Mocker.GetMock<IBoard>().Verify(x => x.Reset(), Times.Once);
+            mockBoard.Verify(x => x.Reset());
         }
 
 
@@ -61,12 +63,14 @@ namespace Bitspace.Tests.Features.ConnectFour
         private void UndoCommand_ShouldCallBoardUndo()
         {
             //Arrange
+            var mockBoard = Mocker.GetMock<IBoard>();
+            Sut.Board = mockBoard.Object;
 
             //Act
             Sut.UndoCommand.Execute(null);
 
             //Assert
-            Mocker.GetMock<IBoard>().Verify(x => x.Undo(), Times.Once);
+            mockBoard.Verify(x => x.Undo());
         }
 
         [Fact]

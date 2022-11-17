@@ -14,11 +14,11 @@ namespace Bitspace.Features
         public int GetScore(IBoard board, bool isMaximisingPlayer)
         {
             var score = 0;
-            var player = isMaximisingPlayer
+            var player = !isMaximisingPlayer
                 ? Piece.ONE
                 : Piece.TWO;
             score += GetBaseScore(board, player);
-            score += GetWinnerScore(board, player);
+            // score += GetWinnerScore(board, player);
             return score;
         }
 
@@ -68,7 +68,7 @@ namespace Bitspace.Features
 
             return sum;
         }
-        
+
         private (int, int) IndexToCoordinates(IBoard board, int num)
         {
             var col = (num % board.Columns) - 1;

@@ -24,4 +24,7 @@
     <data name="SCREEN_VIEW" xml:space="preserve">
         <value>SCREEN_VIEW</value>
     </data>
+    <data name="CF_ENGINE_MOVE_DURATION" xml:space="preserve">
+        <value>CF_ENGINE_MOVE_DURATION</value>
+    </data>
 </root>
