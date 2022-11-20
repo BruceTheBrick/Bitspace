@@ -5,21 +5,31 @@ namespace Bitspace.Features
     public class ConnectFourScoringService : IConnectFourScoringService
     {
         private readonly int[][] _precomputedIndexes;
+        private Piece _maximisingPlayer;
         public ConnectFourScoringService()
         {
             PrecomputedIndexes.Init();
             _precomputedIndexes = PrecomputedIndexes.GetStandardPrecomputedIndexes();
         }
 
+        public void SetMaximisingPlayer(Piece player)
+        {
+            _maximisingPlayer = player;
+        }
+
         public int GetScore(IBoard board, bool isMaximisingPlayer)
         {
             var score = 0;
-            var player = !isMaximisingPlayer
-                ? Piece.ONE
-                : Piece.TWO;
+            var player = isMaximisingPlayer
+                ? _maximisingPlayer
+                : _maximisingPlayer.GetOtherPiece();
             score += GetBaseScore(board, player);
-            // score += GetWinnerScore(board, player);
             return score;
+        }
+
+        public int GetValue(int row, int column)
+        {
+            return _precomputedIndexes[row][column];
         }
 
         private int GetBaseScore(IBoard board, Piece player)

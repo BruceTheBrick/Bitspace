@@ -52,10 +52,15 @@ namespace Bitspace.Features.Controls
             typeof(bool),
             typeof(BoardButtons));
 
+        private readonly int[][] _precomputedIndexes;
+
         public BoardButtons()
         {
             InitializeComponent();
+            PrecomputedIndexes.Init();
+            _precomputedIndexes = PrecomputedIndexes.GetStandardPrecomputedIndexes();
         }
+
 
         public int Columns
         {
@@ -199,6 +204,7 @@ namespace Bitspace.Features.Controls
                 Command = Command,
                 CommandParameter = column,
                 BackgroundColor = GetColor(row, column),
+                Text = _precomputedIndexes[row][column].ToString(),
             };
             var binding = new Binding(nameof(IsGameOver))
             {

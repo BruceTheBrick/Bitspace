@@ -15,6 +15,7 @@ namespace Bitspace.Features
         public void SetPlayer(Piece player)
         {
             _player = player;
+            _scoringService.SetMaximisingPlayer(player);
         }
 
         public int GetNextMove(IBoard board, Piece player)
