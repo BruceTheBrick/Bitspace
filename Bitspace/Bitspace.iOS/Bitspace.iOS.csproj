@@ -101,6 +101,7 @@
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Effects\AccessibilityTraitsEffect.cs" />
     <Compile Include="Effects\ImageTintEffect.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
