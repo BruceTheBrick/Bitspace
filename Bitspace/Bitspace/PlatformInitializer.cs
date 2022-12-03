@@ -21,6 +21,7 @@ namespace Bitspace
             RegisterApis(containerRegistry);
             RegisterDataLayers(containerRegistry);
             RegisterNavigation(containerRegistry);
+            RegisterPlaygroundPagesForNavigation(containerRegistry);
         }
 
         private void RegisterServices(IContainerRegistry containerRegistry)
@@ -54,6 +55,12 @@ namespace Bitspace
             containerRegistry.RegisterForNavigation<ConnectFourPage, ConnectFourPageViewModel>();
             containerRegistry.RegisterForNavigation<SnackbarPopup, SnackbarPopupViewModel>();
             containerRegistry.RegisterForNavigation<GameOverPopupPage, GameOverPopupPageViewModel>();
+        }
+
+        private void RegisterPlaygroundPagesForNavigation(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<PlaygroundPage, PlaygroundPageViewModel>();
+            containerRegistry.RegisterForNavigation<AccessibilityPlaygroundPage, AccessibilityPlaygroundPageViewModel>();
         }
 
         private void RegisterApis(IContainerRegistry containerRegistry)

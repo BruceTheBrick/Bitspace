@@ -103,8 +103,10 @@
   <ItemGroup>
     <Compile Include="Effects\AccessibilityTraitsEffect.cs" />
     <Compile Include="Effects\ImageTintEffect.cs" />
+    <Compile Include="Helpers\AccessibilityImplementation.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\AccessibilityStackLayoutRenderer.cs" />
     <Compile Include="Services\RemoteConfigService\RemoteConfigService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />

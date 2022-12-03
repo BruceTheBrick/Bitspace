@@ -25,7 +25,7 @@ namespace Bitspace.iOS.Effects
 
         private void SetTraits()
         {
-            var traits = AccessibilityTraits.
+            // var traits = AccessibilityTraits.
         }
     }
 }

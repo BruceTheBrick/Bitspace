@@ -9,17 +9,16 @@ namespace Bitspace.Effects
         protected AccessibilityTraits()
             : base(EffectHelper.GetLocalName<AccessibilityTraits>())
         {
-
-        public static readonly BindableProperty TraitsProperty = BindableProperty.Create(
-            nameof(Traits),
-            typeof(TraitsEnum),
-            typeof(AccessibilityTraits));
-
-        public TraitsEnum Traits
-        {
-            get => (TraitsEnum)GetValue(TraitsProperty);
-            set => SetValue(TraitsProperty, value);
+            // public static readonly BindableProperty TraitsProperty = BindableProperty.Create(
+            //     nameof(Traits),
+            //     typeof(TraitsEnum),
+            //     typeof(AccessibilityTraits));
+            //
+            // public TraitsEnum Traits
+            // {
+            //     get => (TraitsEnum)GetValue(TraitsProperty);
+            //     set => SetValue(TraitsProperty, value);
+            // }
         }
     }
-}
 }

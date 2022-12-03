@@ -79,6 +79,10 @@
       <DependentUpon>GameOverPopupPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Features\Playground\Accessibility\AccessibilityPlaygroundPage.xaml.cs">
+      <DependentUpon>AccessibilityPlaygroundPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

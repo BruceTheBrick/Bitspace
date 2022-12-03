@@ -19,9 +19,7 @@
             Margin="16,0,16,32"
             Padding="0,20"
             BackgroundColor="White"
-            CornerRadius="20"
-            Shadow="{pancakeView:ShadowMarkup Color=WhiteSmoke,
-                                              Offset='10,10'}">
+            CornerRadius="20">
             <Grid>
                 <ListView
                     BackgroundColor="Transparent"

@@ -33,6 +33,12 @@ namespace Bitspace.Features
                     nameof(ConnectFourPage)));
             }
 
+            items.Add(new MenuListItemViewModel(
+                "Playground",
+                "ic_info",
+                "ic_chevron_right",
+                nameof(PlaygroundPage)));
+
             return items;
         }
 
