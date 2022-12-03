@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 using Bitspace.Core.Models;
 using Xamarin.Forms;
 
 namespace Bitspace.UI
 {
+    [ExcludeFromCodeCoverage]
     public class AccessibilityStackLayout : StackLayout
     {
         public static readonly BindableProperty AccessibilityIncrementCommandProperty = BindableProperty.Create(

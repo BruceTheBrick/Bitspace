@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Bitspace.Core.Models;
 using Bitspace.iOS.Renderers;
@@ -10,6 +11,7 @@ using Xamarin.Forms.Platform.iOS;
 [assembly: ExportRenderer (typeof(AccessibilityStackLayout), typeof(AccessibilityStackLayoutRenderer))]
 namespace Bitspace.iOS.Renderers
 {
+    [ExcludeFromCodeCoverage]
     public class AccessibilityStackLayoutRenderer : VisualElementRenderer<StackLayout>
     {
         protected override void OnElementChanged(ElementChangedEventArgs<StackLayout> e)

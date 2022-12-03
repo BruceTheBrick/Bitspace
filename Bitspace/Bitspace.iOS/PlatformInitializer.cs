@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Bitspace.iOS.Services;
 using Bitspace.Services;
 using Prism;
@@ -5,6 +6,7 @@ using Prism.Ioc;
 
 namespace Bitspace.iOS
 {
+    [ExcludeFromCodeCoverage]
     public class PlatformInitializer : IPlatformInitializer
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
