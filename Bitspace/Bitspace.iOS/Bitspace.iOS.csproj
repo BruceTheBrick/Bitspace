@@ -210,7 +210,7 @@
     <PackageReference Include="CarouselView.FormsPlugin" Version="6.0.0" />
     <PackageReference Include="Plugin.Fingerprint" Version="2.1.5" />
     <PackageReference Include="Prism.Plugin.Popups" Version="8.0.76" />
-    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.88.0" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.88.3" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Xamarin.Dynamsoft.Barcode.iOS" Version="9.2.11" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
@@ -219,16 +219,16 @@
     <PackageReference Include="Xamarin.FFImageLoading.Svg" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Firebase.iOS.Analytics" Version="8.10.0.1" />
-    <PackageReference Include="Xamarin.Firebase.iOS.Auth" Version="8.10.0.1" />
-    <PackageReference Include="Xamarin.Firebase.iOS.CloudMessaging" Version="8.10.0.2" />
-    <PackageReference Include="Xamarin.Firebase.iOS.Core" Version="8.10.0.1" />
-    <PackageReference Include="Xamarin.Firebase.iOS.Crashlytics" Version="8.10.0.1" />
-    <PackageReference Include="Xamarin.Firebase.iOS.DynamicLinks" Version="8.10.0.1" />
-    <PackageReference Include="Xamarin.Firebase.iOS.PerformanceMonitoring" Version="8.10.0.1" />
-    <PackageReference Include="Xamarin.Firebase.iOS.RemoteConfig" Version="8.10.0.1" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
-    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.3.1" />
+    <PackageReference Include="Xamarin.Firebase.iOS.Analytics" Version="8.10.0.3" />
+    <PackageReference Include="Xamarin.Firebase.iOS.Auth" Version="8.10.0.3" />
+    <PackageReference Include="Xamarin.Firebase.iOS.CloudMessaging" Version="8.10.0.3" />
+    <PackageReference Include="Xamarin.Firebase.iOS.Core" Version="8.10.0.3" />
+    <PackageReference Include="Xamarin.Firebase.iOS.Crashlytics" Version="8.10.0.3" />
+    <PackageReference Include="Xamarin.Firebase.iOS.DynamicLinks" Version="8.10.0.3" />
+    <PackageReference Include="Xamarin.Firebase.iOS.PerformanceMonitoring" Version="8.10.0.3" />
+    <PackageReference Include="Xamarin.Firebase.iOS.RemoteConfig" Version="8.10.0.3" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
+    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.3.2" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>

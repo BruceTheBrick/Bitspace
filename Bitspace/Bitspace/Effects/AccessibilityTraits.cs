@@ -1,4 +1,4 @@
-﻿using Bitspace.Core;
+using Bitspace.Core;
 using Bitspace.Enums;
 using Xamarin.Forms;
 
@@ -6,19 +6,27 @@ namespace Bitspace.Effects
 {
     public class AccessibilityTraits : RoutingEffect
     {
-        protected AccessibilityTraits()
-            : base(EffectHelper.GetLocalName<AccessibilityTraits>())
+        public AccessibilityTraits()
+            : base(nameof(AccessibilityTraits))
         {
-            // public static readonly BindableProperty TraitsProperty = BindableProperty.Create(
-            //     nameof(Traits),
-            //     typeof(TraitsEnum),
-            //     typeof(AccessibilityTraits));
-            //
-            // public TraitsEnum Traits
-            // {
-            //     get => (TraitsEnum)GetValue(TraitsProperty);
-            //     set => SetValue(TraitsProperty, value);
-            // }
+        }
+
+        public static readonly BindableProperty TraitsProperty =
+            BindableProperty.CreateAttached(
+                "Traits",
+                typeof(TraitsEnum),
+                typeof(AccessibilityTraits),
+                default(TraitsEnum));
+
+        public static TraitsEnum GetTraits(BindableObject view)
+        {
+            return (TraitsEnum)view.GetValue(TraitsProperty);
+        }
+
+        public static void SetTraits(BindableObject view, TraitsEnum traits)
+        {
+            view.SetValue(TraitsProperty, traits);
         }
     }
 }
+

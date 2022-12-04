@@ -1,6 +1,6 @@
-﻿using Bitspace.Core;
-using Bitspace.Effects;
+﻿using Bitspace.Effects;
 using Bitspace.iOS.Effects;
+using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
@@ -25,7 +25,8 @@ namespace Bitspace.iOS.Effects
 
         private void SetTraits()
         {
-            // var traits = AccessibilityTraits.
+            var traits = AccessibilityTraits.GetTraits(Element);
+            Control.AccessibilityTraits = (UIAccessibilityTrait)traits;
         }
     }
 }

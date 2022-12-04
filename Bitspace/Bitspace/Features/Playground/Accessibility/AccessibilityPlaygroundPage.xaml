@@ -3,13 +3,18 @@
     x:Class="Bitspace.Features.AccessibilityPlaygroundPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:effects="clr-namespace:Bitspace.Effects;assembly=Bitspace"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:DataType="features:AccessibilityPlaygroundPageViewModel"
     NavigationPage.HasNavigationBar="True">
     <ScrollView>
         <StackLayout>
-            <StackLayout HorizontalOptions="Start">
+            <StackLayout
+                effects:AccessibilityTraits.Traits="Button"
+                AutomationProperties.IsInAccessibleTree="True"
+                AutomationProperties.Name="My stack layout"
+                HorizontalOptions="Start">
                 <Label
                     HorizontalOptions="CenterAndExpand"
                     Text="Accessibility Page"
@@ -17,6 +22,7 @@
             </StackLayout>
             <ui:AccessibilityStackLayout
                 Padding="20"
+                effects:AccessibilityTraits.Traits="Button"
                 AccessibilityActionCommandList="{Binding AccessibilityActionCommands}"
                 AutomationProperties.Name="Accessibility StackLayout. This is me"
                 BackgroundColor="Blue"
