@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
 
-namespace Bitspace.Controls
+namespace Bitspace.UI
 {
     [ExcludeFromCodeCoverage]
     public partial class Divider

@@ -2,12 +2,10 @@ using System.Threading.Tasks;
 using System.Timers;
 using Bitspace.Core;
 using Bitspace.Features;
-using Bitspace.Services;
-using Bitspace.Services.TimerService;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
 
-namespace Bitspace.Controls
+namespace Bitspace.UI
 {
     public class SnackbarPopupViewModel : BasePageViewModel
     {

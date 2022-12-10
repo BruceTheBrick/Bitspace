@@ -5,7 +5,7 @@ using FFImageLoading.Forms;
 using FFImageLoading.Svg.Forms;
 using Xamarin.Forms;
 
-namespace Bitspace.Controls
+namespace Bitspace.UI
 {
     [ExcludeFromCodeCoverage]
     public class ExtendedImage : SvgCachedImage
@@ -65,7 +65,13 @@ namespace Bitspace.Controls
                 return;
             }
 
-            var source = image.FormatSource((string)newvalue);
+            var imageSource = newvalue as string;
+            if (string.IsNullOrWhiteSpace(imageSource))
+            {
+                return;
+            }
+
+            var source = image.FormatSource(imageSource);
             image.SetBaseSource(source);
         }
 

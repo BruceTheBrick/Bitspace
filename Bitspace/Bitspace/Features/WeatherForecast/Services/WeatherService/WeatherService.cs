@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Bitspace.APIs;
-using Bitspace.Services;
+using Bitspace.Core;
 using Xamarin.Essentials;
 
 namespace Bitspace.Features

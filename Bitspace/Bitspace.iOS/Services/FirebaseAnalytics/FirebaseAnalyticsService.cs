@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bitspace.Services;
+using Bitspace.Core;
 using Firebase.Analytics;
 using Foundation;
 

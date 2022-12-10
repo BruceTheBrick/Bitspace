@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
+using Bitspace.Core;
 using Bitspace.iOS.Services;
-using Bitspace.Services;
 using Prism;
 using Prism.Ioc;
 
@@ -23,7 +23,7 @@ namespace Bitspace.iOS
 
         private void InitHelpers()
         {
-            Bitspace.Helpers.Accessibility.Current = new Helpers.AccessibilityImplementation();
+            Core.Accessibility.Current = new Helpers.AccessibilityImplementation();
         }
     }
 }

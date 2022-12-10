@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Bitspace.Services;
+using Bitspace.Core;
 using Newtonsoft.Json;
 
 namespace Bitspace.APIs

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using PropertyChanged;
 
-namespace Bitspace.Controls
+namespace Bitspace.UI
 {
     [ExcludeFromCodeCoverage]
     [AddINotifyPropertyChangedInterface]

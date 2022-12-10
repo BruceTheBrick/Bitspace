@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Controls
+namespace Bitspace.UI
 {
     [ExcludeFromCodeCoverage]
     public partial class LoadingPill

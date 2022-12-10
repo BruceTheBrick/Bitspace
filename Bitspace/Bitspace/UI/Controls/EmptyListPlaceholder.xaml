@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Grid
-    RowDefinitions="auto, *, *"
-    x:Class="Bitspace.Controls.EmptyListPlaceholder"
-    x:Name="This"
+    x:Class="Bitspace.UI.EmptyListPlaceholder"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="This"
+    RowDefinitions="auto, *, *">
     <Image Source="{Binding Image, Source={x:Reference This}}" />
     <Label Text="{Binding Title, Source={x:Reference This}}" />
     <Label Text="{Binding Subtitle, Source={x:Reference This}}" />

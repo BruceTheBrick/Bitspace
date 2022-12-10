@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Bitspace.APIs;
-using Bitspace.Extensions;
+using Bitspace.Core;
 using Bogus;
 
 namespace Bitspace.Tests.Factories

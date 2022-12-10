@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using Bitspace.Core;
 using Bitspace.Features;
-using Bitspace.Services;
 using Bitspace.Tests.Base;
 using Bitspace.Tests.Factories;
 using FluentAssertions;
@@ -8,7 +8,7 @@ using Moq;
 using Prism.Navigation;
 using Xunit;
 
-namespace Bitspace.Tests.Pages
+namespace Bitspace.Tests.Features
 {
     public class MainPageViewModelTests : UnitTestBase<HomePageViewModel>
     {

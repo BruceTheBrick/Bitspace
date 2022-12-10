@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Bitspace.Core;
-using Bitspace.Services;
 using Firebase.RemoteConfig;
 
 namespace Bitspace.Droid.Services
@@ -14,12 +13,7 @@ namespace Bitspace.Droid.Services
         {
             _timeoutService = timeoutService;
             _timeoutService.ExpiryMinutes = 5;
-        }
-
-        public Task Initialize()
-        {
             FirebaseRemoteConfig.Instance.SetConfigSettingsAsync(GetFirebaseSettings());
-            return Task.CompletedTask;
         }
 
         public bool IsEnabled(string featureName)

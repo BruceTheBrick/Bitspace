@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bitspace.Extensions;
+using Bitspace.Core;
 
 namespace Bitspace.APIs
 {

@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using Bitspace.Core;
-using Bitspace.Services;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
@@ -10,14 +9,14 @@ namespace Bitspace.Features
 {
     public class ConnectFourPageViewModel : BasePageViewModel
     {
-        public ConnectFourPageViewModel(IConnectFourEngine martini, IBaseService baseService)
+        public ConnectFourPageViewModel(IBaseService baseService, IConnectFourScoringService scoringService)
             : base(baseService)
         {
             Columns = 7;
             Rows = 6;
             Board = new Board(Rows, Columns);
 
-            Martini = martini;
+            Martini = new ConnectFourEngine(scoringService);
             Martini.SetPlayer(Piece.TWO);
 
             PlacePieceCommand = new AsyncCommand<int>(PlacePiece);
@@ -51,7 +50,8 @@ namespace Bitspace.Features
                 await FinishGame();
             }
 
-            MakeMove(Martini.GetNextMove(Board, Piece.TWO), Piece.TWO);
+            var cpuMove = Martini.GetNextMove(Board, Piece.TWO);
+            MakeMove(cpuMove, Piece.TWO);
             if (IsGameOver)
             {
                 await FinishGame();

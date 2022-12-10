@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bitspace.Extensions
+namespace Bitspace.Core
 {
     public static class DateTimeExtensions
     {

@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using Bitspace.Core;
 using Bitspace.Features;
 using Bitspace.Resources;
-using Bitspace.Services;
 using Bitspace.Tests.Base;
 using FluentAssertions;
 using Moq;

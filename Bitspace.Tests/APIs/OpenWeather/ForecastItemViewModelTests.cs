@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Bitspace.APIs;
-using Bitspace.Extensions;
+using Bitspace.Core;
 using Bitspace.Tests.Factories;
 using FluentAssertions;
 using Humanizer;

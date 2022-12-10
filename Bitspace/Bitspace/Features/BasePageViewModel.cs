@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
-using Bitspace.Services;
+using Bitspace.Core;
 using Prism.AppModel;
 using Prism.Mvvm;
 using Prism.Navigation;
 using PropertyChanged;
+using INavigationService = Bitspace.Core.INavigationService;
 
 namespace Bitspace.Features
 {
@@ -20,7 +21,7 @@ namespace Bitspace.Features
 
         public bool IsBusy { get; set; }
 
-        protected Services.INavigationService NavigationService { get; }
+        protected INavigationService NavigationService { get; }
         protected IAccessibilityService AccessibilityService { get; }
         protected IFirebaseAnalyticsService AnalyticsService { get; }
         protected IAlertService AlertService { get; }

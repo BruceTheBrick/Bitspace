@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pancakeView:PancakeView
-    x:Class="Bitspace.Controls.Pill"
+    x:Class="Bitspace.UI.Pill"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     Padding="16,12"
-    x:DataType="controls:PillViewModel"
+    x:DataType="ui:PillViewModel"
     AutomationProperties.IsInAccessibleTree="True"
     HorizontalOptions="Start"
     SizeChanged="Pill_OnSizeChanged"
@@ -16,7 +17,7 @@
         <converters:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
     </pancakeView:PancakeView.Resources>
     <StackLayout>
-        <controls:ExtendedImage
+        <ui:ExtendedImage
             HorizontalOptions="Start"
             IsVisible="{Binding IconSource, Converter={StaticResource IsNotNullOrEmptyConverter}}"
             Source="{Binding IconSource}" />

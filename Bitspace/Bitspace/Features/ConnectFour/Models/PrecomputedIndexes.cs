@@ -29,7 +29,6 @@ namespace Bitspace.Features
             InitFourInARow();
         }
 
-        //Initialises twoInARow, which is a linked list containing arrays of indexes that can contain 2 consecutive pieces
         public static void InitTwoInARow()
         {
             twoInARow = new List<int>[41];
@@ -69,7 +68,6 @@ namespace Bitspace.Features
             }
         }
 
-        //Initialises threeInARow, which is a linked list containing arrays of indexes that can contain 3 consecutive pieces
         public static void InitThreeInARow()
         {
             threeInARow = new List<int>[40];

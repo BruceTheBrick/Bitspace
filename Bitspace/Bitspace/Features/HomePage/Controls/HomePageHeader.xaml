@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:resources="clr-namespace:Bitspace.Resources;assembly=Bitspace"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     Margin="0,24"
     Padding="18"
     RowDefinitions="auto, auto, auto"
@@ -22,7 +23,7 @@
         HorizontalOptions="Center"
         Opacity="0.3"
         SizeChanged="Frame_OnSizeChanged">
-        <controls:AppIcon x:Name="AppIcon" HeightRequest="60" />
+        <ui:AppIcon x:Name="AppIcon" HeightRequest="60" />
     </Frame>
     <Label
         x:Name="AppName"

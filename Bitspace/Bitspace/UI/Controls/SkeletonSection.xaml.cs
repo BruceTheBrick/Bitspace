@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Bitspace.Resources;
 using Xamarin.Forms;
 
-namespace Bitspace.Controls
+namespace Bitspace.UI
 {
     [ExcludeFromCodeCoverage]
     [ContentProperty("Contents")]

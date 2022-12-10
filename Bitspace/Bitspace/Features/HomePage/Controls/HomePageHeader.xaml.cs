@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using Bitspace.Services;
+using Bitspace.Core;
 using Xamarin.Forms;
 
 namespace Bitspace.Features

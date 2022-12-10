@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:pages="http://rotorgames.com"
-    x:DataType="controls:SnackbarPopupViewModel"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:DataType="ui:SnackbarPopupViewModel"
     BackgroundColor="Transparent"
     BackgroundInputTransparent="True"
     CloseWhenBackgroundIsClicked="False">
@@ -21,7 +22,7 @@
             Orientation="Horizontal"
             Spacing="12"
             VerticalOptions="FillAndExpand">
-            <controls:ExtendedImage
+            <ui:ExtendedImage
                 AutomationProperties.IsInAccessibleTree="False"
                 HeightRequest="18"
                 IsVisible="{Binding IsLeftIconVisible}"
@@ -33,7 +34,7 @@
                 AutomationProperties.IsInAccessibleTree="False"
                 Style="{StaticResource SnackbarLabel}"
                 Text="{Binding Message}" />
-            <controls:ExtendedImage
+            <ui:ExtendedImage
                 AutomationProperties.IsInAccessibleTree="False"
                 HeightRequest="18"
                 IsVisible="{Binding IsRightIconVisible}"

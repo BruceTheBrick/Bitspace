@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Bitspace.Controls;
+using Bitspace.UI;
 using Bogus;
 
 namespace Bitspace.Tests.Factories

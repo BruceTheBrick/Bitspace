@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using Bitspace.Core;
 using Bitspace.Resources;
-using Bitspace.Services;
 
 namespace Bitspace.Features
 {

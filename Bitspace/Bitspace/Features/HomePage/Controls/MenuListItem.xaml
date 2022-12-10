@@ -6,11 +6,12 @@
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:Name="This"
     AutomationProperties.IsInAccessibleTree="True"
     AutomationProperties.Name="{Binding .MenuListItemViewModel.Text, Source={x:Reference This}}">
     <Grid Padding="18,16" ColumnDefinitions="1*, 8*, 1*">
-        <controls:ExtendedImage
+        <ui:ExtendedImage
             Grid.Column="0"
             effects:IconTintColorEffect.TintColor="{Binding IconTint, Source={x:Reference This}}"
             AutomationProperties.IsInAccessibleTree="False"
@@ -24,7 +25,7 @@
             AutomationProperties.IsInAccessibleTree="False"
             Text="{Binding .MenuListItemViewModel.Text, Source={x:Reference This}}"
             VerticalOptions="Center" />
-        <controls:ExtendedImage
+        <ui:ExtendedImage
             Grid.Column="2"
             effects:IconTintColorEffect.TintColor="{Binding ActionIconTint, Source={x:Reference This}}"
             AutomationProperties.IsInAccessibleTree="False"

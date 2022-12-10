@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pancakeView:PancakeView
-    x:Class="Bitspace.Controls.LoadingPill"
+    x:Class="Bitspace.UI.LoadingPill"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    x:DataType="controls:PillViewModel"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:DataType="ui:PillViewModel"
     AutomationProperties.IsInAccessibleTree="True"
     CornerRadius="40"
     HeightRequest="40"
@@ -13,7 +14,7 @@
     SizeChanged="LoadingPill_OnSizeChanged"
     VerticalOptions="CenterAndExpand"
     WidthRequest="120">
-    <controls:SkeletonSection
+    <ui:SkeletonSection
         HorizontalOptions="FillAndExpand"
         IsLoading="True"
         IsVisible="True"

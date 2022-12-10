@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Bitspace.Helpers;
+using Bitspace.Core;
 using CarouselView.FormsPlugin.Droid;
 using FFImageLoading.Forms.Platform;
 using FFImageLoading.Svg.Forms;

@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using Bitspace.UI;
 using Xamarin.Forms;
 
 namespace Bitspace.Controls

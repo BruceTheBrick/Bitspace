@@ -149,6 +149,7 @@
     </EmbeddedResource>
     <None Remove="Resources\Images\ic_info.svg" />
     <EmbeddedResource Include="Resources\Images\ic_info.svg" />
+    <None Remove="Bitspace.csproj.DotSettings" />
   </ItemGroup>
 
   <ItemGroup>

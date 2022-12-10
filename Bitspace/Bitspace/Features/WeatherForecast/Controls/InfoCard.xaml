@@ -8,6 +8,7 @@
     xmlns:materialFrame="http://sharpnado.com"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:registers="clr-namespace:Bitspace.Resources;assembly=Bitspace"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:Name="This"
     Border="{pancakeView:BorderMarkup Color=White,
                                       Thickness='1'}"
@@ -16,7 +17,7 @@
         <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
     </pancakeView:PancakeView.Resources>
     <Grid>
-        <controls:SkeletonSection
+        <ui:SkeletonSection
             CornerRadius="0"
             IsLoading="{Binding IsLoading, Source={x:Reference This}}"
             IsVisible="{Binding IsLoading, Source={x:Reference This}}"
@@ -43,7 +44,7 @@
                     HorizontalTextAlignment="Center"
                     Text="{x:Static registers:WeatherForecastPageRegister.HUMIDITY}" />
             </Grid>
-            <controls:Divider
+            <ui:Divider
                 Grid.Column="1"
                 HorizontalOptions="CenterAndExpand"
                 IsVertical="True"
@@ -62,7 +63,7 @@
                     HorizontalTextAlignment="Center"
                     Text="{x:Static registers:WeatherForecastPageRegister.WIND_SPEED}" />
             </Grid>
-            <controls:Divider
+            <ui:Divider
                 Grid.Column="3"
                 HorizontalOptions="CenterAndExpand"
                 IsVertical="True"

@@ -3,7 +3,6 @@ using Bitspace.Features;
 using DLToolkit.Forms.Controls;
 using Prism;
 using Prism.Ioc;
-using Xamarin.Forms;
 
 namespace Bitspace
 {
@@ -20,7 +19,7 @@ namespace Bitspace
             InitializeComponent();
             FlowListView.Init();
             Sharpnado.MaterialFrame.Initializer.Initialize(false, true);
-            await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(HomePage)}");
+            var t = await NavigationService.NavigateAsync($"/{nameof(InitPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

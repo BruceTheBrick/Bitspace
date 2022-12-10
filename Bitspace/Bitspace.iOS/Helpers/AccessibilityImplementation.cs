@@ -3,7 +3,7 @@ using UIKit;
 
 namespace Bitspace.iOS.Helpers
 {
-    public class AccessibilityImplementation : Bitspace.Helpers.AccessibilityImplementation
+    public class AccessibilityImplementation : Core.AccessibilityImplementation
     {
         public override void Announcement(string message)
         {

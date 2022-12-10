@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
+using Bitspace.Core;
 using Bitspace.Core.Models;
-using Bitspace.Services;
 using Xamarin.Forms;
 
 namespace Bitspace.Features

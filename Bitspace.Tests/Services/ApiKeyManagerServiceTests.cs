@@ -1,5 +1,5 @@
 ﻿using Bitspace.APIs;
-using Bitspace.Services;
+using Bitspace.Core;
 using Bitspace.Tests.Base;
 using Bogus;
 using FluentAssertions;

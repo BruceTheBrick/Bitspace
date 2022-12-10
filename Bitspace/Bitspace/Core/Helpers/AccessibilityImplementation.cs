@@ -1,5 +1,8 @@
-﻿namespace Bitspace.Helpers
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Bitspace.Core
 {
+    [ExcludeFromCodeCoverage]
     public abstract class AccessibilityImplementation
     {
         public abstract void Announcement(string message);

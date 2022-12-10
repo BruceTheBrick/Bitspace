@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Bitspace.APIs;
 using Bitspace.Controls;
+using Bitspace.Core;
 using Bitspace.Features;
-using Bitspace.Services;
-using Bitspace.Services.TimerService;
+using Bitspace.UI;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
 using Xamarin.Essentials.Implementation;
@@ -49,6 +49,7 @@ namespace Bitspace
         private void RegisterNavigation(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<InitPage, InitPageViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>();
             containerRegistry.RegisterForNavigation<QRCodeScannerPage, QRCodeScannerPageViewModel>();

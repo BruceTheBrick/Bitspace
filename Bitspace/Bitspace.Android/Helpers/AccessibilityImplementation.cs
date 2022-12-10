@@ -4,7 +4,7 @@ using Android.Views.Accessibility;
 
 namespace Bitspace.Droid.Helpers
 {
-    public class AccessibilityImplementation : Bitspace.Helpers.AccessibilityImplementation
+    public class AccessibilityImplementation : Core.AccessibilityImplementation
     {
         private readonly AccessibilityManager _accessibilityManager;
         public AccessibilityImplementation()

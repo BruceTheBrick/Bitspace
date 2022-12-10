@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Bitspace.Extensions;
+using Bitspace.Core;
 using Humanizer;
 
 namespace Bitspace.APIs

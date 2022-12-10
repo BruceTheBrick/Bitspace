@@ -6,6 +6,7 @@
     xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:DataType="features:WeatherForecastPageViewModel"
     BackgroundColor="{StaticResource Ninja}"
     NavigationPage.HasNavigationBar="False">
@@ -25,7 +26,7 @@
                 Grid.Column="2"
                 FontSize="Title"
                 Text="{Binding HourlyForecast.Location.Name}" />
-            <controls:PillList
+            <ui:PillList
                 Grid.Row="1"
                 Grid.ColumnSpan="3"
                 Padding="10,6"
@@ -47,7 +48,7 @@
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand" />
             <Grid ColumnDefinitions="*, *">
-                <controls:ExtendedImage
+                <ui:ExtendedImage
                     Grid.Column="0"
                     HorizontalOptions="Center"
                     Source="ic_weather"
@@ -78,7 +79,7 @@
                         Padding="8"
                         RowDefinitions="*, *, *"
                         VerticalOptions="CenterAndExpand">
-                        <controls:ExtendedImage Source="ic_wind" TintColor="{StaticResource VibrantBlue}" />
+                        <ui:ExtendedImage Source="ic_wind" TintColor="{StaticResource VibrantBlue}" />
                         <Label
                             Grid.Row="1"
                             FontSize="Micro"
@@ -103,7 +104,7 @@
                         Padding="8"
                         RowDefinitions="*, *, *"
                         VerticalOptions="CenterAndExpand">
-                        <controls:ExtendedImage Source="ic_droplette" TintColor="{StaticResource VibrantBlue}" />
+                        <ui:ExtendedImage Source="ic_droplette" TintColor="{StaticResource VibrantBlue}" />
                         <Label
                             Grid.Row="1"
                             FontSize="Micro"
@@ -128,7 +129,7 @@
                         Padding="8"
                         RowDefinitions="*, *, *"
                         VerticalOptions="CenterAndExpand">
-                        <controls:ExtendedImage Source="ic_rain" TintColor="{StaticResource VibrantBlue}" />
+                        <ui:ExtendedImage Source="ic_rain" TintColor="{StaticResource VibrantBlue}" />
                         <Label
                             Grid.Row="1"
                             FontSize="Micro"
@@ -172,12 +173,12 @@
                     Padding="20"
                     ColumnDefinitions="*, *, *, *"
                     HorizontalOptions="FillAndExpand">
-                    <controls:ExtendedImage
+                    <ui:ExtendedImage
                         Grid.Column="1"
                         Source="ic_home"
                         TintColor="{StaticResource PillActiveBackground}"
                         VerticalOptions="Center" />
-                    <controls:ExtendedImage
+                    <ui:ExtendedImage
                         Grid.Column="2"
                         Source="ic_magnifying_glass"
                         TintColor="{StaticResource BedazzledBlue}"

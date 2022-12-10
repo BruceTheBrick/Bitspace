@@ -1,5 +1,5 @@
-﻿using Bitspace.Droid.Services;
-using Bitspace.Services;
+﻿using Bitspace.Core;
+using Bitspace.Droid.Services;
 using Prism;
 using Prism.Ioc;
 

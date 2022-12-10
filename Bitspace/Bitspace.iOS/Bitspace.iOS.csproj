@@ -221,11 +221,8 @@
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Firebase.iOS.Analytics" Version="8.10.0.3" />
     <PackageReference Include="Xamarin.Firebase.iOS.Auth" Version="8.10.0.3" />
-    <PackageReference Include="Xamarin.Firebase.iOS.CloudMessaging" Version="8.10.0.3" />
     <PackageReference Include="Xamarin.Firebase.iOS.Core" Version="8.10.0.3" />
     <PackageReference Include="Xamarin.Firebase.iOS.Crashlytics" Version="8.10.0.3" />
-    <PackageReference Include="Xamarin.Firebase.iOS.DynamicLinks" Version="8.10.0.3" />
-    <PackageReference Include="Xamarin.Firebase.iOS.PerformanceMonitoring" Version="8.10.0.3" />
     <PackageReference Include="Xamarin.Firebase.iOS.RemoteConfig" Version="8.10.0.3" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.3.2" />

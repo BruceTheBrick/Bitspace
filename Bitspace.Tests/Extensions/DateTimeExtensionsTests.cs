@@ -1,5 +1,5 @@
 ﻿using System;
-using Bitspace.Extensions;
+using Bitspace.Core;
 using FluentAssertions;
 using Xunit;
 

@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using Bitspace.Core;
 using Bitspace.Resources;
-using Bitspace.Services;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
 

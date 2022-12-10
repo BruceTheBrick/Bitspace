@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Bitspace.Services;
+using Bitspace.Core;
 using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace Bitspace.Features

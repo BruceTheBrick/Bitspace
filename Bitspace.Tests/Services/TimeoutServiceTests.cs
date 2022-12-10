@@ -1,127 +1,128 @@
 ﻿using System;
-using Bitspace.Services;
+using Bitspace.Core;
 using Bitspace.Tests.Base;
 using FluentAssertions;
 using Xunit;
 
-namespace Bitspace.Tests.Services;
-
-public class TimeoutServiceTests : UnitTestBase<TimeoutService>
+namespace Bitspace.Tests.Services
 {
-    #region IsExpired
-
-    [Fact]
-    public void IsExpired_ShouldReturnFalse_WhenExpiryMinutesIsNull()
+    public class TimeoutServiceTests : UnitTestBase<TimeoutService>
     {
-        // Arrange
+        #region IsExpired
+
+        [Fact]
+        public void IsExpired_ShouldReturnFalse_WhenExpiryMinutesIsNull()
+        {
+            // Arrange
         
-        // Act
-        var isExpired = Sut.IsExpired();
+            // Act
+            var isExpired = Sut.IsExpired();
 
-        // Assert
-        isExpired.Should().BeFalse();
-    }
+            // Assert
+            isExpired.Should().BeFalse();
+        }
 
-    [Fact]
-    public void IsExpired_ShouldReturnTrue_WhenDateTimeLastUpdateIsNull()
-    {
-        // Arrange
-        Sut.ExpiryMinutes = 5;
+        [Fact]
+        public void IsExpired_ShouldReturnTrue_WhenDateTimeLastUpdateIsNull()
+        {
+            // Arrange
+            Sut.ExpiryMinutes = 5;
 
-        // Act
-        var isExpired = Sut.IsExpired();
+            // Act
+            var isExpired = Sut.IsExpired();
 
-        // Assert
-        isExpired.Should().BeTrue();
-    }
+            // Assert
+            isExpired.Should().BeTrue();
+        }
     
-    [Fact]
-    public void IsExpired_ShouldReturnTrue_WhenTimeElapsedIsOverThreshold()
-    {
-        //Arrange
-        Sut.ExpiryMinutes = 5;
-        Sut.DateTimeLastUpdate = DateTime.Now - TimeSpan.FromMinutes(10);
+        [Fact]
+        public void IsExpired_ShouldReturnTrue_WhenTimeElapsedIsOverThreshold()
+        {
+            //Arrange
+            Sut.ExpiryMinutes = 5;
+            Sut.DateTimeLastUpdate = DateTime.Now - TimeSpan.FromMinutes(10);
 
-        //Act
-        var isExpired = Sut.IsExpired();
+            //Act
+            var isExpired = Sut.IsExpired();
 
-        //Assert
-        isExpired.Should().BeTrue();
-    }
+            //Assert
+            isExpired.Should().BeTrue();
+        }
 
-    [Fact]
-    public void IsExpired_ShouldReturnFalse_WhenTimeElapsedIsLessThanThreshold()
-    {
-        //Arrange
-        Sut.ExpiryMinutes = 5;
-        Sut.DateTimeLastUpdate = DateTime.Now - TimeSpan.FromMinutes(1);
+        [Fact]
+        public void IsExpired_ShouldReturnFalse_WhenTimeElapsedIsLessThanThreshold()
+        {
+            //Arrange
+            Sut.ExpiryMinutes = 5;
+            Sut.DateTimeLastUpdate = DateTime.Now - TimeSpan.FromMinutes(1);
 
-        //Act
-        var isExpired = Sut.IsExpired();
+            //Act
+            var isExpired = Sut.IsExpired();
 
-        //Assert
-        isExpired.Should().BeFalse();
-    }
+            //Assert
+            isExpired.Should().BeFalse();
+        }
 
-    [Fact]
-    public void IsExpiredOverload_ShouldReturnTrue_WhenTimeElapsedIsOverThreshold()
-    {
-        //Arrange
-        var expiryMins = 5;
-        var dateTimeLastUpdated = DateTime.Now - TimeSpan.FromMinutes(10);
+        [Fact]
+        public void IsExpiredOverload_ShouldReturnTrue_WhenTimeElapsedIsOverThreshold()
+        {
+            //Arrange
+            var expiryMins = 5;
+            var dateTimeLastUpdated = DateTime.Now - TimeSpan.FromMinutes(10);
 
-        //Act
-        var isExpired = Sut.IsExpired(dateTimeLastUpdated, expiryMins);
+            //Act
+            var isExpired = Sut.IsExpired(dateTimeLastUpdated, expiryMins);
 
-        //Assert
-        isExpired.Should().BeTrue();
-    }
+            //Assert
+            isExpired.Should().BeTrue();
+        }
 
-    [Fact]
-    public void IsExpiredOverload_ShouldReturnFalse_WhenTimeElapsedIsLessThanThreshold()
-    {
-        //Arrange
-        var expiryMins = 5;
-        var dateTimeLastUpdated = DateTime.Now - TimeSpan.FromMinutes(1);
+        [Fact]
+        public void IsExpiredOverload_ShouldReturnFalse_WhenTimeElapsedIsLessThanThreshold()
+        {
+            //Arrange
+            var expiryMins = 5;
+            var dateTimeLastUpdated = DateTime.Now - TimeSpan.FromMinutes(1);
 
-        //Act
-        var isExpired = Sut.IsExpired(dateTimeLastUpdated, expiryMins);
+            //Act
+            var isExpired = Sut.IsExpired(dateTimeLastUpdated, expiryMins);
 
-        //Assert
-        isExpired.Should().BeFalse();
-    }
+            //Assert
+            isExpired.Should().BeFalse();
+        }
 
-    [Fact]
-    public void IsExpiredOverload_ShouldReturnTrue_WhenDateTimeLastUpdateIsNull()
-    {
-        // Arrange
-        var expiryMins = 5;
-        var dateTimeLastUpdated = DateTime.MinValue;
+        [Fact]
+        public void IsExpiredOverload_ShouldReturnTrue_WhenDateTimeLastUpdateIsNull()
+        {
+            // Arrange
+            var expiryMins = 5;
+            var dateTimeLastUpdated = DateTime.MinValue;
 
-        // Act
-        var isExpired = Sut.IsExpired(dateTimeLastUpdated, expiryMins);
+            // Act
+            var isExpired = Sut.IsExpired(dateTimeLastUpdated, expiryMins);
 
-        // Assert
-        isExpired.Should().BeTrue();
-    }
+            // Assert
+            isExpired.Should().BeTrue();
+        }
     
-    #endregion
+        #endregion
 
-    #region Update
+        #region Update
 
-    [Fact]
-    public void Update_ShouldSetDateTimeLastUpdate()
-    {
-        //Arrange
-        var oldDateTime = DateTime.Now - TimeSpan.FromMinutes(5);
-        Sut.DateTimeLastUpdate = oldDateTime;
+        [Fact]
+        public void Update_ShouldSetDateTimeLastUpdate()
+        {
+            //Arrange
+            var oldDateTime = DateTime.Now - TimeSpan.FromMinutes(5);
+            Sut.DateTimeLastUpdate = oldDateTime;
 
-        //Act
-        Sut.Update();
+            //Act
+            Sut.Update();
 
-        //Assert
-        Sut.DateTimeLastUpdate.Should().BeOnOrAfter(oldDateTime);
+            //Assert
+            Sut.DateTimeLastUpdate.Should().BeOnOrAfter(oldDateTime);
+        }
+
+        #endregion
     }
-
-    #endregion
 }
