@@ -54,10 +54,10 @@ namespace Bitspace.Features
             return board.HasWin() == player ? ConnectFourScoreConstants.WIN_VALUE : 0;
         }
 
-        private int numOfTwos(IBoard board, Piece player)
+        private int NumOfTwos(IBoard board, Piece player)
         {
             var sum = 0;
-            for (var i = 0; i < PrecomputedIndexes.twoInARow.Length; i++)
+            for (var i = 0; i < PrecomputedIndexes.TwoInARow.Length; i++)
             {
                 var coords = IndexToCoordinates(board, i);
                 if (board.GetPiece(coords.Item1, coords.Item2) != player)
@@ -65,9 +65,9 @@ namespace Bitspace.Features
                     continue;
                 }
 
-                for (var j = 0; j < PrecomputedIndexes.twoInARow[i].Count; j++)
+                for (var j = 0; j < PrecomputedIndexes.TwoInARow[i].Count; j++)
                 {
-                    coords = IndexToCoordinates(board, PrecomputedIndexes.twoInARow[i][j]);
+                    coords = IndexToCoordinates(board, PrecomputedIndexes.TwoInARow[i][j]);
 
                     if (board.GetPiece(coords.Item1, coords.Item2) == player)
                     {

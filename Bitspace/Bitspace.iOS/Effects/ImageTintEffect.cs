@@ -5,7 +5,7 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportEffect(typeof(ImageTintEffect), nameof(Bitspace.Effects.ImageTintEffect))]
+[assembly: ExportEffect(typeof(ImageTintEffect), nameof(Bitspace.UI.ImageTintEffect))]
 namespace Bitspace.iOS.Effects
 {
     [ExcludeFromCodeCoverage]
@@ -18,7 +18,7 @@ namespace Bitspace.iOS.Effects
                 return;
             }
 
-            var effect = (Bitspace.Effects.ImageTintEffect)Element.Effects.FirstOrDefault(x => x is Bitspace.Effects.ImageTintEffect);
+            var effect = (UI.ImageTintEffect)Element.Effects.FirstOrDefault(x => x is UI.ImageTintEffect);
             if (effect == null)
             {
                 return;

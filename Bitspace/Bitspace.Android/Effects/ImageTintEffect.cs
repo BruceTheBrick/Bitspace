@@ -6,7 +6,7 @@ using Bitspace.Droid.Effects;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportEffect(typeof(ImageTintEffect), nameof(Bitspace.Effects.ImageTintEffect))]
+[assembly: ExportEffect(typeof(ImageTintEffect), nameof(Bitspace.UI.ImageTintEffect))]
 namespace Bitspace.Droid.Effects
 {
     [ExcludeFromCodeCoverage]
@@ -19,7 +19,7 @@ namespace Bitspace.Droid.Effects
                 return;
             }
 
-            var effect = (Bitspace.Effects.ImageTintEffect)Element.Effects.FirstOrDefault(x => x is Bitspace.Effects.ImageTintEffect);
+            var effect = (UI.ImageTintEffect)Element.Effects.FirstOrDefault(x => x is UI.ImageTintEffect);
             if (effect != null)
             {
                 var filter = new PorterDuffColorFilter(effect.TintColor.ToAndroid(), PorterDuff.Mode.SrcIn);

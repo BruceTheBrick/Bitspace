@@ -1,7 +1,7 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Bitspace.Core;
+using Bitspace.Resources;
 using Xamarin.Forms;
 
 namespace Bitspace.Features
@@ -17,6 +17,8 @@ namespace Bitspace.Features
             AppIcon.Opacity = 0;
             _ = StartAnimation();
         }
+
+        public string AccessibilityName { get; } = $"{HomePageRegister.WELCOME_TO} {HomePageRegister.BITSPACE}";
 
         private async Task StartAnimation()
         {
@@ -34,11 +36,6 @@ namespace Bitspace.Features
             await HideIcon();
             _ = _animationService.FadeIn(AppIcon, 250);
             await AppIcon.TranslateTo(0, 0, 750, Easing.CubicInOut);
-        }
-
-        private void Frame_OnSizeChanged(object sender, EventArgs e)
-        {
-            Frame.CornerRadius = (float)Frame.Height / 2;
         }
     }
 }

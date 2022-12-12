@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Android.OS;
 using Bitspace.Core;
-using Bitspace.Services;
 using Firebase.Analytics;
 using Plugin.CurrentActivity;
 

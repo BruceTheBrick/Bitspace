@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Bitspace.Core;
-using Firebase.Analytics;
+// using Firebase.Analytics;
 using Foundation;
 
 namespace Bitspace.iOS.Services
@@ -25,12 +25,12 @@ namespace Bitspace.iOS.Services
         public void LogEvent(string eventId, IDictionary<string, string> parameters)
         {
             
-            Analytics.LogEvent(eventId, ConvertParameters(parameters));
+            // Analytics.LogEvent(eventId, ConvertParameters(parameters));
         }
 
         public void SetUserId(string userId)
         {
-            Analytics.SetUserId(userId);
+            // Analytics.SetUserId(userId);
         }
 
         private NSDictionary<NSString, NSObject> ConvertParameters(IDictionary<string, string> parameters)

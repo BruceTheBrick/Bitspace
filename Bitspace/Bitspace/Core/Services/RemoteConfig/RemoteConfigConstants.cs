@@ -8,7 +8,8 @@ namespace Bitspace.Core
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:Fields should be private", Justification = "Constants should not be private.")]
     public static class RemoteConfigConstants
     {
-        public static string HOMEPAGE_MENUITEM_WEATHER = nameof(HOMEPAGE_MENUITEM_WEATHER);
-        public static string HOMEPAGE_MENUITEM_MARTINI = nameof(HOMEPAGE_MENUITEM_MARTINI);
+        public static string Homepage_Weather = nameof(Homepage_Weather);
+        public static string Homepage_Martini = nameof(Homepage_Martini);
+        public static string Homepage_Playground = nameof(Homepage_Playground);
     }
 }

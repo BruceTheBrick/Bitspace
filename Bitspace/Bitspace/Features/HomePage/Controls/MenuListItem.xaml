@@ -1,37 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pancakeView:PancakeView
+<Grid
     x:Class="Bitspace.Features.MenuListItem"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:Name="This"
+    Padding="18,16"
+    ui:AccessibilityTraits.Traits="Button"
     AutomationProperties.IsInAccessibleTree="True"
-    AutomationProperties.Name="{Binding .MenuListItemViewModel.Text, Source={x:Reference This}}">
-    <Grid Padding="18,16" ColumnDefinitions="1*, 8*, 1*">
-        <ui:ExtendedImage
-            Grid.Column="0"
-            effects:IconTintColorEffect.TintColor="{Binding IconTint, Source={x:Reference This}}"
-            AutomationProperties.IsInAccessibleTree="False"
-            HeightRequest="28"
-            HorizontalOptions="Start"
-            Source="{Binding MenuListItemViewModel.Icon, Source={x:Reference This}}"
-            VerticalOptions="Center"
-            WidthRequest="28" />
-        <Label
-            Grid.Column="1"
-            AutomationProperties.IsInAccessibleTree="False"
-            Text="{Binding .MenuListItemViewModel.Text, Source={x:Reference This}}"
-            VerticalOptions="Center" />
-        <ui:ExtendedImage
-            Grid.Column="2"
-            effects:IconTintColorEffect.TintColor="{Binding ActionIconTint, Source={x:Reference This}}"
-            AutomationProperties.IsInAccessibleTree="False"
-            HeightRequest="18"
-            Source="{Binding MenuListItemViewModel.ActionIcon, Source={x:Reference This}}"
-            VerticalOptions="Center"
-            WidthRequest="18" />
-    </Grid>
-</pancakeView:PancakeView>
+    AutomationProperties.Name="{Binding .MenuListItemViewModel.Text, Source={x:Reference This}}"
+    ColumnDefinitions="1*, 8*, 1*">
+    <ui:ExtendedImage
+        Grid.Column="0"
+        effects:IconTintColorEffect.TintColor="{Binding IconTint, Source={x:Reference This}}"
+        AutomationProperties.IsInAccessibleTree="False"
+        HeightRequest="28"
+        HorizontalOptions="Start"
+        Source="{Binding MenuListItemViewModel.Icon, Source={x:Reference This}}"
+        VerticalOptions="Center"
+        WidthRequest="28" />
+    <Label
+        Grid.Column="1"
+        AutomationProperties.IsInAccessibleTree="False"
+        Text="{Binding .MenuListItemViewModel.Text, Source={x:Reference This}}"
+        VerticalOptions="Center" />
+    <ui:ExtendedImage
+        Grid.Column="2"
+        effects:IconTintColorEffect.TintColor="{Binding ActionIconTint, Source={x:Reference This}}"
+        AutomationProperties.IsInAccessibleTree="False"
+        HeightRequest="18"
+        Source="{Binding MenuListItemViewModel.ActionIcon, Source={x:Reference This}}"
+        VerticalOptions="Center"
+        WidthRequest="18" />
+</Grid>

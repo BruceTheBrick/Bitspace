@@ -15,7 +15,7 @@ namespace Bitspace.Features
         public ObservableCollection<MenuListItemViewModel> GetMenuItems()
         {
             var items = new ObservableCollection<MenuListItemViewModel>();
-            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.HOMEPAGE_MENUITEM_WEATHER))
+            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.Homepage_Weather))
             {
                 items.Add(new MenuListItemViewModel(
                     HomePageRegister.WEATHER_FORECAST_TITLE,
@@ -24,7 +24,7 @@ namespace Bitspace.Features
                     nameof(WeatherForecastPage)));
             }
 
-            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.HOMEPAGE_MENUITEM_MARTINI))
+            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.Homepage_Martini) || true)
             {
                 items.Add(new MenuListItemViewModel(
                     HomePageRegister.MARTINI,
@@ -33,11 +33,14 @@ namespace Bitspace.Features
                     nameof(ConnectFourPage)));
             }
 
-            items.Add(new MenuListItemViewModel(
-                "Playground",
-                "ic_info",
-                "ic_chevron_right",
-                nameof(PlaygroundPage)));
+            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.Homepage_Playground))
+            {
+                items.Add(new MenuListItemViewModel(
+                    "Playground",
+                    "ic_info",
+                    "ic_chevron_right",
+                    nameof(PlaygroundPage)));
+            }
 
             return items;
         }

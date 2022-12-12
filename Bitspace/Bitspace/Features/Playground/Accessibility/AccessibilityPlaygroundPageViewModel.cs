@@ -53,13 +53,11 @@ namespace Bitspace.Features
         private void Increment()
         {
             Counter++;
-            // Announcement();
         }
 
         private void Decrement()
         {
             Counter--;
-            // Announcement();
         }
     }
 }

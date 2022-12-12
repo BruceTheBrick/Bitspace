@@ -17,7 +17,6 @@ namespace Bitspace.Features
         public override async Task OnNavigatedToAsync(INavigationParameters parameters)
         {
             await base.OnNavigatedToAsync(parameters);
-            await _remoteConfigService.FetchAndActivate();
             await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(HomePage)}");
         }
     }

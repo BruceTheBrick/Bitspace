@@ -22,11 +22,11 @@ namespace Bitspace.iOS
             Rg.Plugins.Popup.Popup.Init();
             Xamarin.Forms.Forms.Init();
             Sharpnado.MaterialFrame.iOS.iOSMaterialFrameRenderer.Init();
+            ConfigureFirebase();
             CachedImageRenderer.Init();
             SvgCachedImage.Init();
             _ = typeof(SvgCachedImage);
             CarouselViewRenderer.Init();
-            ConfigureFirebase();
             LoadApplication(new App(new PlatformInitializer()));
             return base.FinishedLaunching(app, options);
         }

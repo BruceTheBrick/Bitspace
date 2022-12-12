@@ -8,11 +8,8 @@ namespace Bitspace.iOS.Services
 {
     public class RemoteConfigService : IRemoteConfigService
     {
-        private readonly ITimeoutService _timeoutService;
-        public RemoteConfigService(ITimeoutService timeoutService)
+        public RemoteConfigService()
         {
-            _timeoutService = timeoutService;
-            _timeoutService.ExpiryMinutes = 5;
             RemoteConfig.SharedInstance.ConfigSettings = GetFirebaseSettings();
             RemoteConfig.SharedInstance.Init();
         }
@@ -21,13 +18,7 @@ namespace Bitspace.iOS.Services
         {
             try
             {
-                if (_timeoutService.IsExpired())
-                {
-                    _timeoutService.Update();
-                }
-
-                var t = RemoteConfig.SharedInstance.GetConfigValue(featureName);
-                return t.BoolValue;
+                return RemoteConfig.SharedInstance.GetConfigValue(featureName).BoolValue;
             }
             catch (Exception e)
             {
@@ -43,7 +34,7 @@ namespace Bitspace.iOS.Services
 
         public async Task FetchAndActivate()
         {
-            var t = await RemoteConfig.SharedInstance.FetchAndActivateAsync();
+            await RemoteConfig.SharedInstance.FetchAndActivateAsync();
         }
         
         private RemoteConfigSettings GetFirebaseSettings()

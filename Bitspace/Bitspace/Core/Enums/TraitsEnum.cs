@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Enums
+namespace Bitspace.Core
 {
     [Flags]
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Enums can use Human case")]
     public enum TraitsEnum
     {
         None = 0,

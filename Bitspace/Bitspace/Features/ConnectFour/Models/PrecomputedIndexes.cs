@@ -17,9 +17,9 @@ namespace Bitspace.Features
             return board;
         }
 
-        public static List<int>[] twoInARow;
-        public static List<int>[] threeInARow;
-        public static List<int>[] fourInARow;
+        public static List<int>[] TwoInARow;
+        public static List<int>[] ThreeInARow;
+        public static List<int>[] FourInARow;
 
 
         public static void Init()
@@ -29,144 +29,146 @@ namespace Bitspace.Features
             InitFourInARow();
         }
 
-        public static void InitTwoInARow()
+        private static void InitTwoInARow()
         {
-            twoInARow = new List<int>[41];
+            TwoInARow = new List<int>[41];
 
-            for (int i = 0; i < twoInARow.Length; i++)
+            for (var i = 0; i < TwoInARow.Length; i++)
             {
+                TwoInARow[i] = new List<int>();
 
-                twoInARow[i] = new List<int>();
-
-                //In bottom row
+                // In bottom row
                 if (i >= 35)
                 {
-                    twoInARow[i].Add(i + 1);
+                    TwoInARow[i].Add(i + 1);
                 }
 
-                //In left column
+                // In left column
                 else if (i % 7 == 0)
                 {
-                    twoInARow[i].Add(i + 1);
-                    twoInARow[i].Add(i + 8);
-                    twoInARow[i].Add(i + 7);
+                    TwoInARow[i].Add(i + 1);
+                    TwoInARow[i].Add(i + 8);
+                    TwoInARow[i].Add(i + 7);
                 }
 
-                //In right column
+                // In right column
                 else if (i % 7 == 6)
                 {
-                    twoInARow[i].Add(i + 7);
-                    twoInARow[i].Add(i + 6);
+                    TwoInARow[i].Add(i + 7);
+                    TwoInARow[i].Add(i + 6);
                 }
                 else
                 {
-                    twoInARow[i].Add(i + 1);
-                    twoInARow[i].Add(i + 8);
-                    twoInARow[i].Add(i + 7);
-                    twoInARow[i].Add(i + 6);
+                    TwoInARow[i].Add(i + 1);
+                    TwoInARow[i].Add(i + 8);
+                    TwoInARow[i].Add(i + 7);
+                    TwoInARow[i].Add(i + 6);
                 }
             }
         }
 
-        public static void InitThreeInARow()
+        private static void InitThreeInARow()
         {
-            threeInARow = new List<int>[40];
+            ThreeInARow = new List<int>[40];
 
-            for (int i = 0; i < threeInARow.Length; i++)
+            for (var i = 0; i < ThreeInARow.Length; i++)
             {
+                ThreeInARow[i] = new List<int>();
 
-                threeInARow[i] = new List<int>();
-
-                //In bottom row
+                // In bottom row
                 if (i >= 28)
                 {
-                    threeInARow[i].Add(i + 1);
-                    threeInARow[i].Add(i + 2);
+                    ThreeInARow[i].Add(i + 1);
+                    ThreeInARow[i].Add(i + 2);
                 }
-
-                //In left column
-                else if (i % 7 == 0 || i % 7 == 1)
-                {
-                    threeInARow[i].Add(i + 1);
-                    threeInARow[i].Add(i + 2);
-
-                    threeInARow[i].Add(i + 8);
-                    threeInARow[i].Add(i + 16);
-
-                    threeInARow[i].Add(i + 7);
-                    threeInARow[i].Add(i + 14);
-                }
-
-                //In right column
-                else if (i % 7 == 6 || i % 7 == 5)
-                {
-                    threeInARow[i].Add(i + 7);
-                    threeInARow[i].Add(i + 14);
-
-                    threeInARow[i].Add(i + 6);
-                    threeInARow[i].Add(i + 12);
-                }
-
                 else
                 {
-                    threeInARow[i].Add(i + 1);
-                    threeInARow[i].Add(i + 2);
-                    threeInARow[i].Add(i + 8);
-                    threeInARow[i].Add(i + 16);
-                    threeInARow[i].Add(i + 7);
-                    threeInARow[i].Add(i + 14);
-                    threeInARow[i].Add(i + 6);
-                    threeInARow[i].Add(i + 12);
-                }
+                    switch (i % 7)
+                    {
+                        // In left column
+                        case 0:
+                        case 1:
+                            ThreeInARow[i].Add(i + 1);
+                            ThreeInARow[i].Add(i + 2);
 
+                            ThreeInARow[i].Add(i + 8);
+                            ThreeInARow[i].Add(i + 16);
+
+                            ThreeInARow[i].Add(i + 7);
+                            ThreeInARow[i].Add(i + 14);
+                            break;
+
+                        // In right column
+                        case 6:
+                        case 5:
+                            ThreeInARow[i].Add(i + 7);
+                            ThreeInARow[i].Add(i + 14);
+
+                            ThreeInARow[i].Add(i + 6);
+                            ThreeInARow[i].Add(i + 12);
+                            break;
+                        default:
+                            ThreeInARow[i].Add(i + 1);
+                            ThreeInARow[i].Add(i + 2);
+                            ThreeInARow[i].Add(i + 8);
+                            ThreeInARow[i].Add(i + 16);
+                            ThreeInARow[i].Add(i + 7);
+                            ThreeInARow[i].Add(i + 14);
+                            ThreeInARow[i].Add(i + 6);
+                            ThreeInARow[i].Add(i + 12);
+                            break;
+                    }
+                }
             }
         }
 
-        public static void InitFourInARow()
+        private static void InitFourInARow()
         {
-            fourInARow = new List<int>[39];
-
-            for (int i = 0; i < fourInARow.Length; i++)
+            FourInARow = new List<int>[39];
+            for (var i = 0; i < FourInARow.Length; i++)
             {
+                FourInARow[i] = new List<int>();
 
-                fourInARow[i] = new List<int>();
-
-                if (i <= 17 && i % 7 <= 3)
+                switch (i)
                 {
-                    fourInARow[i].Add(i + 1);
-                    fourInARow[i].Add(i + 2);
-                    fourInARow[i].Add(i + 3);
-
-                    fourInARow[i].Add(i + 8);
-                    fourInARow[i].Add(i + 16);
-                    fourInARow[i].Add(i + 24);
-
-                    fourInARow[i].Add(i + 7);
-                    fourInARow[i].Add(i + 14);
-                    fourInARow[i].Add(i + 21);
-
-                    if (i % 7 == 3)
+                    case <= 17 when i % 7 <= 3:
                     {
-                        fourInARow[i].Add(i + 6);
-                        fourInARow[i].Add(i + 12);
-                        fourInARow[i].Add(i + 18);
-                    }
-                }
-                else if (i <= 20 && i % 7 > 3)
-                {
-                    fourInARow[i].Add(i + 7);
-                    fourInARow[i].Add(i + 14);
-                    fourInARow[i].Add(i + 21);
+                        FourInARow[i].Add(i + 1);
+                        FourInARow[i].Add(i + 2);
+                        FourInARow[i].Add(i + 3);
 
-                    fourInARow[i].Add(i + 6);
-                    fourInARow[i].Add(i + 12);
-                    fourInARow[i].Add(i + 18);
-                }
-                else if (i >= 21 && i % 7 <= 3)
-                {
-                    fourInARow[i].Add(i + 1);
-                    fourInARow[i].Add(i + 2);
-                    fourInARow[i].Add(i + 3);
+                        FourInARow[i].Add(i + 8);
+                        FourInARow[i].Add(i + 16);
+                        FourInARow[i].Add(i + 24);
+
+                        FourInARow[i].Add(i + 7);
+                        FourInARow[i].Add(i + 14);
+                        FourInARow[i].Add(i + 21);
+
+                        if (i % 7 == 3)
+                        {
+                            FourInARow[i].Add(i + 6);
+                            FourInARow[i].Add(i + 12);
+                            FourInARow[i].Add(i + 18);
+                        }
+
+                        break;
+                    }
+
+                    case <= 20 when i % 7 > 3:
+                        FourInARow[i].Add(i + 7);
+                        FourInARow[i].Add(i + 14);
+                        FourInARow[i].Add(i + 21);
+
+                        FourInARow[i].Add(i + 6);
+                        FourInARow[i].Add(i + 12);
+                        FourInARow[i].Add(i + 18);
+                        break;
+                    case >= 21 when i % 7 <= 3:
+                        FourInARow[i].Add(i + 1);
+                        FourInARow[i].Add(i + 2);
+                        FourInARow[i].Add(i + 3);
+                        break;
                 }
             }
         }

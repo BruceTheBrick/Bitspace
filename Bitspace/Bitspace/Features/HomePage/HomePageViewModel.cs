@@ -43,7 +43,7 @@ namespace Bitspace.Features
         {
             if (!string.IsNullOrEmpty(item.NavigationConstant))
             {
-                var t = await NavigationService.NavigateAsync(item.NavigationConstant);
+                await NavigationService.NavigateAsync(item.NavigationConstant);
             }
 
             AnalyticsService.LogEvent("BUTTON_PRESSED", "ID", "MENU_BUTTON_PRESSED");
@@ -58,8 +58,7 @@ namespace Bitspace.Features
 
         private void SetVersionNumber()
         {
-            VersionNumber =
-                $"{_essentialsVersionService.CurrentVersion()} {_essentialsVersionService.CurrentBuildNumber()}";
+            VersionNumber = $"{_essentialsVersionService.CurrentVersion()} {_essentialsVersionService.CurrentBuildNumber()}";
         }
     }
 }
