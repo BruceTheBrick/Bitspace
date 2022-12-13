@@ -11,7 +11,6 @@ namespace Bitspace.iOS.Services
         public RemoteConfigService()
         {
             RemoteConfig.SharedInstance.ConfigSettings = GetFirebaseSettings();
-            RemoteConfig.SharedInstance.Init();
         }
 
         public bool IsEnabled(string featureName)
@@ -34,14 +33,20 @@ namespace Bitspace.iOS.Services
 
         public async Task FetchAndActivate()
         {
-            await RemoteConfig.SharedInstance.FetchAndActivateAsync();
+            try
+            {
+                await RemoteConfig.SharedInstance.FetchAsync(TimeoutConstants.REMOTECONFIG_MIN_FETCH_INTERVAL);
+                RemoteConfig.SharedInstance.ActivateFetched();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
         }
         
         private RemoteConfigSettings GetFirebaseSettings()
         {
-            var settings = new RemoteConfigSettings();
-            settings.FetchTimeout = TimeoutConstants.REMOTECONFIG_TIMEOUT;
-            settings.MinimumFetchInterval = TimeoutConstants.REMOTECONFIG_MIN_FETCH_INTERVAL;
+            var settings = new RemoteConfigSettings(true);
             return settings;
         }
     }

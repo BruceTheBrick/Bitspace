@@ -24,7 +24,7 @@ namespace Bitspace.Features
                     nameof(WeatherForecastPage)));
             }
 
-            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.Homepage_Martini) || true)
+            if (_remoteConfigService.IsEnabled(RemoteConfigConstants.Homepage_Martini))
             {
                 items.Add(new MenuListItemViewModel(
                     HomePageRegister.MARTINI,

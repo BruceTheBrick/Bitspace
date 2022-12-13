@@ -19,10 +19,10 @@ namespace Bitspace.iOS
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            ConfigureFirebase();
             Rg.Plugins.Popup.Popup.Init();
             Xamarin.Forms.Forms.Init();
             Sharpnado.MaterialFrame.iOS.iOSMaterialFrameRenderer.Init();
-            ConfigureFirebase();
             CachedImageRenderer.Init();
             SvgCachedImage.Init();
             _ = typeof(SvgCachedImage);
