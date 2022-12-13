@@ -18,25 +18,19 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="CF_COL_EX" xml:space="preserve">
-        <value>Column {0} is out of range {1} - {2}.</value>
+    <data name="HUMIDITY" xml:space="preserve">
+        <value>Humidity</value>
     </data>
-    <data name="CF_WIN" xml:space="preserve">
-        <value>Congratulations {0}, you won!</value>
+    <data name="WIND_SPEED" xml:space="preserve">
+        <value>Wind Speed</value>
     </data>
-    <data name="CF_CONGRATS" xml:space="preserve">
-        <value>Congratulations!</value>
+    <data name="UVIndex" xml:space="preserve">
+        <value>UV Index</value>
     </data>
-    <data name="CF_WINNER" xml:space="preserve">
-        <value>{0} is the winner!</value>
+    <data name="PRESSURE" xml:space="preserve">
+        <value>Pressure</value>
     </data>
-    <data name="CF_PLAY_AGAIN" xml:space="preserve">
-        <value>Would you like to play again?</value>
-    </data>
-    <data name="CF_NEW_GAME" xml:space="preserve">
-        <value>New Game</value>
-    </data>
-    <data name="CF_QUIT" xml:space="preserve">
-        <value>Quit</value>
+    <data name="PAGE_NAME" xml:space="preserve">
+        <value>Weather Forecast Page</value>
     </data>
 </root>

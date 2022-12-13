@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Bitspace.APIs;
 using Bitspace.Controls;
 using Bitspace.Core;
+using Bitspace.Resources;
 using Bitspace.UI;
 using Prism.Navigation;
 using PropertyChanged;
@@ -32,6 +33,7 @@ namespace Bitspace.Features
         public ObservableCollection<PillViewModel> DailyPillList { get; set; }
         public PillViewModel ActivePill { get; set; }
         public ICommand PillSelectedCommand { get; }
+        protected override string PageName { get; set; } = WeatherForecastPageRegister.PAGE_NAME;
 
         public override async Task InitializeAsync(INavigationParameters parameters)
         {

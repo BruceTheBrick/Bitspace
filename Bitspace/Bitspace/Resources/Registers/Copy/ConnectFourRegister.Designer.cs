@@ -28,7 +28,7 @@ namespace Bitspace.Resources {
         public static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Bitspace.Resources.Registers.ConnectFourRegister", typeof(ConnectFourRegister).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Bitspace.Resources.Registers.Copy.ConnectFourRegister", typeof(ConnectFourRegister).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -84,6 +84,12 @@ namespace Bitspace.Resources {
         public static string CF_QUIT {
             get {
                 return ResourceManager.GetString("CF_QUIT", resourceCulture);
+            }
+        }
+        
+        public static string PAGE_NAME {
+            get {
+                return ResourceManager.GetString("PAGE_NAME", resourceCulture);
             }
         }
     }

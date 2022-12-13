@@ -16,10 +16,12 @@ namespace Bitspace.Features
         }
 
         public ICommand NavigateToAccessibilityPlaygroundPageCommand { get; }
+        protected override string PageName { get; set; } = "Playground Page";
 
         private Task NavigateToAccessibilityPlaygroundPage()
         {
             return NavigationService.NavigateAsync(nameof(AccessibilityPlaygroundPage));
         }
+
     }
 }

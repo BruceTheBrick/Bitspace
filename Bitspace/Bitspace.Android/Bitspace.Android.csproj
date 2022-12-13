@@ -112,7 +112,7 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="PlatformInitializer.cs" />
-    <Compile Include="Services\FirebaseAnalytics\FirebaseAnalyticsService.cs" />
+    <Compile Include="Services\Analytics\AnalyticsService.cs" />
     <Compile Include="Services\RemoteConfigService\RemoteConfigService.cs" />
     <Compile Include="SplashActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

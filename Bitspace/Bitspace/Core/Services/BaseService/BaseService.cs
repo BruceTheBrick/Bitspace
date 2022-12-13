@@ -8,7 +8,7 @@ namespace Bitspace.Core
         public BaseService(
             INavigationService navigationService,
             IAccessibilityService accessibilityService,
-            IFirebaseAnalyticsService analyticsService,
+            IAnalyticsService analyticsService,
             IAlertService alertService)
         {
             NavigationService = navigationService;
@@ -19,7 +19,7 @@ namespace Bitspace.Core
 
         public INavigationService NavigationService { get; }
         public IAccessibilityService AccessibilityService { get; }
-        public IFirebaseAnalyticsService AnalyticsService { get; }
+        public IAnalyticsService AnalyticsService { get; }
         public IAlertService AlertService { get; }
     }
 }

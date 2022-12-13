@@ -6,7 +6,7 @@ using Plugin.CurrentActivity;
 
 namespace Bitspace.Droid.Services
 {
-    public class FirebaseAnalyticsService : IFirebaseAnalyticsService
+    public class AnalyticsService : IAnalyticsService
     {
         public void LogEvent(string eventId)
         {

@@ -70,11 +70,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AnalyticsRegister.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Registers\ConnectFourRegister.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ConnectFourPageRegister.resx</DependentUpon>
-    </Compile>
     <Compile Update="Features\ConnectFour\Popups\GameOverPopupPage.xaml.cs">
       <DependentUpon>GameOverPopupPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -82,6 +77,11 @@
     <Compile Update="Features\Playground\Accessibility\AccessibilityPlaygroundPage.xaml.cs">
       <DependentUpon>AccessibilityPlaygroundPage.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Resources\Registers\Copy\ConnectFourRegister.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ConnectFourPageRegister.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -131,25 +131,25 @@
     <None Remove="Resources\ic_home.svg" />
     <None Remove="Resources\ic_magnifying_glass.svg" />
     <None Remove="Resources\ic_martini.svg" />
-    <EmbeddedResource Update="Resources\Registers\HomePageRegister.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>HomePageRegister.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Registers\WeatherForecastPageRegister.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>WeatherForecastPageRegister.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Registers\AnalyticsRegister.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Registers\ConnectFourRegister.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ConnectFourRegister.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Remove="Resources\Images\ic_info.svg" />
     <EmbeddedResource Include="Resources\Images\ic_info.svg" />
     <None Remove="Bitspace.csproj.DotSettings" />
+    <EmbeddedResource Update="Resources\Registers\Analytics\AnalyticsRegister.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Registers\Copy\ConnectFourRegister.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConnectFourRegister.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Registers\Copy\HomePageRegister.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomePageRegister.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Registers\Copy\WeatherForecastPageRegister.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WeatherForecastPageRegister.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

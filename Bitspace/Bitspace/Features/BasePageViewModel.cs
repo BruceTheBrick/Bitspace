@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Bitspace.Core;
+using Bitspace.Resources;
 using Prism.AppModel;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -9,7 +10,7 @@ using INavigationService = Bitspace.Core.INavigationService;
 namespace Bitspace.Features
 {
     [AddINotifyPropertyChangedInterface]
-    public class BasePageViewModel : BindableBase, IInitialize, INavigationAware, IDestructible, IPageLifecycleAware
+    public abstract class BasePageViewModel : BindableBase, IInitialize, INavigationAware, IDestructible, IPageLifecycleAware
     {
         protected BasePageViewModel(IBaseService baseService)
         {
@@ -20,15 +21,17 @@ namespace Bitspace.Features
         }
 
         public bool IsBusy { get; set; }
+        protected abstract string PageName { get; set; }
 
         protected INavigationService NavigationService { get; }
         protected IAccessibilityService AccessibilityService { get; }
-        protected IFirebaseAnalyticsService AnalyticsService { get; }
+        protected IAnalyticsService AnalyticsService { get; }
         protected IAlertService AlertService { get; }
 
         public virtual void Initialize(INavigationParameters parameters)
         {
             _ = InitializeAsync(parameters);
+            AnalyticsService.LogEvent(AnalyticsRegister.SCREEN_VIEW, AnalyticsRegister.ID, PageName);
         }
 
         public virtual Task InitializeAsync(INavigationParameters parameters)

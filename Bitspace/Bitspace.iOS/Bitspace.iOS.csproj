@@ -117,7 +117,7 @@
     <LinkDescription Include="LinkerSettings.xml" />
     <Compile Include="PlatformInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\FirebaseAnalytics\FirebaseAnalyticsService.cs" />
+    <Compile Include="Services\Analytics\AnalyticsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json">
@@ -236,7 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="Services\FirebaseAnalytics\" />
+    <Folder Include="Services\Analytics\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="GoogleService-Info.plist" />

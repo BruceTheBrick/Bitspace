@@ -2,7 +2,7 @@
 
 namespace Bitspace.Core
 {
-    public interface IFirebaseAnalyticsService
+    public interface IAnalyticsService
     {
         void LogEvent(string eventId);
         void LogEvent(string eventId, string paramName, string value);

@@ -6,7 +6,7 @@ using Foundation;
 
 namespace Bitspace.iOS.Services
 {
-    public class FirebaseAnalyticsService : IFirebaseAnalyticsService
+    public class AnalyticsService : IAnalyticsService
     {
         public void LogEvent(string eventId)
         {

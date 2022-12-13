@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Bitspace.Core;
+using Bitspace.Resources;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
@@ -32,6 +33,7 @@ namespace Bitspace.Features
         public ICommand ItemSelectedCommand { get; }
         public ICommand RefreshMenuItemsCommand { get; }
         public bool IsRefreshing { get; set; }
+        protected override string PageName { get; set; } = HomePageRegister.PAGE_NAME;
 
         public override void Initialize(INavigationParameters parameters)
         {

@@ -16,7 +16,7 @@ namespace Bitspace.Droid
         private void RegisterServices(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IRemoteConfigService, RemoteConfigService>();
-            containerRegistry.Register<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
+            containerRegistry.Register<IAnalyticsService, AnalyticsService>();
         }
     }
 }

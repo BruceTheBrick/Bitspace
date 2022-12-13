@@ -17,7 +17,7 @@ namespace Bitspace.iOS
 
         private void RegisterServices(IContainerRegistry containerRegister)
         {
-            containerRegister.Register<IFirebaseAnalyticsService, FirebaseAnalyticsService>();
+            containerRegister.Register<IAnalyticsService, AnalyticsService>();
             containerRegister.Register<IRemoteConfigService, RemoteConfigService>();
         }
 

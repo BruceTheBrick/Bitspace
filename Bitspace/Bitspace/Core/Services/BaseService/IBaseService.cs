@@ -4,7 +4,7 @@
     {
          INavigationService NavigationService { get; }
          IAccessibilityService AccessibilityService { get; }
-         IFirebaseAnalyticsService AnalyticsService { get; }
+         IAnalyticsService AnalyticsService { get; }
          IAlertService AlertService { get; }
     }
 }
