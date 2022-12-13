@@ -27,4 +27,7 @@
     <data name="CF_ENGINE_MOVE_DURATION" xml:space="preserve">
         <value>CF_ENGINE_MOVE_DURATION</value>
     </data>
+    <data name="ITEM_SELECTED" xml:space="preserve">
+        <value>ITEM_SELECTED</value>
+    </data>
 </root>

@@ -28,7 +28,7 @@ namespace Bitspace.Resources {
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Bitspace.Resources.Registers.AnalyticsRegister", typeof(AnalyticsRegister).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Bitspace.Resources.Registers.Analytics.AnalyticsRegister", typeof(AnalyticsRegister).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,6 +60,12 @@ namespace Bitspace.Resources {
         internal static string CF_ENGINE_MOVE_DURATION {
             get {
                 return ResourceManager.GetString("CF_ENGINE_MOVE_DURATION", resourceCulture);
+            }
+        }
+        
+        internal static string ITEM_SELECTED {
+            get {
+                return ResourceManager.GetString("ITEM_SELECTED", resourceCulture);
             }
         }
     }

@@ -33,7 +33,6 @@ namespace Bitspace.Features
         public ICommand ItemSelectedCommand { get; }
         public ICommand RefreshMenuItemsCommand { get; }
         public bool IsRefreshing { get; set; }
-        protected override string PageName { get; set; } = HomePageRegister.PAGE_NAME;
 
         public override void Initialize(INavigationParameters parameters)
         {
@@ -48,7 +47,7 @@ namespace Bitspace.Features
                 await NavigationService.NavigateAsync(item.NavigationConstant);
             }
 
-            AnalyticsService.LogEvent("BUTTON_PRESSED", "ID", "MENU_BUTTON_PRESSED");
+            AnalyticsService.LogEvent(AnalyticsRegister.ITEM_SELECTED, AnalyticsRegister.ID, item.NavigationConstant);
         }
 
         private void RefreshMenuItems()

@@ -24,8 +24,7 @@ namespace Bitspace.Features
         public ICommand IncrementCommand { get; }
         public ICommand DecrementCommand { get; }
         public int Counter { get; set; }
-
-        protected override string PageName { get; set; } = "Accessibility Playground Page";
+        
         private void InitAccessibilityActionCommands()
         {
             AccessibilityActionCommands = new List<AccessibilityActionCommand>();

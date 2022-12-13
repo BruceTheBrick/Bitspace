@@ -21,8 +21,6 @@ namespace Bitspace.Features
         }
 
         public bool IsBusy { get; set; }
-        protected abstract string PageName { get; set; }
-
         protected INavigationService NavigationService { get; }
         protected IAccessibilityService AccessibilityService { get; }
         protected IAnalyticsService AnalyticsService { get; }
@@ -31,7 +29,7 @@ namespace Bitspace.Features
         public virtual void Initialize(INavigationParameters parameters)
         {
             _ = InitializeAsync(parameters);
-            AnalyticsService.LogEvent(AnalyticsRegister.SCREEN_VIEW, AnalyticsRegister.ID, PageName);
+            AnalyticsService.LogEvent(AnalyticsRegister.SCREEN_VIEW, AnalyticsRegister.ID, this.GetType().Name);
         }
 
         public virtual Task InitializeAsync(INavigationParameters parameters)

@@ -33,7 +33,6 @@ namespace Bitspace.Features
         public bool UpdateButtons { get; set; }
         public bool IsGameOver { get; set; }
         public Piece Winner { get; set; }
-        protected override string PageName { get; set; } = ConnectFourRegister.PAGE_NAME;
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {

@@ -18,7 +18,6 @@ namespace Bitspace.Features
         public IAsyncCommand PlayAgainCommand { get; set; }
         public IAsyncCommand QuitCommand { get; set; }
         public string Winner { get; set; }
-        protected override string PageName { get; set; } = "Game Over Page";
         public override void Initialize(INavigationParameters parameters)
         {
             base.Initialize(parameters);

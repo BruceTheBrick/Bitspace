@@ -25,7 +25,6 @@ namespace Bitspace.UI
         public Position Position { get; set; }
         public bool IsLeftIconVisible { get; set; }
         public bool IsRightIconVisible { get; set; }
-        protected override string PageName { get; set; }
 
         public override void Initialize(INavigationParameters parameters)
         {
