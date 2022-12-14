@@ -10,7 +10,6 @@ namespace Bitspace.UI
     public class SnackbarPopupViewModel : BasePageViewModel
     {
         private readonly ITimerService _timerService;
-        private Timer _timer;
         public SnackbarPopupViewModel(ITimerService timerService, IBaseService baseService)
             : base(baseService)
         {
@@ -20,6 +19,7 @@ namespace Bitspace.UI
 
         public IAsyncCommand DismissCommand { get; }
 
+        public Timer Timer { get; set; }
         public string Message { get; set; }
         public string Icon { get; set; }
         public Position Position { get; set; }
@@ -48,7 +48,7 @@ namespace Bitspace.UI
             InitializeTimer();
         }
 
-        private void SetIconVisibility()
+        public virtual void SetIconVisibility()
         {
             if (string.IsNullOrWhiteSpace(Icon))
             {
@@ -59,15 +59,15 @@ namespace Bitspace.UI
             IsRightIconVisible = Position == Position.RIGHT;
         }
 
-        private void InitializeTimer()
+        public virtual void InitializeTimer()
         {
-            _timer = _timerService.Timer(6000, TimerOnElapsed);
-            _timer.Start();
+            Timer = _timerService.GetTimer(DurationConstants.SnackbarDurationMillis, TimerOnElapsed);
+            Timer.Start();
         }
 
         private Task Dismiss()
         {
-            _timer.Stop();
+            Timer.Stop();
             return NavigationService.GoBack();
         }
 

@@ -8,6 +8,12 @@ namespace Bitspace.Core
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:Fields should be private", Justification = "NavigationConstants need static scoping")]
     public static class NavigationConstants
     {
+        #region Navigation Destinations
+
+        public const string Homepage = $"/{nameof(NavigationPage)}/{nameof(HomePage)}";
+
+        #endregion
+
         #region Global
 
         public static string Message = nameof(Message);
@@ -23,6 +29,5 @@ namespace Bitspace.Core
 
         #endregion
 
-        public static string Homepage = $"/{nameof(NavigationPage)}/{nameof(HomePage)}";
     }
 }

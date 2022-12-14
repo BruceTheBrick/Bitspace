@@ -52,7 +52,6 @@ namespace Bitspace
             containerRegistry.RegisterForNavigation<InitPage, InitPageViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>();
-            containerRegistry.RegisterForNavigation<QRCodeScannerPage, QRCodeScannerPageViewModel>();
             containerRegistry.RegisterForNavigation<ConnectFourPage, ConnectFourPageViewModel>();
             containerRegistry.RegisterForNavigation<SnackbarPopup, SnackbarPopupViewModel>();
             containerRegistry.RegisterForNavigation<GameOverPopupPage, GameOverPopupPageViewModel>();

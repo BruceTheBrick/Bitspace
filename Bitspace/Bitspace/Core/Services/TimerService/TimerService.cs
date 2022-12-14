@@ -4,7 +4,7 @@ namespace Bitspace.Core
 {
     public class TimerService : ITimerService
     {
-        public Timer Timer(int millis, ElapsedEventHandler callback)
+        public Timer GetTimer(int millis, ElapsedEventHandler callback)
         {
             var timer = new Timer(millis);
             timer.Enabled = true;

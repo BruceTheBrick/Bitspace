@@ -10,9 +10,9 @@ using INavigationService = Bitspace.Core.INavigationService;
 namespace Bitspace.Features
 {
     [AddINotifyPropertyChangedInterface]
-    public abstract class BasePageViewModel : BindableBase, IInitialize, INavigationAware, IDestructible, IPageLifecycleAware
+    public class BasePageViewModel : BindableBase, IInitialize, INavigationAware, IDestructible, IPageLifecycleAware
     {
-        protected BasePageViewModel(IBaseService baseService)
+        public BasePageViewModel(IBaseService baseService)
         {
             NavigationService = baseService.NavigationService;
             AccessibilityService = baseService.AccessibilityService;
