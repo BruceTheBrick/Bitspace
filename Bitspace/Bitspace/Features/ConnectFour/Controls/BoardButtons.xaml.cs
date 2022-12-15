@@ -204,6 +204,7 @@ namespace Bitspace.Features.Controls
                 Command = Command,
                 CommandParameter = column,
                 BackgroundColor = GetColor(row, column),
+                TextColor = Color.Black,
                 Text = _precomputedIndexes[row][column].ToString(),
             };
             var binding = new Binding(nameof(IsGameOver))

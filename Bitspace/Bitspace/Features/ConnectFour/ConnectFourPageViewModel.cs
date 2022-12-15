@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Bitspace.Core;
 using Bitspace.Resources;
+using Humanizer;
 using Prism.Navigation;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
@@ -22,10 +23,12 @@ namespace Bitspace.Features
 
             PlacePieceCommand = new AsyncCommand<int>(PlacePiece);
             UndoCommand = new Command(Undo);
+            ResetCommand = new Command(Reset);
         }
 
         public ICommand PlacePieceCommand { get; }
         public ICommand UndoCommand { get; }
+        public ICommand ResetCommand { get; }
         public IBoard Board { get; set; }
         public IConnectFourEngine Martini { get; }
         public int Columns { get; set; }
@@ -49,6 +52,7 @@ namespace Bitspace.Features
             if (IsGameOver)
             {
                 await FinishGame();
+                return;
             }
 
             var cpuMove = Martini.GetNextMove(Board, Piece.TWO);
@@ -81,9 +85,7 @@ namespace Bitspace.Features
         private Task FinishGame()
         {
             IsGameOver = true;
-            var name = Winner == Piece.ONE
-                ? "Player one"
-                : "Player two";
+            var name = string.Format(ConnectFourRegister.CF_PLAYER, Winner.ToString().Humanize(LetterCasing.Title));
             var parameters = new NavigationParameters { { NavigationConstants.Winner, name } };
             return NavigationService.NavigateAsync(nameof(GameOverPopupPage), parameters);
         }

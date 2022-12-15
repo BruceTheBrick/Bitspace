@@ -79,7 +79,7 @@ namespace Bitspace.Features
                     continue;
                 }
 
-                board.PlacePiece(x, GetOtherPlayer(_player));
+                board.PlacePiece(x, _player.GetOtherPiece());
                 var score = Minimax(board, depth - 1, true);
                 board.Undo();
                 bestScore = Math.Min(score, bestScore);
@@ -90,7 +90,6 @@ namespace Bitspace.Features
 
         public int Evaluate(IBoard board, bool isMaximising)
         {
-            return _scoringService.GetScore(board, isMaximising);
             var currentPlayerScore = _scoringService.GetScore(board, true);
             var minimisingPlayerScore = _scoringService.GetScore(board, false);
             return currentPlayerScore - minimisingPlayerScore;
@@ -99,13 +98,6 @@ namespace Bitspace.Features
         private int GetDepth()
         {
             return 0;
-        }
-
-        private Piece GetOtherPlayer(Piece player)
-        {
-            return player == Piece.ONE
-                ? Piece.TWO
-                : Piece.ONE;
         }
     }
 }

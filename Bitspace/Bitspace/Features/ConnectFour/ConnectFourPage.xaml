@@ -21,6 +21,15 @@
             PlayerTwoColor="HotPink"
             Rows="{Binding Rows}"
             UpdateButtonState="{Binding UpdateButtons}" />
-        <Button Command="{Binding UndoCommand}" Text="Undo" />
+        <Grid ColumnDefinitions="*, *, *">
+            <Button
+                Grid.Column="0"
+                Command="{Binding UndoCommand}"
+                Text="Undo" />
+            <Button
+                Grid.Column="2"
+                Command="{Binding ResetCommand}"
+                Text="Reset" />
+        </Grid>
     </StackLayout>
 </ContentPage>

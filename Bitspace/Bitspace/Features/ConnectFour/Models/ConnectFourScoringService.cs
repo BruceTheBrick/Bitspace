@@ -24,12 +24,8 @@ namespace Bitspace.Features
                 ? _maximisingPlayer
                 : _maximisingPlayer.GetOtherPiece();
             score += GetBaseScore(board, player);
+            score += NumOfTwos(board, player);
             return score;
-        }
-
-        public int GetValue(int row, int column)
-        {
-            return _precomputedIndexes[row][column];
         }
 
         private int GetBaseScore(IBoard board, Piece player)
