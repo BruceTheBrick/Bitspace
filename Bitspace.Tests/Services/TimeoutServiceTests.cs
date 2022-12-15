@@ -104,7 +104,59 @@ namespace Bitspace.Tests.Services
             // Assert
             isExpired.Should().BeTrue();
         }
-    
+
+        [Fact]
+        private void IsExpiredOverload_ShouldReturnFalse_WhenExpiryMinutesIsNull()
+        {
+            //Arrange
+            Sut.ExpiryMinutes = null;
+
+            //Act
+            var result = Sut.IsExpired(DateTime.Now);
+
+            //Assert
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        private void IsExpiredOverload_ShouldReturnTrue_WhenDateTimeLastUpdateIsMinDate()
+        {
+            //Arrange
+            Sut.ExpiryMinutes = 1;
+
+            //Act
+            var result = Sut.IsExpired(DateTime.MinValue);
+
+            //Assert
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        private void IsExpiredOverload_ShouldReturnFalse_WhenElapsedTimeIsLessThanExpiryThreshold()
+        {
+            //Arrange
+            Sut.ExpiryMinutes = 10;
+
+            //Act
+            var result = Sut.IsExpired(DateTime.Now.AddMinutes(-5));
+
+            //Assert
+            result.Should().BeFalse();
+        }
+        
+        [Fact]
+        private void IsExpiredOverload_ShouldReturnTrue_WhenElapsedTimeIsGreaterThanExpiryThreshold()
+        {
+            //Arrange
+            Sut.ExpiryMinutes = 10;
+
+            //Act
+            var result = Sut.IsExpired(DateTime.Now.AddMinutes(-15));
+
+            //Assert
+            result.Should().BeTrue();
+        }
+
         #endregion
 
         #region Update
