@@ -6,22 +6,46 @@
     xmlns:controls="clr-namespace:Bitspace.Features.Controls;assembly=Bitspace"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     x:DataType="features:ConnectFourPageViewModel">
-    <StackLayout
-        Padding="16"
-        BackgroundColor="DarkRed"
-        HorizontalOptions="CenterAndExpand"
-        VerticalOptions="CenterAndExpand">
-        <controls:BoardButtons
-            Board="{Binding Board}"
-            Columns="{Binding Columns}"
-            Command="{Binding PlacePieceCommand}"
+    <Grid RowDefinitions="*, 4*, *">
+        <Grid
+            Grid.Row="0"
+            Padding="0,12"
+            ColumnDefinitions="auto, *"
+            VerticalOptions="End">
+            <ActivityIndicator
+                Grid.Column="0"
+                HeightRequest="20"
+                IsRunning="{Binding IsCpuBusy}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Column="1"
+                Text="{Binding MartiniStatus}"
+                VerticalOptions="Center" />
+        </Grid>
+        <Frame
+            Grid.Row="1"
+            Margin="8"
+            BackgroundColor="Salmon"
+            CornerRadius="8"
+            HasShadow="False"
             HorizontalOptions="Center"
-            IsGameOver="{Binding IsGameOver}"
-            PlayerOneColor="Blue"
-            PlayerTwoColor="HotPink"
-            Rows="{Binding Rows}"
-            UpdateButtonState="{Binding UpdateButtons}" />
-        <Grid Padding="8" ColumnDefinitions="*, *, *">
+            VerticalOptions="Center">
+            <controls:BoardButtons
+                Board="{Binding Board}"
+                Columns="{Binding Columns}"
+                Command="{Binding PlacePieceCommand}"
+                HorizontalOptions="Center"
+                IsEnabled="{Binding IsBoardEnabled}"
+                PlayerOneColor="Blue"
+                PlayerTwoColor="HotPink"
+                Rows="{Binding Rows}"
+                UpdateButtonState="{Binding UpdateButtons}"
+                VerticalOptions="Center" />
+        </Frame>
+        <Grid
+            Grid.Row="2"
+            Padding="8"
+            ColumnDefinitions="*, *, *">
             <Button
                 Grid.Column="0"
                 Command="{Binding UndoCommand}"
@@ -31,5 +55,5 @@
                 Command="{Binding ResetCommand}"
                 Text="Reset" />
         </Grid>
-    </StackLayout>
+    </Grid>
 </ContentPage>

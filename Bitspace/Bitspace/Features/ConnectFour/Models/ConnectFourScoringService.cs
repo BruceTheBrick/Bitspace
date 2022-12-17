@@ -25,6 +25,13 @@ namespace Bitspace.Features
                 : _maximisingPlayer.GetOtherPiece();
             score += GetBaseScore(board, player);
             score += NumOfTwos(board, player);
+            score += NumOfThrees(board, player);
+            score += GetWinnerScore(board, player);
+
+            score -= (int)(GetBaseScore(board, player.GetOtherPiece()) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
+            score -= (int)(NumOfTwos(board, player.GetOtherPiece()) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
+            score -= (int)(NumOfThrees(board, player.GetOtherPiece()) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
+            score -= GetWinnerScore(board, player.GetOtherPiece());
             return score;
         }
 
@@ -75,7 +82,32 @@ namespace Bitspace.Features
             return sum;
         }
 
-        private (int, int) IndexToCoordinates(IBoard board, int num)
+        private int NumOfThrees(IBoard board, Piece player)
+        {
+            var sum = 0;
+            for (var i = 0; i < PrecomputedIndexes.ThreeInARow.Length; i++)
+            {
+                var coords = IndexToCoordinates(board, i);
+                if (board.GetPiece(coords.row, coords.column) != player)
+                {
+                    continue;
+                }
+
+                for (var j = 0; j < PrecomputedIndexes.ThreeInARow[i].Count; j += 2)
+                {
+                    coords = IndexToCoordinates(board, PrecomputedIndexes.ThreeInARow[i][j]);
+
+                    if (board.GetPiece(coords.Item1, coords.Item2) == player)
+                    {
+                        sum++;
+                    }
+                }
+            }
+
+            return sum;
+        }
+
+        private (int row, int column) IndexToCoordinates(IBoard board, int num)
         {
             var col = (num % board.Columns) - 1;
             var row = (num % board.Rows) - 1;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Bitspace.Resources;
 
 namespace Bitspace.Features
 {
@@ -11,6 +12,8 @@ namespace Bitspace.Features
         {
             _scoringService = scoringService;
         }
+
+        public string Name { get; set; } = ConnectFourRegister.CF_ENGINE_NAME;
 
         public void SetPlayer(Piece player)
         {
@@ -97,7 +100,7 @@ namespace Bitspace.Features
 
         private int GetDepth()
         {
-            return 0;
+            return 5;
         }
     }
 }

@@ -2,9 +2,10 @@
 using System.Windows.Input;
 using Bitspace.Core;
 using Bitspace.Resources;
+using Bogus.DataSets;
 using Humanizer;
 using Prism.Navigation;
-using Xamarin.CommunityToolkit.ObjectModel;
+using PropertyChanged;
 using Xamarin.Forms;
 
 namespace Bitspace.Features
@@ -21,7 +22,7 @@ namespace Bitspace.Features
             Martini = new ConnectFourEngine(scoringService);
             Martini.SetPlayer(Piece.TWO);
 
-            PlacePieceCommand = new AsyncCommand<int>(PlacePiece);
+            PlacePieceCommand = new Command<int>(PlacePiece);
             UndoCommand = new Command(Undo);
             ResetCommand = new Command(Reset);
         }
@@ -34,8 +35,15 @@ namespace Bitspace.Features
         public int Columns { get; set; }
         public int Rows { get; set; }
         public bool UpdateButtons { get; set; }
+
+        [AlsoNotifyFor(nameof(IsBoardEnabled))]
+        public bool IsCpuBusy { get; set; }
+
+        [AlsoNotifyFor(nameof(IsBoardEnabled))]
         public bool IsGameOver { get; set; }
+        public bool IsBoardEnabled => !IsGameOver && !IsCpuBusy;
         public Piece Winner { get; set; }
+        public string MartiniStatus => UpdateMartiniStatus();
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
@@ -46,21 +54,35 @@ namespace Bitspace.Features
             }
         }
 
-        private async Task PlacePiece(int column)
+        private void PlacePiece(int column)
         {
-            MakeMove(column, Piece.ONE);
-            if (IsGameOver)
+            if (IsCpuBusy)
             {
-                await FinishGame();
                 return;
             }
 
+            MakeMove(column, Piece.ONE);
+            if (IsGameOver)
+            {
+                _ = FinishGame();
+                return;
+            }
+
+            IsCpuBusy = true;
+            Task.Run(CpuMove);
+        }
+
+        private Task CpuMove()
+        {
             var cpuMove = Martini.GetNextMove(Board, Piece.TWO);
             MakeMove(cpuMove, Piece.TWO);
             if (IsGameOver)
             {
-                await FinishGame();
+                _ = FinishGame();
             }
+
+            IsCpuBusy = false;
+            return Task.CompletedTask;
         }
 
         private void MakeMove(int column, Piece player)
@@ -101,6 +123,13 @@ namespace Bitspace.Features
         {
             Board.Undo();
             UpdateButtons = !UpdateButtons;
+        }
+
+        private string UpdateMartiniStatus()
+        {
+            return IsCpuBusy
+                ? string.Format(ConnectFourRegister.CF_ENGINE_BUSY, Martini.Name)
+                : string.Format(ConnectFourRegister.CF_ENGINE_IDLE, Martini.Name);
         }
     }
 }

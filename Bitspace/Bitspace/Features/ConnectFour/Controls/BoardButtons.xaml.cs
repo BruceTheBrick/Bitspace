@@ -47,11 +47,6 @@ namespace Bitspace.Features.Controls
             typeof(Color),
             typeof(BoardButtons));
 
-        public static readonly BindableProperty IsGameOverProperty = BindableProperty.Create(
-            nameof(IsGameOver),
-            typeof(bool),
-            typeof(BoardButtons));
-
         private readonly int[][] _precomputedIndexes;
 
         public BoardButtons()
@@ -102,12 +97,6 @@ namespace Bitspace.Features.Controls
         {
             get => (Color)GetValue(PlayerTwoColorProperty);
             set => SetValue(PlayerTwoColorProperty, value);
-        }
-
-        public bool IsGameOver
-        {
-            get => (bool)GetValue(IsGameOverProperty);
-            set => SetValue(IsGameOverProperty, value);
         }
 
         private static void BoardDimensionsUpdated(BindableObject bindable, object oldvalue, object newvalue)
@@ -193,7 +182,7 @@ namespace Bitspace.Features.Controls
                 case Piece.TWO:
                     return PlayerTwoColor;
                 default:
-                    return Color.Gray;
+                    return Color.Default;
             }
         }
 
@@ -204,14 +193,9 @@ namespace Bitspace.Features.Controls
                 Command = Command,
                 CommandParameter = column,
                 BackgroundColor = GetColor(row, column),
-                TextColor = Color.Black,
                 Text = _precomputedIndexes[row][column].ToString(),
             };
-            var binding = new Binding(nameof(IsGameOver))
-            {
-                Converter = new InvertedBoolConverter(),
-            };
-            btn.SetBinding(IsEnabledProperty, binding);
+            btn.SetBinding(IsEnabledProperty, new Binding(IsEnabledProperty.PropertyName));
             btn.SizeChanged += BtnOnSizeChanged;
             SetRow(btn, row);
             SetColumn(btn, column);
