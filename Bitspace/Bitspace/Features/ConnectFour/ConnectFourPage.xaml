@@ -21,7 +21,7 @@
             PlayerTwoColor="HotPink"
             Rows="{Binding Rows}"
             UpdateButtonState="{Binding UpdateButtons}" />
-        <Grid ColumnDefinitions="*, *, *">
+        <Grid Padding="8" ColumnDefinitions="*, *, *">
             <Button
                 Grid.Column="0"
                 Command="{Binding UndoCommand}"

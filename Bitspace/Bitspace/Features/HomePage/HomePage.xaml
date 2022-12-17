@@ -7,6 +7,7 @@
     xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="This"
     Padding="8"
     x:DataType="features:HomePageViewModel"
     NavigationPage.HasNavigationBar="False">

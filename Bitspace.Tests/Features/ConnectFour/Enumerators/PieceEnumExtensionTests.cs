@@ -23,5 +23,69 @@ namespace Bitspace.Tests.Features.ConnectFour.Enumerators
         }
 
         #endregion
+        
+        #region IsNotPlayerPiece
+
+        [Theory]
+        [InlineData(Piece.EMPTY)]
+        [InlineData(Piece.INVALID)]
+        public void IsNotPlayerPiece_ShouldReturnTrue_WhenPieceIsNotPlayerPiece(Piece piece)
+        {
+            // Arrange
+            
+            // Act
+            var result = piece.IsNotPlayerPiece();
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData(Piece.ONE)]
+        [InlineData(Piece.TWO)]
+        public void IsNotPlayerPiece_ShouldReturnFalse_WhenPieceIsPlayerPiece(Piece piece)
+        {
+            // Arrange
+
+            // Act
+            var result = piece.IsNotPlayerPiece();
+
+            // Assert
+            result.Should().BeFalse();
+        }
+        
+        #endregion
+
+        #region IsPlayerPiece
+
+        [Theory]
+        [InlineData(Piece.ONE)]
+        [InlineData(Piece.TWO)]
+        public void IsPlayerPiece_ShouldReturnTrue_WhenPieceIsPlayerPiece(Piece piece)
+        {
+            // Arrange
+            
+            // Act
+            var result = piece.IsPlayerPiece();
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData(Piece.INVALID)]
+        [InlineData(Piece.EMPTY)]
+        public void IsPlayerPiece_ShouldReturnFalse_WhenPieceIsNotPlayerPiece(Piece piece)
+        {
+            // Arrange
+
+            // Act
+            var result = piece.IsPlayerPiece();
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        #endregion
     }
 }

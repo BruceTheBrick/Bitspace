@@ -6,5 +6,15 @@ namespace Bitspace.Features
         {
             return current == Piece.ONE ? Piece.TWO : Piece.ONE;
         }
+
+        public static bool IsNotPlayerPiece(this Piece piece)
+        {
+            return piece != Piece.ONE && piece != Piece.TWO;
+        }
+
+        public static bool IsPlayerPiece(this Piece piece)
+        {
+            return piece == Piece.ONE || piece == Piece.TWO;
+        }
     }
 }

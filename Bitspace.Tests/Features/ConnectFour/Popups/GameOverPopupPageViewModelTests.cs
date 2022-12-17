@@ -57,7 +57,7 @@ namespace Bitspace.Tests.Features.ConnectFour.Popups
             await Sut.QuitCommand.ExecuteAsync();
 
             //Assert
-            Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.NavigateAsync(NavigationConstants.Homepage), Times.Once);
+            Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.GoBack());
 
         }
         

@@ -73,7 +73,7 @@ namespace Bitspace.Features
             Board.PlacePiece(column, player);
             var winningPiece = Board.HasWin();
             UpdateButtons = !UpdateButtons;
-            if (winningPiece == Piece.INVALID || winningPiece == Piece.EMPTY)
+            if (winningPiece.IsNotPlayerPiece())
             {
                 return;
             }
