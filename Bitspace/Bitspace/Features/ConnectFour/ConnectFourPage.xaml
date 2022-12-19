@@ -1,26 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<basePage:BasePage
     x:Class="Bitspace.Features.ConnectFourPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:basePage="clr-namespace:Bitspace.Features.BasePage;assembly=Bitspace"
     xmlns:controls="clr-namespace:Bitspace.Features.Controls;assembly=Bitspace"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    Padding="18"
     x:DataType="features:ConnectFourPageViewModel">
     <Grid RowDefinitions="*, 4*, *">
         <Grid
             Grid.Row="0"
-            Padding="0,12"
+            Padding="8,12"
             ColumnDefinitions="auto, *"
+            RowDefinitions="auto, auto"
             VerticalOptions="End">
             <ActivityIndicator
                 Grid.Column="0"
                 HeightRequest="20"
                 IsRunning="{Binding IsCpuBusy}"
-                VerticalOptions="Center" />
+                VerticalOptions="Center"
+                Color="{StaticResource ColorPrimary}" />
             <Label
                 Grid.Column="1"
                 Text="{Binding MartiniStatus}"
                 VerticalOptions="Center" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding MovesChecked}" />
         </Grid>
         <Frame
             Grid.Row="1"
@@ -44,16 +53,16 @@
         </Frame>
         <Grid
             Grid.Row="2"
-            Padding="8"
+            Padding="16"
             ColumnDefinitions="*, *, *">
-            <Button
+            <ui:PrimaryButton
                 Grid.Column="0"
                 Command="{Binding UndoCommand}"
                 Text="Undo" />
-            <Button
+            <ui:PrimaryButton
                 Grid.Column="2"
                 Command="{Binding ResetCommand}"
                 Text="Reset" />
         </Grid>
     </Grid>
-</ContentPage>
+</basePage:BasePage>

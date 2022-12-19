@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Bitspace.Features.Buttons.ButtonsPlaygroundPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Bitspace.Features.Buttons;assembly=Bitspace"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:DataType="buttons:ButtonsPlaygroundPageViewModel"
+    NavigationPage.HasNavigationBar="True">
+    <ScrollView>
+        <StackLayout>
+            <Label Text="Buttons" />
+            <Switch IsToggled="{Binding IsEnabled}" />
+            <ui:PrimaryButton
+                HorizontalOptions="Center"
+                IsEnabled="{Binding IsEnabled}"
+                Text="My Button" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

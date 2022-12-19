@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
+using Bitspace.UI;
 using Xamarin.CommunityToolkit.Converters;
 using Xamarin.Forms;
 
@@ -188,7 +189,7 @@ namespace Bitspace.Features.Controls
 
         private void CreateNewButton(int row, int column)
         {
-            var btn = new Button
+            var btn = new BaseCircleButton()
             {
                 Command = Command,
                 CommandParameter = column,
@@ -196,20 +197,9 @@ namespace Bitspace.Features.Controls
                 Text = _precomputedIndexes[row][column].ToString(),
             };
             btn.SetBinding(IsEnabledProperty, new Binding(IsEnabledProperty.PropertyName));
-            btn.SizeChanged += BtnOnSizeChanged;
             SetRow(btn, row);
             SetColumn(btn, column);
             Children.Add(btn);
-        }
-
-        private void BtnOnSizeChanged(object sender, EventArgs e)
-        {
-            if (!(sender is Button btn))
-            {
-                return;
-            }
-
-            btn.CornerRadius = (int)btn.Height / 2;
         }
     }
 }

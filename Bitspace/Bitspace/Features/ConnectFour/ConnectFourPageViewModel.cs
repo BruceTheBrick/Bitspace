@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using Bitspace.Core;
 using Bitspace.Resources;
-using Bogus.DataSets;
 using Humanizer;
 using Prism.Navigation;
 using PropertyChanged;
@@ -44,6 +43,7 @@ namespace Bitspace.Features
         public bool IsBoardEnabled => !IsGameOver && !IsCpuBusy;
         public Piece Winner { get; set; }
         public string MartiniStatus => UpdateMartiniStatus();
+        public string MovesChecked => "Moves checked: " + Martini.MovesChecked;
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {

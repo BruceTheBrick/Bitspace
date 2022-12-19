@@ -14,6 +14,7 @@ namespace Bitspace.Features
         }
 
         public string Name { get; set; } = ConnectFourRegister.CF_ENGINE_NAME;
+        public int MovesChecked { get; set; }
 
         public void SetPlayer(Piece player)
         {
@@ -23,6 +24,7 @@ namespace Bitspace.Features
 
         public int GetNextMove(IBoard board, Piece player)
         {
+            MovesChecked = 0;
             var bestScore = int.MinValue;
             var move = -1;
             for (var x = 0; x < board.Columns; x++)
@@ -33,7 +35,7 @@ namespace Bitspace.Features
                 }
 
                 board.PlacePiece(x, player);
-                var score = Minimax(board, GetDepth(), true);
+                var score = Minimax(board, GetDepth(), false);
                 board.Undo();
                 if (score <= bestScore)
                 {
@@ -54,6 +56,7 @@ namespace Bitspace.Features
                 return Evaluate(board, isMaximising);
             }
 
+            MovesChecked++;
             int bestScore;
             if (isMaximising)
             {
@@ -93,14 +96,14 @@ namespace Bitspace.Features
 
         public int Evaluate(IBoard board, bool isMaximising)
         {
-            var currentPlayerScore = _scoringService.GetScore(board, true);
-            var minimisingPlayerScore = _scoringService.GetScore(board, false);
-            return currentPlayerScore - minimisingPlayerScore;
+            var currentPlayerScore = _scoringService.GetScore(board, isMaximising);
+            var minimisingPlayerScore = _scoringService.GetScore(board, !isMaximising);
+            return currentPlayerScore + minimisingPlayerScore;
         }
 
         private int GetDepth()
         {
-            return 5;
+            return 2;
         }
     }
 }

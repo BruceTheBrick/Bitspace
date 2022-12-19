@@ -3,6 +3,7 @@ using Bitspace.APIs;
 using Bitspace.Controls;
 using Bitspace.Core;
 using Bitspace.Features;
+using Bitspace.Features.Buttons;
 using Bitspace.UI;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
@@ -30,6 +31,7 @@ namespace Bitspace
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
             containerRegistry.RegisterSingleton<IApiKeyManagerService, ApiKeyManagerService>();
             containerRegistry.RegisterSingleton<IEssentialsVersion, EssentialsVersion>();
+            containerRegistry.RegisterSingleton<IEssentialsDeviceInfo, EssentialsDeviceInfo>();
             containerRegistry.Register<IBaseService, BaseService>();
             containerRegistry.Register<IHttpClient, ExtendedHttpClient>();
             containerRegistry.Register<IHomePageMenuItems, HomePageMenuItemService>();
@@ -61,6 +63,7 @@ namespace Bitspace
         {
             containerRegistry.RegisterForNavigation<PlaygroundPage, PlaygroundPageViewModel>();
             containerRegistry.RegisterForNavigation<AccessibilityPlaygroundPage, AccessibilityPlaygroundPageViewModel>();
+            containerRegistry.RegisterForNavigation<ButtonsPlaygroundPage, ButtonsPlaygroundPageViewModel>();
         }
 
         private void RegisterApis(IContainerRegistry containerRegistry)
