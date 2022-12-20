@@ -1,8 +1,10 @@
 ﻿using System;
 using Bitspace.Resources;
+using PropertyChanged;
 
 namespace Bitspace.Features
 {
+    [AddINotifyPropertyChangedInterface]
     public class ConnectFourEngine : IConnectFourEngine
     {
         private readonly IConnectFourScoringService _scoringService;
@@ -51,12 +53,12 @@ namespace Bitspace.Features
 
         public int Minimax(IBoard board, int depth, bool isMaximising)
         {
+            MovesChecked++;
             if (depth == 0 || board.IsFull())
             {
                 return Evaluate(board, isMaximising);
             }
 
-            MovesChecked++;
             int bestScore;
             if (isMaximising)
             {

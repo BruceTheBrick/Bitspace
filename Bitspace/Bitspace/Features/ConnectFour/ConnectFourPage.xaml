@@ -29,7 +29,7 @@
             <Label
                 Grid.Row="1"
                 Grid.Column="1"
-                Text="{Binding MovesChecked}" />
+                Text="{Binding Martini.MovesChecked, StringFormat='{0} Moves checked'}" />
         </Grid>
         <Frame
             Grid.Row="1"

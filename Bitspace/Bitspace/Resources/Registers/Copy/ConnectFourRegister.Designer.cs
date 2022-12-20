@@ -22,21 +22,21 @@ namespace Bitspace.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ConnectFourRegister {
+    public class ConnectFourRegister {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ConnectFourRegister() {
+        public ConnectFourRegister() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bitspace.Resources.Registers.Copy.ConnectFourRegister", typeof(ConnectFourRegister).Assembly);
@@ -51,7 +51,7 @@ namespace Bitspace.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Column {0} is out of range {1} - {2}..
         /// </summary>
-        internal static string CF_COL_EX {
+        public static string CF_COL_EX {
             get {
                 return ResourceManager.GetString("CF_COL_EX", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Congratulations!.
         /// </summary>
-        internal static string CF_CONGRATS {
+        public static string CF_CONGRATS {
             get {
                 return ResourceManager.GetString("CF_CONGRATS", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is thinking....
         /// </summary>
-        internal static string CF_ENGINE_BUSY {
+        public static string CF_ENGINE_BUSY {
             get {
                 return ResourceManager.GetString("CF_ENGINE_BUSY", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is waiting....
         /// </summary>
-        internal static string CF_ENGINE_IDLE {
+        public static string CF_ENGINE_IDLE {
             get {
                 return ResourceManager.GetString("CF_ENGINE_IDLE", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Martini.
         /// </summary>
-        internal static string CF_ENGINE_NAME {
+        public static string CF_ENGINE_NAME {
             get {
                 return ResourceManager.GetString("CF_ENGINE_NAME", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to New Game.
         /// </summary>
-        internal static string CF_NEW_GAME {
+        public static string CF_NEW_GAME {
             get {
                 return ResourceManager.GetString("CF_NEW_GAME", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Would you like to play again?.
         /// </summary>
-        internal static string CF_PLAY_AGAIN {
+        public static string CF_PLAY_AGAIN {
             get {
                 return ResourceManager.GetString("CF_PLAY_AGAIN", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Player {0}.
         /// </summary>
-        internal static string CF_PLAYER {
+        public static string CF_PLAYER {
             get {
                 return ResourceManager.GetString("CF_PLAYER", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Quit.
         /// </summary>
-        internal static string CF_QUIT {
+        public static string CF_QUIT {
             get {
                 return ResourceManager.GetString("CF_QUIT", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Congratulations {0}, you won!.
         /// </summary>
-        internal static string CF_WIN {
+        public static string CF_WIN {
             get {
                 return ResourceManager.GetString("CF_WIN", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is the winner!.
         /// </summary>
-        internal static string CF_WINNER {
+        public static string CF_WINNER {
             get {
                 return ResourceManager.GetString("CF_WINNER", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Connect Four Page.
         /// </summary>
-        internal static string PAGE_NAME {
+        public static string PAGE_NAME {
             get {
                 return ResourceManager.GetString("PAGE_NAME", resourceCulture);
             }

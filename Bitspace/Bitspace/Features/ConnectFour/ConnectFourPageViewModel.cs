@@ -43,7 +43,6 @@ namespace Bitspace.Features
         public bool IsBoardEnabled => !IsGameOver && !IsCpuBusy;
         public Piece Winner { get; set; }
         public string MartiniStatus => UpdateMartiniStatus();
-        public string MovesChecked => "Moves checked: " + Martini.MovesChecked;
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
