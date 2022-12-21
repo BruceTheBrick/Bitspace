@@ -14,12 +14,16 @@ namespace Bitspace.Features
         public ConnectFourPageViewModel(IBaseService baseService, IConnectFourScoringService scoringService)
             : base(baseService)
         {
+            Title = ConnectFourRegister.PAGE_NAME;
             Columns = 7;
             Rows = 6;
             Board = new Board(Rows, Columns);
 
+            HumanPiece = Piece.ONE;
+            CpuPiece = Piece.TWO;
+
             Martini = new ConnectFourEngine(scoringService);
-            Martini.SetPlayer(Piece.TWO);
+            Martini.SetPlayer(CpuPiece);
 
             PlacePieceCommand = new Command<int>(PlacePiece);
             UndoCommand = new Command(Undo);
@@ -34,15 +38,15 @@ namespace Bitspace.Features
         public int Columns { get; set; }
         public int Rows { get; set; }
         public bool UpdateButtons { get; set; }
-
-        [AlsoNotifyFor(nameof(IsBoardEnabled))]
         public bool IsCpuBusy { get; set; }
-
-        [AlsoNotifyFor(nameof(IsBoardEnabled))]
         public bool IsGameOver { get; set; }
+
+        [DependsOn(nameof(IsCpuBusy), nameof(IsGameOver))]
         public bool IsBoardEnabled => !IsGameOver && !IsCpuBusy;
-        public Piece Winner { get; set; }
         public string MartiniStatus => UpdateMartiniStatus();
+        public Piece HumanPiece { get; set; }
+        public Piece CpuPiece { get; set; }
+        public Piece Winner { get; set; }
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
@@ -60,7 +64,7 @@ namespace Bitspace.Features
                 return;
             }
 
-            MakeMove(column, Piece.ONE);
+            MakeMove(column, HumanPiece);
             if (IsGameOver)
             {
                 _ = FinishGame();
@@ -69,19 +73,6 @@ namespace Bitspace.Features
 
             IsCpuBusy = true;
             Task.Run(CpuMove);
-        }
-
-        private Task CpuMove()
-        {
-            var cpuMove = Martini.GetNextMove(Board, Piece.TWO);
-            MakeMove(cpuMove, Piece.TWO);
-            if (IsGameOver)
-            {
-                _ = FinishGame();
-            }
-
-            IsCpuBusy = false;
-            return Task.CompletedTask;
         }
 
         private void MakeMove(int column, Piece player)
@@ -102,6 +93,20 @@ namespace Bitspace.Features
             Winner = winningPiece;
             IsGameOver = true;
         }
+
+        private Task CpuMove()
+        {
+            var cpuMove = Martini.GetNextMove(Board, CpuPiece);
+            MakeMove(cpuMove, CpuPiece);
+            if (IsGameOver)
+            {
+                _ = FinishGame();
+            }
+
+            IsCpuBusy = false;
+            return Task.CompletedTask;
+        }
+
 
         private Task FinishGame()
         {

@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Bitspace.Features.BasePage.BasePage"
+    x:Class="Bitspace.Features.BasePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:iOsSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-    iOsSpecific:Page.UseSafeArea="True" />
+    iOsSpecific:Page.UseSafeArea="True"
+    x:DataType="features:BasePageViewModel">
+    <NavigationPage.TitleView>
+        <Grid BackgroundColor="Red" ColumnDefinitions="*, *, *">
+            <ContentView Grid.Column="0" />
+            <ContentView Grid.Column="1" BackgroundColor="Green">
+                <Label Text="{Binding Title}" VerticalOptions="Center" />
+            </ContentView>
+            <ContentView Grid.Column="2" />
+        </Grid>
+    </NavigationPage.TitleView>
+</ContentPage>

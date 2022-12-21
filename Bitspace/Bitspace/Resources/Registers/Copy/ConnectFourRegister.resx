@@ -40,7 +40,7 @@
         <value>Quit</value>
     </data>
     <data name="PAGE_NAME" xml:space="preserve">
-        <value>Connect Four Page</value>
+        <value>Connect Four</value>
     </data>
     <data name="CF_PLAYER" xml:space="preserve">
         <value>Player {0}</value>

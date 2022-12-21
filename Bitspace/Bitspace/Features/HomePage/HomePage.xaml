@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<basePage:BasePage
+<features:BasePage
     x:Class="Bitspace.Features.HomePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:basePage="clr-namespace:Bitspace.Features.BasePage;assembly=Bitspace"
     xmlns:behaviors="http://prismlibrary.com"
     xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
@@ -62,4 +61,4 @@
         </pancakeView:PancakeView>
         <Label HorizontalOptions="End" Text="{Binding VersionNumber}" />
     </StackLayout>
-</basePage:BasePage>
+</features:BasePage>

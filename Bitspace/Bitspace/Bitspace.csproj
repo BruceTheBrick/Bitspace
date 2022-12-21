@@ -83,6 +83,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ConnectFourPageRegister.resx</DependentUpon>
     </Compile>
+    <Compile Update="UI\Controls\NavigationBar\NavigationBar.xaml.cs">
+      <DependentUpon>NavigationBar.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

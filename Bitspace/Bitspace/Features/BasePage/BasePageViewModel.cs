@@ -20,16 +20,17 @@ namespace Bitspace.Features
             AlertService = baseService.AlertService;
         }
 
-        public bool IsBusy { get; set; }
         protected INavigationService NavigationService { get; }
         protected IAccessibilityService AccessibilityService { get; }
         protected IAnalyticsService AnalyticsService { get; }
         protected IAlertService AlertService { get; }
+        public bool IsBusy { get; set; }
+        public string Title { get; set; }
 
         public virtual void Initialize(INavigationParameters parameters)
         {
             _ = InitializeAsync(parameters);
-            AnalyticsService.LogEvent(AnalyticsRegister.SCREEN_VIEW, AnalyticsRegister.ID, this.GetType().Name);
+            AnalyticsService.LogEvent(AnalyticsRegister.SCREEN_VIEW, AnalyticsRegister.ID, GetPageName());
         }
 
         public virtual Task InitializeAsync(INavigationParameters parameters)
@@ -67,6 +68,11 @@ namespace Bitspace.Features
 
         public virtual void OnDisappearing()
         {
+        }
+
+        private string GetPageName()
+        {
+            return this.GetType().Name.Replace("ViewModel", string.Empty);
         }
     }
 }
