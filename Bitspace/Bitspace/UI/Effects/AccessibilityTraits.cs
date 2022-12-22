@@ -42,7 +42,7 @@ namespace Bitspace.UI
         }
 
         [ExcludeFromCodeCoverage]
-        private class AccessibilityTraitsEffect : RoutingEffect
+        public class AccessibilityTraitsEffect : RoutingEffect
         {
             public AccessibilityTraitsEffect()
                 : base(EffectHelper.GetLocalName<AccessibilityTraitsEffect>())

@@ -87,6 +87,11 @@
       <DependentUpon>NavigationBar.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Resources\Registers\Copy\Bitspace_Global.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Bitspace.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -154,6 +159,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>WeatherForecastPageRegister.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Registers\Copy\Bitspace_Global.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Bitspace_Global.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Remove="Resources\Images\ic_close.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_close.svg" />
+    <None Remove="Resources\Images\ic_arrow_left.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_arrow_left.svg" />
+    <None Remove="Resources\Images\ic_arrow_right.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_arrow_right.svg" />
   </ItemGroup>
 
   <ItemGroup>

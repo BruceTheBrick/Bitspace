@@ -5,7 +5,7 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportEffect(typeof(AccessibilityTraitsEffect), nameof(AccessibilityTraitsEffect))] 
+[assembly: ExportEffect(typeof(AccessibilityTraitsEffect), nameof(AccessibilityTraits.AccessibilityTraitsEffect))] 
 namespace Bitspace.iOS.Effects
 {
     public class AccessibilityTraitsEffect : PlatformEffect

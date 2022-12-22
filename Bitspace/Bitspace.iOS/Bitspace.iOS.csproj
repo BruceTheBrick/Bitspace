@@ -106,6 +106,7 @@
   <ItemGroup>
     <Compile Include="Effects\AccessibilityTraitsEffect.cs" />
     <Compile Include="Effects\ImageTintEffect.cs" />
+    <Compile Include="Effects\SemanticOrderEffect.cs" />
     <Compile Include="Helpers\AccessibilityImplementation.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />

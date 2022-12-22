@@ -3,7 +3,6 @@
     x:Class="Bitspace.Features.WeatherForecastPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
@@ -12,6 +11,7 @@
     NavigationPage.HasNavigationBar="False">
     <Grid RowDefinitions="*, *, *">
 
+        <ui:NavigationBar LeftActionType="Back" RightActionType="Next" />
         <!--  Day Selection  -->
         <Grid
             Padding="16,16,0,16"
