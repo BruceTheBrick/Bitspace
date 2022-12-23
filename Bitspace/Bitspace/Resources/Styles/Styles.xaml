@@ -14,12 +14,16 @@
     <resources:ColorRef x:Key="LoadingColor" Color="{StaticResource DarkThemeSkeletonLoader}" />
     <resources:ColorRef x:Key="PillActiveBackground" Color="{StaticResource TickleMePink}" />
     <resources:ColorRef x:Key="PillInactiveBackground" Color="{StaticResource Ninja}" />
+    <resources:ColorRef x:Key="White" Color="{StaticResource White}" />
 
     <!--  Buttons  -->
     <resources:ColorRef x:Key="ButtonActiveBackgroundColor" Color="{StaticResource DodgerBlue}" />
     <resources:ColorRef x:Key="ButtonActiveTextColor" Color="{StaticResource Jet}" />
     <resources:ColorRef x:Key="ButtonDisabledBackgroundColor" Color="{StaticResource Gainsboro}" />
     <resources:ColorRef x:Key="ButtonDisabledTextColor" Color="{StaticResource 'Spanish Gray'}" />
+
+    <!--  Icons  -->
+    <resources:ColorRef x:Key="IconPrimaryColor" Color="{StaticResource White}" />
 
 
     <!--  ContentPage  -->

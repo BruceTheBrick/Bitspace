@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<features:BasePage
     x:Class="Bitspace.Features.WeatherForecastPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -9,9 +9,11 @@
     x:DataType="features:WeatherForecastPageViewModel"
     BackgroundColor="{StaticResource Ninja}"
     NavigationPage.HasNavigationBar="False">
+    <features:BasePage.Resources>
+        <features:WeatherForecastStyle />
+    </features:BasePage.Resources>
     <Grid RowDefinitions="*, *, *">
 
-        <ui:NavigationBar LeftActionType="Back" RightActionType="Next" />
         <!--  Day Selection  -->
         <Grid
             Padding="16,16,0,16"
@@ -52,7 +54,7 @@
                     Grid.Column="0"
                     HorizontalOptions="Center"
                     Source="ic_weather"
-                    TintColor="White"
+                    TintColor="{StaticResource IconWhiteColor}"
                     TranslationY="-20" />
                 <Label
                     Grid.Column="1"
@@ -79,7 +81,7 @@
                         Padding="8"
                         RowDefinitions="*, *, *"
                         VerticalOptions="CenterAndExpand">
-                        <ui:ExtendedImage Source="ic_wind" TintColor="{StaticResource VibrantBlue}" />
+                        <ui:ExtendedImage Source="ic_wind" TintColor="{StaticResource IconColor}" />
                         <Label
                             Grid.Row="1"
                             FontSize="Micro"
@@ -104,7 +106,7 @@
                         Padding="8"
                         RowDefinitions="*, *, *"
                         VerticalOptions="CenterAndExpand">
-                        <ui:ExtendedImage Source="ic_droplette" TintColor="{StaticResource VibrantBlue}" />
+                        <ui:ExtendedImage Source="ic_droplette" TintColor="{StaticResource IconColor}" />
                         <Label
                             Grid.Row="1"
                             FontSize="Micro"
@@ -129,7 +131,7 @@
                         Padding="8"
                         RowDefinitions="*, *, *"
                         VerticalOptions="CenterAndExpand">
-                        <ui:ExtendedImage Source="ic_rain" TintColor="{StaticResource VibrantBlue}" />
+                        <ui:ExtendedImage Source="ic_rain" TintColor="{StaticResource IconColor}" />
                         <Label
                             Grid.Row="1"
                             FontSize="Micro"
@@ -181,10 +183,10 @@
                     <ui:ExtendedImage
                         Grid.Column="2"
                         Source="ic_magnifying_glass"
-                        TintColor="{StaticResource BedazzledBlue}"
+                        TintColor="{StaticResource IconSecondaryColor}"
                         VerticalOptions="Center" />
                 </Grid>
             </pancakeView:PancakeView>
         </Grid>
     </Grid>
-</ContentPage>
+</features:BasePage>

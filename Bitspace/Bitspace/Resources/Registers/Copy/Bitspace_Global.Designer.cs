@@ -14,21 +14,21 @@ namespace Bitspace.Resources.Copy {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Bitspace_Global {
+    internal class Bitspace_Global {
         
         private static System.Resources.ResourceManager resourceMan;
         
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public Bitspace_Global() {
+        internal Bitspace_Global() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static System.Resources.ResourceManager ResourceManager {
+        internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Bitspace.Resources.Registers.Copy.Bitspace", typeof(Bitspace_Global).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Bitspace.Resources.Registers.Copy.Bitspace_Global", typeof(Bitspace_Global).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -36,7 +36,7 @@ namespace Bitspace.Resources.Copy {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static System.Globalization.CultureInfo Culture {
+        internal static System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -45,31 +45,31 @@ namespace Bitspace.Resources.Copy {
             }
         }
         
-        public static string NAV_CLOSE {
+        internal static string NAV_CLOSE {
             get {
                 return ResourceManager.GetString("NAV_CLOSE", resourceCulture);
             }
         }
         
-        public static string NAV_BACK {
+        internal static string NAV_BACK {
             get {
                 return ResourceManager.GetString("NAV_BACK", resourceCulture);
             }
         }
         
-        public static string NAV_CANCEL {
+        internal static string NAV_CANCEL {
             get {
                 return ResourceManager.GetString("NAV_CANCEL", resourceCulture);
             }
         }
         
-        public static string NAV_DONE {
+        internal static string NAV_DONE {
             get {
                 return ResourceManager.GetString("NAV_DONE", resourceCulture);
             }
         }
         
-        public static string NAV_NEXT {
+        internal static string NAV_NEXT {
             get {
                 return ResourceManager.GetString("NAV_NEXT", resourceCulture);
             }

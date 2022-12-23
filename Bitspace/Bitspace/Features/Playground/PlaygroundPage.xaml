@@ -9,6 +9,7 @@
         <StackLayout>
             <Button Command="{Binding NavigateToAccessibilityPlaygroundPageCommand}" Text="Accessibility" />
             <Button Command="{Binding NavigateToButtonsPlaygroundPageCommand}" Text="Buttons" />
+            <Button Command="{Binding NavigateToNavigationBarPlaygroundPageCommand}" Text="NavigationBar" />
         </StackLayout>
     </ScrollView>
 </ContentPage>

@@ -128,7 +128,8 @@ namespace Bitspace.UI
 
         private void UpdateActionProperties(bool isLeftAction)
         {
-            switch (LeftActionType)
+            var actionType = isLeftAction ? LeftActionType : RightActionType;
+            switch (actionType)
             {
                 case ActionTypeEnum.Close:
                 {

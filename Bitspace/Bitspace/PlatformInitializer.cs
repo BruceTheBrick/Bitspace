@@ -64,6 +64,7 @@ namespace Bitspace
             containerRegistry.RegisterForNavigation<PlaygroundPage, PlaygroundPageViewModel>();
             containerRegistry.RegisterForNavigation<AccessibilityPlaygroundPage, AccessibilityPlaygroundPageViewModel>();
             containerRegistry.RegisterForNavigation<ButtonsPlaygroundPage, ButtonsPlaygroundPageViewModel>();
+            containerRegistry.RegisterForNavigation<NavigationBarPlaygroundPage, NavigationBarPlaygroundPageViewModel>();
         }
 
         private void RegisterApis(IContainerRegistry containerRegistry)

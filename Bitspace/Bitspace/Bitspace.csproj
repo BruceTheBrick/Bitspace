@@ -92,6 +92,22 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Bitspace.resx</DependentUpon>
     </Compile>
+    <Compile Update="Features\Playground\NavigationBar\ButtonsPlaygroundPage.xaml.cs">
+      <DependentUpon>ButtonsPlaygroundPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Features\ConnectFour\Styles\ConnectFourStyle.xaml.cs">
+      <DependentUpon>ConnectFourStyle.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Features\WeatherForecast\Styles\WeatherForecastStyle.xaml.cs">
+      <DependentUpon>ConnectFourStyle.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Features\WeatherForecast\Styles\ConnectFourStyle.xaml.cs">
+      <DependentUpon>ConnectFourStyle.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

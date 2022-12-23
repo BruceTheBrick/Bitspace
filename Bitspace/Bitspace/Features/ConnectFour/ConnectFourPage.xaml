@@ -5,63 +5,74 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Features.Controls;assembly=Bitspace"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
+    xmlns:resources="clr-namespace:Bitspace.Resources;assembly=Bitspace"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    Padding="18"
     x:DataType="features:ConnectFourPageViewModel">
-    <Grid RowDefinitions="*, 4*, *">
-        <Grid
+    <features:BasePage.Resources>
+        <resources:ConnectFourStyle />
+    </features:BasePage.Resources>
+    <Grid RowDefinitions="auto, *">
+        <ui:NavigationBar
             Grid.Row="0"
-            Padding="8,12"
-            ColumnDefinitions="auto, *"
-            RowDefinitions="auto, auto"
-            VerticalOptions="End">
-            <ActivityIndicator
-                Grid.Column="0"
-                HeightRequest="20"
-                IsRunning="{Binding IsCpuBusy}"
-                VerticalOptions="Center"
-                Color="{StaticResource ColorPrimary}" />
-            <Label
-                Grid.Column="1"
-                Text="{Binding MartiniStatus}"
-                VerticalOptions="Center" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="1"
-                Text="{Binding Martini.MovesChecked, StringFormat='{0} Moves checked'}" />
-        </Grid>
-        <Frame
-            Grid.Row="1"
-            Margin="8"
-            BackgroundColor="Salmon"
-            CornerRadius="8"
-            HasShadow="False"
-            HorizontalOptions="Center"
-            VerticalOptions="Center">
-            <controls:BoardButtons
-                Board="{Binding Board}"
-                Columns="{Binding Columns}"
-                Command="{Binding PlacePieceCommand}"
-                HorizontalOptions="Center"
-                IsEnabled="{Binding IsBoardEnabled}"
-                PlayerOneColor="Blue"
-                PlayerTwoColor="HotPink"
-                Rows="{Binding Rows}"
-                UpdateButtonState="{Binding UpdateButtons}"
-                VerticalOptions="Center" />
-        </Frame>
-        <Grid
-            Grid.Row="2"
-            Padding="16"
-            ColumnDefinitions="*, *, *">
-            <ui:PrimaryButton
-                Grid.Column="0"
-                Command="{Binding UndoCommand}"
-                Text="Undo" />
-            <ui:PrimaryButton
-                Grid.Column="2"
-                Command="{Binding ResetCommand}"
-                Text="Reset" />
-        </Grid>
+            LeftActionCommand="{Binding NavigateBackCommand}"
+            LeftActionType="Back" />
+        <ScrollView Grid.Row="1">
+            <Grid RowDefinitions="*, 4*, *">
+                <Grid
+                    Grid.Row="0"
+                    Padding="8,12"
+                    ColumnDefinitions="auto, *"
+                    RowDefinitions="auto, auto"
+                    VerticalOptions="End">
+                    <ActivityIndicator
+                        Grid.Column="0"
+                        HeightRequest="20"
+                        IsRunning="{Binding IsCpuBusy}"
+                        VerticalOptions="Center"
+                        Color="{StaticResource ColorPrimary}" />
+                    <Label
+                        Grid.Column="1"
+                        Text="{Binding MartiniStatus}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Text="{Binding Martini.MovesChecked, StringFormat='{0} Moves checked'}" />
+                </Grid>
+                <Frame
+                    Grid.Row="1"
+                    Margin="8"
+                    BackgroundColor="Salmon"
+                    CornerRadius="8"
+                    HasShadow="False"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                    <controls:BoardButtons
+                        Board="{Binding Board}"
+                        Columns="{Binding Columns}"
+                        Command="{Binding PlacePieceCommand}"
+                        HorizontalOptions="Center"
+                        IsEnabled="{Binding IsBoardEnabled}"
+                        PlayerOneColor="Blue"
+                        PlayerTwoColor="HotPink"
+                        Rows="{Binding Rows}"
+                        UpdateButtonState="{Binding UpdateButtons}"
+                        VerticalOptions="Center" />
+                </Frame>
+                <Grid
+                    Grid.Row="2"
+                    Padding="16"
+                    ColumnDefinitions="*, *, *">
+                    <ui:PrimaryButton
+                        Grid.Column="0"
+                        Command="{Binding UndoCommand}"
+                        Text="Undo" />
+                    <ui:PrimaryButton
+                        Grid.Column="2"
+                        Command="{Binding ResetCommand}"
+                        Text="Reset" />
+                </Grid>
+            </Grid>
+        </ScrollView>
     </Grid>
 </features:BasePage>

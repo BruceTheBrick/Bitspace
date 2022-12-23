@@ -8,7 +8,7 @@ using Xamarin.Forms;
 namespace Bitspace.Features
 {
     [ExcludeFromCodeCoverage]
-    public class AccessibilityPlaygroundPageViewModel : BasePageViewModel
+    public class AccessibilityPlaygroundPageViewModel : BasePlaygroundPageViewModel
     {
         public AccessibilityPlaygroundPageViewModel(IBaseService baseService)
             : base(baseService)
@@ -24,7 +24,7 @@ namespace Bitspace.Features
         public ICommand IncrementCommand { get; }
         public ICommand DecrementCommand { get; }
         public int Counter { get; set; }
-        
+
         private void InitAccessibilityActionCommands()
         {
             AccessibilityActionCommands = new List<AccessibilityActionCommand>();
@@ -59,6 +59,5 @@ namespace Bitspace.Features
         {
             Counter--;
         }
-
     }
 }

@@ -3,7 +3,6 @@
     x:Class="Bitspace.Controls.SnackbarPopup"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
     xmlns:pages="http://rotorgames.com"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:DataType="ui:SnackbarPopupViewModel"
@@ -28,7 +27,7 @@
                 IsVisible="{Binding IsLeftIconVisible}"
                 Source="{Binding Icon}"
                 Style="{StaticResource SnackbarIcon}"
-                TintColor="White"
+                TintColor="{StaticResource White}"
                 WidthRequest="18" />
             <Label
                 AutomationProperties.IsInAccessibleTree="False"
@@ -40,7 +39,7 @@
                 IsVisible="{Binding IsRightIconVisible}"
                 Source="{Binding Icon}"
                 Style="{StaticResource SnackbarIcon}"
-                TintColor="White"
+                TintColor="{StaticResource White}"
                 WidthRequest="18" />
         </StackLayout>
         <Frame.GestureRecognizers>

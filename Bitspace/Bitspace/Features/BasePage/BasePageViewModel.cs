@@ -5,6 +5,7 @@ using Prism.AppModel;
 using Prism.Mvvm;
 using Prism.Navigation;
 using PropertyChanged;
+using Xamarin.CommunityToolkit.ObjectModel;
 using INavigationService = Bitspace.Core.INavigationService;
 
 namespace Bitspace.Features
@@ -18,12 +19,15 @@ namespace Bitspace.Features
             AccessibilityService = baseService.AccessibilityService;
             AnalyticsService = baseService.AnalyticsService;
             AlertService = baseService.AlertService;
+
+            NavigateBackCommand = new AsyncCommand(NavigationService.GoBack);
         }
 
         protected INavigationService NavigationService { get; }
         protected IAccessibilityService AccessibilityService { get; }
         protected IAnalyticsService AnalyticsService { get; }
         protected IAlertService AlertService { get; }
+        public IAsyncCommand NavigateBackCommand { get; }
         public bool IsBusy { get; set; }
         public string Title { get; set; }
 

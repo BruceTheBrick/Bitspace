@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<features:BasePage
+    x:Class="Bitspace.Features.NavigationBarPlaygroundPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:DataType="features:NavigationBarPlaygroundPageViewModel">
+    <Grid RowDefinitions="auto, *">
+        <ui:NavigationBar
+            Grid.Row="0"
+            LeftActionCommand="{Binding NavigateBackCommand}"
+            LeftActionIsEnabled="{Binding IsLeftActionToggled}"
+            LeftActionType="{Binding LeftActionType}"
+            RightActionIsEnabled="{Binding IsRightActionToggled}"
+            RightActionType="{Binding RightActionType}" />
+        <ScrollView Grid.Row="1">
+            <Grid
+                Padding="16"
+                ColumnDefinitions="*, *"
+                ColumnSpacing="16">
+                <StackLayout Grid.Column="0">
+                    <Label Text="Left Action" />
+                    <ui:Divider />
+                    <ui:PrimaryButton
+                        Command="{Binding SetLeftActionTypeCommand}"
+                        CommandParameter="{x:Static ui:ActionTypeEnum.Close}"
+                        Text="Close" />
+                    <ui:PrimaryButton
+                        Command="{Binding SetLeftActionTypeCommand}"
+                        CommandParameter="{x:Static ui:ActionTypeEnum.Cancel}"
+                        Text="Cancel" />
+                    <ui:PrimaryButton
+                        Command="{Binding SetLeftActionTypeCommand}"
+                        CommandParameter="{x:Static ui:ActionTypeEnum.Back}"
+                        Text="Back" />
+                    <ui:PrimaryButton
+                        Command="{Binding SetLeftActionTypeCommand}"
+                        CommandParameter="{x:Static ui:ActionTypeEnum.Done}"
+                        Text="Done" />
+                    <ui:PrimaryButton
+                        Command="{Binding SetLeftActionTypeCommand}"
+                        CommandParameter="{x:Static ui:ActionTypeEnum.Next}"
+                        Text="Next" />
+                    <ui:PrimaryButton
+                        Command="{Binding SetLeftActionTypeCommand}"
+                        CommandParameter="{x:Static ui:ActionTypeEnum.None}"
+                        Text="None" />
+                    <Switch IsToggled="{Binding IsLeftActionToggled}" />
+                </StackLayout>
+                <StackLayout Grid.Column="1">
+                    <Label Text="Right Action" />
+                    <ui:Divider />
+                    <ui:PrimaryButton
+                        Command="{Binding SetRightActionTypeCommand}"
+                        CommandParameter="{x:Static ui:ActionTypeEnum.Close}"
+                        Text="Close" />
+                    <ui:PrimaryButton
+                        Command="{Binding SetRightActionTypeCommand}"
+                        CommandParameter="{x:Static ui:ActionTypeEnum.Cancel}"
+                        Text="Cancel" />
+                    <ui:PrimaryButton
+                        Command="{Binding SetRightActionTypeCommand}"
+                        CommandParameter="{x:Static ui:ActionTypeEnum.Back}"
+                        Text="Back" />
+                    <ui:PrimaryButton
+                        Command="{Binding SetRightActionTypeCommand}"
+                        CommandParameter="{x:Static ui:ActionTypeEnum.Done}"
+                        Text="Done" />
+                    <ui:PrimaryButton
+                        Command="{Binding SetRightActionTypeCommand}"
+                        CommandParameter="{x:Static ui:ActionTypeEnum.Next}"
+                        Text="Next" />
+                    <ui:PrimaryButton
+                        Command="{Binding SetRightActionTypeCommand}"
+                        CommandParameter="{x:Static ui:ActionTypeEnum.None}"
+                        Text="None" />
+                    <Switch IsToggled="{Binding IsRightActionToggled}" />
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</features:BasePage>

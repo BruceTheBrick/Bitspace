@@ -1,8 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Bitspace.Resources;
+using Bogus;
 using FFImageLoading.Forms;
 using FFImageLoading.Svg.Forms;
 using Xamarin.Forms;
+using ResourceHelper = Bitspace.Core.ResourceHelper;
 
 namespace Bitspace.UI
 {
@@ -19,8 +22,9 @@ namespace Bitspace.UI
 
         public static readonly BindableProperty TintColorProperty = BindableProperty.Create(
             nameof(TintColor),
-            typeof(Color),
+            typeof(ColorRef),
             typeof(ExtendedImage),
+            ResourceHelper.GetResource<ColorRef>("IconPrimaryColor"),
             propertyChanged: TintColorUpdated);
 
         public static readonly BindableProperty ExtensionProperty = BindableProperty.Create(
@@ -36,9 +40,9 @@ namespace Bitspace.UI
             set => SetValue(SourceProperty, value);
         }
 
-        public Color TintColor
+        public ColorRef TintColor
         {
-            get => (Color)GetValue(TintColorProperty);
+            get => (ColorRef)GetValue(TintColorProperty);
             set => SetValue(TintColorProperty, value);
         }
 

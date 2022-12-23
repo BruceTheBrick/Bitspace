@@ -19,18 +19,18 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="NAV_CLOSE" xml:space="preserve">
-        <value />
+        <value>Close</value>
     </data>
     <data name="NAV_BACK" xml:space="preserve">
-        <value />
+        <value>Back</value>
     </data>
     <data name="NAV_CANCEL" xml:space="preserve">
-        <value />
+        <value>Cancel</value>
     </data>
     <data name="NAV_DONE" xml:space="preserve">
-        <value />
+        <value>Done</value>
     </data>
     <data name="NAV_NEXT" xml:space="preserve">
-        <value />
+        <value>Next</value>
     </data>
 </root>

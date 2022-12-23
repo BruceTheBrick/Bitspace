@@ -1,16 +1,20 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Bitspace.iOS.Effects;
 using Bitspace.UI;
+using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportEffect(typeof(SemanticOrderEffect), nameof(SemanticOrder.ExtendedSemanticOrderEffect))] 
 namespace Bitspace.iOS.Effects
 {
-    public class SemanticOrderEffect : PlatformEffect
+    public class SemanticOrderEffect : PlatformEffect, IUIAccessibilityContainer
     {
-        private List<View> accessibleChildren;
+        public IntPtr Handle { get; }
+        private List<View> _accessibleChildren;
+
         protected override void OnAttached()
         {
             if (Element == null || Control == null)
@@ -18,29 +22,34 @@ namespace Bitspace.iOS.Effects
                 return;
             }
 
-            if (accessibleChildren == null)
+            if (_accessibleChildren == null)
             {
                 InitAccessibleChildren();
             }
-        }
 
-        protected override void OnDetached()
-        {
+            // this.SetAccessibilityElements();
         }
 
         private void InitAccessibleChildren()
         {
-            accessibleChildren = new List<View>();
+            _accessibleChildren = new List<View>();
             foreach (var child in Element.LogicalChildren)
             {
                 if (child is not View childView) continue;
                 if (childView.TabIndex != 0)
                 {
-                    accessibleChildren.Add(childView);
+                    _accessibleChildren.Add(childView);
                 }
             }
             
-            accessibleChildren = accessibleChildren.OrderBy(x => x).ToList();
+            _accessibleChildren = _accessibleChildren.OrderBy(x => x).ToList();
+        }
+
+        protected override void OnDetached()
+        {
+        }
+        public void Dispose()
+        {
         }
     }
 }
