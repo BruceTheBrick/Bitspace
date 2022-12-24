@@ -6,17 +6,25 @@
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:pages="http://rotorgames.com"
     xmlns:resources="clr-namespace:Bitspace.Resources;assembly=Bitspace"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:DataType="features:GameOverPopupPageViewModel"
     CloseWhenBackgroundIsClicked="False">
     <Frame
         Margin="{StaticResource Base}"
         Padding="{StaticResource BaseThickness}"
+        BackgroundColor="{StaticResource Dark}"
         CornerRadius="{StaticResource BaseCornerRadius}"
+        HasShadow="False"
         VerticalOptions="Center">
-        <Grid ColumnDefinitions="*, *" RowDefinitions="auto, auto, auto, *">
+        <Grid
+            ColumnDefinitions="*, *"
+            RowDefinitions="auto, auto, auto, *"
+            RowSpacing="12">
             <Label
                 Grid.Row="0"
                 Grid.ColumnSpan="2"
+                FontAttributes="Bold"
+                FontSize="Title"
                 HorizontalOptions="Center"
                 Text="{x:Static resources:ConnectFourRegister.CF_CONGRATS}" />
             <Label
@@ -27,18 +35,25 @@
             <Label
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
+                Margin="0,0,0,12"
                 HorizontalOptions="Center"
                 Text="{x:Static resources:ConnectFourRegister.CF_PLAY_AGAIN}" />
-            <Button
+            <Grid
                 Grid.Row="3"
-                Grid.Column="0"
-                Command="{Binding PlayAgainCommand}"
-                Text="{x:Static resources:ConnectFourRegister.CF_NEW_GAME}" />
-            <Button
-                Grid.Row="3"
-                Grid.Column="1"
-                Command="{Binding QuitCommand}"
-                Text="{x:Static resources:ConnectFourRegister.CF_QUIT}" />
+                Grid.ColumnSpan="2"
+                ColumnDefinitions="*, *"
+                ColumnSpacing="16">
+                <ui:PrimaryButton
+                    Grid.Column="0"
+                    Command="{Binding PlayAgainCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{x:Static resources:ConnectFourRegister.CF_NEW_GAME}" />
+                <ui:SecondaryButton
+                    Grid.Column="1"
+                    Command="{Binding QuitCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{x:Static resources:ConnectFourRegister.CF_QUIT}" />
+            </Grid>
         </Grid>
     </Frame>
 </pages:PopupPage>

@@ -16,8 +16,6 @@ namespace Bitspace.UI
             _animationService = new AnimationService();
         }
 
-        public Color Color { get; set; }
-
         private async void RotateIcon(object sender, EventArgs e)
         {
             if (_isAnimating)

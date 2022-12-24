@@ -1,8 +1,12 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Bitspace.Core;
 using Bitspace.Features.Buttons;
+using Bitspace.Resources;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Forms;
 
 namespace Bitspace.Features
 {
@@ -31,9 +35,9 @@ namespace Bitspace.Features
             return NavigationService.NavigateAsync(nameof(ButtonsPlaygroundPage));
         }
 
-        private async Task NavigateToNavigationBarPlaygroundPage()
+        private Task NavigateToNavigationBarPlaygroundPage()
         {
-            var t = await NavigationService.NavigateAsync(nameof(NavigationBarPlaygroundPage));
+            return NavigationService.NavigateAsync(nameof(NavigationBarPlaygroundPage));
         }
     }
 }

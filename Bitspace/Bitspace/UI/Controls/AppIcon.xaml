@@ -3,10 +3,8 @@
     x:Class="Bitspace.UI.AppIcon"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    x:Name="Logo"
-    effects:IconTintColorEffect.TintColor="{Binding Color, Source={x:Reference Logo}}"
+    x:Name="This"
     Source="logo">
     <ui:ExtendedImage.GestureRecognizers>
         <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="RotateIcon" />

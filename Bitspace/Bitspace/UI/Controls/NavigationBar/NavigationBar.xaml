@@ -16,7 +16,8 @@
             Padding="16"
             ui:AccessibilityTraits.Traits="Button"
             AutomationProperties.IsInAccessibleTree="{Binding LeftActionIsInAccessibleTree, Source={x:Reference This}}"
-            AutomationProperties.Name="{Binding LeftActionAccessibilityName, Source={x:Reference This}}">
+            AutomationProperties.Name="{Binding LeftActionAccessibilityName, Source={x:Reference This}}"
+            IsEnabled="{Binding LeftActionIsEnabled, Source={x:Reference This}}">
             <StackLayout HorizontalOptions="Start">
                 <ui:ExtendedImage
                     HeightRequest="24"
@@ -41,7 +42,11 @@
             Padding="16"
             ui:AccessibilityTraits.Traits="Header"
             AutomationProperties.IsInAccessibleTree="{Binding Title, Converter={converters:IsNotNullOrEmptyConverter}, Source={x:Reference This}}">
-            <Label Text="{Binding Title, Source={x:Reference This}}" VerticalOptions="Center" />
+            <Label
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Title, Source={x:Reference This}}"
+                VerticalOptions="Center" />
         </ContentView>
 
         <!--  RIGHT ACTION  -->
@@ -51,7 +56,8 @@
             Padding="16"
             ui:AccessibilityTraits.Traits="Button"
             AutomationProperties.IsInAccessibleTree="{Binding RightActionIsInAccessibleTree, Source={x:Reference This}}"
-            AutomationProperties.Name="{Binding RightActionAccessibilityName, Source={x:Reference This}}">
+            AutomationProperties.Name="{Binding RightActionAccessibilityName, Source={x:Reference This}}"
+            IsEnabled="{Binding RightActionIsEnabled, Source={x:Reference This}}">
             <StackLayout HorizontalOptions="End">
                 <ui:ExtendedImage
                     HeightRequest="24"

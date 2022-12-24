@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using Xamarin.Forms;
+using Prism;
 
 namespace Bitspace.Core
 {
@@ -12,10 +12,10 @@ namespace Bitspace.Core
         {
             try
             {
-                var resource = Application.Current.Resources[resourceName];
-                if (resource is T tResource)
+                var resource = PrismApplicationBase.Current.Resources[resourceName];
+                if (resource is T)
                 {
-                    return tResource;
+                    return (T)resource;
                 }
 
                 return default;

@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Bitspace.Resources;
-using Bogus;
 using FFImageLoading.Forms;
 using FFImageLoading.Svg.Forms;
 using Xamarin.Forms;
@@ -24,7 +23,7 @@ namespace Bitspace.UI
             nameof(TintColor),
             typeof(ColorRef),
             typeof(ExtendedImage),
-            ResourceHelper.GetResource<ColorRef>("IconPrimaryColor"),
+            // ResourceHelper.GetResource<ColorRef>("IconPrimaryColor"),
             propertyChanged: TintColorUpdated);
 
         public static readonly BindableProperty ExtensionProperty = BindableProperty.Create(
@@ -32,6 +31,11 @@ namespace Bitspace.UI
             typeof(string),
             typeof(ExtendedImage),
             "svg");
+
+        public ExtendedImage()
+        {
+            TintColor = ResourceHelper.GetResource<ColorRef>("IconPrimaryColor");
+        }
 
         private const string SourcePrefix = "resource://Bitspace.Resources.Images.";
         public new string Source
@@ -55,7 +59,8 @@ namespace Bitspace.UI
         protected override void OnPropertyChanged(string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
-            if (propertyName == IsEnabledProperty.PropertyName)
+            if (propertyName == TintColorProperty.PropertyName ||
+                propertyName == IsEnabledProperty.PropertyName)
             {
                 AddTintEffect();
             }

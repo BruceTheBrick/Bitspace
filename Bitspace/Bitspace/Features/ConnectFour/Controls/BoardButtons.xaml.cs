@@ -183,13 +183,13 @@ namespace Bitspace.Features.Controls
                 case Piece.TWO:
                     return PlayerTwoColor;
                 default:
-                    return Color.Default;
+                    return Color.LightGray;
             }
         }
 
         private void CreateNewButton(int row, int column)
         {
-            var btn = new BaseCircleButton()
+            var btn = new BaseCircleButton
             {
                 Command = Command,
                 CommandParameter = column,

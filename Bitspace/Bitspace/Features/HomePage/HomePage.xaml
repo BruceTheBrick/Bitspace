@@ -14,11 +14,10 @@
         <pancakeView:PancakeView
             Margin="16,0,16,32"
             Padding="0,20"
-            BackgroundColor="White"
+            BackgroundColor="{StaticResource White}"
             CornerRadius="20">
             <Grid>
                 <ListView
-                    BackgroundColor="Transparent"
                     HasUnevenRows="True"
                     HorizontalOptions="Center"
                     IsPullToRefreshEnabled="True"
@@ -27,8 +26,7 @@
                     RefreshCommand="{Binding RefreshMenuItemsCommand}"
                     SelectionMode="None"
                     SeparatorColor="DarkGray"
-                    SeparatorVisibility="Default"
-                    VerticalScrollBarVisibility="Always">
+                    SeparatorVisibility="Default">
                     <ListView.Behaviors>
                         <behaviors:EventToCommandBehavior
                             Command="{Binding ItemSelectedCommand}"

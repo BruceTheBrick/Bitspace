@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<features:BasePage
     x:Class="Bitspace.Features.PlaygroundPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:DataType="features:PlaygroundPageViewModel">
-    <ScrollView>
-        <StackLayout>
-            <Button Command="{Binding NavigateToAccessibilityPlaygroundPageCommand}" Text="Accessibility" />
-            <Button Command="{Binding NavigateToButtonsPlaygroundPageCommand}" Text="Buttons" />
-            <Button Command="{Binding NavigateToNavigationBarPlaygroundPageCommand}" Text="NavigationBar" />
-        </StackLayout>
-    </ScrollView>
-</ContentPage>
+    <Grid RowDefinitions="auto, *">
+        <ui:NavigationBar
+            Title="Playground"
+            Grid.Row="0"
+            LeftActionCommand="{Binding NavigateBackCommand}"
+            LeftActionType="Back" />
+        <ScrollView Grid.Row="1" Padding="16">
+            <StackLayout Spacing="12">
+                <ui:PrimaryButton Command="{Binding NavigateToAccessibilityPlaygroundPageCommand}" Text="Accessibility" />
+                <ui:PrimaryButton Command="{Binding NavigateToButtonsPlaygroundPageCommand}" Text="Buttons" />
+                <ui:PrimaryButton Command="{Binding NavigateToNavigationBarPlaygroundPageCommand}" Text="NavigationBar" />
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</features:BasePage>

@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Bitspace.iOS.Effects;
@@ -13,19 +14,13 @@ namespace Bitspace.iOS.Effects
     {
         protected override void OnAttached()
         {
-            if (!(Control is UIImageView image) || image.Image == null)
-            {
-                return;
-            }
+            SetTint();
+        }
 
-            var effect = (UI.ImageTintEffect)Element.Effects.FirstOrDefault(x => x is UI.ImageTintEffect);
-            if (effect == null)
-            {
-                return;
-            }
-            
-            image.Image = image.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
-            image.TintColor = effect.TintColor.ToUIColor();
+        protected override void OnElementPropertyChanged(PropertyChangedEventArgs args)
+        {
+            base.OnElementPropertyChanged(args);
+            SetTint();
         }
 
         protected override void OnDetached()
@@ -36,6 +31,23 @@ namespace Bitspace.iOS.Effects
             }
 
             image.Image = image.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+        }
+
+        private void SetTint()
+        {
+            if (!(Control is UIImageView image) || image.Image == null)
+            {
+                return;
+            }
+            
+            var effect = (UI.ImageTintEffect)Element.Effects.FirstOrDefault(x => x is UI.ImageTintEffect);
+            if (effect == null)
+            {
+                return;
+            }
+            
+            image.Image = image.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
+            image.TintColor = effect.TintColor.ToUIColor();
         }
     }
 }
