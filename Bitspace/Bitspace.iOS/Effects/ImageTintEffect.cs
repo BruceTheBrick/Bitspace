@@ -6,7 +6,7 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportEffect(typeof(ImageTintEffect), nameof(Bitspace.UI.ImageTintEffect))]
+[assembly: ExportEffect(typeof(ImageTintEffect), nameof(ImageTintEffect))]
 namespace Bitspace.iOS.Effects
 {
     [ExcludeFromCodeCoverage]
@@ -47,7 +47,7 @@ namespace Bitspace.iOS.Effects
             }
             
             image.Image = image.Image.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
-            image.TintColor = effect.TintColor.ToUIColor();
+            image.TintColor = effect.TintColor.Color.ToUIColor();
         }
     }
 }

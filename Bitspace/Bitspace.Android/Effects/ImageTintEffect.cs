@@ -22,7 +22,7 @@ namespace Bitspace.Droid.Effects
             var effect = (UI.ImageTintEffect)Element.Effects.FirstOrDefault(x => x is UI.ImageTintEffect);
             if (effect != null)
             {
-                var filter = new PorterDuffColorFilter(effect.TintColor.ToAndroid(), PorterDuff.Mode.SrcIn);
+                var filter = new PorterDuffColorFilter(effect.TintColor.Color.ToAndroid(), PorterDuff.Mode.SrcIn);
                 image.SetColorFilter(filter);
             }
         }

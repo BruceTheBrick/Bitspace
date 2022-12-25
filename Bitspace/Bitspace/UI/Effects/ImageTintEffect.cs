@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Bitspace.Core;
+using Bitspace.Resources;
 using Xamarin.Forms;
 
 namespace Bitspace.UI
@@ -12,6 +13,6 @@ namespace Bitspace.UI
         {
         }
 
-        public Color TintColor { get; set; }
+        public ColorRef TintColor { get; set; }
     }
 }
