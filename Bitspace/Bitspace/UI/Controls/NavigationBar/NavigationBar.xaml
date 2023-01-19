@@ -23,6 +23,7 @@
                     HeightRequest="24"
                     IsVisible="{Binding LeftActionIconSource, Converter={converters:IsNotNullOrEmptyConverter}, Source={x:Reference This}}"
                     Source="{Binding LeftActionIconSource, Source={x:Reference This}}"
+                    TintColor="{StaticResource IconPrimaryColor}"
                     VerticalOptions="Center"
                     WidthRequest="24" />
                 <Label
@@ -63,6 +64,7 @@
                     HeightRequest="24"
                     IsVisible="{Binding RightActionIconSource, Converter={converters:IsNotNullOrEmptyConverter}, Source={x:Reference This}}"
                     Source="{Binding RightActionIconSource, Source={x:Reference This}}"
+                    TintColor="{StaticResource IconPrimaryColor}"
                     VerticalOptions="Center"
                     WidthRequest="24" />
                 <Label
