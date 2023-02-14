@@ -9,14 +9,14 @@ namespace Bitspace.Tests.Features.ConnectFour.Enumerators
         #region GetOtherPiece
 
         [Theory]
-        [InlineData(Piece.ONE, Piece.TWO)]
-        [InlineData(Piece.TWO, Piece.ONE)]
+        [InlineData(Piece.One, Piece.Two)]
+        [InlineData(Piece.Two, Piece.One)]
         private void FunctionName_Should(Piece initial, Piece expected)
         {
             //Arrange
 
             //Act
-            var actual = initial.GetOtherPiece();
+            var actual = initial.GetOpponent();
 
             //Assert
             actual.Should().Be(expected);
@@ -27,8 +27,8 @@ namespace Bitspace.Tests.Features.ConnectFour.Enumerators
         #region IsNotPlayerPiece
 
         [Theory]
-        [InlineData(Piece.EMPTY)]
-        [InlineData(Piece.INVALID)]
+        [InlineData(Piece.Empty)]
+        [InlineData(Piece.Invalid)]
         public void IsNotPlayerPiece_ShouldReturnTrue_WhenPieceIsNotPlayerPiece(Piece piece)
         {
             // Arrange
@@ -41,8 +41,8 @@ namespace Bitspace.Tests.Features.ConnectFour.Enumerators
         }
 
         [Theory]
-        [InlineData(Piece.ONE)]
-        [InlineData(Piece.TWO)]
+        [InlineData(Piece.One)]
+        [InlineData(Piece.Two)]
         public void IsNotPlayerPiece_ShouldReturnFalse_WhenPieceIsPlayerPiece(Piece piece)
         {
             // Arrange
@@ -59,8 +59,8 @@ namespace Bitspace.Tests.Features.ConnectFour.Enumerators
         #region IsPlayerPiece
 
         [Theory]
-        [InlineData(Piece.ONE)]
-        [InlineData(Piece.TWO)]
+        [InlineData(Piece.One)]
+        [InlineData(Piece.Two)]
         public void IsPlayerPiece_ShouldReturnTrue_WhenPieceIsPlayerPiece(Piece piece)
         {
             // Arrange
@@ -73,8 +73,8 @@ namespace Bitspace.Tests.Features.ConnectFour.Enumerators
         }
 
         [Theory]
-        [InlineData(Piece.INVALID)]
-        [InlineData(Piece.EMPTY)]
+        [InlineData(Piece.Invalid)]
+        [InlineData(Piece.Empty)]
         public void IsPlayerPiece_ShouldReturnFalse_WhenPieceIsNotPlayerPiece(Piece piece)
         {
             // Arrange

@@ -22,16 +22,16 @@ namespace Bitspace.Features
             var score = 0;
             var player = isMaximisingPlayer
                 ? _maximisingPlayer
-                : _maximisingPlayer.GetOtherPiece();
+                : _maximisingPlayer.GetOpponent();
             score += GetBaseScore(board, player);
             score += NumOfTwos(board, player);
             score += NumOfThrees(board, player);
             score += GetWinnerScore(board, player);
 
-            score -= (int)(GetBaseScore(board, player.GetOtherPiece()) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
-            score -= (int)(NumOfTwos(board, player.GetOtherPiece()) * ConnectFourScoreConstants.TWO_CONSECUTIVE_VALUE * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
-            score -= (int)(NumOfThrees(board, player.GetOtherPiece()) * ConnectFourScoreConstants.THREE_CONSECUTIVE_VALUE * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
-            score -= GetWinnerScore(board, player.GetOtherPiece());
+            score -= (int)(GetBaseScore(board, player.GetOpponent()) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
+            score -= (int)(NumOfTwos(board, player.GetOpponent()) * ConnectFourScoreConstants.TWO_CONSECUTIVE_VALUE * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
+            score -= (int)(NumOfThrees(board, player.GetOpponent()) * ConnectFourScoreConstants.THREE_CONSECUTIVE_VALUE * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
+            score -= GetWinnerScore(board, player.GetOpponent());
             return score;
         }
 

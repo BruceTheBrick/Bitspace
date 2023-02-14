@@ -11,20 +11,13 @@ namespace Bitspace.Features
 {
     public class ConnectFourPageViewModel : BasePageViewModel
     {
-        public ConnectFourPageViewModel(IBaseService baseService, IConnectFourScoringService scoringService)
+        private readonly IConnectFourDifficultyService _difficultyService;
+        public ConnectFourPageViewModel(IBaseService baseService, IConnectFourDifficultyService difficultyService)
             : base(baseService)
         {
-            Title = ConnectFourRegister.PAGE_NAME;
-            Columns = 7;
-            Rows = 6;
-            Board = new Board(Rows, Columns);
+            _difficultyService = difficultyService;
 
-            HumanPiece = Piece.ONE;
-            CpuPiece = Piece.TWO;
-
-            Martini = new ConnectFourEngine(scoringService);
-            Martini.SetPlayer(CpuPiece);
-
+            SetupBoardAndEngine();
             PlacePieceCommand = new Command<int>(PlacePiece);
             UndoCommand = new Command(Undo);
             ResetCommand = new Command(Reset);
@@ -34,9 +27,9 @@ namespace Bitspace.Features
         public ICommand UndoCommand { get; }
         public ICommand ResetCommand { get; }
         public IBoard Board { get; set; }
-        public IConnectFourEngine Martini { get; }
-        public int Columns { get; set; }
-        public int Rows { get; set; }
+        public IConnectFourEngine Martini { get; set; }
+        public int Columns { get; set; } = 7;
+        public int Rows { get; set; } = 6;
         public bool UpdateButtons { get; set; }
         public bool IsCpuBusy { get; set; }
         public bool IsGameOver { get; set; }
@@ -55,6 +48,18 @@ namespace Bitspace.Features
             {
                 Reset();
             }
+        }
+
+        private void SetupBoardAndEngine()
+        {
+            HumanPiece = Piece.One;
+            CpuPiece = Piece.Two;
+
+            Board = new Board(Rows, Columns);
+
+            var scoringService = _difficultyService.GetScoringServiceFromDifficulty(Difficulty.Easy);
+            Martini = new ConnectFourEngine(scoringService);
+            Martini.SetPlayer(CpuPiece);
         }
 
         private void PlacePiece(int column)
@@ -106,7 +111,6 @@ namespace Bitspace.Features
             IsCpuBusy = false;
             return Task.CompletedTask;
         }
-
 
         private Task FinishGame()
         {

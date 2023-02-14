@@ -51,7 +51,7 @@ namespace Bitspace.Features
         {
             if (!RowIsInRange(row) || !ColumnIsInRange(column))
             {
-                return Piece.INVALID;
+                return Piece.Invalid;
             }
 
             return _board[row, column];
@@ -74,7 +74,7 @@ namespace Bitspace.Features
                 }
             }
 
-            return Piece.EMPTY;
+            return Piece.Empty;
         }
 
         public bool IsColumnFull(int column)
@@ -108,7 +108,7 @@ namespace Bitspace.Features
             }
 
             var move = _moves.Pop();
-            _board[move.Key, move.Value] = Piece.EMPTY;
+            _board[move.Key, move.Value] = Piece.Empty;
         }
 
         public virtual void Reset()
@@ -199,7 +199,7 @@ namespace Bitspace.Features
             }
 
             var uniquePieces = pieces.GetDistinctElements();
-            return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.EMPTY;
+            return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
         }
 
         private void UpdateLastPiece(int row, int column)

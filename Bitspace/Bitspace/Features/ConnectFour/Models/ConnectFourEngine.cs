@@ -89,7 +89,7 @@ namespace Bitspace.Features
         {
             return isMaximising
                 ? _maximisingPlayer
-                : _maximisingPlayer.GetOtherPiece();
+                : _maximisingPlayer.GetOpponent();
         }
 
         private int GetInitialScore(bool isMaximising)

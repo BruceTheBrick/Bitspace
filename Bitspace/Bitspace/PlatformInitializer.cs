@@ -46,6 +46,7 @@ namespace Bitspace
             containerRegistry.Register<IConnectFourScoringService, ConnectFourScoringService>();
             containerRegistry.Register<ITimerService, TimerService>();
             containerRegistry.Register<IDeviceLocation, DeviceLocationService>();
+            containerRegistry.Register<IConnectFourDifficultyService, ConnectFourDifficultyService>();
         }
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)
