@@ -9,36 +9,32 @@ namespace Bitspace.Features
     public class ConnectFourEngine : IConnectFourEngine
     {
         private readonly IConnectFourScoringService _scoringService;
-        private Piece _maximisingPlayer;
+        private readonly Piece _maximisingPlayer;
 
-        public ConnectFourEngine(IConnectFourScoringService scoringService)
+        public ConnectFourEngine(string name, Piece player, IConnectFourScoringService scoringService)
         {
-            _scoringService = scoringService;
-        }
-
-        public string Name { get; set; } = ConnectFourRegister.CF_ENGINE_NAME;
-        public int MovesChecked { get; set; }
-
-        public void SetPlayer(Piece player)
-        {
+            Name = name;
             _maximisingPlayer = player;
-            _scoringService.SetMaximisingPlayer(player);
+
+            _scoringService = scoringService;
+            _scoringService.SetMaximisingPlayer(_maximisingPlayer);
         }
+
+        public string Name { get; }
 
         public int GetNextMove(IBoard board)
         {
-            MovesChecked = 0;
             var bestScore = int.MinValue;
-            var move = -1;
-            for (var x = 0; x < board.Columns; x++)
+            var column = -1;
+            for (var currentColumn = 0; currentColumn < board.Columns; currentColumn++)
             {
-                if (board.IsColumnFull(x))
+                if (board.IsColumnFull(currentColumn))
                 {
                     continue;
                 }
 
-                board.PlacePiece(x, _maximisingPlayer);
-                var score = Minimax(board, GetDepth(), true);
+                board.PlacePiece(currentColumn, _maximisingPlayer);
+                var score = Minimax(board, GetDepth(), false);
                 board.Undo();
                 if (score <= bestScore)
                 {
@@ -46,31 +42,31 @@ namespace Bitspace.Features
                 }
 
                 bestScore = score;
-                move = x;
+                column = currentColumn;
             }
 
-            return move;
+            Debug.WriteLine($"Best Score: {bestScore}, Column: {column} ---------------------------------");
+            return column;
         }
 
 
-        public int Minimax(IBoard board, int depth, bool isMaximising)
+        private int Minimax(IBoard board, int depth, bool isMaximising)
         {
-            MovesChecked++;
             if (depth == 0 || board.IsFull())
             {
-                return Evaluate(board, isMaximising);
+                return Evaluate(board);
             }
 
             var bestScore = GetInitialScore(isMaximising);
             var piece = GetPlayerPiece(isMaximising);
-            for (var column = 0; column < board.Columns; column++)
+            for (var currentColumn = 0; currentColumn < board.Columns; currentColumn++)
             {
-                if (board.IsColumnFull(column))
+                if (board.IsColumnFull(currentColumn))
                 {
                     continue;
                 }
 
-                board.PlacePiece(column, piece);
+                board.PlacePiece(currentColumn, piece);
                 var score = Minimax(board, depth - 1, !isMaximising);
                 board.Undo();
                 bestScore = isMaximising
@@ -81,13 +77,11 @@ namespace Bitspace.Features
             return bestScore;
         }
 
-        public int Evaluate(IBoard board, bool isMaximising)
+        private int Evaluate(IBoard board)
         {
             var score = _scoringService.GetScore(board);
-            score *= -1;
-            Debug.WriteLine("BOARD STATE:");
-            Debug.WriteLine(board.ToString());
-            Debug.WriteLine($"Score: {score}");
+            Debug.Write($"{board.ToString()} \n");
+            Debug.Write($"Score: {score}\n");
             return score;
         }
 
@@ -107,7 +101,7 @@ namespace Bitspace.Features
 
         private int GetDepth()
         {
-            return 1;
+            return 2;
         }
     }
 }

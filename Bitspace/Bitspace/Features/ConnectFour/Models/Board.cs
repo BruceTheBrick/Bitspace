@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Bitspace.Core;
@@ -233,13 +234,30 @@ namespace Bitspace.Features
                 for (var x = 0; x < Columns; x++)
                 {
                     var element = _board[y, x];
-                    sb.Append($" {element} |");
+                    sb.Append($" {PieceToLetter(element)} |");
                 }
 
                 sb.AppendLine();
             }
 
             return sb.ToString();
+        }
+
+        private string PieceToLetter(Piece piece)
+        {
+            switch (piece)
+            {
+                case Piece.Empty:
+                    return " ";
+                case Piece.One:
+                    return "O";
+                case Piece.Two:
+                    return "T";
+                case Piece.Invalid:
+                    return "I";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(piece), piece, null);
+            }
         }
     }
 }

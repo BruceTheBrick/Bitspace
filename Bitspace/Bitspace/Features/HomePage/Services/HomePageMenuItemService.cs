@@ -42,6 +42,12 @@ namespace Bitspace.Features
                     nameof(PlaygroundPage)));
             }
 
+            items.Add(new MenuListItemViewModel(
+                "Game Over",
+                "ic_info",
+                "ic_chevron_right",
+                nameof(GameOverPopupPage)));
+
             return items;
         }
 

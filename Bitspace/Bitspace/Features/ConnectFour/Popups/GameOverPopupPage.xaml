@@ -3,10 +3,12 @@
     x:Class="Bitspace.Features.GameOverPopupPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:debugRainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:pages="http://rotorgames.com"
     xmlns:resources="clr-namespace:Bitspace.Resources;assembly=Bitspace"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    debugRainbows:DebugRainbow.ShowColors="false"
     x:DataType="features:GameOverPopupPageViewModel"
     CloseWhenBackgroundIsClicked="False">
     <Frame
@@ -14,11 +16,10 @@
         Padding="{StaticResource BaseThickness}"
         BackgroundColor="{StaticResource Dark}"
         CornerRadius="{StaticResource BaseCornerRadius}"
-        HasShadow="False"
-        VerticalOptions="Center">
+        HasShadow="False">
         <Grid
             ColumnDefinitions="*, *"
-            RowDefinitions="auto, auto, auto, *"
+            RowDefinitions="auto, auto, auto, auto"
             RowSpacing="12">
             <Label
                 Grid.Row="0"
@@ -46,12 +47,10 @@
                 <ui:PrimaryButton
                     Grid.Column="0"
                     Command="{Binding PlayAgainCommand}"
-                    HorizontalOptions="FillAndExpand"
                     Text="{x:Static resources:ConnectFourRegister.CF_NEW_GAME}" />
                 <ui:SecondaryButton
                     Grid.Column="1"
                     Command="{Binding QuitCommand}"
-                    HorizontalOptions="FillAndExpand"
                     Text="{x:Static resources:ConnectFourRegister.CF_QUIT}" />
             </Grid>
         </Grid>
