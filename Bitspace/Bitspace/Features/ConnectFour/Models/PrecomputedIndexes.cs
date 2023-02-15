@@ -17,6 +17,18 @@ namespace Bitspace.Features
             return board;
         }
 
+        public static int[][] GetRevisedPrecomputedIndexes()
+        {
+            var board = new int[6][];
+            board[0] = new[] { 3, 4, 5, 7, 5, 4, 3 };
+            board[1] = new[] { 4, 6, 8, 10, 8, 6, 4 };
+            board[2] = new[] { 5, 8, 11, 13, 11, 8, 5 };
+            board[3] = new[] { 5, 8, 11, 13, 11, 8, 5 };
+            board[4] = new[] { 4, 6, 8, 10, 8, 6, 4 };
+            board[5] = new[] { 3, 4, 5, 7, 5, 4, 3 };
+            return board;
+        }
+
         public static List<int>[] TwoInARow;
         public static List<int>[] ThreeInARow;
         public static List<int>[] FourInARow;

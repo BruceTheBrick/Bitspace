@@ -18,6 +18,7 @@ namespace Bitspace.Features
             _difficultyService = difficultyService;
 
             SetupBoardAndEngine();
+
             PlacePieceCommand = new Command<int>(PlacePiece);
             UndoCommand = new Command(Undo);
             ResetCommand = new Command(Reset);
@@ -88,7 +89,7 @@ namespace Bitspace.Features
             }
 
             Board.PlacePiece(column, player);
-            var winningPiece = Board.HasWin();
+            var winningPiece = Board.GetWinner();
             UpdateButtons = !UpdateButtons;
             if (winningPiece.IsNotPlayerPiece())
             {
@@ -101,7 +102,7 @@ namespace Bitspace.Features
 
         private Task CpuMove()
         {
-            var cpuMove = Martini.GetNextMove(Board, CpuPiece);
+            var cpuMove = Martini.GetNextMove(Board);
             MakeMove(cpuMove, CpuPiece);
             if (IsGameOver)
             {

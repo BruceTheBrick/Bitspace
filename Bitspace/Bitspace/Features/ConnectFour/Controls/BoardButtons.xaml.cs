@@ -54,7 +54,7 @@ namespace Bitspace.Features.Controls
         {
             InitializeComponent();
             PrecomputedIndexes.Init();
-            _precomputedIndexes = PrecomputedIndexes.GetStandardPrecomputedIndexes();
+            _precomputedIndexes = PrecomputedIndexes.GetRevisedPrecomputedIndexes();
         }
 
 

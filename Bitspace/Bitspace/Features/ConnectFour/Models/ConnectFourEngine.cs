@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Bitspace.Resources;
 using PropertyChanged;
 
@@ -24,7 +25,7 @@ namespace Bitspace.Features
             _scoringService.SetMaximisingPlayer(player);
         }
 
-        public int GetNextMove(IBoard board, Piece player)
+        public int GetNextMove(IBoard board)
         {
             MovesChecked = 0;
             var bestScore = int.MinValue;
@@ -36,7 +37,7 @@ namespace Bitspace.Features
                     continue;
                 }
 
-                board.PlacePiece(x, player);
+                board.PlacePiece(x, _maximisingPlayer);
                 var score = Minimax(board, GetDepth(), true);
                 board.Undo();
                 if (score <= bestScore)
@@ -51,6 +52,7 @@ namespace Bitspace.Features
             return move;
         }
 
+
         public int Minimax(IBoard board, int depth, bool isMaximising)
         {
             MovesChecked++;
@@ -61,14 +63,14 @@ namespace Bitspace.Features
 
             var bestScore = GetInitialScore(isMaximising);
             var piece = GetPlayerPiece(isMaximising);
-            for (var x = 0; x < board.Rows; x++)
+            for (var column = 0; column < board.Columns; column++)
             {
-                if (board.IsColumnFull(x))
+                if (board.IsColumnFull(column))
                 {
                     continue;
                 }
 
-                board.PlacePiece(x, piece);
+                board.PlacePiece(column, piece);
                 var score = Minimax(board, depth - 1, !isMaximising);
                 board.Undo();
                 bestScore = isMaximising
@@ -81,7 +83,11 @@ namespace Bitspace.Features
 
         public int Evaluate(IBoard board, bool isMaximising)
         {
-            var score = _scoringService.GetScore(board, isMaximising);
+            var score = _scoringService.GetScore(board);
+            score *= -1;
+            Debug.WriteLine("BOARD STATE:");
+            Debug.WriteLine(board.ToString());
+            Debug.WriteLine($"Score: {score}");
             return score;
         }
 
@@ -101,7 +107,7 @@ namespace Bitspace.Features
 
         private int GetDepth()
         {
-            return 0;
+            return 1;
         }
     }
 }

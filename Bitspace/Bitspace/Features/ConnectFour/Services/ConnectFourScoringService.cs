@@ -35,6 +35,11 @@ namespace Bitspace.Features
             return score;
         }
 
+        public int GetScore(IBoard board)
+        {
+            throw new System.NotImplementedException();
+        }
+
         private int GetBaseScore(IBoard board, Piece player)
         {
             var score = 0;
@@ -54,7 +59,12 @@ namespace Bitspace.Features
 
         private int GetWinnerScore(IBoard board, Piece player)
         {
-            return board.HasWin() == player ? ConnectFourScoreConstants.WIN_VALUE : 0;
+            if (board.HasWin())
+            {
+                return board.GetWinner() == player ? ConnectFourScoreConstants.WIN_VALUE : 0;
+            }
+
+            return 0;
         }
 
         private int NumOfTwos(IBoard board, Piece player)

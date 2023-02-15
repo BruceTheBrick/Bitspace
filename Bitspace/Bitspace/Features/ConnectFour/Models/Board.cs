@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Bitspace.Core;
-using PropertyChanged;
 
 namespace Bitspace.Features
 {
@@ -9,6 +9,7 @@ namespace Bitspace.Features
     {
         private const int NumWinningPieces = 4;
         private readonly Stack<KeyValuePair<int, int>> _moves;
+        private Piece _winner;
         private Piece[,] _board;
 
         public Board()
@@ -57,7 +58,7 @@ namespace Bitspace.Features
             return _board[row, column];
         }
 
-        public Piece HasWin()
+        public Piece GetWinner()
         {
             for (var x = 0; x < Rows; x++)
             {
@@ -69,12 +70,18 @@ namespace Bitspace.Features
                     var dr = DiagDownRight(x, y);
                     if (h || v || ur || dr)
                     {
+                        _winner = _board[x, y];
                         return _board[x, y];
                     }
                 }
             }
 
             return Piece.Empty;
+        }
+
+        public bool HasWin()
+        {
+            return GetWinner() != Piece.Empty;
         }
 
         public bool IsColumnFull(int column)
@@ -215,6 +222,24 @@ namespace Bitspace.Features
         private bool RowIsInRange(int row)
         {
             return row >= 0 && row <= (Rows - 1);
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            for (var y = 0; y < Rows; y++)
+            {
+                sb.Append("|");
+                for (var x = 0; x < Columns; x++)
+                {
+                    var element = _board[y, x];
+                    sb.Append($" {element} |");
+                }
+
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
         }
     }
 }

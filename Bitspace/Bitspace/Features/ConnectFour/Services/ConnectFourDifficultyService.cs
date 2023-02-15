@@ -7,12 +7,12 @@ namespace Bitspace.Features
             switch (difficulty)
             {
                 case Difficulty.Hard:
-                    return new ConnectFourScoringService();
+                    return new ConnectFourScoringService2();
                 case Difficulty.Medium:
-                    return new ConnectFourScoringService();
+                    return new ConnectFourScoringService2();
                 case Difficulty.Easy:
                 default:
-                    return new ConnectFourScoringService();
+                    return new ConnectFourScoringService2();
             }
         }
     }

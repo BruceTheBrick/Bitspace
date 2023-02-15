@@ -6,10 +6,12 @@
         public int Rows { get; }
         public void PlacePiece(int column, Piece piece);
         public Piece GetPiece(int row, int column);
-        public Piece HasWin();
+        public bool HasWin();
+        public Piece GetWinner();
         public bool IsColumnFull(int column);
         public bool IsFull();
         public void Undo();
         public void Reset();
+        public string ToString();
     }
 }
