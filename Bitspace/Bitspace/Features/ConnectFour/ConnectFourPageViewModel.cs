@@ -59,7 +59,7 @@ namespace Bitspace.Features
             Board = new Board(Rows, Columns);
 
             var scoringService = _difficultyService.GetScoringServiceFromDifficulty(Difficulty.Easy);
-            Martini = new ConnectFourEngine(ConnectFourRegister.CF_ENGINE_NAME, CpuPiece, scoringService);
+            Martini = new ConnectFourEngine(CpuPiece, scoringService);
         }
 
         private void PlacePiece(int column)

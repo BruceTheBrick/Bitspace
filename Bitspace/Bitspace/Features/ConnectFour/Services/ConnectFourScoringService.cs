@@ -1,14 +1,15 @@
+using System;
 using Bitspace.Features.Constants;
 
 namespace Bitspace.Features
 {
+    [Obsolete]
     public class ConnectFourScoringService : IConnectFourScoringService
     {
         private readonly int[][] _precomputedIndexes;
         private Piece _maximisingPlayer;
         public ConnectFourScoringService()
         {
-            PrecomputedIndexes.Init();
             _precomputedIndexes = PrecomputedIndexes.GetStandardPrecomputedIndexes();
         }
 

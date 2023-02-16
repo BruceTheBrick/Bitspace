@@ -1,25 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using Bitspace.Core;
 
 namespace Bitspace.Features
 {
     public class Board : IBoard
     {
-        private const int NumWinningPieces = 4;
+        private readonly Referee _referee;
         private readonly Stack<KeyValuePair<int, int>> _moves;
         private Piece _winner;
         private Piece[,] _board;
-
-        public Board()
-        {
-            Columns = 6;
-            Rows = 7;
-            _board = new Piece[Rows, Columns];
-            _moves = new Stack<KeyValuePair<int, int>>();
-        }
 
         public Board(int numRows = 6, int numCols = 7)
         {
@@ -27,10 +16,11 @@ namespace Bitspace.Features
             Rows = numRows;
             _board = new Piece[numRows, numCols];
             _moves = new Stack<KeyValuePair<int, int>>();
+            _referee = new Referee(this);
         }
 
-        public int Columns { get; set; }
-        public int Rows { get; set; }
+        public int Columns { get; }
+        public int Rows { get; }
 
         public void PlacePiece(int column, Piece piece)
         {
@@ -46,7 +36,7 @@ namespace Bitspace.Features
             }
 
             _board[rowNum, column] = piece;
-            UpdateLastPiece(rowNum, column);
+            AddMoveToStack(rowNum, column);
         }
 
         public Piece GetPiece(int row, int column)
@@ -61,28 +51,17 @@ namespace Bitspace.Features
 
         public Piece GetWinner()
         {
-            for (var x = 0; x < Rows; x++)
+            if (_winner != Piece.Empty)
             {
-                for (var y = 0; y < Columns; y++)
-                {
-                    var h = Horizontal(x, y);
-                    var v = Vertical(x, y);
-                    var ur = DiagUpRight(x, y);
-                    var dr = DiagDownRight(x, y);
-                    if (h || v || ur || dr)
-                    {
-                        _winner = _board[x, y];
-                        return _board[x, y];
-                    }
-                }
+                return _winner;
             }
 
-            return Piece.Empty;
+            return _referee.GetWinner();
         }
 
         public bool HasWin()
         {
-            return GetWinner() != Piece.Empty;
+            return _referee.GetWinner() != Piece.Empty;
         }
 
         public bool IsColumnFull(int column)
@@ -123,6 +102,25 @@ namespace Bitspace.Features
         {
             _board = new Piece[Rows, Columns];
             _moves.Clear();
+            _winner = Piece.Empty;
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            for (var y = 0; y < Rows; y++)
+            {
+                sb.Append("|");
+                for (var x = 0; x < Columns; x++)
+                {
+                    var element = _board[y, x];
+                    sb.Append($" {element.ToDebugString()} |");
+                }
+
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
         }
 
         private int GetNextAvailableSpace(int column)
@@ -138,79 +136,7 @@ namespace Bitspace.Features
             return -1;
         }
 
-        private bool Horizontal(int row, int column)
-        {
-            if (column + NumWinningPieces > Columns)
-            {
-                return false;
-            }
-
-            return CheckWin(row, column, 0, 1);
-        }
-
-        private bool Vertical(int row, int column)
-        {
-            if (row + NumWinningPieces > Rows)
-            {
-                return false;
-            }
-
-            return CheckWin(row, column, 1, 0);
-        }
-
-        private bool DiagUpRight(int row, int column)
-        {
-            if (row - NumWinningPieces < 0 || column + NumWinningPieces > Columns)
-            {
-                return false;
-            }
-
-            return CheckWin(row, column, -1, 1);
-        }
-
-        private bool DiagUpLeft(int row, int column)
-        {
-            if (row - NumWinningPieces < 0 || column - NumWinningPieces < 0)
-            {
-                return false;
-            }
-
-            return CheckWin(row, column, -1, -1);
-        }
-
-        private bool DiagDownRight(int row, int column)
-        {
-            if (row + NumWinningPieces > Rows || column + NumWinningPieces > Columns)
-            {
-                return false;
-            }
-
-            return CheckWin(row, column, 1, 1);
-        }
-
-        private bool DiagDownLeft(int row, int column)
-        {
-            if (row + NumWinningPieces > Rows || column - NumWinningPieces < 0)
-            {
-                return false;
-            }
-
-            return CheckWin(row, column, 1, -1);
-        }
-
-        private bool CheckWin(int row, int column, int rowIncrement, int colIncrement)
-        {
-            var pieces = new List<Piece>();
-            for (var i = 0; i < NumWinningPieces; i++)
-            {
-                pieces.Add(_board[row + (i * rowIncrement), column + (i * colIncrement)]);
-            }
-
-            var uniquePieces = pieces.GetDistinctElements();
-            return uniquePieces.Count() == 1 && uniquePieces.First() != Piece.Empty;
-        }
-
-        private void UpdateLastPiece(int row, int column)
+        private void AddMoveToStack(int row, int column)
         {
             _moves.Push(new KeyValuePair<int, int>(row, column));
         }
@@ -223,41 +149,6 @@ namespace Bitspace.Features
         private bool RowIsInRange(int row)
         {
             return row >= 0 && row <= (Rows - 1);
-        }
-
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            for (var y = 0; y < Rows; y++)
-            {
-                sb.Append("|");
-                for (var x = 0; x < Columns; x++)
-                {
-                    var element = _board[y, x];
-                    sb.Append($" {PieceToLetter(element)} |");
-                }
-
-                sb.AppendLine();
-            }
-
-            return sb.ToString();
-        }
-
-        private string PieceToLetter(Piece piece)
-        {
-            switch (piece)
-            {
-                case Piece.Empty:
-                    return " ";
-                case Piece.One:
-                    return "O";
-                case Piece.Two:
-                    return "T";
-                case Piece.Invalid:
-                    return "I";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(piece), piece, null);
-            }
         }
     }
 }

@@ -53,7 +53,6 @@ namespace Bitspace.Features.Controls
         public BoardButtons()
         {
             InitializeComponent();
-            PrecomputedIndexes.Init();
             _precomputedIndexes = PrecomputedIndexes.GetRevisedPrecomputedIndexes();
         }
 

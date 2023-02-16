@@ -11,9 +11,9 @@ namespace Bitspace.Features
         private readonly IConnectFourScoringService _scoringService;
         private readonly Piece _maximisingPlayer;
 
-        public ConnectFourEngine(string name, Piece player, IConnectFourScoringService scoringService)
+        public ConnectFourEngine(Piece player, IConnectFourScoringService scoringService)
         {
-            Name = name;
+            Name = ConnectFourRegister.CF_ENGINE_NAME;
             _maximisingPlayer = player;
 
             _scoringService = scoringService;
@@ -34,7 +34,7 @@ namespace Bitspace.Features
                 }
 
                 board.PlacePiece(currentColumn, _maximisingPlayer);
-                var score = Minimax(board, GetDepth(), false);
+                var score = Minimax(board, GetDepth() - 1, _maximisingPlayer.GetOpponent());
                 board.Undo();
                 if (score <= bestScore)
                 {
@@ -50,15 +50,14 @@ namespace Bitspace.Features
         }
 
 
-        private int Minimax(IBoard board, int depth, bool isMaximising)
+        private int Minimax(IBoard board, int depth, Piece player)
         {
             if (depth == 0 || board.IsFull())
             {
                 return Evaluate(board);
             }
 
-            var bestScore = GetInitialScore(isMaximising);
-            var piece = GetPlayerPiece(isMaximising);
+            var bestScore = GetInitialScore(player);
             for (var currentColumn = 0; currentColumn < board.Columns; currentColumn++)
             {
                 if (board.IsColumnFull(currentColumn))
@@ -66,10 +65,10 @@ namespace Bitspace.Features
                     continue;
                 }
 
-                board.PlacePiece(currentColumn, piece);
-                var score = Minimax(board, depth - 1, !isMaximising);
+                board.PlacePiece(currentColumn, player);
+                var score = Minimax(board, depth - 1, player.GetOpponent());
                 board.Undo();
-                bestScore = isMaximising
+                bestScore = IsMaximisingPlayer(player)
                     ? Math.Max(score, bestScore)
                     : Math.Min(score, bestScore);
             }
@@ -85,23 +84,21 @@ namespace Bitspace.Features
             return score;
         }
 
-        private Piece GetPlayerPiece(bool isMaximising)
+        private int GetInitialScore(Piece player)
         {
-            return isMaximising
-                ? _maximisingPlayer
-                : _maximisingPlayer.GetOpponent();
-        }
-
-        private int GetInitialScore(bool isMaximising)
-        {
-            return isMaximising
+            return player == _maximisingPlayer
                 ? int.MinValue
                 : int.MaxValue;
         }
 
+        private bool IsMaximisingPlayer(Piece player)
+        {
+            return player == _maximisingPlayer;
+        }
+
         private int GetDepth()
         {
-            return 2;
+            return 5;
         }
     }
 }

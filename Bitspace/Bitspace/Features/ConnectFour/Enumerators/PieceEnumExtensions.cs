@@ -16,5 +16,21 @@ namespace Bitspace.Features
         {
             return piece == Piece.One || piece == Piece.Two;
         }
+
+        public static string ToDebugString(this Piece piece)
+        {
+            switch (piece)
+            {
+                case Piece.Empty:
+                    return " ";
+                case Piece.One:
+                    return "O";
+                case Piece.Two:
+                    return "T";
+                case Piece.Invalid:
+                default:
+                    return "I";
+            }
+        }
     }
 }

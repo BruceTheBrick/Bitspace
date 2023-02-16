@@ -1,12 +1,8 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Bitspace.Core;
 using Bitspace.Features.Buttons;
-using Bitspace.Resources;
 using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Forms;
 
 namespace Bitspace.Features
 {
@@ -19,11 +15,13 @@ namespace Bitspace.Features
             NavigateToAccessibilityPlaygroundPageCommand = new AsyncCommand(NavigateToAccessibilityPlaygroundPage);
             NavigateToButtonsPlaygroundPageCommand = new AsyncCommand(NavigateToButtonsPlaygroundPage);
             NavigateToNavigationBarPlaygroundPageCommand = new AsyncCommand(NavigateToNavigationBarPlaygroundPage);
+            NavigateToPopupPagesPlaygroundPageCommand = new AsyncCommand(NavigateToPopupPagesPlaygroundPage);
         }
 
         public IAsyncCommand NavigateToAccessibilityPlaygroundPageCommand { get; }
         public IAsyncCommand NavigateToButtonsPlaygroundPageCommand { get; }
         public IAsyncCommand NavigateToNavigationBarPlaygroundPageCommand { get; }
+        public IAsyncCommand NavigateToPopupPagesPlaygroundPageCommand { get; }
 
         private Task NavigateToAccessibilityPlaygroundPage()
         {
@@ -38,6 +36,11 @@ namespace Bitspace.Features
         private Task NavigateToNavigationBarPlaygroundPage()
         {
             return NavigationService.NavigateAsync(nameof(NavigationBarPlaygroundPage));
+        }
+
+        private Task NavigateToPopupPagesPlaygroundPage()
+        {
+            return NavigationService.NavigateAsync(nameof(PopupPagesPlaygroundPage));
         }
     }
 }

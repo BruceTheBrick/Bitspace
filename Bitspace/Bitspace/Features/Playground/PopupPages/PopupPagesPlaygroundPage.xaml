@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<features:BasePage
+    x:Class="Bitspace.Features.PopupPagesPlaygroundPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:DataType="features:PopupPagesPlaygroundPageViewModel">
+    <Grid RowDefinitions="auto, *">
+        <ui:NavigationBar
+            Grid.Row="0"
+            LeftActionCommand="{Binding NavigateBackCommand}"
+            LeftActionType="{Binding LeftActionType}" />
+        <ScrollView Grid.Row="1" Padding="16">
+            <ui:PrimaryButton Command="{Binding ShowGameOverPopupPageCommand}" Text="Game Over Page" />
+        </ScrollView>
+    </Grid>
+</features:BasePage>
