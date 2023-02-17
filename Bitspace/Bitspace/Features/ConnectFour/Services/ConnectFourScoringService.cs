@@ -1,16 +1,19 @@
 using System;
+using System.Collections.Generic;
 using Bitspace.Features.Constants;
+using System.Linq;
+using Xamarin.Essentials;
 
 namespace Bitspace.Features
 {
-    [Obsolete]
     public class ConnectFourScoringService : IConnectFourScoringService
     {
         private readonly int[][] _precomputedIndexes;
         private Piece _maximisingPlayer;
+
         public ConnectFourScoringService()
         {
-            _precomputedIndexes = PrecomputedIndexes.GetStandardPrecomputedIndexes();
+            _precomputedIndexes = GetPrecomputedIndexes();
         }
 
         public void SetMaximisingPlayer(Piece player)
@@ -18,27 +21,28 @@ namespace Bitspace.Features
             _maximisingPlayer = player;
         }
 
-        public int GetScore(IBoard board, bool isMaximisingPlayer)
-        {
-            var score = 0;
-            var player = isMaximisingPlayer
-                ? _maximisingPlayer
-                : _maximisingPlayer.GetOpponent();
-            score += GetBaseScore(board, player);
-            score += NumOfTwos(board, player);
-            score += NumOfThrees(board, player);
-            score += GetWinnerScore(board, player);
-
-            score -= (int)(GetBaseScore(board, player.GetOpponent()) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
-            score -= (int)(NumOfTwos(board, player.GetOpponent()) * ConnectFourScoreConstants.TWO_CONSECUTIVE_VALUE * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
-            score -= (int)(NumOfThrees(board, player.GetOpponent()) * ConnectFourScoreConstants.THREE_CONSECUTIVE_VALUE * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
-            score -= GetWinnerScore(board, player.GetOpponent());
-            return score;
-        }
-
         public int GetScore(IBoard board)
         {
-            throw new System.NotImplementedException();
+            var maxScore = GetBaseScore(board, _maximisingPlayer);
+            var minScore = GetBaseScore(board, _maximisingPlayer.GetOpponent()) * -1;
+
+            maxScore += GetPairsScore(board, _maximisingPlayer);
+            minScore += (int)(GetPairsScore(board, _maximisingPlayer.GetOpponent()) * -1 * 1.5);
+
+            maxScore += GetTriadsScore(board, _maximisingPlayer);
+            minScore += (int)(GetTriadsScore(board, _maximisingPlayer.GetOpponent()) * -1 * 1.5);
+
+            if (IsWinner(board, _maximisingPlayer))
+            {
+                maxScore = int.MaxValue;
+            }
+
+            if (IsWinner(board, _maximisingPlayer.GetOpponent()))
+            {
+                minScore = int.MinValue;
+            }
+
+            return maxScore + minScore;
         }
 
         private int GetBaseScore(IBoard board, Piece player)
@@ -58,71 +62,86 @@ namespace Bitspace.Features
             return score;
         }
 
-        private int GetWinnerScore(IBoard board, Piece player)
+        private int GetPairsScore(IBoard board, Piece player)
         {
-            if (board.HasWin())
-            {
-                return board.GetWinner() == player ? ConnectFourScoreConstants.WIN_VALUE : 0;
-            }
-
-            return 0;
+            var pairs = FindConsecutivePieces(board, player, 2);
+            return pairs.Count * 5;
         }
 
-        private int NumOfTwos(IBoard board, Piece player)
+        private int GetTriadsScore(IBoard board, Piece player)
         {
-            var sum = 0;
-            for (var i = 0; i < PrecomputedIndexes.TwoInARow.Length; i++)
+            var triads = FindConsecutivePieces(board, player, 3);
+            return triads.Count * 4;
+        }
+
+        private int GetWinScore(IBoard board, Piece player)
+        {
+            var isWinner = FindConsecutivePieces(board, player, 4).Count > 0;
+            return isWinner ? int.MaxValue : 0;
+        }
+
+        private bool IsWinner(IBoard board, Piece player)
+        {
+            return FindConsecutivePieces(board, player, 4).Count > 0;
+        }
+
+        private List<List<Piece>> FindConsecutivePieces(IBoard board, Piece player, int numPieces)
+        {
+            var pairs = new List<List<Piece>>();
+            var directions = GetDirectionVectors();
+            foreach (var direction in directions)
             {
-                var coords = IndexToCoordinates(board, i);
-                if (board.GetPiece(coords.Item1, coords.Item2) != player)
+                for (var row = 0; row < board.Rows; row++)
                 {
-                    continue;
-                }
-
-                for (var j = 0; j < PrecomputedIndexes.TwoInARow[i].Count; j++)
-                {
-                    coords = IndexToCoordinates(board, PrecomputedIndexes.TwoInARow[i][j]);
-
-                    if (board.GetPiece(coords.Item1, coords.Item2) == player)
+                    for (var col = 0; col < board.Columns; col++)
                     {
-                        sum++;
+                        var pieces = GetSection(board, row, col, direction.verticalVector, direction.horizontalVector, numPieces);
+                        if (pieces.All(p => p == player))
+                        {
+                            pairs.Add(pieces.ToList());
+                        }
                     }
                 }
             }
 
-            return sum;
+            return pairs;
         }
 
-        private int NumOfThrees(IBoard board, Piece player)
+        private IEnumerable<(int verticalVector, int horizontalVector)> GetDirectionVectors()
         {
-            var sum = 0;
-            for (var i = 0; i < PrecomputedIndexes.ThreeInARow.Length; i++)
+            var directions = new List<(int, int)>();
+            directions.Add((-1, 0));    // up
+            directions.Add((1, 0));     // down
+            directions.Add((0, -1));    // left
+            directions.Add((0, 1));     // right
+            directions.Add((-1, -1));   // up-left
+            directions.Add((1, 1));     // down-right
+            directions.Add((-1, 1));    // up-right
+            directions.Add((1, -1));    // down-left
+            return directions;
+        }
+
+        private IList<Piece> GetSection(IBoard board, int row, int column, int rowIncrement, int colIncrement, int numPieces)
+        {
+            var pieces = new List<Piece>();
+            for (var i = 0; i < numPieces; i++)
             {
-                var coords = IndexToCoordinates(board, i);
-                if (board.GetPiece(coords.row, coords.column) != player)
-                {
-                    continue;
-                }
-
-                for (var j = 0; j < PrecomputedIndexes.ThreeInARow[i].Count; j += 2)
-                {
-                    coords = IndexToCoordinates(board, PrecomputedIndexes.ThreeInARow[i][j]);
-
-                    if (board.GetPiece(coords.Item1, coords.Item2) == player)
-                    {
-                        sum++;
-                    }
-                }
+                pieces.Add(board.GetPiece(row + (i * rowIncrement), column + (i * colIncrement)));
             }
 
-            return sum;
+            return pieces;
         }
 
-        private (int row, int column) IndexToCoordinates(IBoard board, int num)
+        private int[][] GetPrecomputedIndexes()
         {
-            var col = (num % board.Columns) - 1;
-            var row = (num % board.Rows) - 1;
-            return (row, col);
+            var indexes = new int[6][];
+            indexes[0] = new[] { 3, 4, 5, 7, 5, 4, 3 };
+            indexes[1] = new[] { 4, 6, 8, 10, 8, 6, 4 };
+            indexes[2] = new[] { 5, 8, 11, 13, 11, 8, 5 };
+            indexes[3] = new[] { 5, 8, 11, 13, 11, 8, 5 };
+            indexes[4] = new[] { 4, 6, 8, 10, 8, 6, 4 };
+            indexes[5] = new[] { 3, 4, 5, 7, 5, 4, 3 };
+            return indexes;
         }
     }
 }

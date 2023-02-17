@@ -42,6 +42,7 @@ namespace Bitspace.Features
                 }
 
                 bestScore = score;
+                Debug.WriteLine($"Best score: {bestScore}");
                 column = currentColumn;
             }
 
@@ -78,10 +79,7 @@ namespace Bitspace.Features
 
         private int Evaluate(IBoard board)
         {
-            var score = _scoringService.GetScore(board);
-            Debug.Write($"{board.ToString()} \n");
-            Debug.Write($"Score: {score}\n");
-            return score;
+            return _scoringService.GetScore(board);
         }
 
         private int GetInitialScore(Piece player)
