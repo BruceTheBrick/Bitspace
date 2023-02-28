@@ -1,13 +1,15 @@
 trigger:
   - "*"
+name: $(Date:yyyyMMdd)$(Rev:r)
 
 variables:
   buildConfiguration: "Release"
   outputDirectory: "$(build.binariesDirectory)/$(buildConfiguration)"
+  androidVersionCode: '$(Build.BuildNumber)'
 
 pool:
-#  vmImage: macos-latest
-    vmImage: windows-latest
+  vmImage: macos-latest
+  
 steps:
   - task: NuGetToolInstaller@1
 
@@ -19,14 +21,14 @@ steps:
     inputs:
       sourcePath: 'Bitspace/Bitspace.Android/Properties/AndroidManifest.xml'
       versionCodeOption: 'buildid'
-      versionCode: '$(Date:yyyyMMdd)$(Rev:.r)'
+      versionCode: "$(androidVersionCode)"
       printFile: true
-
-  - task: android-manifest-version@1
+      
+  - task: ios-bundle-version@1
     inputs:
-      sourcePath: 'Bitspace/Bitspace.Android/Properties/AndroidManifest.xml'
-      versionCodeOption: 'buildid'
-      versionCode: '$(Build.BuildId)'
+      sourcePath: 'Bitspace/Bitspace.iOS/Info.plist'
+      versionName: 'buildid'
+      versionCode: '$(Date:yyyyMMdd)$(Rev:.r)'
       printFile: true
 
   - task: XamarinAndroid@1
@@ -43,6 +45,13 @@ steps:
       apksignerKeyPassword: "$(KEYSTOREPASSWORD)"
       apksignerKeystoreAlias: "Bitspace"
       zipalign: true
+      
+#  - task: XamariniOS@2
+#    inputs:
+#      solutionFile: '**/*iOS*.csproj'
+#      configuration: 'Release'
+#      packageApp: true
+#      runNugetRestore: true
 
   - task: AppCenterDistribute@3
     inputs:
