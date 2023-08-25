@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Bitspace.Core;
 using PropertyChanged;
 
 namespace Bitspace.Features
 {
+    [AddINotifyPropertyChangedInterface]
     public class Board : IBoard
     {
         private const int NumWinningPieces = 4;
@@ -44,6 +47,7 @@ namespace Bitspace.Features
             }
 
             _board[rowNum, column] = piece;
+            Console.WriteLine(ToString());
             UpdateLastPiece(rowNum, column);
         }
 
@@ -215,6 +219,23 @@ namespace Bitspace.Features
         private bool RowIsInRange(int row)
         {
             return row >= 0 && row <= (Rows - 1);
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            for (var i = 0; i < Rows; i++)
+            {
+                for (var j = 0; j < Columns; j++)
+                {
+                    sb.Append(_board[i, j] == Piece.EMPTY ? "-" : _board[i, j].ToString());
+                    sb.Append(" ");
+                }
+
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
         }
     }
 }

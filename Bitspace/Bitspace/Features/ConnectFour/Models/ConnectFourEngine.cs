@@ -8,7 +8,6 @@ namespace Bitspace.Features
     public class ConnectFourEngine : IConnectFourEngine
     {
         private readonly IConnectFourScoringService _scoringService;
-        private Piece _player;
 
         public ConnectFourEngine(IConnectFourScoringService scoringService)
         {
@@ -17,14 +16,15 @@ namespace Bitspace.Features
 
         public string Name { get; set; } = ConnectFourRegister.CF_ENGINE_NAME;
         public int MovesChecked { get; set; }
+        public Piece EnginePiece { get; set; }
 
-        public void SetPlayer(Piece player)
+        public void SetEnginePiece(Piece player)
         {
-            _player = player;
+            EnginePiece = player;
             _scoringService.SetMaximisingPlayer(player);
         }
 
-        public int GetNextMove(IBoard board, Piece player)
+        public int GetNextMove(IBoard board)
         {
             MovesChecked = 0;
             var bestScore = int.MinValue;
@@ -36,16 +36,16 @@ namespace Bitspace.Features
                     continue;
                 }
 
-                board.PlacePiece(x, player);
-                var score = Minimax(board, GetDepth(), false);
+                board.PlacePiece(x, EnginePiece);
+                var score = Minimax(board, GetDepth(), true);
                 board.Undo();
-                if (score <= bestScore)
+
+                if (score > bestScore)
                 {
-                    continue;
+                    move = x;
                 }
 
-                bestScore = score;
-                move = x;
+                bestScore = Math.Max(bestScore, score);
             }
 
             return move;
@@ -53,33 +53,27 @@ namespace Bitspace.Features
 
         public int Minimax(IBoard board, int depth, bool isMaximising)
         {
-            MovesChecked++;
-            if (depth == 0 || board.IsFull())
+            if (ShouldEvaluateBoard(board, depth))
             {
                 return Evaluate(board, isMaximising);
             }
 
-            int bestScore;
             if (isMaximising)
             {
-                bestScore = int.MinValue;
-                for (var x = 0; x < board.Rows; x++)
-                {
-                    if (board.IsColumnFull(x))
-                    {
-                        continue;
-                    }
-
-                    board.PlacePiece(x, _player);
-                    var score = Minimax(board, depth - 1, false);
-                    board.Undo();
-                    bestScore = Math.Max(score, bestScore);
-                }
-
-                return bestScore;
+                return Maxi(board, depth);
             }
 
-            bestScore = int.MaxValue;
+            return Mini(board, depth);
+        }
+
+        private int Mini(IBoard board, int depth)
+        {
+            if (ShouldEvaluateBoard(board, depth))
+            {
+                return Evaluate(board, false);
+            }
+
+            var bestScore = int.MaxValue;
             for (var x = 0; x < board.Rows; x++)
             {
                 if (board.IsColumnFull(x))
@@ -87,8 +81,8 @@ namespace Bitspace.Features
                     continue;
                 }
 
-                board.PlacePiece(x, _player.GetOtherPiece());
-                var score = Minimax(board, depth - 1, true);
+                board.PlacePiece(x, EnginePiece.GetOtherPiece());
+                var score = Maxi(board, depth - 1);
                 board.Undo();
                 bestScore = Math.Min(score, bestScore);
             }
@@ -96,16 +90,48 @@ namespace Bitspace.Features
             return bestScore;
         }
 
-        public int Evaluate(IBoard board, bool isMaximising)
+        private int Maxi(IBoard board, int depth)
         {
-            var currentPlayerScore = _scoringService.GetScore(board, isMaximising);
-            var minimisingPlayerScore = _scoringService.GetScore(board, !isMaximising);
-            return currentPlayerScore + minimisingPlayerScore;
+            if (ShouldEvaluateBoard(board, depth))
+            {
+                return Evaluate(board, true);
+            }
+
+            var bestScore = int.MinValue;
+            for (var x = 0; x < board.Rows; x++)
+            {
+                if (board.IsColumnFull(x))
+                {
+                    continue;
+                }
+
+                board.PlacePiece(x, EnginePiece);
+                var score = Mini(board, depth - 1);
+                board.Undo();
+                bestScore = Math.Max(score, bestScore);
+            }
+
+            return bestScore;
+        }
+
+        private int Evaluate(IBoard board, bool isMaximising)
+        {
+            if (isMaximising)
+            {
+                return _scoringService.GetScore(board, true);
+            }
+
+            return _scoringService.GetScore(board, false);
+        }
+
+        private bool ShouldEvaluateBoard(IBoard board, int depth)
+        {
+            return depth == 0 || board.IsFull();
         }
 
         private int GetDepth()
         {
-            return 2;
+            return 0;
         }
     }
 }

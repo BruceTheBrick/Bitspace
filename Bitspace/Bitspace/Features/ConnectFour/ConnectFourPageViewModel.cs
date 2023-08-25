@@ -23,7 +23,7 @@ namespace Bitspace.Features
             CpuPiece = Piece.TWO;
 
             Martini = new ConnectFourEngine(scoringService);
-            Martini.SetPlayer(CpuPiece);
+            Martini.SetEnginePiece(CpuPiece);
 
             PlacePieceCommand = new Command<int>(PlacePiece);
             UndoCommand = new Command(Undo);
@@ -72,7 +72,7 @@ namespace Bitspace.Features
             }
 
             IsCpuBusy = true;
-            Task.Run(CpuMove);
+            _ = CpuMove();
         }
 
         private void MakeMove(int column, Piece player)
@@ -96,7 +96,7 @@ namespace Bitspace.Features
 
         private Task CpuMove()
         {
-            var cpuMove = Martini.GetNextMove(Board, CpuPiece);
+            var cpuMove = Martini.GetNextMove(Board);
             MakeMove(cpuMove, CpuPiece);
             if (IsGameOver)
             {

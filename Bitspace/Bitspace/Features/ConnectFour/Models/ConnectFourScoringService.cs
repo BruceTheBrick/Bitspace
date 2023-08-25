@@ -28,9 +28,13 @@ namespace Bitspace.Features
             score += NumOfThrees(board, player);
             score += GetWinnerScore(board, player);
 
-            score -= (int)(GetBaseScore(board, player.GetOtherPiece()) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
-            score -= (int)(NumOfTwos(board, player.GetOtherPiece()) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
-            score -= (int)(NumOfThrees(board, player.GetOtherPiece()) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
+            // score -= (int)(GetBaseScore(board, player.GetOtherPiece()) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
+            // score -= (int)(NumOfTwos(board, player.GetOtherPiece()) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
+            // score -= (int)(NumOfThrees(board, player.GetOtherPiece()) * ConnectFourScoreConstants.MINIMIZING_PLAYER_MULTIPLIER);
+            
+            score -= (int)(GetBaseScore(board, player.GetOtherPiece()));
+            score -= (int)(NumOfTwos(board, player.GetOtherPiece()));
+            score -= (int)(NumOfThrees(board, player.GetOtherPiece()));
             score -= GetWinnerScore(board, player.GetOtherPiece());
             return score;
         }

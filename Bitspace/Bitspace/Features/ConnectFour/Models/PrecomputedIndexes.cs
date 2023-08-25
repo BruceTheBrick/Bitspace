@@ -4,6 +4,10 @@ namespace Bitspace.Features
 {
     public static class PrecomputedIndexes
     {
+        public static List<int>[] TwoInARow;
+        public static List<int>[] ThreeInARow;
+        public static List<int>[] FourInARow;
+
         public static int[][] GetStandardPrecomputedIndexes()
         {
             var board = new int[6][];
@@ -16,11 +20,6 @@ namespace Bitspace.Features
 
             return board;
         }
-
-        public static List<int>[] TwoInARow;
-        public static List<int>[] ThreeInARow;
-        public static List<int>[] FourInARow;
-
 
         public static void Init()
         {
