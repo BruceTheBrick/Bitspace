@@ -43,9 +43,9 @@ namespace Bitspace
             containerRegistry.Register<IAccessibilityService, AccessibilityService>();
             containerRegistry.Register<INavigationService, NavigationService>();
             containerRegistry.Register<IConnectFourEngine, ConnectFourEngine>();
-            containerRegistry.Register<IConnectFourScoringService, ConnectFourScoringService>();
             containerRegistry.Register<ITimerService, TimerService>();
             containerRegistry.Register<IDeviceLocation, DeviceLocationService>();
+            containerRegistry.Register<IConnectFourDifficultyService, ConnectFourDifficultyService>();
         }
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)
@@ -65,6 +65,7 @@ namespace Bitspace
             containerRegistry.RegisterForNavigation<AccessibilityPlaygroundPage, AccessibilityPlaygroundPageViewModel>();
             containerRegistry.RegisterForNavigation<ButtonsPlaygroundPage, ButtonsPlaygroundPageViewModel>();
             containerRegistry.RegisterForNavigation<NavigationBarPlaygroundPage, NavigationBarPlaygroundPageViewModel>();
+            containerRegistry.RegisterForNavigation<PopupPagesPlaygroundPage, PopupPagesPlaygroundPageViewModel>();
         }
 
         private void RegisterApis(IContainerRegistry containerRegistry)

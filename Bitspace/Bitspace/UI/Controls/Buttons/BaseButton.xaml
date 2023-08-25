@@ -12,7 +12,9 @@
     effects:TouchEffect.NativeAnimation="True"
     ui:AccessibilityTraits.Traits="Button"
     BackgroundColor="{Binding ActiveBackgroundColor, Source={x:Reference This}}"
-    HasShadow="False">
+    HasShadow="False"
+    HorizontalOptions="FillAndExpand"
+    VerticalOptions="Center">
     <Label
         HorizontalTextAlignment="Center"
         Text="{Binding Text, Source={x:Reference This}}"

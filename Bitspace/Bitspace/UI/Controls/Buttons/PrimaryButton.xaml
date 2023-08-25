@@ -7,5 +7,4 @@
     ActiveBackgroundColor="{StaticResource ButtonActiveBackgroundColor}"
     ActiveTextColor="{StaticResource ButtonActiveTextColor}"
     InactiveBackgroundColor="{StaticResource ButtonDisabledBackgroundColor}"
-    InactiveTextColor="{StaticResource ButtonDisabledTextColor}"
-    VerticalOptions="Center" />
+    InactiveTextColor="{StaticResource ButtonDisabledTextColor}" />

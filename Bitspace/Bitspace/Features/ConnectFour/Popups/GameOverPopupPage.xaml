@@ -18,8 +18,10 @@
         VerticalOptions="Center">
         <Grid
             ColumnDefinitions="*, *"
-            RowDefinitions="auto, auto, auto, *"
-            RowSpacing="12">
+            ColumnSpacing="16"
+            RowDefinitions="auto, auto, auto, auto"
+            RowSpacing="12"
+            VerticalOptions="Center">
             <Label
                 Grid.Row="0"
                 Grid.ColumnSpan="2"
@@ -38,22 +40,16 @@
                 Margin="0,0,0,12"
                 HorizontalOptions="Center"
                 Text="{x:Static resources:ConnectFourRegister.CF_PLAY_AGAIN}" />
-            <Grid
+            <ui:PrimaryButton
                 Grid.Row="3"
-                Grid.ColumnSpan="2"
-                ColumnDefinitions="*, *"
-                ColumnSpacing="16">
-                <ui:PrimaryButton
-                    Grid.Column="0"
-                    Command="{Binding PlayAgainCommand}"
-                    HorizontalOptions="FillAndExpand"
-                    Text="{x:Static resources:ConnectFourRegister.CF_NEW_GAME}" />
-                <ui:SecondaryButton
-                    Grid.Column="1"
-                    Command="{Binding QuitCommand}"
-                    HorizontalOptions="FillAndExpand"
-                    Text="{x:Static resources:ConnectFourRegister.CF_QUIT}" />
-            </Grid>
+                Grid.Column="0"
+                Command="{Binding PlayAgainCommand}"
+                Text="{x:Static resources:ConnectFourRegister.CF_NEW_GAME}" />
+            <ui:SecondaryButton
+                Grid.Row="3"
+                Grid.Column="1"
+                Command="{Binding QuitCommand}"
+                Text="{x:Static resources:ConnectFourRegister.CF_QUIT}" />
         </Grid>
     </Frame>
 </pages:PopupPage>

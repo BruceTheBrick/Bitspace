@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<features:BasePage
     x:Class="Bitspace.Features.AccessibilityPlaygroundPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    x:DataType="features:AccessibilityPlaygroundPageViewModel"
-    NavigationPage.HasNavigationBar="True">
-    <ScrollView>
-        <StackLayout>
-            <StackLayout
-                ui:AccessibilityTraits.Traits="Button"
-                AutomationProperties.IsInAccessibleTree="True"
-                AutomationProperties.Name="My stack layout"
-                HorizontalOptions="Start">
-                <Label
-                    HorizontalOptions="CenterAndExpand"
-                    Text="Accessibility Page"
-                    VerticalOptions="CenterAndExpand" />
+    x:DataType="features:AccessibilityPlaygroundPageViewModel">
+    <Grid RowDefinitions="auto, *">
+        <ui:NavigationBar
+            Grid.Row="0"
+            LeftActionCommand="{Binding NavigateBackCommand}"
+            LeftActionType="Back" />
+        <ScrollView Grid.Row="1">
+            <StackLayout>
+                <StackLayout
+                    ui:AccessibilityTraits.Traits="Button"
+                    AutomationProperties.IsInAccessibleTree="True"
+                    AutomationProperties.Name="My stack layout"
+                    HorizontalOptions="Start">
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Accessibility Page"
+                        VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+                <ui:AccessibilityStackLayout
+                    Padding="20"
+                    ui:AccessibilityTraits.Traits="Button"
+                    AccessibilityActionCommandList="{Binding AccessibilityActionCommands}"
+                    AutomationProperties.Name="Accessibility StackLayout. This is me"
+                    BackgroundColor="Blue"
+                    VerticalOptions="Center">
+                    <Label Text="This is a special kind of stack layout. Lets see if we can make it work!" />
+                </ui:AccessibilityStackLayout>
+                <Button Command="{Binding AnnouncementCommand}" Text="Announce" />
             </StackLayout>
-            <ui:AccessibilityStackLayout
-                Padding="20"
-                ui:AccessibilityTraits.Traits="Button"
-                AccessibilityActionCommandList="{Binding AccessibilityActionCommands}"
-                AutomationProperties.Name="Accessibility StackLayout. This is me"
-                BackgroundColor="Blue"
-                VerticalOptions="Center">
-                <Label Text="This is a special kind of stack layout. Lets see if we can make it work!" />
-            </ui:AccessibilityStackLayout>
-            <Button Command="{Binding AnnouncementCommand}" Text="Announce" />
-        </StackLayout>
-    </ScrollView>
-</ContentPage>
+        </ScrollView>
+    </Grid>
+</features:BasePage>
