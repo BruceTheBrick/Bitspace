@@ -32,6 +32,9 @@ namespace Bitspace.Features
             maxScore += GetTriadsScore(board, _maximisingPlayer);
             minScore += (int)(GetTriadsScore(board, _maximisingPlayer.GetOpponent()) * -1 * 1.5);
 
+            maxScore += GetWinScore(board, _maximisingPlayer);
+            minScore += (int)(GetWinScore(board, _maximisingPlayer.GetOpponent()) * -1 * 1.5);
+
             if (IsWinner(board, _maximisingPlayer))
             {
                 maxScore = int.MaxValue;
@@ -65,13 +68,13 @@ namespace Bitspace.Features
         private int GetPairsScore(IBoard board, Piece player)
         {
             var pairs = FindConsecutivePieces(board, player, 2);
-            return pairs.Count * 5;
+            return pairs.Count * 3;
         }
 
         private int GetTriadsScore(IBoard board, Piece player)
         {
             var triads = FindConsecutivePieces(board, player, 3);
-            return triads.Count * 4;
+            return triads.Count * 5;
         }
 
         private int GetWinScore(IBoard board, Piece player)
@@ -109,15 +112,17 @@ namespace Bitspace.Features
 
         private IEnumerable<(int verticalVector, int horizontalVector)> GetDirectionVectors()
         {
-            var directions = new List<(int, int)>();
-            directions.Add((-1, 0));    // up
-            directions.Add((1, 0));     // down
-            directions.Add((0, -1));    // left
-            directions.Add((0, 1));     // right
-            directions.Add((-1, -1));   // up-left
-            directions.Add((1, 1));     // down-right
-            directions.Add((-1, 1));    // up-right
-            directions.Add((1, -1));    // down-left
+            var directions = new List<(int, int)>
+            {
+                (-1, 0), // up
+                (1, 0), // down
+                (0, -1), // left
+                (0, 1), // right
+                (-1, -1), // up-left
+                (1, 1), // down-right
+                (-1, 1), // up-right
+                (1, -1), // down-left
+            };
             return directions;
         }
 
