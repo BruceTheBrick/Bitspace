@@ -1,12 +1,13 @@
 ﻿using System.Windows.Input;
 using Bitspace.Core;
 using Bitspace.Resources.Registers.Copy;
+using CommunityToolkit.Mvvm.Input;
 using Humanizer;
 using PropertyChanged;
 
 namespace Bitspace.Features;
 
-public class ConnectFourPageViewModel : BasePageViewModel
+public partial class ConnectFourPageViewModel : BasePageViewModel
 {
     private readonly IConnectFourDifficultyService _difficultyService;
 
@@ -16,15 +17,8 @@ public class ConnectFourPageViewModel : BasePageViewModel
         _difficultyService = difficultyService;
 
         SetupBoardAndEngine();
-
-        PlacePieceCommand = new Command<int>(PlacePiece);
-        UndoCommand = new Command(Undo);
-        ResetCommand = new Command(Reset);
     }
-
-    public ICommand PlacePieceCommand { get; }
-    public ICommand UndoCommand { get; }
-    public ICommand ResetCommand { get; }
+    
     public IBoard Board { get; set; }
     public IConnectFourEngine Martini { get; set; }
     public int Columns { get; set; } = 7;
@@ -61,6 +55,7 @@ public class ConnectFourPageViewModel : BasePageViewModel
         Martini = new ConnectFourEngine(CpuPiece, scoringService);
     }
 
+    [RelayCommand]
     private void PlacePiece(int column)
     {
         if (IsCpuBusy)
@@ -119,6 +114,7 @@ public class ConnectFourPageViewModel : BasePageViewModel
         return NavigationService.NavigateAsync(nameof(GameOverPopupPage), parameters);
     }
 
+    [RelayCommand]
     private void Reset()
     {
         Board.Reset();
@@ -126,10 +122,17 @@ public class ConnectFourPageViewModel : BasePageViewModel
         IsGameOver = false;
     }
 
+    [RelayCommand]
     private void Undo()
     {
         Board.Undo();
         UpdateButtons = !UpdateButtons;
+    }
+
+    [RelayCommand]
+    private Task NavigateBack()
+    {
+        return NavigationService.GoBack();
     }
 
     private string UpdateMartiniStatus()

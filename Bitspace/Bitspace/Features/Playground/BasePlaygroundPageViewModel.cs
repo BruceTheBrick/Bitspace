@@ -1,19 +1,19 @@
 using System.Diagnostics.CodeAnalysis;
 using Bitspace.Core;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Bitspace.Features;
 
 [ExcludeFromCodeCoverage]
-public class BasePlaygroundPageViewModel : BasePageViewModel
+public partial class BasePlaygroundPageViewModel : BasePageViewModel
 {
     public BasePlaygroundPageViewModel(IBaseService baseService)
         : base(baseService)
     {
-        NavigateBackCommand = new AsyncCommand(NavigateBack);
     }
 
-    public IAsyncCommand NavigateBackCommand { get; }
 
+    [RelayCommand]
     private Task NavigateBack()
     {
         return NavigationService.GoBack();

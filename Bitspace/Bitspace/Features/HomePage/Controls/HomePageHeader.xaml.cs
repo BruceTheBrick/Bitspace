@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Bitspace.Core;
+using Bitspace.Resources.Registers.Copy;
 
 namespace Bitspace.Features;
 

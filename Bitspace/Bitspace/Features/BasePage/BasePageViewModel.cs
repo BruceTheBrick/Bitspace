@@ -14,17 +14,13 @@ public class BasePageViewModel : BindableBase, IInitialize, INavigationAware, ID
         AccessibilityService = baseService.AccessibilityService;
         AnalyticsService = baseService.AnalyticsService;
         AlertService = baseService.AlertService;
-
-        NavigateBackCommand = new AsyncCommand(NavigationService.GoBack);
     }
 
+    public bool IsBusy { get; set; }
     protected INavigationService NavigationService { get; }
     protected IAccessibilityService AccessibilityService { get; }
     protected IAnalyticsService AnalyticsService { get; }
     protected IAlertService AlertService { get; }
-    public IAsyncCommand NavigateBackCommand { get; }
-    public bool IsBusy { get; set; }
-    public string Title { get; set; }
 
     public virtual void Initialize(INavigationParameters parameters)
     {

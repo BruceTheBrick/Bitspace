@@ -49,9 +49,9 @@ public partial class BoardButtons
 
     public BoardButtons()
     {
-            InitializeComponent();
-            _precomputedIndexes = PrecomputedIndexes.GetRevisedPrecomputedIndexes();
-        }
+        InitializeComponent();
+        _precomputedIndexes = PrecomputedIndexes.GetRevisedPrecomputedIndexes();
+    }
 
 
     public int Columns
@@ -98,103 +98,103 @@ public partial class BoardButtons
 
     private static void BoardDimensionsUpdated(BindableObject bindable, object oldvalue, object newvalue)
     {
-            if (!(bindable is BoardButtons view))
-            {
-                return;
-            }
-
-            view.CreateContent();
+        if (!(bindable is BoardButtons view))
+        {
+            return;
         }
+
+        view.CreateContent();
+    }
 
     private static void UpdateButtonColors(BindableObject bindable, object oldvalue, object newvalue)
     {
-            if (!(bindable is BoardButtons view))
-            {
-                return;
-            }
-
-            view.UpdateContent();
+        if (!(bindable is BoardButtons view))
+        {
+            return;
         }
+
+        view.UpdateContent();
+    }
 
     private void CreateContent()
     {
-            ColumnDefinitions = GetColumnDefinitions();
-            RowDefinitions = GetRowDefinitions();
-            for (var x = 0; x < Rows; x++)
+        ColumnDefinitions = GetColumnDefinitions();
+        RowDefinitions = GetRowDefinitions();
+        for (var x = 0; x < Rows; x++)
+        {
+            for (var y = 0; y < Columns; y++)
             {
-                for (var y = 0; y < Columns; y++)
-                {
-                    CreateNewButton(x, y);
-                }
+                CreateNewButton(x, y);
             }
         }
+    }
 
     private void UpdateContent()
     {
-            foreach (var btn in Children)
-            {
-                var row = GetRow(btn);
-                var col = GetColumn(btn);
-                var color = GetColor(row, col);
-                btn.BackgroundColor = color;
-            }
+        foreach (var btn in Children)
+        {
+            var row = GetRow(btn);
+            var col = GetColumn(btn);
+            var color = GetColor(row, col);
+            ((View)btn).BackgroundColor = color;
         }
+    }
 
     private ColumnDefinitionCollection GetColumnDefinitions()
     {
-            var columns = new ColumnDefinitionCollection();
-            for (var i = 0; i < Columns; i++)
-            {
-                var definition = new ColumnDefinition { Width = GridLength.Star };
-                columns.Add(definition);
-            }
-
-            return columns;
+        var columns = new ColumnDefinitionCollection();
+        for (var i = 0; i < Columns; i++)
+        {
+            var definition = new ColumnDefinition {Width = GridLength.Star};
+            columns.Add(definition);
         }
+
+        return columns;
+    }
 
     private RowDefinitionCollection GetRowDefinitions()
     {
-            var rows = new RowDefinitionCollection();
-            for (var i = 0; i < Rows; i++)
-            {
-                var definition = new RowDefinition { Height = GridLength.Star };
-                rows.Add(definition);
-            }
-
-            return rows;
+        var rows = new RowDefinitionCollection();
+        for (var i = 0; i < Rows; i++)
+        {
+            var definition = new RowDefinition {Height = GridLength.Star};
+            rows.Add(definition);
         }
+
+        return rows;
+    }
 
     private Color GetColor(int row, int col)
     {
-            if (Board == null)
-            {
-                return Color.Default;
-            }
-
-            var piece = Board.GetPiece(row, col);
-            switch (piece)
-            {
-                case Piece.One:
-                    return PlayerOneColor;
-                case Piece.Two:
-                    return PlayerTwoColor;
-                default:
-                    return Color.LightGray;
-            }
+        if (Board == null)
+        {
+            return Colors.Chartreuse;
         }
+
+        var piece = Board.GetPiece(row, col);
+        switch (piece)
+        {
+            case Piece.One:
+                return PlayerOneColor;
+            case Piece.Two:
+                return PlayerTwoColor;
+            default:
+                return Colors.LightGray;
+        }
+    }
 
     private void CreateNewButton(int row, int column)
     {
-            var btn = new BaseCircleButton
-            {
-                Command = Command,
-                CommandParameter = column,
-                BackgroundColor = GetColor(row, column),
-                Text = _precomputedIndexes[row][column].ToString(),
-            };
-            btn.SetBinding(IsEnabledProperty, new Binding(IsEnabledProperty.PropertyName));
-            SetRow(btn, row);
-            SetColumn(btn, column);
-            Children.Add(btn);
-        }
+        var btn = new BaseCircleButton
+        {
+            Command = Command,
+            CommandParameter = column,
+            BackgroundColor = GetColor(row, column),
+            Text = _precomputedIndexes[row][column].ToString(),
+        };
+        btn.SetBinding(IsEnabledProperty, new Binding(IsEnabledProperty.PropertyName));
+        SetRow((BindableObject)btn, row);
+        SetColumn((BindableObject)btn, column);
+        Children.Add(btn);
+    }
 }

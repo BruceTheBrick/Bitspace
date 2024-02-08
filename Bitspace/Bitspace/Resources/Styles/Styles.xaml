@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary
     x:Class="Bitspace.Resources.Styles"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -38,9 +38,9 @@
     </Style>
 
     <!--  Pill  -->
-    <Style ApplyToDerivedTypes="True" TargetType="ui:Pill">
-        <Setter Property="CornerRadius" Value="{StaticResource Rounded}" />
-    </Style>
+    <!-- <Style ApplyToDerivedTypes="True" TargetType="ui:Pill"> -->
+    <!--     <Setter Property="CornerRadius" Value="{StaticResource Rounded}" /> -->
+    <!-- </Style> -->
 
     <!--  Snackbar  -->
     <Style x:Key="SnackbarStyle" TargetType="Frame">

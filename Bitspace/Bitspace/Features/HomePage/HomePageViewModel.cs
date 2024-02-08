@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
 using Bitspace.Core;
 using Bitspace.Resources.Registers.Analytics;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Bitspace.Features;
 
-public class HomePageViewModel : BasePageViewModel
+public partial class HomePageViewModel : BasePageViewModel
 {
     private readonly IHomePageMenuItems _homePageMenuItemsService;
     private readonly IEssentialsVersion _essentialsVersionService;
@@ -20,14 +20,10 @@ public class HomePageViewModel : BasePageViewModel
         _essentialsVersionService = essentialsVersion;
 
         SetVersionNumber();
-        ItemSelectedCommand = new AsyncCommand<MenuListItemViewModel>(ItemSelected);
-        RefreshMenuItemsCommand = new Command(RefreshMenuItems);
     }
 
     public string VersionNumber { get; set; }
     public ObservableCollection<MenuListItemViewModel> MenuItems { get; set; }
-    public ICommand ItemSelectedCommand { get; }
-    public ICommand RefreshMenuItemsCommand { get; }
     public bool IsRefreshing { get; set; }
 
     public override void Initialize(INavigationParameters parameters)
@@ -36,6 +32,7 @@ public class HomePageViewModel : BasePageViewModel
         MenuItems = _homePageMenuItemsService.GetMenuItems();
     }
 
+    [RelayCommand]
     private async Task ItemSelected(MenuListItemViewModel item)
     {
         if (!string.IsNullOrEmpty(item.NavigationConstant))
@@ -46,6 +43,7 @@ public class HomePageViewModel : BasePageViewModel
         AnalyticsService.LogEvent(AnalyticsRegister.ITEM_SELECTED, AnalyticsRegister.ID, item.NavigationConstant);
     }
 
+    [RelayCommand]
     private void RefreshMenuItems()
     {
         IsRefreshing = true;

@@ -36,5 +36,6 @@ public class AlertService : IAlertService
         // }
         //
         // return actionOptionsList;
+        return new List<SnackBarActionOptions>();
     }
 }

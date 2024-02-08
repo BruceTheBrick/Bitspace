@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Grid
     x:Class="Bitspace.Features.MenuListItem"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -13,7 +13,6 @@
     ColumnDefinitions="1*, 8*, 1*">
     <ui:ExtendedImage
         Grid.Column="0"
-        effects:IconTintColorEffect.TintColor="{Binding IconTint, Source={x:Reference This}}"
         AutomationProperties.IsInAccessibleTree="False"
         HeightRequest="28"
         HorizontalOptions="Start"
@@ -27,7 +26,6 @@
         VerticalOptions="Center" />
     <ui:ExtendedImage
         Grid.Column="2"
-        effects:IconTintColorEffect.TintColor="{Binding ActionIconTint, Source={x:Reference This}}"
         AutomationProperties.IsInAccessibleTree="False"
         HeightRequest="18"
         Source="{Binding MenuListItemViewModel.ActionIcon, Source={x:Reference This}}"

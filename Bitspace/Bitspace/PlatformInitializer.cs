@@ -9,66 +9,71 @@ using Bitspace.UI;
 namespace Bitspace;
 
 [ExcludeFromCodeCoverage]
-public class PlatformInitializer
+public static class PlatformInitializer
 {
-    public PlatformInitializer(IContainerRegistry containerRegistry)
+    public static MauiAppBuilder RegisterTypes(this MauiAppBuilder builder)
     {
-        RegisterServices(containerRegistry);
-        RegisterApis(containerRegistry);
-        RegisterDataLayers(containerRegistry);
-        RegisterNavigation(containerRegistry);
-        RegisterPlaygroundPagesForNavigation(containerRegistry);
+        builder.UsePrism(prismBuilder =>
+        {
+            prismBuilder.OnAppStart(NavigationConstants.Homepage);
+        });
+        RegisterServices(builder.Services);
+        RegisterApis(builder.Services);
+        RegisterDataLayers(builder.Services);
+        RegisterNavigation(builder.Services);
+        RegisterPlaygroundPagesForNavigation(builder.Services);
+        return builder;
     }
 
-    private void RegisterServices(IContainerRegistry containerRegistry)
+    private static void RegisterServices(IServiceCollection services)
     {
-        // containerRegistry.RegisterSingleton<IAppInfo, AppInfo>();
-        containerRegistry.RegisterSingleton<IApiKeyManagerService, ApiKeyManagerService>();
-        containerRegistry.RegisterSingleton<IEssentialsVersion, EssentialsVersion>();
-        containerRegistry.RegisterSingleton<IEssentialsDeviceInfo, EssentialsDeviceInfo>();
-        containerRegistry.Register<IBaseService, BaseService>();
-        containerRegistry.Register<IHttpClient, ExtendedHttpClient>();
-        containerRegistry.Register<IHomePageMenuItems, HomePageMenuItemService>();
-        containerRegistry.Register<IBiometricService, BiometricService>();
-        containerRegistry.Register<ITimeoutService, TimeoutService>();
-        containerRegistry.Register<IPermissionService, PermissionService>();
-        containerRegistry.Register<IAnimationService, AnimationService>();
-        containerRegistry.Register<IAlertService, AlertService>();
-        containerRegistry.Register<IAccessibilityService, AccessibilityService>();
-        containerRegistry.Register<Core.INavigationService, NavigationService>();
-        containerRegistry.Register<IConnectFourEngine, ConnectFourEngine>();
-        containerRegistry.Register<ITimerService, TimerService>();
-        containerRegistry.Register<IDeviceLocation, DeviceLocationService>();
-        containerRegistry.Register<IConnectFourDifficultyService, ConnectFourDifficultyService>();
+        // services.AddSingleton<IAppInfo, AppInfo>();
+        services.AddSingleton<IApiKeyManagerService, ApiKeyManagerService>();
+        services.AddSingleton<IEssentialsVersion, EssentialsVersion>();
+        services.AddSingleton<IEssentialsDeviceInfo, EssentialsDeviceInfo>();
+        services.AddTransient<IBaseService, BaseService>();
+        services.AddTransient<IHttpClient, ExtendedHttpClient>();
+        services.AddTransient<IHomePageMenuItems, HomePageMenuItemService>();
+        services.AddTransient<IBiometricService, BiometricService>();
+        services.AddTransient<ITimeoutService, TimeoutService>();
+        services.AddTransient<IPermissionService, PermissionService>();
+        services.AddTransient<IAnimationService, AnimationService>();
+        services.AddTransient<IAlertService, AlertService>();
+        services.AddTransient<IAccessibilityService, AccessibilityService>();
+        services.AddTransient<Core.INavigationService, NavigationService>();
+        services.AddTransient<IConnectFourEngine, ConnectFourEngine>();
+        services.AddTransient<ITimerService, TimerService>();
+        services.AddTransient<IDeviceLocation, DeviceLocationService>();
+        services.AddTransient<IConnectFourDifficultyService, ConnectFourDifficultyService>();
     }
 
-    private void RegisterNavigation(IContainerRegistry containerRegistry)
+    private static void RegisterNavigation(IServiceCollection services)
     {
-        containerRegistry.RegisterForNavigation<NavigationPage>();
-        containerRegistry.RegisterForNavigation<InitPage, InitPageViewModel>();
-        containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
-        containerRegistry.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>();
-        containerRegistry.RegisterForNavigation<ConnectFourPage, ConnectFourPageViewModel>();
-        containerRegistry.RegisterForNavigation<SnackbarPopup, SnackbarPopupViewModel>();
-        containerRegistry.RegisterForNavigation<GameOverPopupPage, GameOverPopupPageViewModel>();
+        services.RegisterForNavigation<NavigationPage>();
+        services.RegisterForNavigation<InitPage, InitPageViewModel>();
+        services.RegisterForNavigation<HomePage, HomePageViewModel>();
+        services.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>();
+        services.RegisterForNavigation<ConnectFourPage, ConnectFourPageViewModel>();
+        services.RegisterForNavigation<SnackbarPopup, SnackbarPopupViewModel>();
+        services.RegisterForNavigation<GameOverPopupPage, GameOverPopupPageViewModel>();
     }
 
-    private void RegisterPlaygroundPagesForNavigation(IContainerRegistry containerRegistry)
+    private static void RegisterPlaygroundPagesForNavigation(IServiceCollection services)
     {
-        containerRegistry.RegisterForNavigation<PlaygroundPage, PlaygroundPageViewModel>();
-        containerRegistry.RegisterForNavigation<AccessibilityPlaygroundPage, AccessibilityPlaygroundPageViewModel>();
-        containerRegistry.RegisterForNavigation<ButtonsPlaygroundPage, ButtonsPlaygroundPageViewModel>();
-        containerRegistry.RegisterForNavigation<NavigationBarPlaygroundPage, NavigationBarPlaygroundPageViewModel>();
-        containerRegistry.RegisterForNavigation<PopupPagesPlaygroundPage, PopupPagesPlaygroundPageViewModel>();
+        services.RegisterForNavigation<PlaygroundPage, PlaygroundPageViewModel>();
+        services.RegisterForNavigation<AccessibilityPlaygroundPage, AccessibilityPlaygroundPageViewModel>();
+        services.RegisterForNavigation<ButtonsPlaygroundPage, ButtonsPlaygroundPageViewModel>();
+        services.RegisterForNavigation<NavigationBarPlaygroundPage, NavigationBarPlaygroundPageViewModel>();
+        services.RegisterForNavigation<PopupPagesPlaygroundPage, PopupPagesPlaygroundPageViewModel>();
     }
 
-    private void RegisterApis(IContainerRegistry containerRegistry)
+    private static void RegisterApis(IServiceCollection services)
     {
-        containerRegistry.Register<IOpenWeatherAPI, OpenWeatherAPI>();
+        services.AddTransient<IOpenWeatherAPI, OpenWeatherAPI>();
     }
 
-    private void RegisterDataLayers(IContainerRegistry containerRegistry)
+    private static void RegisterDataLayers(IServiceCollection services)
     {
-        containerRegistry.RegisterSingleton<ICurrentWeatherService, WeatherService>();
+        services.AddSingleton<ICurrentWeatherService, WeatherService>();
     }
 }

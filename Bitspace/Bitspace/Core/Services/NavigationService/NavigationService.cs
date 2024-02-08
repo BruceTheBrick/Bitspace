@@ -11,22 +11,24 @@ public class NavigationService : INavigationService
 
     public Task<INavigationResult> NavigateAsync(string url)
     {
-        return _navigationService.NavigateAsync(url, null, false, true);
+        return _navigationService.NavigateAsync(url);
     }
 
     public Task<INavigationResult> NavigateAsync(string url, INavigationParameters parameters)
     {
-        return _navigationService.NavigateAsync(url, parameters, false, true);
+        return _navigationService.NavigateAsync(url, parameters);
     }
 
     public Task<INavigationResult> NavigateAsync(string url, bool useModalNavigation)
     {
-        return _navigationService.NavigateAsync(url, null, useModalNavigation, true);
+        var parameters = AddModalParameter(null, useModalNavigation);
+        return _navigationService.NavigateAsync(url, parameters);
     }
 
     public Task<INavigationResult> NavigateAsync(string url, INavigationParameters parameters, bool useModalNavigation)
     {
-        return _navigationService.NavigateAsync(url, parameters, useModalNavigation, false);
+        parameters = AddModalParameter(parameters, useModalNavigation);
+        return _navigationService.NavigateAsync(url, parameters);
     }
 
     public Task<INavigationResult> GoBack()
@@ -37,5 +39,12 @@ public class NavigationService : INavigationService
     public Task<INavigationResult> GoBack(INavigationParameters parameters)
     {
         return _navigationService.GoBackAsync(parameters);
+    }
+
+    private INavigationParameters AddModalParameter(INavigationParameters parameters, bool useModal)
+    {
+        parameters ??= new NavigationParameters();
+        parameters.Add(KnownNavigationParameters.UseModalNavigation, useModal);
+        return parameters;
     }
 }
