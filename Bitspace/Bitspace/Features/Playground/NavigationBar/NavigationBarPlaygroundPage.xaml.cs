@@ -1,13 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+[ExcludeFromCodeCoverage]
+public partial class NavigationBarPlaygroundPage
 {
-    [ExcludeFromCodeCoverage]
-    public partial class NavigationBarPlaygroundPage
+    public NavigationBarPlaygroundPage()
     {
-        public NavigationBarPlaygroundPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

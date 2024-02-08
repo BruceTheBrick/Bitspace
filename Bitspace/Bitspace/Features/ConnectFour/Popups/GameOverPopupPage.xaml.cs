@@ -1,13 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+[ExcludeFromCodeCoverage]
+public partial class GameOverPopupPage
 {
-    [ExcludeFromCodeCoverage]
-    public partial class GameOverPopupPage
+    public GameOverPopupPage()
     {
-        public GameOverPopupPage()
-        {
             InitializeComponent();
         }
-    }
 }

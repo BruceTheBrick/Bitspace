@@ -1,13 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Resources
+namespace Bitspace.Resources;
+
+[ExcludeFromCodeCoverage]
+public partial class ConnectFourStyle
 {
-    [ExcludeFromCodeCoverage]
-    public partial class ConnectFourStyle
+    public ConnectFourStyle()
     {
-        public ConnectFourStyle()
-        {
             InitializeComponent();
         }
-    }
 }

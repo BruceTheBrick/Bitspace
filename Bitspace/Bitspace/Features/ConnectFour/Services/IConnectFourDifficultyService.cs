@@ -1,7 +1,6 @@
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+public interface IConnectFourDifficultyService
 {
-    public interface IConnectFourDifficultyService
-    {
-        public IConnectFourScoringService GetScoringServiceFromDifficulty(Difficulty difficulty);
-    }
+    public IConnectFourScoringService GetScoringServiceFromDifficulty(Difficulty difficulty);
 }

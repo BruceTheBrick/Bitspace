@@ -1,17 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿namespace Bitspace.APIs;
 
-namespace Bitspace.APIs
+public class CurrentWeatherViewModel
 {
-    public class CurrentWeatherViewModel
+    private const string IconUrlEndpoint = "http://openweathermap.org/img/wn/";
+    public CurrentWeatherViewModel()
     {
-        private const string IconUrlEndpoint = "http://openweathermap.org/img/wn/";
-        public CurrentWeatherViewModel()
-        {
         }
 
-        public CurrentWeatherViewModel(CurrentWeatherResponse response)
-        {
+    public CurrentWeatherViewModel(CurrentWeatherResponse response)
+    {
             IconUrl = GetIconURL(response.Weather.FirstOrDefault()?.Icon, 4);
             Suburb = response.Name;
             Temperature = response.Main.Temperature;
@@ -23,18 +20,18 @@ namespace Bitspace.APIs
             DescriptionList = GetDescriptionsFromResponse(response);
         }
 
-        public string IconUrl { get; set; }
-        public string Suburb { get; set; }
-        public double Temperature { get; set; }
-        public double FeelsLike { get; set; }
-        public double Humidity { get; set; }
-        public double WindSpeed { get; set; }
-        public double Pressure { get; set; }
-        public string Description { get; set; }
-        public List<string> DescriptionList { get; set; }
+    public string IconUrl { get; set; }
+    public string Suburb { get; set; }
+    public double Temperature { get; set; }
+    public double FeelsLike { get; set; }
+    public double Humidity { get; set; }
+    public double WindSpeed { get; set; }
+    public double Pressure { get; set; }
+    public string Description { get; set; }
+    public List<string> DescriptionList { get; set; }
 
-        private string GetIconURL(string iconId, int size = 2)
-        {
+    private string GetIconURL(string iconId, int size = 2)
+    {
             if (size is <= 0 or > 4)
             {
                 return string.Empty;
@@ -44,9 +41,8 @@ namespace Bitspace.APIs
             return $"{IconUrlEndpoint}{iconId}{imgSize}.png";
         }
 
-        private List<string> GetDescriptionsFromResponse(CurrentWeatherResponse response)
-        {
+    private List<string> GetDescriptionsFromResponse(CurrentWeatherResponse response)
+    {
             return response.Weather.Select(weather => weather.Description.ToUpper()).ToList();
         }
-    }
 }

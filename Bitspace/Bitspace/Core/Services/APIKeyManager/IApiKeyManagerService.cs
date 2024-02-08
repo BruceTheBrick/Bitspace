@@ -1,10 +1,9 @@
 ﻿using Bitspace.APIs;
 
-namespace Bitspace.Core
+namespace Bitspace.Core;
+
+public interface IApiKeyManagerService
 {
-    public interface IApiKeyManagerService
-    {
-        public string GetKey(API_Endpoints api);
-        public bool HasKey(API_Endpoints api);
-    }
+    public string GetKey(API_Endpoints api);
+    public bool HasKey(API_Endpoints api);
 }

@@ -1,15 +1,10 @@
-using System;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
+namespace Bitspace.Core;
 
-namespace Bitspace.Core
+public class DeviceLocationService : IDeviceLocation
 {
-    public class DeviceLocationService : IDeviceLocation
+    public async Task<Location> GetCurrentLocation(GeolocationAccuracy accuracy, int timeout = 5)
     {
-        public async Task<Location> GetCurrentLocation(GeolocationAccuracy accuracy, int timeout = 5)
-        {
-            var request = new GeolocationRequest(accuracy, TimeSpan.FromSeconds(timeout));
-            return await Geolocation.GetLocationAsync(request);
-        }
+        var request = new GeolocationRequest(accuracy, TimeSpan.FromSeconds(timeout));
+        return await Geolocation.GetLocationAsync(request);
     }
 }

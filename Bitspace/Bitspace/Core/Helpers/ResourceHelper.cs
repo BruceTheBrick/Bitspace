@@ -1,30 +1,27 @@
-using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using Prism;
 
-namespace Bitspace.Core
+namespace Bitspace.Core;
+
+[ExcludeFromCodeCoverage]
+public static class ResourceHelper
 {
-    [ExcludeFromCodeCoverage]
-    public static class ResourceHelper
+    public static T GetResource<T>(string resourceName)
     {
-        public static T GetResource<T>(string resourceName)
+        try
         {
-            try
+            var resource = Application.Current.Resources[resourceName];
+            if (resource is T)
             {
-                var resource = PrismApplicationBase.Current.Resources[resourceName];
-                if (resource is T)
-                {
-                    return (T)resource;
-                }
+                return (T)resource;
+            }
 
-                return default;
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-                return default;
-            }
+            return default;
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e);
+            return default;
         }
     }
 }

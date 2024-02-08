@@ -1,11 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿namespace Bitspace.APIs;
 
-namespace Bitspace.APIs
+public interface IOpenWeatherAPI
 {
-    public interface IOpenWeatherAPI
-    {
-        Task<Response<CurrentWeatherResponse>> GetCurrentWeather(CurrentWeatherRequest request);
-        Task<Response<HourlyWeatherResponse>> GetHourlyWeather(HourlyForecastRequest request);
-        Task<Response<ReverseGeocodeResponseItemModel[]>> GetCurrentLocationName(ReverseGeocodeRequest request);
-    }
+    Task<Response<CurrentWeatherResponse>> GetCurrentWeather(CurrentWeatherRequest request);
+    Task<Response<HourlyWeatherResponse>> GetHourlyWeather(HourlyForecastRequest request);
+    Task<Response<ReverseGeocodeResponseItemModel[]>> GetCurrentLocationName(ReverseGeocodeRequest request);
 }

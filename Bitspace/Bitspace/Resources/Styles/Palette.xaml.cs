@@ -1,13 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Resources
+namespace Bitspace.Resources;
+
+[ExcludeFromCodeCoverage]
+public partial class Palette
 {
-    [ExcludeFromCodeCoverage]
-    public partial class Palette
+    public Palette()
     {
-        public Palette()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

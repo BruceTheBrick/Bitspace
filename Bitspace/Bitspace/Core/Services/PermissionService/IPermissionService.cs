@@ -1,9 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿namespace Bitspace.Core;
 
-namespace Bitspace.Core
+public interface IPermissionService
 {
-    public interface IPermissionService
-    {
-        public Task<bool> RequestPermission(DevicePermissions permission);
-    }
+    public Task<bool> RequestPermission(DevicePermissions permission);
 }

@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿namespace Bitspace.Core;
 
-namespace Bitspace.Core
+public static class IEnumerableExtensions
 {
-    public static class IEnumerableExtensions
+    public static IEnumerable<T> GetDistinctElements<T>(this IEnumerable<T> enumerable)
     {
-        public static IEnumerable<T> GetDistinctElements<T>(this IEnumerable<T> enumerable)
-        {
-            return enumerable.Select(x => x).Distinct();
-        }
+        return enumerable.Select(x => x).Distinct();
     }
 }

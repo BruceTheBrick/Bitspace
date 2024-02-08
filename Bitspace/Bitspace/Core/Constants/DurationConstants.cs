@@ -1,10 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Core
+namespace Bitspace.Core;
+
+[ExcludeFromCodeCoverage]
+public class DurationConstants
 {
-    [ExcludeFromCodeCoverage]
-    public class DurationConstants
-    {
-        public const int SnackbarDurationMillis = 6000;
-    }
+    public const int SnackbarDurationMillis = 6000;
 }

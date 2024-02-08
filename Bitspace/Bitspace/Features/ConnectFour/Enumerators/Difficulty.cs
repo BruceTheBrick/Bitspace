@@ -1,9 +1,8 @@
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+public enum Difficulty
 {
-    public enum Difficulty
-    {
-        Easy,
-        Medium,
-        Hard,
-    }
+    Easy,
+    Medium,
+    Hard,
 }

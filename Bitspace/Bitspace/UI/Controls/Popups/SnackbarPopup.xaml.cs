@@ -1,43 +1,40 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
 using Bitspace.UI;
-using Xamarin.Forms;
 
-namespace Bitspace.Controls
+namespace Bitspace.Controls;
+
+[ExcludeFromCodeCoverage]
+public partial class SnackbarPopup
 {
-    [ExcludeFromCodeCoverage]
-    public partial class SnackbarPopup
+    public SnackbarPopup()
     {
-        public SnackbarPopup()
+        InitializeComponent();
+    }
+
+    private async void SwipeGestureRecognizer_OnSwiped(object sender, SwipedEventArgs e)
+    {
+        if (e.Direction == SwipeDirection.Left)
         {
-            InitializeComponent();
+            await SlideLeft();
+        }
+        else
+        {
+            await SlideRight();
         }
 
-        private async void SwipeGestureRecognizer_OnSwiped(object sender, SwipedEventArgs e)
+        if (BindingContext is SnackbarPopupViewModel viewModel)
         {
-            if (e.Direction == SwipeDirection.Left)
-            {
-                await SlideLeft();
-            }
-            else
-            {
-                await SlideRight();
-            }
-
-            if (BindingContext is SnackbarPopupViewModel viewModel)
-            {
-                await viewModel.DismissCommand.ExecuteAsync();
-            }
+            await viewModel.DismissCommand.ExecuteAsync(null);
         }
+    }
 
-        private Task SlideLeft()
-        {
-            return Frame.TranslateTo(-Frame.Width, 0, 200);
-        }
+    private Task SlideLeft()
+    {
+        return Frame.TranslateTo(-Frame.Width, 0, 200);
+    }
 
-        private Task SlideRight()
-        {
-            return Frame.TranslateTo(Frame.Width, 0, 200);
-        }
+    private Task SlideRight()
+    {
+        return Frame.TranslateTo(Frame.Width, 0, 200);
     }
 }

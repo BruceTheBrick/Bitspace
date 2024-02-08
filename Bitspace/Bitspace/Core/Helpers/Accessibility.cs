@@ -1,10 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Core
+namespace Bitspace.Core;
+
+[ExcludeFromCodeCoverage]
+public static class Accessibility
 {
-    [ExcludeFromCodeCoverage]
-    public static class Accessibility
-    {
-        public static AccessibilityImplementation Current { get; set; }
-    }
+    public static AccessibilityImplementation Current { get; set; }
 }

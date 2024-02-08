@@ -1,30 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ScrollView
-    x:Class="Bitspace.UI.PillList"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
-    xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    x:Name="This"
     HorizontalScrollBarVisibility="Always"
-    Orientation="Horizontal">
+    Orientation="Horizontal"
+    x:Class="Bitspace.UI.PillList"
+    x:Name="This"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:effects="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <StackLayout>
         <StackLayout
-            Padding="0,8,0,8"
             BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference This}}"
             IsVisible="{Binding IsLoading, Converter={effects:InvertedBoolConverter}, Source={x:Reference This}}"
-            Orientation="Horizontal">
+            Orientation="Horizontal"
+            Padding="0,8,0,8">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="ui:PillViewModel">
-                    <ui:Pill effects:TouchEffect.Command="{Binding ItemSelectedCommand, Source={x:Reference This}}" effects:TouchEffect.CommandParameter="{Binding}" />
+                    <ui:Pill>
+                        <ui:Pill.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Command, Source={x:Reference This}}" />
+                        </ui:Pill.GestureRecognizers>
+                    </ui:Pill>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </StackLayout>
         <StackLayout
-            Padding="0,8,0,8"
             IsVisible="{Binding IsLoading, Source={x:Reference This}}"
-            Orientation="Horizontal">
+            Orientation="Horizontal"
+            Padding="0,8,0,8">
             <ui:LoadingPill />
             <ui:LoadingPill />
             <ui:LoadingPill />

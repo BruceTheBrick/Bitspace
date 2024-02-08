@@ -1,13 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+[ExcludeFromCodeCoverage]
+public partial class WeatherForecastStyle
 {
-    [ExcludeFromCodeCoverage]
-    public partial class WeatherForecastStyle
+    public WeatherForecastStyle()
     {
-        public WeatherForecastStyle()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

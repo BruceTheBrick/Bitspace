@@ -1,22 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<pancakeView:PancakeView
-    x:Class="Bitspace.UI.LoadingPill"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
-    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    x:DataType="ui:PillViewModel"
+<?xml version="1.0" encoding="utf-8" ?>
+<Border
     AutomationProperties.IsInAccessibleTree="True"
-    CornerRadius="40"
     HeightRequest="40"
     HorizontalOptions="Start"
     SizeChanged="LoadingPill_OnSizeChanged"
+    StrokeShape="RoundRectangle 40"
     VerticalOptions="CenterAndExpand"
-    WidthRequest="120">
+    WidthRequest="120"
+    x:Class="Bitspace.UI.LoadingPill"
+    x:DataType="ui:PillViewModel"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ui:SkeletonSection
         HorizontalOptions="FillAndExpand"
         IsLoading="True"
         IsVisible="True"
         VerticalOptions="FillAndExpand" />
-</pancakeView:PancakeView>
+</Border>

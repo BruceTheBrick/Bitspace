@@ -1,13 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Features.Buttons
+namespace Bitspace.Features.Buttons;
+
+[ExcludeFromCodeCoverage]
+public partial class ButtonsPlaygroundPage
 {
-    [ExcludeFromCodeCoverage]
-    public partial class ButtonsPlaygroundPage
+    public ButtonsPlaygroundPage()
     {
-        public ButtonsPlaygroundPage()
-        {
             InitializeComponent();
         }
-    }
 }

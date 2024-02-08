@@ -1,12 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 
-namespace Bitspace.APIs
+namespace Bitspace.APIs;
+
+[ExcludeFromCodeCoverage]
+public class CloudsResponseModel
 {
-    [ExcludeFromCodeCoverage]
-    public class CloudsResponseModel
-    {
-        [JsonProperty("all")]
-        public int All { get; set; }
-    }
+    [JsonProperty("all")]
+    public int All { get; set; }
 }

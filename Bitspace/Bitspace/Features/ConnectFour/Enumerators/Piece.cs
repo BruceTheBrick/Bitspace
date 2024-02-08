@@ -1,10 +1,9 @@
-﻿namespace Bitspace.Features
+﻿namespace Bitspace.Features;
+
+public enum Piece
 {
-    public enum Piece
-    {
-        Empty,
-        One,
-        Two,
-        Invalid,
-    }
+    Empty,
+    One,
+    Two,
+    Invalid,
 }

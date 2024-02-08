@@ -7,34 +7,33 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportEffect(typeof(ImageTintEffect), nameof(Bitspace.UI.ImageTintEffect))]
-namespace Bitspace.Droid.Effects
+namespace Bitspace.Droid.Effects;
+
+[ExcludeFromCodeCoverage]
+public class ImageTintEffect : PlatformEffect
 {
-    [ExcludeFromCodeCoverage]
-    public class ImageTintEffect : PlatformEffect
+    protected override void OnAttached()
     {
-        protected override void OnAttached()
+        if (!(Control is ImageView image))
         {
-            if (!(Control is ImageView image))
-            {
-                return;
-            }
-
-            var effect = (UI.ImageTintEffect)Element.Effects.FirstOrDefault(x => x is UI.ImageTintEffect);
-            if (effect != null)
-            {
-                var filter = new PorterDuffColorFilter(effect.TintColor.Color.ToAndroid(), PorterDuff.Mode.SrcIn);
-                image.SetColorFilter(filter);
-            }
+            return;
         }
 
-        protected override void OnDetached()
+        var effect = (UI.ImageTintEffect)Element.Effects.FirstOrDefault(x => x is UI.ImageTintEffect);
+        if (effect != null)
         {
-            if (!(Control is ImageView image))
-            {
-                return;
-            }
+            var filter = new PorterDuffColorFilter(effect.TintColor.Color.ToAndroid(), PorterDuff.Mode.SrcIn);
+            image.SetColorFilter(filter);
+        }
+    }
+
+    protected override void OnDetached()
+    {
+        if (!(Control is ImageView image))
+        {
+            return;
+        }
             
-            image.SetColorFilter(null);
-        }
+        image.SetColorFilter(null);
     }
 }

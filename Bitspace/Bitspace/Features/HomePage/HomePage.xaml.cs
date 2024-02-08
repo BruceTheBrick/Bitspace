@@ -1,13 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+[ExcludeFromCodeCoverage]
+public partial class HomePage
 {
-    [ExcludeFromCodeCoverage]
-    public partial class HomePage
+    public HomePage()
     {
-        public HomePage()
-        {
             InitializeComponent();
         }
-    }
 }

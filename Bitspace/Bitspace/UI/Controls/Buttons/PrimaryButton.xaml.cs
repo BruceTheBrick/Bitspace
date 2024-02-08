@@ -1,14 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
-using Xamarin.Forms;
 
-namespace Bitspace.UI
+namespace Bitspace.UI;
+
+[ExcludeFromCodeCoverage]
+public partial class PrimaryButton
 {
-    [ExcludeFromCodeCoverage]
-    public partial class PrimaryButton
+    public PrimaryButton()
     {
-        public PrimaryButton()
-        {
             InitializeComponent();
         }
-    }
 }

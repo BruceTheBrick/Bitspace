@@ -1,84 +1,82 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Xamarin.Forms;
 
-namespace Bitspace.UI
+namespace Bitspace.UI;
+
+[ExcludeFromCodeCoverage]
+public partial class Divider
 {
-    [ExcludeFromCodeCoverage]
-    public partial class Divider
+    private static new readonly BindableProperty ColorProperty = BindableProperty.Create(
+        nameof(Color),
+        typeof(Color),
+        typeof(Divider),
+        Colors.White,
+        BindingMode.TwoWay);
+
+    private static readonly BindableProperty ThicknessProperty = BindableProperty.Create(
+        nameof(Thickness),
+        typeof(int),
+        typeof(Divider),
+        1,
+        BindingMode.TwoWay);
+
+    private bool _isVertical;
+
+    public Divider()
     {
-        private static new readonly BindableProperty ColorProperty = BindableProperty.Create(
-            nameof(Color),
-            typeof(Color),
-            typeof(Divider),
-            Color.White,
-            BindingMode.TwoWay);
+        InitializeComponent();
+        UpdateUi();
+    }
 
-        private static readonly BindableProperty ThicknessProperty = BindableProperty.Create(
-            nameof(Thickness),
-            typeof(int),
-            typeof(Divider),
-            1,
-            BindingMode.TwoWay);
-
-        private bool _isVertical;
-
-        public Divider()
+    public bool IsVertical
+    {
+        get => _isVertical;
+        set
         {
-            InitializeComponent();
+            if (_isVertical == value)
+            {
+                return;
+            }
+
+            _isVertical = value;
             UpdateUi();
         }
+    }
 
-        public bool IsVertical
+    public new Color Color
+    {
+        get => (Color)GetValue(ColorProperty);
+        set => SetValue(ColorProperty, value);
+    }
+
+    public int Thickness
+    {
+        get => (int)GetValue(ThicknessProperty);
+        set => SetValue(ThicknessProperty, value);
+    }
+
+    private void UpdateUi()
+    {
+        if (IsVertical)
         {
-            get => _isVertical;
-            set
-            {
-                if (_isVertical == value)
-                {
-                    return;
-                }
-
-                _isVertical = value;
-                UpdateUi();
-            }
+            InitVerticalDivider();
         }
-
-        public new Color Color
+        else
         {
-            get => (Color)GetValue(ColorProperty);
-            set => SetValue(ColorProperty, value);
+            InitHorizontalDivider();
         }
+    }
 
-        public int Thickness
-        {
-            get => (int)GetValue(ThicknessProperty);
-            set => SetValue(ThicknessProperty, value);
-        }
+    private void InitHorizontalDivider()
+    {
+        This.HeightRequest = Thickness;
+        This.HorizontalOptions = LayoutOptions.FillAndExpand;
+        This.VerticalOptions = LayoutOptions.Center;
+    }
 
-        private void UpdateUi()
-        {
-            if (IsVertical)
-            {
-                InitVerticalDivider();
-            }
-            else
-            {
-                InitHorizontalDivider();
-            }
-        }
-
-        private void InitHorizontalDivider()
-        {
-            This.HeightRequest = Thickness;
-            This.HorizontalOptions = LayoutOptions.FillAndExpand;
-            This.VerticalOptions = LayoutOptions.Center;
-        }
-
-        private void InitVerticalDivider()
-        {
-            This.WidthRequest = Thickness;
-            This.VerticalOptions = LayoutOptions.FillAndExpand;
-            This.HorizontalOptions = LayoutOptions.Center;
-        }
+    private void InitVerticalDivider()
+    {
+        This.WidthRequest = Thickness;
+        This.VerticalOptions = LayoutOptions.FillAndExpand;
+        This.HorizontalOptions = LayoutOptions.Center;
     }
 }

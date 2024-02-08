@@ -1,7 +1,6 @@
-﻿namespace Bitspace.Core
+﻿namespace Bitspace.Core;
+
+public interface IAccessibility
 {
-    public interface IAccessibility
-    {
-        public string AccessibilityName { get; }
-    }
+    public string AccessibilityName { get; }
 }

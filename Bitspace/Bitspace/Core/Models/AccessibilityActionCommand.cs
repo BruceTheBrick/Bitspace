@@ -1,10 +1,9 @@
 using System.Windows.Input;
 
-namespace Bitspace.Core.Models
+namespace Bitspace.Core.Models;
+
+public class AccessibilityActionCommand
 {
-    public class AccessibilityActionCommand
-    {
-        public string ActionName { get; set; }
-        public ICommand Command { get; set; }
-    }
+    public string ActionName { get; set; }
+    public ICommand Command { get; set; }
 }

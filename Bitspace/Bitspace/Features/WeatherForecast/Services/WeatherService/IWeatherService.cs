@@ -1,10 +1,8 @@
-﻿using System.Threading.Tasks;
-using Bitspace.APIs;
+﻿using Bitspace.APIs;
 
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+public interface ICurrentWeatherService
 {
-    public interface ICurrentWeatherService
-    {
-        public Task<HourlyForecastViewModel> GetHourlyForecast();
-    }
+    public Task<HourlyForecastViewModel> GetHourlyForecast();
 }

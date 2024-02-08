@@ -1,23 +1,22 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Core
+namespace Bitspace.Core;
+
+[ExcludeFromCodeCoverage]
+public class AccessibilityService : IAccessibilityService
 {
-    [ExcludeFromCodeCoverage]
-    public class AccessibilityService : IAccessibilityService
+    public bool IsScreenReaderEnabled()
     {
-        public bool IsScreenReaderEnabled()
-        {
-            return Accessibility.Current.IsScreenReaderEnabled();
-        }
+        return Accessibility.Current.IsScreenReaderEnabled();
+    }
 
-        public void Announcement(string message)
-        {
-            Accessibility.Current.Announcement(message);
-        }
+    public void Announcement(string message)
+    {
+        Accessibility.Current.Announcement(message);
+    }
 
-        public void NavigationAnnouncement(string message)
-        {
-            Accessibility.Current.NavigationAnnouncement(message);
-        }
+    public void NavigationAnnouncement(string message)
+    {
+        Accessibility.Current.NavigationAnnouncement(message);
     }
 }

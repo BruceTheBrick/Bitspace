@@ -1,10 +1,6 @@
-﻿using System.Threading.Tasks;
-using Xamarin.Essentials;
+﻿namespace Bitspace.Core;
 
-namespace Bitspace.Core
+public interface IDeviceLocation
 {
-    public interface IDeviceLocation
-    {
-        Task<Location> GetCurrentLocation(GeolocationAccuracy accuracy, int timeout = 5);
-    }
+    Task<Location> GetCurrentLocation(GeolocationAccuracy accuracy, int timeout = 5);
 }

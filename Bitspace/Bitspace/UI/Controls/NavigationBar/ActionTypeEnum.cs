@@ -1,12 +1,11 @@
-namespace Bitspace.UI
+namespace Bitspace.UI;
+
+public enum ActionTypeEnum
 {
-    public enum ActionTypeEnum
-    {
-        Close,
-        Cancel,
-        Back,
-        Done,
-        Next,
-        None,
-    }
+    Close,
+    Cancel,
+    Back,
+    Done,
+    Next,
+    None,
 }

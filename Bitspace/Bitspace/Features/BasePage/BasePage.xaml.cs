@@ -1,25 +1,23 @@
 using System.Diagnostics.CodeAnalysis;
-using Xamarin.Forms;
 
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+[ExcludeFromCodeCoverage]
+public partial class BasePage
 {
-    [ExcludeFromCodeCoverage]
-    public partial class BasePage
+    public static readonly BindableProperty IsNavigationBarVisibleProperty = BindableProperty.Create(
+        nameof(IsNavigationBarVisible),
+        typeof(bool),
+        typeof(BasePage));
+
+    public BasePage()
     {
-        public static readonly BindableProperty IsNavigationBarVisibleProperty = BindableProperty.Create(
-            nameof(IsNavigationBarVisible),
-            typeof(bool),
-            typeof(BasePage));
+        InitializeComponent();
+    }
 
-        public BasePage()
-        {
-            InitializeComponent();
-        }
-
-        public bool IsNavigationBarVisible
-        {
-            get => (bool)GetValue(IsNavigationBarVisibleProperty);
-            set => SetValue(IsNavigationBarVisibleProperty, value);
-        }
+    public bool IsNavigationBarVisible
+    {
+        get => (bool)GetValue(IsNavigationBarVisibleProperty);
+        set => SetValue(IsNavigationBarVisibleProperty, value);
     }
 }

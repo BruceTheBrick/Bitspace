@@ -1,11 +1,10 @@
-﻿namespace Bitspace.Core
+﻿namespace Bitspace.Core;
+
+public interface IAccessibilityService
 {
-    public interface IAccessibilityService
-    {
-        public bool IsScreenReaderEnabled();
+    public bool IsScreenReaderEnabled();
 
-        public void Announcement(string message);
+    public void Announcement(string message);
 
-        public void NavigationAnnouncement(string message);
-    }
+    public void NavigationAnnouncement(string message);
 }

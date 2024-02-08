@@ -1,13 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+[ExcludeFromCodeCoverage]
+public partial class ConnectFourPage
 {
-    [ExcludeFromCodeCoverage]
-    public partial class ConnectFourPage
+    public ConnectFourPage()
     {
-        public ConnectFourPage()
-        {
             InitializeComponent();
         }
-    }
 }

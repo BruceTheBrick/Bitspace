@@ -1,35 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<pancakeView:PancakeView
+<?xml version="1.0" encoding="utf-8" ?>
+<Border
+    StrokeShape="RoundRectangle 12"
+    StrokeThickness="1"
     x:Class="Bitspace.Features.InfoCard"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Bitspace.Controls;assembly=Bitspace"
-    xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:materialFrame="http://sharpnado.com"
-    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    xmlns:registers="clr-namespace:Bitspace.Resources;assembly=Bitspace"
-    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:Name="This"
-    Border="{pancakeView:BorderMarkup Color=White,
-                                      Thickness='1'}"
-    CornerRadius="12">
-    <pancakeView:PancakeView.Resources>
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:converters="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:copy="clr-namespace:Bitspace.Resources.Registers.Copy"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Border.Resources>
         <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
-    </pancakeView:PancakeView.Resources>
+    </Border.Resources>
     <Grid>
         <ui:SkeletonSection
             CornerRadius="0"
             IsLoading="{Binding IsLoading, Source={x:Reference This}}"
             IsVisible="{Binding IsLoading, Source={x:Reference This}}"
             LoadingBackgroundColor="DarkGray" />
-        <materialFrame:MaterialFrame
-            BackgroundColor="White"
-            MaterialBlurStyle="Dark"
-            Opacity="0.3" />
         <Grid
-            Padding="12"
             ColumnDefinitions="*, auto, *, auto, *"
-            HorizontalOptions="FillAndExpand">
+            HorizontalOptions="FillAndExpand"
+            Padding="12">
             <Grid
                 Grid.Column="0"
                 IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}, Source={x:Reference This}}"
@@ -39,10 +31,10 @@
                     HorizontalTextAlignment="Center"
                     Text="{Binding Humidity, StringFormat='{0}%', Source={x:Reference This}}" />
                 <Label
-                    Grid.Row="1"
                     FontAttributes="Bold"
+                    Grid.Row="1"
                     HorizontalTextAlignment="Center"
-                    Text="{x:Static registers:WeatherForecastPageRegister.HUMIDITY}" />
+                    Text="{x:Static copy:WeatherForecastPageRegister.HUMIDITY}" />
             </Grid>
             <ui:Divider
                 Grid.Column="1"
@@ -58,10 +50,10 @@
                     HorizontalTextAlignment="Center"
                     Text="{Binding WindSpeed, StringFormat='{0} m/s', Source={x:Reference This}}" />
                 <Label
-                    Grid.Row="1"
                     FontAttributes="Bold"
+                    Grid.Row="1"
                     HorizontalTextAlignment="Center"
-                    Text="{x:Static registers:WeatherForecastPageRegister.WIND_SPEED}" />
+                    Text="{x:Static copy:WeatherForecastPageRegister.WIND_SPEED}" />
             </Grid>
             <ui:Divider
                 Grid.Column="3"
@@ -77,11 +69,11 @@
                     HorizontalTextAlignment="Center"
                     Text="{Binding Pressure, StringFormat='{0} hPa', Source={x:Reference This}}" />
                 <Label
-                    Grid.Row="1"
                     FontAttributes="Bold"
+                    Grid.Row="1"
                     HorizontalTextAlignment="Center"
-                    Text="{x:Static registers:WeatherForecastPageRegister.PRESSURE}" />
+                    Text="{x:Static copy:WeatherForecastPageRegister.PRESSURE}" />
             </Grid>
         </Grid>
     </Grid>
-</pancakeView:PancakeView>
+</Border>

@@ -1,117 +1,113 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Bitspace.Core;
 using Bitspace.Resources;
-using FFImageLoading.Forms;
-using FFImageLoading.Svg.Forms;
-using Xamarin.Forms;
 
-namespace Bitspace.UI
+namespace Bitspace.UI;
+
+[ExcludeFromCodeCoverage]
+public class ExtendedImage : Image
 {
-    [ExcludeFromCodeCoverage]
-    public class ExtendedImage : SvgCachedImage
+    public static new readonly BindableProperty SourceProperty = BindableProperty.Create(
+        nameof(Source),
+        typeof(string),
+        typeof(ExtendedImage),
+        string.Empty,
+        BindingMode.TwoWay,
+        propertyChanged: OnSourceUpdated);
+
+    public static readonly BindableProperty TintColorProperty = BindableProperty.Create(
+        nameof(TintColor),
+        typeof(ColorRef),
+        typeof(ExtendedImage),
+        ResourceHelper.GetResource<ColorRef>("IconPrimaryColor"),
+        propertyChanged: TintColorUpdated);
+
+    public static readonly BindableProperty ExtensionProperty = BindableProperty.Create(
+        nameof(Extension),
+        typeof(string),
+        typeof(ExtendedImage),
+        "svg");
+
+    private const string SourcePrefix = "resource://Bitspace.Resources.Images.";
+
+    public new string Source
     {
-        public static new readonly BindableProperty SourceProperty = BindableProperty.Create(
-            nameof(Source),
-            typeof(string),
-            typeof(ExtendedImage),
-            string.Empty,
-            BindingMode.TwoWay,
-            propertyChanged: OnSourceUpdated);
+        get => (string)GetValue(SourceProperty);
+        set => SetValue(SourceProperty, value);
+    }
 
-        public static readonly BindableProperty TintColorProperty = BindableProperty.Create(
-            nameof(TintColor),
-            typeof(ColorRef),
-            typeof(ExtendedImage),
-            ResourceHelper.GetResource<ColorRef>("IconPrimaryColor"),
-            propertyChanged: TintColorUpdated);
+    public ColorRef TintColor
+    {
+        get => (ColorRef)GetValue(TintColorProperty);
+        set => SetValue(TintColorProperty, value);
+    }
 
-        public static readonly BindableProperty ExtensionProperty = BindableProperty.Create(
-            nameof(Extension),
-            typeof(string),
-            typeof(ExtendedImage),
-            "svg");
+    public string Extension
+    {
+        get => (string)GetValue(ExtensionProperty);
+        set => SetValue(ExtensionProperty, value);
+    }
 
-        private const string SourcePrefix = "resource://Bitspace.Resources.Images.";
-        public new string Source
+    protected override void OnPropertyChanged(string propertyName = null)
+    {
+        base.OnPropertyChanged(propertyName);
+        if (propertyName == TintColorProperty.PropertyName ||
+            propertyName == IsEnabledProperty.PropertyName)
         {
-            get => (string)GetValue(SourceProperty);
-            set => SetValue(SourceProperty, value);
+            AddTintEffect();
+        }
+    }
+
+    private static void OnSourceUpdated(BindableObject bindable, object oldvalue, object newvalue)
+    {
+        if (bindable is not ExtendedImage image)
+        {
+            return;
         }
 
-        public ColorRef TintColor
+        var imageSource = newvalue as string;
+        if (string.IsNullOrWhiteSpace(imageSource))
         {
-            get => (ColorRef)GetValue(TintColorProperty);
-            set => SetValue(TintColorProperty, value);
+            return;
         }
 
-        public string Extension
+        var source = image.FormatSource(imageSource);
+        image.SetBaseSource(source);
+    }
+
+    private static void TintColorUpdated(BindableObject bindable, object oldvalue, object newvalue)
+    {
+        if (bindable is not ExtendedImage view)
         {
-            get => (string)GetValue(ExtensionProperty);
-            set => SetValue(ExtensionProperty, value);
+            return;
         }
 
-        protected override void OnPropertyChanged(string propertyName = null)
+        view.AddTintEffect();
+    }
+
+    private string FormatSource(string input)
+    {
+        return $"{SourcePrefix}{input}.{Extension}";
+    }
+
+    private void SetBaseSource(string source)
+    {
+        ((Image)this).Source = source;
+    }
+
+    private void AddTintEffect()
+    {
+        RemoveTintEffect();
+        var effect = new ImageTintEffect {TintColor = TintColor};
+        Effects.Add(effect);
+    }
+
+    private void RemoveTintEffect()
+    {
+        var effect = Effects.FirstOrDefault(x => x is ImageTintEffect);
+        if (effect != null)
         {
-            base.OnPropertyChanged(propertyName);
-            if (propertyName == TintColorProperty.PropertyName ||
-                propertyName == IsEnabledProperty.PropertyName)
-            {
-                AddTintEffect();
-            }
-        }
-
-        private static void OnSourceUpdated(BindableObject bindable, object oldvalue, object newvalue)
-        {
-            if (bindable is not ExtendedImage image)
-            {
-                return;
-            }
-
-            var imageSource = newvalue as string;
-            if (string.IsNullOrWhiteSpace(imageSource))
-            {
-                return;
-            }
-
-            var source = image.FormatSource(imageSource);
-            image.SetBaseSource(source);
-        }
-
-        private static void TintColorUpdated(BindableObject bindable, object oldvalue, object newvalue)
-        {
-            if (bindable is not ExtendedImage view)
-            {
-                return;
-            }
-
-            view.AddTintEffect();
-        }
-
-        private string FormatSource(string input)
-        {
-            return $"{SourcePrefix}{input}.{Extension}";
-        }
-
-        private void SetBaseSource(string source)
-        {
-            ((CachedImage)this).Source = source;
-        }
-
-        private void AddTintEffect()
-        {
-            RemoveTintEffect();
-            var effect = new ImageTintEffect { TintColor = TintColor };
-            Effects.Add(effect);
-        }
-
-        private void RemoveTintEffect()
-        {
-            var effect = Effects.FirstOrDefault(x => x is ImageTintEffect);
-            if (effect != null)
-            {
-                Effects.Remove(effect);
-            }
+            Effects.Remove(effect);
         }
     }
 }

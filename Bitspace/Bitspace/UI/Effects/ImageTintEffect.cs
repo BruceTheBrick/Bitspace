@@ -1,18 +1,16 @@
 using System.Diagnostics.CodeAnalysis;
 using Bitspace.Core;
 using Bitspace.Resources;
-using Xamarin.Forms;
 
-namespace Bitspace.UI
+namespace Bitspace.UI;
+
+[ExcludeFromCodeCoverage]
+public class ImageTintEffect : RoutingEffect
 {
-    [ExcludeFromCodeCoverage]
-    public class ImageTintEffect : RoutingEffect
+    public ImageTintEffect()
+        : base(EffectHelper.GetLocalName<ImageTintEffect>())
     {
-        public ImageTintEffect()
-            : base(EffectHelper.GetLocalName<ImageTintEffect>())
-        {
-        }
-
-        public ColorRef TintColor { get; set; }
     }
+
+    public ColorRef TintColor { get; set; }
 }

@@ -1,13 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+[ExcludeFromCodeCoverage]
+public partial class ForecastItem
 {
-    [ExcludeFromCodeCoverage]
-    public partial class ForecastItem
+    public ForecastItem()
     {
-        public ForecastItem()
-        {
             InitializeComponent();
         }
-    }
 }

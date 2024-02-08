@@ -1,19 +1,19 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.Maui.Controls.Shapes;
 
-namespace Bitspace.UI
+namespace Bitspace.UI;
+
+[ExcludeFromCodeCoverage]
+public partial class LoadingPill
 {
-    [ExcludeFromCodeCoverage]
-    public partial class LoadingPill
+    public LoadingPill()
     {
-        public LoadingPill()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void LoadingPill_OnSizeChanged(object sender, EventArgs e)
-        {
-            CornerRadius = (float)Height / 2;
-        }
+    private void LoadingPill_OnSizeChanged(object sender, EventArgs e)
+    {
+        var strokeShape = new RoundRectangle { CornerRadius = (float)Height / 2 };
+        StrokeShape = strokeShape;
     }
 }

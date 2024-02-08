@@ -1,21 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <features:BasePage
+    NavigationPage.HasNavigationBar="False"
     x:Class="Bitspace.Features.HomePage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behaviors="http://prismlibrary.com"
-    xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
-    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:DataType="features:HomePageViewModel"
-    NavigationPage.HasNavigationBar="False">
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:behaviors="http://prismlibrary.com"
+    xmlns:converters="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <StackLayout Spacing="0">
         <features:HomePageHeader />
-        <pancakeView:PancakeView
+        <Border
+            BackgroundColor="{StaticResource White}"
             Margin="16,0,16,32"
             Padding="0,20"
-            BackgroundColor="{StaticResource White}"
-            CornerRadius="20">
+            StrokeShape="RoundRectangle 20">
             <Grid>
                 <ListView
                     HasUnevenRows="True"
@@ -41,22 +40,22 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <pancakeView:PancakeView
+                <Border
+                    BackgroundColor="LightGray"
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="{Binding MenuItems, Converter={converters:IsListNullOrEmptyConverter}}"
                     Margin="20"
                     Padding="20"
-                    BackgroundColor="LightGray"
-                    CornerRadius="20"
-                    HorizontalOptions="CenterAndExpand"
-                    IsVisible="{Binding MenuItems, Converter={converters:ListIsNullOrEmptyConverter}}"
+                    StrokeShape="RoundRectangle 20"
                     VerticalOptions="CenterAndExpand">
                     <Label
                         FontSize="24"
                         HorizontalTextAlignment="Center"
                         LineBreakMode="WordWrap"
                         Text="Uh oh! Looks like there's nothing here!" />
-                </pancakeView:PancakeView>
+                </Border>
             </Grid>
-        </pancakeView:PancakeView>
+        </Border>
         <Label HorizontalOptions="End" Text="{Binding VersionNumber}" />
     </StackLayout>
 </features:BasePage>

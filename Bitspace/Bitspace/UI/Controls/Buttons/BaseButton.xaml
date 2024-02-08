@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Frame
-    x:Class="Bitspace.UI.BaseButton"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:effects="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    x:Name="This"
-    Padding="24,12"
-    effects:TouchEffect.Command="{Binding Command, Source={x:Reference This}}"
-    effects:TouchEffect.CommandParameter="{Binding CommandParameter, Source={x:Reference This}}"
-    effects:TouchEffect.NativeAnimation="True"
-    ui:AccessibilityTraits.Traits="Button"
+<Border
     BackgroundColor="{Binding ActiveBackgroundColor, Source={x:Reference This}}"
-    HasShadow="False"
     HorizontalOptions="FillAndExpand"
-    VerticalOptions="Center">
+    Padding="24,12"
+    VerticalOptions="Center"
+    ui:AccessibilityTraits.Traits="Button"
+    x:Class="Bitspace.UI.BaseButton"
+    x:Name="This"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Label
         HorizontalTextAlignment="Center"
         Text="{Binding Text, Source={x:Reference This}}"
@@ -29,12 +24,15 @@
             </DataTrigger>
         </Label.Triggers>
     </Label>
-    <Frame.Triggers>
+    <Border.Triggers>
         <DataTrigger
             Binding="{Binding IsEnabled, Source={x:Reference This}}"
-            TargetType="Frame"
+            TargetType="Border"
             Value="False">
             <Setter Property="BackgroundColor" Value="{Binding InactiveBackgroundColor, Source={x:Reference This}}" />
         </DataTrigger>
-    </Frame.Triggers>
-</Frame>
+    </Border.Triggers>
+    <Border.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding Command, Source={x:Reference This}}" CommandParameter="{Binding CommandParameter, Source={x:Reference This}}" />
+    </Border.GestureRecognizers>
+</Border>

@@ -1,11 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Bitspace.Features
-{
-    public interface IHomePageMenuItems
-    {
-        public ObservableCollection<MenuListItemViewModel> GetMenuItems();
+namespace Bitspace.Features;
 
-        public ObservableCollection<MenuListItemViewModel> ForceUpdateGetMenuItems();
-    }
+public interface IHomePageMenuItems
+{
+    public ObservableCollection<MenuListItemViewModel> GetMenuItems();
+
+    public ObservableCollection<MenuListItemViewModel> ForceUpdateGetMenuItems();
 }

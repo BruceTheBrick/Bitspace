@@ -1,7 +1,6 @@
-namespace Bitspace.Core
+namespace Bitspace.Core;
+
+public interface IEssentialsDeviceInfo
 {
-    public interface IEssentialsDeviceInfo
-    {
-        public bool IsIos { get; }
-    }
+    public bool IsIos { get; }
 }

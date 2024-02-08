@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage
-    x:Class="Bitspace.Controls.SnackbarPopup"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="http://rotorgames.com"
-    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    x:DataType="ui:SnackbarPopupViewModel"
+<popup:PopupPage
     BackgroundColor="Transparent"
     BackgroundInputTransparent="True"
-    CloseWhenBackgroundIsClicked="False">
+    CloseWhenBackgroundIsClicked="False"
+    x:Class="Bitspace.Controls.SnackbarPopup"
+    x:DataType="ui:SnackbarPopupViewModel"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:popup="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Frame
-        x:Name="Frame"
-        Margin="8,0,8,20"
-        Padding="12"
         AutomationProperties.IsInAccessibleTree="True"
         AutomationProperties.Name="{Binding Message}"
-        Style="{StaticResource SnackbarStyle}">
+        Margin="8,0,8,20"
+        Padding="12"
+        Style="{StaticResource SnackbarStyle}"
+        x:Name="Frame">
         <StackLayout
             HorizontalOptions="FillAndExpand"
             Orientation="Horizontal"
@@ -47,4 +47,4 @@
             <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_OnSwiped" />
         </Frame.GestureRecognizers>
     </Frame>
-</pages:PopupPage>
+</popup:PopupPage>

@@ -1,8 +1,7 @@
-﻿namespace Bitspace.Features
+﻿namespace Bitspace.Features;
+
+public interface IConnectFourEngine
 {
-    public interface IConnectFourEngine
-    {
-        public string Name { get; }
-        public int GetNextMove(IBoard board);
-    }
+    public string Name { get; }
+    public int GetNextMove(IBoard board);
 }

@@ -163,6 +163,7 @@
     <ProjectReference Include="..\Bitspace\Bitspace.csproj">
       <Project>{B371CF36-79E1-4155-8471-47C527BDBF8D}</Project>
       <Name>Bitspace</Name>
+      <IsAppExtension>false</IsAppExtension>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

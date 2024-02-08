@@ -1,19 +1,19 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Maui.Controls.Shapes;
 
-namespace Bitspace.UI
+namespace Bitspace.UI;
+
+[ExcludeFromCodeCoverage]
+public partial class BaseCircleButton
 {
-    [ExcludeFromCodeCoverage]
-    public partial class BaseCircleButton
+    public BaseCircleButton()
     {
-        public BaseCircleButton()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void BaseCircleButton_OnSizeChanged(object sender, EventArgs e)
-        {
-            CornerRadius = (float)Height / 2;
-        }
+    private void BaseCircleButton_OnSizeChanged(object sender, EventArgs e)
+    {
+        var strokeShape = new RoundRectangle { CornerRadius = (float)Height / 2 };
+        StrokeShape = strokeShape;
     }
 }

@@ -5,25 +5,24 @@ using Bitspace.Tests.Base;
 using Prism.Navigation;
 using Xunit;
 
-namespace Bitspace.Tests.Features.InitPage
+namespace Bitspace.Tests.Features.InitPage;
+
+public class InitPageViewModelTests : UnitTestBase<InitPageViewModel>
 {
-    public class InitPageViewModelTests : UnitTestBase<InitPageViewModel>
+    #region OnNavigatedToAsync
+
+    [Fact]
+    private async Task OnNavigatedToAsync_ShouldNavigateAsync()
     {
-        #region OnNavigatedToAsync
+        //Arrange
 
-        [Fact]
-        private async Task OnNavigatedToAsync_ShouldNavigateAsync()
-        {
-            //Arrange
+        //Act
+        await Sut.OnNavigatedToAsync(new NavigationParameters());
 
-            //Act
-            await Sut.OnNavigatedToAsync(new NavigationParameters());
-
-            //Assert
-            Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.NavigateAsync(NavigationConstants.Homepage));
-        }
-
-
-        #endregion
+        //Assert
+        Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.NavigateAsync(NavigationConstants.Homepage));
     }
+
+
+    #endregion
 }

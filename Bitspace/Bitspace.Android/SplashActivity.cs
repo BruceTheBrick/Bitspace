@@ -2,18 +2,17 @@ using Android.App;
 using Android.Content;
 using AndroidX.AppCompat.App;
 
-namespace Bitspace.Droid
+namespace Bitspace.Droid;
+
+[Activity(Theme = "@style/MainTheme.Splash",
+    MainLauncher = true,
+    NoHistory = true)]
+public class SplashActivity : AppCompatActivity
 {
-    [Activity(Theme = "@style/MainTheme.Splash",
-              MainLauncher = true,
-              NoHistory = true)]
-    public class SplashActivity : AppCompatActivity
+    // Launches the startup task
+    protected override void OnResume()
     {
-        // Launches the startup task
-        protected override void OnResume()
-        {
-            base.OnResume();
-            StartActivity(new Intent(Application.Context, typeof(MainActivity)));
-        }
+        base.OnResume();
+        StartActivity(new Intent(Application.Context, typeof(MainActivity)));
     }
 }

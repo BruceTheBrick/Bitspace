@@ -1,10 +1,9 @@
-namespace Bitspace.Core
+namespace Bitspace.Core;
+
+public enum Position
 {
-    public enum Position
-    {
-        LEFT,
-        TOP,
-        RIGHT,
-        BOTTOM,
-    }
+    LEFT,
+    TOP,
+    RIGHT,
+    BOTTOM,
 }

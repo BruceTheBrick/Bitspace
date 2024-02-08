@@ -1,9 +1,6 @@
-using Xamarin.Essentials;
+namespace Bitspace.Core;
 
-namespace Bitspace.Core
+public class EssentialsDeviceInfo : IEssentialsDeviceInfo
 {
-    public class EssentialsDeviceInfo : IEssentialsDeviceInfo
-    {
-        public bool IsIos => DeviceInfo.Platform == DevicePlatform.iOS;
-    }
+    public bool IsIos => DeviceInfo.Platform == DevicePlatform.iOS;
 }

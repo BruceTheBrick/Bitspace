@@ -1,28 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentView
+    BackgroundColor="Transparent"
     x:Class="Bitspace.UI.SkeletonSection"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:skeleton="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
     x:Name="This"
-    BackgroundColor="Transparent">
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:converters="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:skeleton="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentView.Resources>
         <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
     </ContentView.Resources>
     <ContentView.Content>
         <Grid>
-            <StackLayout x:Name="ContentStack" IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}, Source={x:Reference This}}" />
+            <StackLayout IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}, Source={x:Reference This}}" x:Name="ContentStack" />
             <Frame
-                skeleton:Skeleton.Animation="{skeleton:DefaultAnimation Fade}"
-                skeleton:Skeleton.BackgroundColor="{Binding LoadingBackgroundColor, Source={x:Reference This}}"
-                skeleton:Skeleton.IsBusy="{Binding IsLoading, Source={x:Reference This}}"
                 BackgroundColor="Transparent"
                 CornerRadius="{Binding CornerRadius, Source={x:Reference This}}"
                 HorizontalOptions="FillAndExpand"
                 IsVisible="{Binding IsLoading, Source={x:Reference This}}"
                 Opacity="0.3"
-                VerticalOptions="FillAndExpand" />
+                VerticalOptions="FillAndExpand"
+                skeleton:Skeleton.BackgroundColor="{Binding LoadingBackgroundColor, Source={x:Reference This}}"
+                skeleton:Skeleton.IsBusy="{Binding IsLoading, Source={x:Reference This}}" />
         </Grid>
     </ContentView.Content>
 </ContentView>

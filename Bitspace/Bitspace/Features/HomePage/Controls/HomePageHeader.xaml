@@ -1,38 +1,38 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Grid
-    x:Class="Bitspace.Features.HomePageHeader"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:resources="clr-namespace:Bitspace.Resources;assembly=Bitspace"
-    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    x:Name="This"
-    Margin="0,24"
-    Padding="18"
-    ui:AccessibilityTraits.Traits="Header"
     AutomationProperties.IsInAccessibleTree="True"
     AutomationProperties.Name="{Binding AccessibilityName, Source={x:Reference This}}"
+    Margin="0,24"
+    Padding="18"
     RowDefinitions="auto, auto, auto"
-    RowSpacing="12">
+    RowSpacing="12"
+    ui:AccessibilityTraits.Traits="Header"
+    x:Class="Bitspace.Features.HomePageHeader"
+    x:Name="This"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:copy="clr-namespace:Bitspace.Resources.Registers.Copy"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Label
-        Grid.Row="0"
         AutomationProperties.IsInAccessibleTree="False"
         FontSize="Header"
+        Grid.Row="0"
         HorizontalOptions="CenterAndExpand"
-        Text="{x:Static resources:HomePageRegister.WELCOME_TO}" />
+        Text="{x:Static copy:HomePageRegister.WELCOME_TO}" />
     <ui:Circle
-        Grid.Row="1"
         BackgroundColor="White"
         CornerRadius="100"
+        Grid.Row="1"
         HorizontalOptions="Center"
         Opacity="0.3">
-        <ui:AppIcon x:Name="AppIcon" HeightRequest="60" />
+        <ui:AppIcon HeightRequest="60" x:Name="AppIcon" />
     </ui:Circle>
     <Label
-        x:Name="AppName"
-        Grid.Row="2"
         AutomationProperties.IsInAccessibleTree="False"
         FontAttributes="Bold"
         FontSize="Large"
+        Grid.Row="2"
         HorizontalOptions="CenterAndExpand"
-        Text="{x:Static resources:HomePageRegister.BITSPACE}" />
+        Text="{x:Static copy:HomePageRegister.BITSPACE}"
+        x:Name="AppName" />
 </Grid>

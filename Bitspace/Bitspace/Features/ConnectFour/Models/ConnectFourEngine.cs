@@ -1,102 +1,100 @@
-﻿using System;
-using System.Diagnostics;
-using Bitspace.Resources;
+﻿using System.Diagnostics;
+using Bitspace.Resources.Registers.Copy;
 using PropertyChanged;
 
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+[AddINotifyPropertyChangedInterface]
+public class ConnectFourEngine : IConnectFourEngine
 {
-    [AddINotifyPropertyChangedInterface]
-    public class ConnectFourEngine : IConnectFourEngine
+    private readonly IConnectFourScoringService _scoringService;
+    private readonly Piece _maximisingPlayer;
+
+    public ConnectFourEngine(Piece player, IConnectFourScoringService scoringService)
     {
-        private readonly IConnectFourScoringService _scoringService;
-        private readonly Piece _maximisingPlayer;
+        Name = ConnectFourRegister.CF_ENGINE_NAME;
+        _maximisingPlayer = player;
 
-        public ConnectFourEngine(Piece player, IConnectFourScoringService scoringService)
+        _scoringService = scoringService;
+        _scoringService.SetMaximisingPlayer(_maximisingPlayer);
+    }
+
+    public string Name { get; }
+
+    public int GetNextMove(IBoard board)
+    {
+        var bestScore = int.MinValue;
+        var column = -1;
+        for (var currentColumn = 0; currentColumn < board.Columns; currentColumn++)
         {
-            Name = ConnectFourRegister.CF_ENGINE_NAME;
-            _maximisingPlayer = player;
-
-            _scoringService = scoringService;
-            _scoringService.SetMaximisingPlayer(_maximisingPlayer);
-        }
-
-        public string Name { get; }
-
-        public int GetNextMove(IBoard board)
-        {
-            var bestScore = int.MinValue;
-            var column = -1;
-            for (var currentColumn = 0; currentColumn < board.Columns; currentColumn++)
+            if (board.IsColumnFull(currentColumn))
             {
-                if (board.IsColumnFull(currentColumn))
-                {
-                    continue;
-                }
-
-                board.PlacePiece(currentColumn, _maximisingPlayer);
-                var score = Minimax(board, GetDepth() - 1, _maximisingPlayer.GetOpponent());
-                board.Undo();
-                if (score <= bestScore)
-                {
-                    continue;
-                }
-
-                bestScore = score;
-                Debug.WriteLine($"Best score: {bestScore}");
-                column = currentColumn;
+                continue;
             }
 
-            Debug.WriteLine($"Best Score: {bestScore}, Column: {column} ---------------------------------");
-            return column;
-        }
-
-
-        private int Minimax(IBoard board, int depth, Piece player)
-        {
-            if (depth == 0 || board.IsFull())
+            board.PlacePiece(currentColumn, _maximisingPlayer);
+            var score = Minimax(board, GetDepth() - 1, _maximisingPlayer.GetOpponent());
+            board.Undo();
+            if (score <= bestScore)
             {
-                return Evaluate(board);
+                continue;
             }
 
-            var bestScore = GetInitialScore(player);
-            for (var currentColumn = 0; currentColumn < board.Columns; currentColumn++)
-            {
-                if (board.IsColumnFull(currentColumn))
-                {
-                    continue;
-                }
+            bestScore = score;
+            Debug.WriteLine($"Best score: {bestScore}");
+            column = currentColumn;
+        }
 
-                board.PlacePiece(currentColumn, player);
-                var score = Minimax(board, depth - 1, player.GetOpponent());
-                board.Undo();
-                bestScore = IsMaximisingPlayer(player)
-                    ? Math.Max(score, bestScore)
-                    : Math.Min(score, bestScore);
+        Debug.WriteLine($"Best Score: {bestScore}, Column: {column} ---------------------------------");
+        return column;
+    }
+
+
+    private int Minimax(IBoard board, int depth, Piece player)
+    {
+        if (depth == 0 || board.IsFull())
+        {
+            return Evaluate(board);
+        }
+
+        var bestScore = GetInitialScore(player);
+        for (var currentColumn = 0; currentColumn < board.Columns; currentColumn++)
+        {
+            if (board.IsColumnFull(currentColumn))
+            {
+                continue;
             }
 
-            return bestScore;
+            board.PlacePiece(currentColumn, player);
+            var score = Minimax(board, depth - 1, player.GetOpponent());
+            board.Undo();
+            bestScore = IsMaximisingPlayer(player)
+                ? Math.Max(score, bestScore)
+                : Math.Min(score, bestScore);
         }
 
-        private int Evaluate(IBoard board)
-        {
-            return _scoringService.GetScore(board);
-        }
+        return bestScore;
+    }
 
-        private int GetInitialScore(Piece player)
-        {
-            return player == _maximisingPlayer
-                ? int.MinValue
-                : int.MaxValue;
-        }
+    private int Evaluate(IBoard board)
+    {
+        return _scoringService.GetScore(board);
+    }
 
-        private bool IsMaximisingPlayer(Piece player)
-        {
-            return player == _maximisingPlayer;
-        }
+    private int GetInitialScore(Piece player)
+    {
+        return player == _maximisingPlayer
+            ? int.MinValue
+            : int.MaxValue;
+    }
 
-        private int GetDepth()
-        {
-            return 5;
-        }
+    private bool IsMaximisingPlayer(Piece player)
+    {
+        return player == _maximisingPlayer;
+    }
+
+    private int GetDepth()
+    {
+        return 5;
     }
 }

@@ -1,25 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<pancakeView:PancakeView
-    x:Class="Bitspace.Features.ForecastItem"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:models="clr-namespace:Bitspace.APIs;assembly=Bitspace"
-    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    x:Name="This"
-    Padding="8"
-    x:DataType="models:ForecastItemViewModel"
+<?xml version="1.0" encoding="utf-8" ?>
+<Border
     AutomationProperties.IsInAccessibleTree="True"
     BackgroundColor="{StaticResource Xiketic}"
-    CornerRadius="24">
+    Padding="8"
+    StrokeShape="RoundRectangle 24"
+    x:Class="Bitspace.Features.ForecastItem"
+    x:DataType="models:ForecastItemViewModel"
+    x:Name="This"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:models="clr-namespace:Bitspace.APIs;assembly=Bitspace"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Grid Column="10" RowDefinitions="*, 2*, 2*">
         <Label
             Grid.Row="0"
             HorizontalTextAlignment="Center"
             Text="{Binding DisplayTime}" />
         <Label
-            Grid.Row="2"
             FontAttributes="Bold"
+            Grid.Row="2"
             HorizontalTextAlignment="Center"
             Text="{Binding Temperature, StringFormat='{0}°'}" />
     </Grid>
-</pancakeView:PancakeView>
+</Border>

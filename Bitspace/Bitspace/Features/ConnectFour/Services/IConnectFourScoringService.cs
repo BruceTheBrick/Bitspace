@@ -1,8 +1,7 @@
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+public interface IConnectFourScoringService
 {
-    public interface IConnectFourScoringService
-    {
-        public void SetMaximisingPlayer(Piece player);
-        public int GetScore(IBoard board);
-    }
+    public void SetMaximisingPlayer(Piece player);
+    public int GetScore(IBoard board);
 }

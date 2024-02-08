@@ -1,12 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Core
+namespace Bitspace.Core;
+
+[ExcludeFromCodeCoverage]
+public abstract class AccessibilityImplementation
 {
-    [ExcludeFromCodeCoverage]
-    public abstract class AccessibilityImplementation
-    {
-        public abstract void Announcement(string message);
-        public abstract void NavigationAnnouncement(string message);
-        public abstract bool IsScreenReaderEnabled();
-    }
+    public abstract void Announcement(string message);
+    public abstract void NavigationAnnouncement(string message);
+    public abstract bool IsScreenReaderEnabled();
 }

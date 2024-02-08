@@ -1,195 +1,105 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net8.0-ios;net8.0-android;net8.0</TargetFrameworks>
+        <UseMaui>True</UseMaui>
+        <OutputType Condition="$(TargetFramework) != 'net8.0'">Exe</OutputType>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <SingleProject>true</SingleProject>
+          
+          
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <MauiImage Include="Resources/Images/*" />
+        <MauiAsset Include="Resources/Styles/*.xaml" />
+    </ItemGroup>
+    
+    <!--Nuget Packages-->
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+        <PackageReference Include="Humanizer" Version="2.14.1" />
+        <PackageReference Include="Mopups" Version="1.3.0" />
+        <PackageReference Include="Prism.Maui" Version="9.0.271-pre" />
+        <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+        <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Xamarin.Forms.Skeleton" Version="2.0.0" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.6" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.6" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.7" />
+        <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.7" />
+        <PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.7" />
+        <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+    </ItemGroup>
 
-  <PropertyGroup>
-    <LangVersion>default</LangVersion>
-    <TargetFramework>netstandard2.1</TargetFramework>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Bogus" Version="34.0.2" />
-    <PackageReference Include="CarouselView.FormsPlugin" Version="6.0.0" />
-    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
-    <PackageReference Include="Humanizer" Version="2.14.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-    <PackageReference Include="Plugin.Fingerprint" Version="2.1.5" />
-    <PackageReference Include="Prism.Plugin.Popups" Version="8.0.76" />
-    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
-    <PackageReference Include="Sharpnado.MaterialFrame" Version="1.3.0" />
-    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.88.3" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.5" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
-    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.FFImageLoading.Svg" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />
-    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.4" />
-    <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
-    <PackageReference Include="Xamarin.Forms.DebugRainbows" Version="1.1.4" />
-    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
-    <PackageReference Include="Xamarin.Forms.Skeleton" Version="2.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="APIs\OpenWeather\ViewModels\" />
-    <Folder Include="Features\WeatherForecast\Services" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="APIs\APIKeys.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>APIKeys.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Registers\MainpageRegister.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MainpageRegister.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Registers\WeatherForecastPageRegister.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>WeatherForecastPageRegister.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\SplashPage\SplashPage.xaml.cs">
-      <DependentUpon>SplashPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Pages\WeatherForecast\WeatherForecastPage.xaml.cs">
-      <DependentUpon>WeatherForecastPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Registers\AnalyticsRegister.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AnalyticsRegister.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Features\ConnectFour\Popups\GameOverPopupPage.xaml.cs">
-      <DependentUpon>GameOverPopupPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Features\Playground\Accessibility\AccessibilityPlaygroundPage.xaml.cs">
-      <DependentUpon>AccessibilityPlaygroundPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Resources\Registers\Copy\ConnectFourRegister.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ConnectFourPageRegister.resx</DependentUpon>
-    </Compile>
-    <Compile Update="UI\Controls\NavigationBar\NavigationBar.xaml.cs">
-      <DependentUpon>NavigationBar.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Resources\Registers\Copy\Bitspace_Global.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Bitspace.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Features\Playground\NavigationBar\ButtonsPlaygroundPage.xaml.cs">
-      <DependentUpon>ButtonsPlaygroundPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Features\ConnectFour\Styles\ConnectFourStyle.xaml.cs">
-      <DependentUpon>ConnectFourStyle.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Features\WeatherForecast\Styles\WeatherForecastStyle.xaml.cs">
-      <DependentUpon>ConnectFourStyle.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Features\WeatherForecast\Styles\ConnectFourStyle.xaml.cs">
-      <DependentUpon>ConnectFourStyle.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="APIs\APIKeys.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>APIKeys.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Controls\EmptyListPlaceholder.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Registers\MainpageRegister.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MainpageRegister.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Registers\WeatherForecastPageRegister.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>WeatherForecastPageRegister.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Images\logo.svg" />
-    <None Remove="Resources\ic_rocket.svg" />
-    <None Remove="Resources\logo.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_chevron_right.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_droplette.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_home.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_location.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_magnifying_glass.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_martini.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_qrcode.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_rain.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_rocket.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_thermometer.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_weather.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_wind.svg" />
-    <None Remove="Resources\ic_qrcode.svg" />
-    <None Remove="Resources\ic_chevron_right.svg" />
-    <None Remove="Resources\ic_weather.svg" />
-    <None Remove="Resources\ic_thermometer.svg" />
-    <EmbeddedResource Update="Registers\AnalyticsRegister.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Remove="Resources\ic_droplette.svg" />
-    <None Remove="Resources\ic_rain.svg" />
-    <None Remove="Resources\ic_wind.svg" />
-    <None Remove="Resources\ic_location.svg" />
-    <None Remove="Resources\ic_home.svg" />
-    <None Remove="Resources\ic_magnifying_glass.svg" />
-    <None Remove="Resources\ic_martini.svg" />
-    <None Remove="Resources\Images\ic_info.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_info.svg" />
-    <None Remove="Bitspace.csproj.DotSettings" />
-    <EmbeddedResource Update="Resources\Registers\Analytics\AnalyticsRegister.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Registers\Copy\ConnectFourRegister.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ConnectFourRegister.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Registers\Copy\HomePageRegister.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>HomePageRegister.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Registers\Copy\WeatherForecastPageRegister.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>WeatherForecastPageRegister.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Registers\Copy\Bitspace_Global.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Bitspace_Global.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Remove="Resources\Images\ic_close.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_close.svg" />
-    <None Remove="Resources\Images\ic_arrow_left.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_arrow_left.svg" />
-    <None Remove="Resources\Images\ic_arrow_right.svg" />
-    <EmbeddedResource Include="Resources\Images\ic_arrow_right.svg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="PresentationFramework" />
-  </ItemGroup>
-
+    <ItemGroup>
+        <Compile Update="APIs\APIKeys.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>APIKeys.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Registers\MainpageRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>MainpageRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Registers\WeatherForecastPageRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>WeatherForecastPageRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Registers\AnalyticsRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>AnalyticsRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Registers\Copy\ConnectFourRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>ConnectFourPageRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Registers\Copy\Bitspace_Global.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Bitspace.resx</DependentUpon>
+        </Compile>
+        <EmbeddedResource Update="APIs\APIKeys.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>APIKeys.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Registers\MainpageRegister.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>MainpageRegister.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Registers\WeatherForecastPageRegister.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>WeatherForecastPageRegister.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Registers\Analytics\AnalyticsRegister.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Registers\Copy\ConnectFourRegister.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>ConnectFourRegister.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Registers\Copy\HomePageRegister.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>HomePageRegister.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Registers\Copy\WeatherForecastPageRegister.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>WeatherForecastPageRegister.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Registers\Copy\Bitspace_Global.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Bitspace_Global.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
 </Project>

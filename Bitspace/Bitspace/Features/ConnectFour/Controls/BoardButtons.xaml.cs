@@ -1,106 +1,103 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 using Bitspace.UI;
-using Xamarin.CommunityToolkit.Converters;
-using Xamarin.Forms;
 
-namespace Bitspace.Features.Controls
+namespace Bitspace.Features.Controls;
+
+[ExcludeFromCodeCoverage]
+public partial class BoardButtons
 {
-    [ExcludeFromCodeCoverage]
-    public partial class BoardButtons
+    public static readonly BindableProperty ColumnsProperty = BindableProperty.Create(
+        nameof(Columns),
+        typeof(int),
+        typeof(BoardButtons),
+        propertyChanged: BoardDimensionsUpdated);
+
+    public static readonly BindableProperty RowsProperty = BindableProperty.Create(
+        nameof(Rows),
+        typeof(int),
+        typeof(BoardButtons),
+        propertyChanged: BoardDimensionsUpdated);
+
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+        nameof(Command),
+        typeof(ICommand),
+        typeof(BoardButtons));
+
+    public static readonly BindableProperty BoardProperty = BindableProperty.Create(
+        nameof(Board),
+        typeof(IBoard),
+        typeof(BoardButtons));
+
+    public static readonly BindableProperty UpdateButtonStateProperty = BindableProperty.Create(
+        nameof(UpdateButtonState),
+        typeof(bool),
+        typeof(BoardButtons),
+        propertyChanged: UpdateButtonColors);
+
+    public static readonly BindableProperty PlayerOneColorProperty = BindableProperty.Create(
+        nameof(PlayerOneColor),
+        typeof(Color),
+        typeof(BoardButtons));
+
+    public static readonly BindableProperty PlayerTwoColorProperty = BindableProperty.Create(
+        nameof(PlayerTwoColor),
+        typeof(Color),
+        typeof(BoardButtons));
+
+    private readonly int[][] _precomputedIndexes;
+
+    public BoardButtons()
     {
-        public static readonly BindableProperty ColumnsProperty = BindableProperty.Create(
-            nameof(Columns),
-            typeof(int),
-            typeof(BoardButtons),
-            propertyChanged: BoardDimensionsUpdated);
-
-        public static readonly BindableProperty RowsProperty = BindableProperty.Create(
-            nameof(Rows),
-            typeof(int),
-            typeof(BoardButtons),
-            propertyChanged: BoardDimensionsUpdated);
-
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create(
-            nameof(Command),
-            typeof(ICommand),
-            typeof(BoardButtons));
-
-        public static readonly BindableProperty BoardProperty = BindableProperty.Create(
-            nameof(Board),
-            typeof(IBoard),
-            typeof(BoardButtons));
-
-        public static readonly BindableProperty UpdateButtonStateProperty = BindableProperty.Create(
-            nameof(UpdateButtonState),
-            typeof(bool),
-            typeof(BoardButtons),
-            propertyChanged: UpdateButtonColors);
-
-        public static readonly BindableProperty PlayerOneColorProperty = BindableProperty.Create(
-            nameof(PlayerOneColor),
-            typeof(Color),
-            typeof(BoardButtons));
-
-        public static readonly BindableProperty PlayerTwoColorProperty = BindableProperty.Create(
-            nameof(PlayerTwoColor),
-            typeof(Color),
-            typeof(BoardButtons));
-
-        private readonly int[][] _precomputedIndexes;
-
-        public BoardButtons()
-        {
             InitializeComponent();
             _precomputedIndexes = PrecomputedIndexes.GetRevisedPrecomputedIndexes();
         }
 
 
-        public int Columns
-        {
-            get => (int)GetValue(ColumnsProperty);
-            set => SetValue(ColumnsProperty, value);
-        }
+    public int Columns
+    {
+        get => (int)GetValue(ColumnsProperty);
+        set => SetValue(ColumnsProperty, value);
+    }
 
-        public int Rows
-        {
-            get => (int)GetValue(RowsProperty);
-            set => SetValue(RowsProperty, value);
-        }
+    public int Rows
+    {
+        get => (int)GetValue(RowsProperty);
+        set => SetValue(RowsProperty, value);
+    }
 
-        public ICommand Command
-        {
-            get => (ICommand)GetValue(CommandProperty);
-            set => SetValue(CommandProperty, value);
-        }
+    public ICommand Command
+    {
+        get => (ICommand)GetValue(CommandProperty);
+        set => SetValue(CommandProperty, value);
+    }
 
-        public IBoard Board
-        {
-            get => (IBoard)GetValue(BoardProperty);
-            set => SetValue(BoardProperty, value);
-        }
+    public IBoard Board
+    {
+        get => (IBoard)GetValue(BoardProperty);
+        set => SetValue(BoardProperty, value);
+    }
 
-        public bool UpdateButtonState
-        {
-            get => (bool)GetValue(UpdateButtonStateProperty);
-            set => SetValue(UpdateButtonStateProperty, value);
-        }
+    public bool UpdateButtonState
+    {
+        get => (bool)GetValue(UpdateButtonStateProperty);
+        set => SetValue(UpdateButtonStateProperty, value);
+    }
 
-        public Color PlayerOneColor
-        {
-            get => (Color)GetValue(PlayerOneColorProperty);
-            set => SetValue(PlayerOneColorProperty, value);
-        }
+    public Color PlayerOneColor
+    {
+        get => (Color)GetValue(PlayerOneColorProperty);
+        set => SetValue(PlayerOneColorProperty, value);
+    }
 
-        public Color PlayerTwoColor
-        {
-            get => (Color)GetValue(PlayerTwoColorProperty);
-            set => SetValue(PlayerTwoColorProperty, value);
-        }
+    public Color PlayerTwoColor
+    {
+        get => (Color)GetValue(PlayerTwoColorProperty);
+        set => SetValue(PlayerTwoColorProperty, value);
+    }
 
-        private static void BoardDimensionsUpdated(BindableObject bindable, object oldvalue, object newvalue)
-        {
+    private static void BoardDimensionsUpdated(BindableObject bindable, object oldvalue, object newvalue)
+    {
             if (!(bindable is BoardButtons view))
             {
                 return;
@@ -109,8 +106,8 @@ namespace Bitspace.Features.Controls
             view.CreateContent();
         }
 
-        private static void UpdateButtonColors(BindableObject bindable, object oldvalue, object newvalue)
-        {
+    private static void UpdateButtonColors(BindableObject bindable, object oldvalue, object newvalue)
+    {
             if (!(bindable is BoardButtons view))
             {
                 return;
@@ -119,8 +116,8 @@ namespace Bitspace.Features.Controls
             view.UpdateContent();
         }
 
-        private void CreateContent()
-        {
+    private void CreateContent()
+    {
             ColumnDefinitions = GetColumnDefinitions();
             RowDefinitions = GetRowDefinitions();
             for (var x = 0; x < Rows; x++)
@@ -132,8 +129,8 @@ namespace Bitspace.Features.Controls
             }
         }
 
-        private void UpdateContent()
-        {
+    private void UpdateContent()
+    {
             foreach (var btn in Children)
             {
                 var row = GetRow(btn);
@@ -143,8 +140,8 @@ namespace Bitspace.Features.Controls
             }
         }
 
-        private ColumnDefinitionCollection GetColumnDefinitions()
-        {
+    private ColumnDefinitionCollection GetColumnDefinitions()
+    {
             var columns = new ColumnDefinitionCollection();
             for (var i = 0; i < Columns; i++)
             {
@@ -155,8 +152,8 @@ namespace Bitspace.Features.Controls
             return columns;
         }
 
-        private RowDefinitionCollection GetRowDefinitions()
-        {
+    private RowDefinitionCollection GetRowDefinitions()
+    {
             var rows = new RowDefinitionCollection();
             for (var i = 0; i < Rows; i++)
             {
@@ -167,8 +164,8 @@ namespace Bitspace.Features.Controls
             return rows;
         }
 
-        private Color GetColor(int row, int col)
-        {
+    private Color GetColor(int row, int col)
+    {
             if (Board == null)
             {
                 return Color.Default;
@@ -186,8 +183,8 @@ namespace Bitspace.Features.Controls
             }
         }
 
-        private void CreateNewButton(int row, int column)
-        {
+    private void CreateNewButton(int row, int column)
+    {
             var btn = new BaseCircleButton
             {
                 Command = Command,
@@ -200,5 +197,4 @@ namespace Bitspace.Features.Controls
             SetColumn(btn, column);
             Children.Add(btn);
         }
-    }
 }

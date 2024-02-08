@@ -1,113 +1,111 @@
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
-using Bitspace.Resources.Copy;
-using Xamarin.Forms;
+using Bitspace.Resources.Registers.Copy;
 
-namespace Bitspace.UI
+namespace Bitspace.UI;
+
+[ExcludeFromCodeCoverage]
+public partial class NavigationBar
 {
-    [ExcludeFromCodeCoverage]
-    public partial class NavigationBar
+    public static readonly BindableProperty TitleProperty = BindableProperty.Create(
+        nameof(Title),
+        typeof(string),
+        typeof(NavigationBar));
+
+    public static readonly BindableProperty LeftActionTypeProperty = BindableProperty.Create(
+        nameof(LeftActionType),
+        typeof(ActionTypeEnum),
+        typeof(NavigationBar),
+        propertyChanged: LeftActionTypeUpdated);
+
+    public static readonly BindableProperty LeftActionIsEnabledProperty = BindableProperty.Create(
+        nameof(LeftActionIsEnabled),
+        typeof(bool),
+        typeof(NavigationBar),
+        true);
+
+    public static readonly BindableProperty LeftActionCommandProperty = BindableProperty.Create(
+        nameof(LeftActionCommand),
+        typeof(ICommand),
+        typeof(NavigationBar));
+
+    public static readonly BindableProperty RightActionTypeProperty = BindableProperty.Create(
+        nameof(RightActionType),
+        typeof(ActionTypeEnum),
+        typeof(NavigationBar),
+        propertyChanged: RightActionTypeUpdated);
+
+    public static readonly BindableProperty RightActionIsEnabledProperty = BindableProperty.Create(
+        nameof(RightActionIsEnabled),
+        typeof(bool),
+        typeof(NavigationBar),
+        true);
+
+    public static readonly BindableProperty RightActionCommandProperty = BindableProperty.Create(
+        nameof(RightActionCommand),
+        typeof(ICommand),
+        typeof(NavigationBar));
+
+    public NavigationBar()
     {
-        public static readonly BindableProperty TitleProperty = BindableProperty.Create(
-            nameof(Title),
-            typeof(string),
-            typeof(NavigationBar));
-
-        public static readonly BindableProperty LeftActionTypeProperty = BindableProperty.Create(
-            nameof(LeftActionType),
-            typeof(ActionTypeEnum),
-            typeof(NavigationBar),
-            propertyChanged: LeftActionTypeUpdated);
-
-        public static readonly BindableProperty LeftActionIsEnabledProperty = BindableProperty.Create(
-            nameof(LeftActionIsEnabled),
-            typeof(bool),
-            typeof(NavigationBar),
-            true);
-
-        public static readonly BindableProperty LeftActionCommandProperty = BindableProperty.Create(
-            nameof(LeftActionCommand),
-            typeof(ICommand),
-            typeof(NavigationBar));
-
-        public static readonly BindableProperty RightActionTypeProperty = BindableProperty.Create(
-            nameof(RightActionType),
-            typeof(ActionTypeEnum),
-            typeof(NavigationBar),
-            propertyChanged: RightActionTypeUpdated);
-
-        public static readonly BindableProperty RightActionIsEnabledProperty = BindableProperty.Create(
-            nameof(RightActionIsEnabled),
-            typeof(bool),
-            typeof(NavigationBar),
-            true);
-
-        public static readonly BindableProperty RightActionCommandProperty = BindableProperty.Create(
-            nameof(RightActionCommand),
-            typeof(ICommand),
-            typeof(NavigationBar));
-
-        public NavigationBar()
-        {
             InitializeComponent();
             InitSemanticOrderView();
         }
 
-        public string Title
-        {
-            get => (string)GetValue(TitleProperty);
-            set => SetValue(TitleProperty, value);
-        }
+    public string Title
+    {
+        get => (string)GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
+    }
 
-        public ActionTypeEnum LeftActionType
-        {
-            get => (ActionTypeEnum)GetValue(LeftActionTypeProperty);
-            set => SetValue(LeftActionTypeProperty, value);
-        }
+    public ActionTypeEnum LeftActionType
+    {
+        get => (ActionTypeEnum)GetValue(LeftActionTypeProperty);
+        set => SetValue(LeftActionTypeProperty, value);
+    }
 
-        public bool LeftActionIsEnabled
-        {
-            get => (bool)GetValue(LeftActionIsEnabledProperty);
-            set => SetValue(LeftActionIsEnabledProperty, value);
-        }
+    public bool LeftActionIsEnabled
+    {
+        get => (bool)GetValue(LeftActionIsEnabledProperty);
+        set => SetValue(LeftActionIsEnabledProperty, value);
+    }
 
-        public ICommand LeftActionCommand
-        {
-            get => (ICommand)GetValue(LeftActionCommandProperty);
-            set => SetValue(LeftActionCommandProperty, value);
-        }
+    public ICommand LeftActionCommand
+    {
+        get => (ICommand)GetValue(LeftActionCommandProperty);
+        set => SetValue(LeftActionCommandProperty, value);
+    }
 
-        public ActionTypeEnum RightActionType
-        {
-            get => (ActionTypeEnum)GetValue(RightActionTypeProperty);
-            set => SetValue(RightActionTypeProperty, value);
-        }
+    public ActionTypeEnum RightActionType
+    {
+        get => (ActionTypeEnum)GetValue(RightActionTypeProperty);
+        set => SetValue(RightActionTypeProperty, value);
+    }
 
-        public bool RightActionIsEnabled
-        {
-            get => (bool)GetValue(RightActionIsEnabledProperty);
-            set => SetValue(RightActionIsEnabledProperty, value);
-        }
+    public bool RightActionIsEnabled
+    {
+        get => (bool)GetValue(RightActionIsEnabledProperty);
+        set => SetValue(RightActionIsEnabledProperty, value);
+    }
 
-        public ICommand RightActionCommand
-        {
-            get => (ICommand)GetValue(RightActionCommandProperty);
-            set => SetValue(RightActionCommandProperty, value);
-        }
+    public ICommand RightActionCommand
+    {
+        get => (ICommand)GetValue(RightActionCommandProperty);
+        set => SetValue(RightActionCommandProperty, value);
+    }
 
-        public string LeftActionAccessibilityName { get; set; }
-        public bool LeftActionIsInAccessibleTree { get; set; }
-        public string LeftActionIconSource { get; set; }
-        public string LeftActionText { get; set; }
+    public string LeftActionAccessibilityName { get; set; }
+    public bool LeftActionIsInAccessibleTree { get; set; }
+    public string LeftActionIconSource { get; set; }
+    public string LeftActionText { get; set; }
 
-        public string RightActionAccessibilityName { get; set; }
-        public bool RightActionIsInAccessibleTree { get; set; }
-        public string RightActionIconSource { get; set; }
-        public string RightActionText { get; set; }
+    public string RightActionAccessibilityName { get; set; }
+    public bool RightActionIsInAccessibleTree { get; set; }
+    public string RightActionIconSource { get; set; }
+    public string RightActionText { get; set; }
 
-        private static void LeftActionTypeUpdated(BindableObject bindable, object oldvalue, object newvalue)
-        {
+    private static void LeftActionTypeUpdated(BindableObject bindable, object oldvalue, object newvalue)
+    {
             if (!(bindable is NavigationBar view))
             {
                 return;
@@ -116,8 +114,8 @@ namespace Bitspace.UI
             view.UpdateActionProperties(true);
         }
 
-        private static void RightActionTypeUpdated(BindableObject bindable, object oldvalue, object newvalue)
-        {
+    private static void RightActionTypeUpdated(BindableObject bindable, object oldvalue, object newvalue)
+    {
             if (!(bindable is NavigationBar view))
             {
                 return;
@@ -126,8 +124,8 @@ namespace Bitspace.UI
             view.UpdateActionProperties(false);
         }
 
-        private void UpdateActionProperties(bool isLeftAction)
-        {
+    private void UpdateActionProperties(bool isLeftAction)
+    {
             var actionType = isLeftAction ? LeftActionType : RightActionType;
             switch (actionType)
             {
@@ -169,8 +167,8 @@ namespace Bitspace.UI
             }
         }
 
-        private void SetCloseProperties(bool isLeftAction)
-        {
+    private void SetCloseProperties(bool isLeftAction)
+    {
             if (isLeftAction)
             {
                 LeftActionText = string.Empty;
@@ -186,8 +184,8 @@ namespace Bitspace.UI
             RightActionIsInAccessibleTree = true;
         }
 
-        private void SetBackProperties(bool isLeftAction)
-        {
+    private void SetBackProperties(bool isLeftAction)
+    {
             if (isLeftAction)
             {
                 LeftActionText = string.Empty;
@@ -203,8 +201,8 @@ namespace Bitspace.UI
             RightActionIsInAccessibleTree = true;
         }
 
-        private void SetCancelProperties(bool isLeftAction)
-        {
+    private void SetCancelProperties(bool isLeftAction)
+    {
             if (isLeftAction)
             {
                 LeftActionText = Bitspace_Global.NAV_CANCEL;
@@ -220,8 +218,8 @@ namespace Bitspace.UI
             RightActionIsInAccessibleTree = true;
         }
 
-        private void SetDoneProperties(bool isLeftAction)
-        {
+    private void SetDoneProperties(bool isLeftAction)
+    {
             if (isLeftAction)
             {
                 LeftActionText = Bitspace_Global.NAV_DONE;
@@ -237,8 +235,8 @@ namespace Bitspace.UI
             RightActionIsInAccessibleTree = true;
         }
 
-        private void SetNextProperties(bool isLeftAction)
-        {
+    private void SetNextProperties(bool isLeftAction)
+    {
             if (isLeftAction)
             {
                 LeftActionText = string.Empty;
@@ -254,8 +252,8 @@ namespace Bitspace.UI
             RightActionIsInAccessibleTree = true;
         }
 
-        private void SetNoneProperties(bool isLeftAction)
-        {
+    private void SetNoneProperties(bool isLeftAction)
+    {
             if (isLeftAction)
             {
                 LeftActionText = string.Empty;
@@ -271,9 +269,8 @@ namespace Bitspace.UI
             RightActionIsInAccessibleTree = false;
         }
 
-        private void InitSemanticOrderView()
-        {
+    private void InitSemanticOrderView()
+    {
             ViewOrder = new List<View> { TitleView, LeftAction, RightAction };
         }
-    }
 }

@@ -1,28 +1,26 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Xamarin.Essentials;
 
-namespace Bitspace.APIs
+namespace Bitspace.APIs;
+
+[ExcludeFromCodeCoverage]
+public class HourlyForecastRequest
 {
-    [ExcludeFromCodeCoverage]
-    public class HourlyForecastRequest
+    public HourlyForecastRequest()
     {
-        public HourlyForecastRequest()
-        {
         }
 
-        public HourlyForecastRequest(double latitude, double longitude)
-        {
+    public HourlyForecastRequest(double latitude, double longitude)
+    {
             Latitude = latitude;
             Longitude = longitude;
         }
 
-        public HourlyForecastRequest(Location location)
-        {
+    public HourlyForecastRequest(Location location)
+    {
             Latitude = location.Latitude;
             Longitude = location.Longitude;
         }
 
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-    }
+    public double Latitude { get; set; }
+    public double Longitude { get; set; }
 }

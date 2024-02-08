@@ -4,50 +4,49 @@ using System.Threading.Tasks;
 using Bitspace.Core;
 using Firebase.RemoteConfig;
 
-namespace Bitspace.iOS.Services
+namespace Bitspace.iOS.Services;
+
+public class RemoteConfigService : IRemoteConfigService
 {
-    public class RemoteConfigService : IRemoteConfigService
+    public RemoteConfigService()
     {
-        public RemoteConfigService()
-        {
-            RemoteConfig.SharedInstance.ConfigSettings = GetFirebaseSettings();
-        }
+        RemoteConfig.SharedInstance.ConfigSettings = GetFirebaseSettings();
+    }
 
-        public bool IsEnabled(string featureName)
+    public bool IsEnabled(string featureName)
+    {
+        try
         {
-            try
-            {
-                return RemoteConfig.SharedInstance.GetConfigValue(featureName).BoolValue;
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                return false;
-            }
+            return RemoteConfig.SharedInstance.GetConfigValue(featureName).BoolValue;
         }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e.Message);
+            return false;
+        }
+    }
 
-        public string GetValue(string featureName)
-        {
-            return RemoteConfig.SharedInstance.GetConfigValue(featureName).StringValue;
-        }
+    public string GetValue(string featureName)
+    {
+        return RemoteConfig.SharedInstance.GetConfigValue(featureName).StringValue;
+    }
 
-        public async Task FetchAndActivate()
+    public async Task FetchAndActivate()
+    {
+        try
         {
-            try
-            {
-                await RemoteConfig.SharedInstance.FetchAsync(TimeoutConstants.REMOTECONFIG_MIN_FETCH_INTERVAL);
-                RemoteConfig.SharedInstance.ActivateFetched();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-            }
+            await RemoteConfig.SharedInstance.FetchAsync(TimeoutConstants.REMOTECONFIG_MIN_FETCH_INTERVAL);
+            RemoteConfig.SharedInstance.ActivateFetched();
         }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e.Message);
+        }
+    }
         
-        private RemoteConfigSettings GetFirebaseSettings()
-        {
-            var settings = new RemoteConfigSettings(true);
-            return settings;
-        }
+    private RemoteConfigSettings GetFirebaseSettings()
+    {
+        var settings = new RemoteConfigSettings(true);
+        return settings;
     }
 }

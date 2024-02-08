@@ -1,20 +1,16 @@
-using System.Threading.Tasks;
 using Bitspace.Core;
-using Prism.Navigation;
-using Xamarin.Forms;
 
-namespace Bitspace.Features
+namespace Bitspace.Features;
+
+public class InitPageViewModel : BasePageViewModel
 {
-    public class InitPageViewModel : BasePageViewModel
+    public InitPageViewModel(IBaseService baseService)
+        : base(baseService)
     {
-        public InitPageViewModel(IBaseService baseService)
-            : base(baseService)
-        {
-        }
+    }
 
-        public override async Task OnNavigatedToAsync(INavigationParameters parameters)
-        {
-            await NavigationService.NavigateAsync(NavigationConstants.Homepage);
-        }
+    public override async Task OnNavigatedToAsync(INavigationParameters parameters)
+    {
+        await NavigationService.NavigateAsync(NavigationConstants.Homepage);
     }
 }

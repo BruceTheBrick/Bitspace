@@ -1,13 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.Resources
+namespace Bitspace.Resources;
+
+[ExcludeFromCodeCoverage]
+public partial class Styles
 {
-    [ExcludeFromCodeCoverage]
-    public partial class Styles
+    public Styles()
     {
-        public Styles()
-        {
             InitializeComponent();
         }
-    }
 }

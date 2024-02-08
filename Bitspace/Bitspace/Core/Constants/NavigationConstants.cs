@@ -1,33 +1,31 @@
 using System.Diagnostics.CodeAnalysis;
 using Bitspace.Features;
-using Xamarin.Forms.PlatformConfiguration.TizenSpecific;
 
-namespace Bitspace.Core
+namespace Bitspace.Core;
+
+[ExcludeFromCodeCoverage]
+[SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:Fields should be private", Justification = "NavigationConstants need static scoping")]
+public static class NavigationConstants
 {
-    [ExcludeFromCodeCoverage]
-    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:Fields should be private", Justification = "NavigationConstants need static scoping")]
-    public static class NavigationConstants
-    {
-        #region Navigation Destinations
+    #region Navigation Destinations
 
-        public const string Homepage = $"/{nameof(NavigationPage)}/{nameof(HomePage)}";
+    public const string Homepage = $"/{nameof(NavigationPage)}/{nameof(HomePage)}";
 
-        #endregion
+    #endregion
 
-        #region Global
+    #region Global
 
-        public static string Message = nameof(Message);
-        public static string Icon = nameof(Icon);
-        public static string Position = nameof(Position);
+    public static string Message = nameof(Message);
+    public static string Icon = nameof(Icon);
+    public static string Position = nameof(Position);
 
-        #endregion
+    #endregion
 
-        #region ConnectFour
+    #region ConnectFour
 
-        public static string Winner = nameof(Winner);
-        public static string Reset = nameof(Reset);
+    public static string Winner = nameof(Winner);
+    public static string Reset = nameof(Reset);
 
-        #endregion
+    #endregion
 
-    }
 }

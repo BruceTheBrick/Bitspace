@@ -1,15 +1,15 @@
 using System.Timers;
+using Timer = System.Timers.Timer;
 
-namespace Bitspace.Core
+namespace Bitspace.Core;
+
+public class TimerService : ITimerService
 {
-    public class TimerService : ITimerService
+    public Timer GetTimer(int millis, ElapsedEventHandler callback)
     {
-        public Timer GetTimer(int millis, ElapsedEventHandler callback)
-        {
-            var timer = new Timer(millis);
-            timer.Enabled = true;
-            timer.Elapsed += callback;
-            return timer;
-        }
+        var timer = new Timer(millis);
+        timer.Enabled = true;
+        timer.Elapsed += callback;
+        return timer;
     }
 }

@@ -1,13 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Bitspace.UI
+namespace Bitspace.UI;
+
+[ExcludeFromCodeCoverage]
+public partial class SecondaryButton
 {
-    [ExcludeFromCodeCoverage]
-    public partial class SecondaryButton
+    public SecondaryButton()
     {
-        public SecondaryButton()
-        {
             InitializeComponent();
         }
-    }
 }

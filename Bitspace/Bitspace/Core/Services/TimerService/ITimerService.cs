@@ -1,9 +1,9 @@
 using System.Timers;
+using Timer = System.Timers.Timer;
 
-namespace Bitspace.Core
+namespace Bitspace.Core;
+
+public interface ITimerService
 {
-    public interface ITimerService
-    {
-        public Timer GetTimer(int millis, ElapsedEventHandler callback);
-    }
+    public Timer GetTimer(int millis, ElapsedEventHandler callback);
 }

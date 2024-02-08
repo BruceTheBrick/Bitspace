@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<prism:PrismApplication
+<?xml version="1.0" encoding="utf-8" ?>
+<Application
     x:Class="Bitspace.App"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms">
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
 
         <!--  Application resource dictionary  -->
@@ -13,4 +12,4 @@
             <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
         </ResourceDictionary>
     </Application.Resources>
-</prism:PrismApplication>
+</Application>

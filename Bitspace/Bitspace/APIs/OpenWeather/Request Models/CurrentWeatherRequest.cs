@@ -1,28 +1,26 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Xamarin.Essentials;
 
-namespace Bitspace.APIs
+namespace Bitspace.APIs;
+
+[ExcludeFromCodeCoverage]
+public class CurrentWeatherRequest
 {
-    [ExcludeFromCodeCoverage]
-    public class CurrentWeatherRequest
+    public CurrentWeatherRequest()
     {
-        public CurrentWeatherRequest()
-        {
         }
 
-        public CurrentWeatherRequest(double latitude, double longitude)
-        {
+    public CurrentWeatherRequest(double latitude, double longitude)
+    {
             Latitude = latitude;
             Longitude = longitude;
         }
 
-        public CurrentWeatherRequest(Location location)
-        {
+    public CurrentWeatherRequest(Location location)
+    {
             Latitude = location.Latitude;
             Longitude = location.Longitude;
         }
 
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-    }
+    public double Latitude { get; set; }
+    public double Longitude { get; set; }
 }

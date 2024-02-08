@@ -1,34 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Bitspace.Core;
+﻿using Bitspace.Core;
 
-namespace Bitspace.APIs
+namespace Bitspace.APIs;
+
+public class DailyForecastViewModel
 {
-    public class DailyForecastViewModel
+    public DailyForecastViewModel(DateTime dateTime, IList<ForecastListObjectResponse> forecastListObjectResponse)
     {
-        public DailyForecastViewModel(DateTime dateTime, IList<ForecastListObjectResponse> forecastListObjectResponse)
+        DisplayDateTime = dateTime.ToDisplayString();
+        SetHourlyForecastItems(forecastListObjectResponse);
+    }
+
+    public string DisplayDateTime { get; }
+    public ForecastItemViewModel SelectedForecastItem { get; set; }
+    public IList<ForecastItemViewModel> HourlyForecastItems { get; set; }
+
+    private void SetHourlyForecastItems(IList<ForecastListObjectResponse> forecastItems)
+    {
+        HourlyForecastItems = new List<ForecastItemViewModel>();
+        foreach (var item in forecastItems)
         {
-            DisplayDateTime = dateTime.ToDisplayString();
-            SetHourlyForecastItems(forecastListObjectResponse);
+            HourlyForecastItems.Add(new ForecastItemViewModel(item));
         }
 
-        public string DisplayDateTime { get; }
-        public ForecastItemViewModel SelectedForecastItem { get; set; }
-        public IList<ForecastItemViewModel> HourlyForecastItems { get; set; }
-
-        private void SetHourlyForecastItems(IList<ForecastListObjectResponse> forecastItems)
+        if (HourlyForecastItems != null)
         {
-            HourlyForecastItems = new List<ForecastItemViewModel>();
-            foreach (var item in forecastItems)
-            {
-                HourlyForecastItems.Add(new ForecastItemViewModel(item));
-            }
-
-            if (HourlyForecastItems != null)
-            {
-                SelectedForecastItem = HourlyForecastItems.First();
-            }
+            SelectedForecastItem = HourlyForecastItems.First();
         }
     }
 }
