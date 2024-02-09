@@ -17,7 +17,6 @@
     <ItemGroup>
         <MauiIcon Include="Resources\Images\AppIcon\logo.svg"/>
         <MauiImage Include="Resources\Images\*" />
-        <MauiAsset Include="Resources\Styles\*.xaml" />
     </ItemGroup>
     
     <!--Nuget Packages-->

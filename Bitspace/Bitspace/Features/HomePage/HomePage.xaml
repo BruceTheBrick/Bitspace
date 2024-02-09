@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <features:BasePage
-    NavigationPage.HasNavigationBar="False"
     x:Class="Bitspace.Features.HomePage"
-    x:DataType="features:HomePageViewModel"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="http://prismlibrary.com"
     xmlns:converters="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <StackLayout Spacing="0">
+    x:DataType="features:HomePageViewModel">
+    <VerticalStackLayout Spacing="0">
         <features:HomePageHeader />
         <Border
-            BackgroundColor="{StaticResource White}"
             Margin="16,0,16,32"
             Padding="0,20"
+            BackgroundColor="{StaticResource White}"
             StrokeShape="RoundRectangle 20">
             <Grid>
                 <ListView
@@ -41,11 +40,11 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Border
+                    Margin="20"
+                    Padding="20"
                     BackgroundColor="LightGray"
                     HorizontalOptions="CenterAndExpand"
                     IsVisible="{Binding MenuItems, Converter={converters:IsListNullOrEmptyConverter}}"
-                    Margin="20"
-                    Padding="20"
                     StrokeShape="RoundRectangle 20"
                     VerticalOptions="CenterAndExpand">
                     <Label
@@ -57,5 +56,5 @@
             </Grid>
         </Border>
         <Label HorizontalOptions="End" Text="{Binding VersionNumber}" />
-    </StackLayout>
+    </VerticalStackLayout>
 </features:BasePage>

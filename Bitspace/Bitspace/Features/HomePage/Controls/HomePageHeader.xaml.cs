@@ -13,7 +13,7 @@ public partial class HomePageHeader
         InitializeComponent();
         _animationService = new AnimationService();
         AppIcon.Opacity = 0;
-        _ = StartAnimation();
+        // _ = StartAnimation();
     }
 
     public string AccessibilityName { get; } = $"{HomePageRegister.WELCOME_TO} {HomePageRegister.BITSPACE}";

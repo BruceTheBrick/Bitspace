@@ -5,17 +5,21 @@ using Bitspace.Core;
 using Bitspace.Features;
 using Bitspace.Features.Buttons;
 using Bitspace.UI;
+using CommunityToolkit.Maui;
 
 namespace Bitspace;
 
 [ExcludeFromCodeCoverage]
 public static class PlatformInitializer
 {
-    public static MauiAppBuilder RegisterTypes(this MauiAppBuilder builder)
+    public static MauiAppBuilder Initialize(this MauiAppBuilder builder)
     {
         builder.UsePrism(prismBuilder =>
         {
-            prismBuilder.OnAppStart(NavigationConstants.Homepage);
+            prismBuilder.OnAppStart(async (_, nav) =>
+            {
+                var t = await nav.NavigateAsync(NavigationConstants.Homepage);
+            });
         });
         RegisterServices(builder.Services);
         RegisterApis(builder.Services);
@@ -27,6 +31,8 @@ public static class PlatformInitializer
 
     private static void RegisterServices(IServiceCollection services)
     {
+        RegisterAndroidServices(services);
+        RegisterIosServices(services);
         // services.AddSingleton<IAppInfo, AppInfo>();
         services.AddSingleton<IApiKeyManagerService, ApiKeyManagerService>();
         services.AddSingleton<IEssentialsVersion, EssentialsVersion>();
@@ -47,9 +53,24 @@ public static class PlatformInitializer
         services.AddTransient<IConnectFourDifficultyService, ConnectFourDifficultyService>();
     }
 
+    private static void RegisterAndroidServices(IServiceCollection services)
+    {
+#if ANDROID
+        services.AddTransient<IAnalyticsService, Platforms.Droid.Services.AnalyticsService>();
+        services.AddTransient<IRemoteConfigService, Platforms.Droid.Services.RemoteConfigService>();
+#endif
+    }
+
+    private static void RegisterIosServices(IServiceCollection services)
+    {
+#if IOS
+        services.AddTransient<IAnalyticsService, Platforms.iOS.Services.AnalyticsService>();
+        services.AddTransient<IRemoteConfigService, Platforms.iOS.Services.RemoteConfigService>();
+#endif
+    }
+    
     private static void RegisterNavigation(IServiceCollection services)
     {
-        services.RegisterForNavigation<NavigationPage>();
         services.RegisterForNavigation<InitPage, InitPageViewModel>();
         services.RegisterForNavigation<HomePage, HomePageViewModel>();
         services.RegisterForNavigation<WeatherForecastPage, WeatherForecastPageViewModel>();

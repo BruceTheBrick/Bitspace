@@ -8,7 +8,7 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
         builder
-            .RegisterTypes()
+            .Initialize()
             .UseMauiCommunityToolkit()
             .UseMauiApp<App>();
 
