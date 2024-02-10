@@ -1,26 +1,20 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Windows.Input;
 using Bitspace.Core;
 using Bitspace.Core.Models;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Bitspace.Features;
 
 [ExcludeFromCodeCoverage]
-public class AccessibilityPlaygroundPageViewModel : BasePlaygroundPageViewModel
+public partial class AccessibilityPlaygroundPageViewModel : BasePlaygroundPageViewModel
 {
     public AccessibilityPlaygroundPageViewModel(IBaseService baseService)
         : base(baseService)
     {
-        AnnouncementCommand = new Command(Announcement);
-        IncrementCommand = new Command(Increment);
-        DecrementCommand = new Command(Decrement);
         InitAccessibilityActionCommands();
     }
 
-    public IList<AccessibilityActionCommand> AccessibilityActionCommands { get; set; }
-    public ICommand AnnouncementCommand { get; }
-    public ICommand IncrementCommand { get; }
-    public ICommand DecrementCommand { get; }
+    public IList<AccessibilityActionCommand> AccessibilityActionCommands { get; private set; }
     public int Counter { get; set; }
 
     private void InitAccessibilityActionCommands()
@@ -40,16 +34,19 @@ public class AccessibilityPlaygroundPageViewModel : BasePlaygroundPageViewModel
         });
     }
 
+    [RelayCommand]
     private void Announcement()
     {
         AccessibilityService.Announcement($"Counter value is currently {Counter}");
     }
 
+    [RelayCommand]
     private void Increment()
     {
         Counter++;
     }
 
+    [RelayCommand]
     private void Decrement()
     {
         Counter--;

@@ -6,23 +6,19 @@
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:DataType="features:AccessibilityPlaygroundPageViewModel">
-    <Grid RowDefinitions="auto, *">
+    <Grid RowDefinitions="Auto, *">
         <ui:NavigationBar
             Grid.Row="0"
             LeftActionCommand="{Binding NavigateBackCommand}"
             LeftActionType="Back" />
         <ScrollView Grid.Row="1">
-            <StackLayout>
-                <StackLayout
+            <VerticalStackLayout>
+                <VerticalStackLayout
                     ui:AccessibilityTraits.Traits="Button"
                     AutomationProperties.IsInAccessibleTree="True"
-                    AutomationProperties.Name="My stack layout"
-                    HorizontalOptions="Start">
-                    <Label
-                        HorizontalOptions="CenterAndExpand"
-                        Text="Accessibility Page"
-                        VerticalOptions="CenterAndExpand" />
-                </StackLayout>
+                    AutomationProperties.Name="My stack layout">
+                    <Label Text="Accessibility Page" />
+                </VerticalStackLayout>
                 <ui:AccessibilityStackLayout
                     Padding="20"
                     ui:AccessibilityTraits.Traits="Button"
@@ -32,8 +28,8 @@
                     VerticalOptions="Center">
                     <Label Text="This is a special kind of stack layout. Lets see if we can make it work!" />
                 </ui:AccessibilityStackLayout>
-                <Button Command="{Binding AnnouncementCommand}" Text="Announce" />
-            </StackLayout>
+                <ui:PrimaryButton Command="{Binding AnnouncementCommand}" Text="Announce" />
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </features:BasePage>

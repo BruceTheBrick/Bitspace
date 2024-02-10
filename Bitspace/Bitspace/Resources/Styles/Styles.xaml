@@ -8,6 +8,7 @@
     <ResourceDictionary.MergedDictionaries>
         <resources:Palette />
     </ResourceDictionary.MergedDictionaries>
+
     <!--  Colors  -->
     <resources:ColorRef x:Key="ColorPrimary" Color="{StaticResource SunburnRed}" />
     <resources:ColorRef x:Key="ColorSecondary" Color="{StaticResource NeonYellow}" />

@@ -7,6 +7,6 @@ public partial class GameOverPopupPage
 {
     public GameOverPopupPage()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 }

@@ -7,6 +7,6 @@ public partial class SecondaryButton
 {
     public SecondaryButton()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 }

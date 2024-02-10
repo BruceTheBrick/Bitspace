@@ -45,8 +45,8 @@ public partial class BaseButton
 
     public BaseButton()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
     public string Text
     {

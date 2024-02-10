@@ -22,14 +22,6 @@ public class ExtendedImage : Image
         ResourceHelper.GetResource<ColorRef>("IconPrimaryColor"),
         propertyChanged: TintColorUpdated);
 
-    public static readonly BindableProperty ExtensionProperty = BindableProperty.Create(
-        nameof(Extension),
-        typeof(string),
-        typeof(ExtendedImage),
-        "svg");
-
-    private const string SourcePrefix = "resource://Bitspace.Resources.Images.";
-
     public new string Source
     {
         get => (string)GetValue(SourceProperty);
@@ -42,12 +34,6 @@ public class ExtendedImage : Image
         set => SetValue(TintColorProperty, value);
     }
 
-    public string Extension
-    {
-        get => (string)GetValue(ExtensionProperty);
-        set => SetValue(ExtensionProperty, value);
-    }
-
     protected override void OnPropertyChanged(string propertyName = null)
     {
         base.OnPropertyChanged(propertyName);
@@ -58,24 +44,20 @@ public class ExtendedImage : Image
         }
     }
 
-    private static void OnSourceUpdated(BindableObject bindable, object oldvalue, object newvalue)
+    private static void OnSourceUpdated(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is not ExtendedImage image)
         {
             return;
         }
 
-        var imageSource = newvalue as string;
-        if (string.IsNullOrWhiteSpace(imageSource))
+        if (newValue is string newSource)
         {
-            return;
+            image.SetBaseSource(newSource);
         }
-
-        var source = image.FormatSource(imageSource);
-        image.SetBaseSource(source);
     }
 
-    private static void TintColorUpdated(BindableObject bindable, object oldvalue, object newvalue)
+    private static void TintColorUpdated(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is not ExtendedImage view)
         {
@@ -83,11 +65,6 @@ public class ExtendedImage : Image
         }
 
         view.AddTintEffect();
-    }
-
-    private string FormatSource(string input)
-    {
-        return $"{SourcePrefix}{input}.{Extension}";
     }
 
     private void SetBaseSource(string source)
@@ -98,14 +75,14 @@ public class ExtendedImage : Image
     private void AddTintEffect()
     {
         RemoveTintEffect();
-        var effect = new ImageTintEffect {TintColor = TintColor};
+        var effect = new ImageTintEffect { TintColor = TintColor };
         Effects.Add(effect);
     }
 
     private void RemoveTintEffect()
     {
         var effect = Effects.FirstOrDefault(x => x is ImageTintEffect);
-        if (effect != null)
+        if (effect is not null)
         {
             Effects.Remove(effect);
         }

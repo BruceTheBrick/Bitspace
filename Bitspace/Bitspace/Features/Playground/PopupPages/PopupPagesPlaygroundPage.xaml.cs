@@ -7,6 +7,6 @@ public partial class PopupPagesPlaygroundPage
 {
     public PopupPagesPlaygroundPage()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 }

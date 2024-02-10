@@ -41,6 +41,18 @@ public class NavigationService : INavigationService
         return _navigationService.GoBackAsync(parameters);
     }
 
+    public Task<INavigationResult> GoBack(bool useModalNavigation)
+    {
+        var parameters = AddModalParameter(null, useModalNavigation);
+        return _navigationService.GoBackAsync(parameters);
+    }
+
+    public Task<INavigationResult> GoBack(INavigationParameters parameters, bool useModalNavigation)
+    {
+        parameters = AddModalParameter(parameters, useModalNavigation);
+        return _navigationService.GoBackAsync(parameters);
+    }
+
     private INavigationParameters AddModalParameter(INavigationParameters parameters, bool useModal)
     {
         parameters ??= new NavigationParameters();

@@ -26,12 +26,12 @@ public partial class GameOverPopupPageViewModel : BasePageViewModel
     private Task PlayAgain()
     {
         var parameters = new NavigationParameters { { NavigationConstants.Reset, true } };
-        return NavigationService.GoBack(parameters);
+        return NavigationService.GoBack(parameters, true);
     }
 
     [RelayCommand]
     private Task Quit()
     {
-        return NavigationService.GoBack();
+        return NavigationService.GoBack(true);
     }
 }

@@ -43,10 +43,8 @@
                     Margin="20"
                     Padding="20"
                     BackgroundColor="LightGray"
-                    HorizontalOptions="CenterAndExpand"
                     IsVisible="{Binding MenuItems, Converter={converters:IsListNullOrEmptyConverter}}"
-                    StrokeShape="RoundRectangle 20"
-                    VerticalOptions="CenterAndExpand">
+                    StrokeShape="RoundRectangle 20">
                     <Label
                         FontSize="24"
                         HorizontalTextAlignment="Center"

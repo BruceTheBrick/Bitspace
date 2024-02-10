@@ -7,6 +7,6 @@ public partial class PrimaryButton
 {
     public PrimaryButton()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 }

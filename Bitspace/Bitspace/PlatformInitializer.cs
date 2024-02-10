@@ -16,10 +16,7 @@ public static class PlatformInitializer
     {
         builder.UsePrism(prismBuilder =>
         {
-            prismBuilder.OnAppStart(async (_, nav) =>
-            {
-                var t = await nav.NavigateAsync(NavigationConstants.Homepage);
-            });
+            prismBuilder.OnAppStart(NavigationConstants.Homepage);
         });
         RegisterServices(builder.Services);
         RegisterApis(builder.Services);
@@ -56,19 +53,35 @@ public static class PlatformInitializer
     private static void RegisterAndroidServices(IServiceCollection services)
     {
 #if ANDROID
+        RegisterAndroidHelpers();
         services.AddTransient<IAnalyticsService, Platforms.Droid.Services.AnalyticsService>();
         services.AddTransient<IRemoteConfigService, Platforms.Droid.Services.RemoteConfigService>();
+#endif
+    }
+
+    private static void RegisterAndroidHelpers()
+    {
+#if ANDROID
+        Accessibility.Current = new Platforms.Droid.Helpers.AccessibilityImplementation();
 #endif
     }
 
     private static void RegisterIosServices(IServiceCollection services)
     {
 #if IOS
+        RegisterIosHelpers();
         services.AddTransient<IAnalyticsService, Platforms.iOS.Services.AnalyticsService>();
         services.AddTransient<IRemoteConfigService, Platforms.iOS.Services.RemoteConfigService>();
 #endif
     }
-    
+
+    private static void RegisterIosHelpers()
+    {
+#if IOS
+        
+#endif
+    }
+
     private static void RegisterNavigation(IServiceCollection services)
     {
         services.RegisterForNavigation<InitPage, InitPageViewModel>();

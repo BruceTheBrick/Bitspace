@@ -8,4 +8,6 @@ public interface INavigationService
     public Task<INavigationResult> NavigateAsync(string url, INavigationParameters parameters, bool useModalNavigation);
     public Task<INavigationResult> GoBack();
     public Task<INavigationResult> GoBack(INavigationParameters parameters);
+    public Task<INavigationResult> GoBack(bool useModalNavigation);
+    public Task<INavigationResult> GoBack(INavigationParameters parameters, bool useModalNavigation);
 }

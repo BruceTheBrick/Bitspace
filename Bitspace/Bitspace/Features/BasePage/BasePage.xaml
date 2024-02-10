@@ -7,4 +7,5 @@
     xmlns:iOsSpecific="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     x:Name="This"
     iOsSpecific:Page.UseSafeArea="True"
-    x:DataType="features:BasePageViewModel" />
+    x:DataType="features:BasePageViewModel"
+    NavigationPage.HasNavigationBar="False" />

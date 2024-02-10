@@ -16,9 +16,9 @@ public partial class PopupPagesPlaygroundPageViewModel : BasePlaygroundPageViewM
     public ActionTypeEnum LeftActionType => ActionTypeEnum.Back;
 
     [RelayCommand]
-    private Task ShowGameOverPopupPage()
+    private async Task ShowGameOverPopupPage()
     {
         var parameters = new NavigationParameters { { NavigationConstants.Winner, "WINNER NAME HERE" } };
-        return NavigationService.NavigateAsync(nameof(GameOverPopupPage), parameters);
+        var t = await NavigationService.NavigateAsync(nameof(GameOverPopupPage), parameters);
     }
 }
