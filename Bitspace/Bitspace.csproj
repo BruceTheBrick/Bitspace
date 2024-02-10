@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFrameworks>net8.0-ios;net8.0-android;net8.0</TargetFrameworks>
-        <UseMaui>True</UseMaui>
         <OutputType Condition="$(TargetFramework) != 'net8.0'">Exe</OutputType>
+        <UseMaui>True</UseMaui>
         <ImplicitUsings>enable</ImplicitUsings>
         <SingleProject>true</SingleProject>
+        
         <ApplicationTitle>Bitspace</ApplicationTitle>
         <ApplicationId>au.com.Bitspace</ApplicationId>
         <ApplicationVersion>1</ApplicationVersion>
@@ -15,7 +16,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <MauiIcon Include="Resources\Images\AppIcon\logo.svg"/>
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appicon.svg" />
         <MauiImage Include="Resources\Images\*" />
     </ItemGroup>
     
