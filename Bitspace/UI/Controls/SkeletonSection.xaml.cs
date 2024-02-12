@@ -1,10 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Bitspace.Core;
 using Bitspace.Resources;
+using Microsoft.Maui.Controls.Shapes;
 
 namespace Bitspace.UI;
 
 [ExcludeFromCodeCoverage]
-[ContentProperty("Contents")]
+[ContentProperty(nameof(Contents))]
 public partial class SkeletonSection
 {
     public static readonly BindableProperty IsLoadingProperty = BindableProperty.Create(
@@ -26,17 +28,29 @@ public partial class SkeletonSection
         typeof(int),
         typeof(SkeletonSection),
         16,
-        BindingMode.TwoWay);
+        BindingMode.TwoWay,
+        propertyChanged: OnCornerRadiusChanged);
 
     public SkeletonSection()
     {
-            InitializeComponent();
-            SetDefaultLoadingColor();
+        InitializeComponent();
+        SetDefaultLoadingColor();
+    }
+
+    public IList<IView> Contents
+    {
+        set
+        {
+            foreach (var element in value)
+            {
+                ContentStack.AddLogicalChild((Element)element);
+            }
         }
 
-    public IList<IView> Contents => ContentStack.Children;
+        get => ContentStack?.Children ?? new List<IView>();
+    }
 
-    public bool IsLoading
+public bool IsLoading
     {
         get => (bool)GetValue(IsLoadingProperty);
         set => SetValue(IsLoadingProperty, value);
@@ -54,16 +68,23 @@ public partial class SkeletonSection
         set => SetValue(CornerRadiusProperty, value);
     }
 
+    private static void OnCornerRadiusChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is not SkeletonSection skeletonSection)
+        {
+            return;
+        }
+
+        skeletonSection.Skeleton.StrokeShape = new RoundRectangle { CornerRadius = (int)newValue };
+    }
+
     private void SetDefaultLoadingColor()
     {
-            if (LoadingBackgroundColor != default)
-            {
-                return;
-            }
-
-            if (Application.Current.Resources.TryGetValue("LoadingColor", out var color))
-            {
-                LoadingBackgroundColor = (ColorRef)color;
-            }
+        if (LoadingBackgroundColor != default)
+        {
+            return;
         }
+
+        LoadingBackgroundColor = ResourceHelper.GetResource<ColorRef>("LoadingColor");
+    }
 }

@@ -14,7 +14,7 @@ public static class PlatformInitializer
 {
     public static MauiAppBuilder Initialize(this MauiAppBuilder builder)
     {
-        builder.UsePrism(prismBuilder =>
+        builder.UsePrism(DryIocContainerExtension.DefaultRules.WithoutUseInterpretation(), prismBuilder =>
         {
             prismBuilder.OnAppStart(NavigationConstants.Homepage);
         });

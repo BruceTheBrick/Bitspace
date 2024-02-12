@@ -33,14 +33,10 @@ public partial class HomePageViewModel : BasePageViewModel
     }
 
     [RelayCommand]
-    private async Task ItemSelected(MenuListItemViewModel item)
+    private Task ItemSelected(MenuListItemViewModel item)
     {
-        if (!string.IsNullOrEmpty(item.NavigationConstant))
-        {
-            await NavigationService.NavigateAsync(item.NavigationConstant);
-        }
-
         AnalyticsService.LogEvent(AnalyticsRegister.ITEM_SELECTED, AnalyticsRegister.ID, item.NavigationConstant);
+        return NavigationService.NavigateAsync(item.NavigationConstant);
     }
 
     [RelayCommand]

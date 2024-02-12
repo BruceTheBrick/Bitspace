@@ -7,6 +7,6 @@ public partial class ForecastItem
 {
     public ForecastItem()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Bitspace.Core;
 using Bitspace.Resources;
+using CommunityToolkit.Maui.Behaviors;
 
 namespace Bitspace.UI;
 
@@ -75,16 +76,16 @@ public class ExtendedImage : Image
     private void AddTintEffect()
     {
         RemoveTintEffect();
-        var effect = new ImageTintEffect { TintColor = TintColor };
-        Effects.Add(effect);
+        var behaviour = new IconTintColorBehavior { TintColor = TintColor };
+        Behaviors.Add(behaviour);
     }
 
     private void RemoveTintEffect()
     {
-        var effect = Effects.FirstOrDefault(x => x is ImageTintEffect);
+        var effect = Behaviors.FirstOrDefault(x => x is IconTintColorBehavior);
         if (effect is not null)
         {
-            Effects.Remove(effect);
+            Behaviors.Remove(effect);
         }
     }
 }

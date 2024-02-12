@@ -10,10 +10,14 @@ public static class ResourceHelper
     {
         try
         {
-            var resource = Application.Current.Resources[resourceName];
-            if (resource is T)
+            if (!Application.Current!.Resources.TryGetValue(resourceName, out var resource))
             {
-                return (T)resource;
+                return default;
+            }
+
+            if (resource is T value)
+            {
+                return value;
             }
 
             return default;

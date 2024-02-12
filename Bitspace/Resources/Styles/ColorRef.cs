@@ -3,8 +3,12 @@
 namespace Bitspace.Resources;
 
 [ExcludeFromCodeCoverage]
-public struct ColorRef
+public class ColorRef
 {
+    public ColorRef()
+    {
+    }
+
     public ColorRef(Color color)
     {
         Color = color;
@@ -15,5 +19,10 @@ public struct ColorRef
     public static implicit operator Color(ColorRef x)
     {
         return x.Color;
+    }
+
+    public Color ToColor()
+    {
+        return Color;
     }
 }
