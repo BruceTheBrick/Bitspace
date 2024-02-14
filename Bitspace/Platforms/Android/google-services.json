@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1415589153",
+    "project_id": "bitspace-5cc26",
+    "storage_bucket": "bitspace-5cc26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1415589153:android:a2d3e5e2f513fdd214a260",
+        "android_client_info": {
+          "package_name": "com.brycelynch.bitspace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1415589153-vet15572r54bs1qt0ue3igbt8okqts74.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXdilNfMTlkpb9xQ3bb-6wlCCs6bzshpc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1415589153-vet15572r54bs1qt0ue3igbt8okqts74.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

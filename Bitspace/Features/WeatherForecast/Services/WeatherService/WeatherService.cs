@@ -60,12 +60,12 @@ public class WeatherService : ICurrentWeatherService
         }
         catch (HttpRequestException)
         {
-            await _alertService.Snackbar("Uh oh, looks like we timed out! Please try again later..");
+            _alertService.ShowSnackbar("Uh oh, looks like we timed out! Please try again later..");
             InitForecastItems();
         }
         catch (Exception e)
         {
-            await _alertService.Snackbar(e.Message);
+            _alertService.ShowSnackbar(e.Message);
             InitForecastItems();
         }
     }

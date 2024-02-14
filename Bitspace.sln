@@ -5,9 +5,9 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bitspace", "Bitspace\Bitspace.csproj", "{B371CF36-79E1-4155-8471-47C527BDBF8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bitspace.Android", "Bitspace\Bitspace.Android\Bitspace.Android.csproj", "{589EDB47-ECF4-4E76-B87D-82E2A4A5CB63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bitspace.Android", "Bitspace.Xamarin.Forms\Bitspace.Android\Bitspace.Android.csproj", "{589EDB47-ECF4-4E76-B87D-82E2A4A5CB63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bitspace.iOS", "Bitspace\Bitspace.iOS\Bitspace.iOS.csproj", "{93BA8039-8AB9-4CDD-BCCA-328DF740D734}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bitspace.iOS", "Bitspace.Xamarin.Forms\Bitspace.iOS\Bitspace.iOS.csproj", "{93BA8039-8AB9-4CDD-BCCA-328DF740D734}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bitspace.Tests", "Bitspace.Tests\Bitspace.Tests.csproj", "{7A4F32AF-10E5-4317-A920-9593D987DA1F}"
 EndProject

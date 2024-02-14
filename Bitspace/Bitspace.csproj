@@ -20,6 +20,16 @@
         <MauiSplashScreen Include="Resources\Splash\appiconfg.png" Color="#512BD4" />
         <MauiImage Include="Resources\Images\*" />
     </ItemGroup>
+
+    <!--Android-->
+    <ItemGroup Condition="$(TargetFramework) == 'net8.0-android'">
+        <GoogleServicesJson Include="Platforms\Android\google-services.json" />
+    </ItemGroup>
+
+    <!--iOS-->
+    <ItemGroup Condition="$(TargetFramework) == 'net8.0-ios'">
+        <BundleResource Include="Platforms\iOS\GoogleService-Info.plist" />
+    </ItemGroup>
     
     <!--Nuget Packages-->
     <ItemGroup>
@@ -106,11 +116,5 @@
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Bitspace_Global.Designer.cs</LastGenOutput>
         </EmbeddedResource>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Mono.Android">
-        <HintPath>..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.Android.Ref.34\34.0.52\ref\net8.0\Mono.Android.dll</HintPath>
-      </Reference>
     </ItemGroup>
 </Project>

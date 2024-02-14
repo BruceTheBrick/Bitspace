@@ -32,7 +32,7 @@ public class PermissionService : IPermissionService
         try
         {
             var result = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
-            return result == PermissionStatus.Granted;
+            return IsPermissionGranted(result);
         }
         catch (Exception e)
         {
@@ -45,6 +45,12 @@ public class PermissionService : IPermissionService
     {
         var readResult = await Permissions.RequestAsync<Permissions.StorageRead>();
         var writeResult = await Permissions.RequestAsync<Permissions.StorageWrite>();
-        return readResult == PermissionStatus.Granted && writeResult == PermissionStatus.Granted;
+        return IsPermissionGranted(readResult) && IsPermissionGranted(writeResult);
+    }
+
+    private bool IsPermissionGranted(PermissionStatus status)
+    {
+        var grantedOptions = new[] { PermissionStatus.Granted, PermissionStatus.Limited, PermissionStatus.Restricted };
+        return grantedOptions.Contains(status);
     }
 }

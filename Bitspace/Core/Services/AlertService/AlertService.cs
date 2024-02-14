@@ -1,20 +1,22 @@
-﻿using Bitspace.Controls;
+﻿using CommunityToolkit.Maui.Core;
 
 namespace Bitspace.Core;
 
 public class AlertService : IAlertService
 {
-    private readonly INavigationService _navigationService;
-
-    public AlertService(INavigationService navigationService)
+    public Task ShowSnackbar(string message)
     {
-        _navigationService = navigationService;
-    }
+        try
+        {
+            var defaultOptions = MakeActionOptions();
+            return CommunityToolkit.Maui.Alerts.Snackbar.Make(message).Show();
 
-    public Task<INavigationResult> Snackbar(string message)
-    {
-        var parameters = new NavigationParameters {{NavigationConstants.Message, message},};
-        return _navigationService.NavigateAsync(nameof(SnackbarPopup), parameters);
+        }
+        catch (Exception e)
+        {
+            
+        }
+        return Task.CompletedTask;
     }
 
     public async Task Toast(string message)
@@ -27,15 +29,9 @@ public class AlertService : IAlertService
         // await Application.Current.MainPage.DisplayToastAsync(message, milliseconds);
     }
 
-    private IEnumerable<SnackBarActionOptions> MakeActionOptions(IEnumerable<Func<Task>> actions)
+    private SnackbarOptions MakeActionOptions()
     {
-        // var actionOptionsList = new List<SnackBarActionOptions>();
-        // foreach (var action in actions)
-        // {
-        //     actionOptionsList.Add(new SnackBarActionOptions {Action = action,});
-        // }
-        //
-        // return actionOptionsList;
-        return new List<SnackBarActionOptions>();
+        var options = new SnackbarOptions();
+        return options;
     }
 }
