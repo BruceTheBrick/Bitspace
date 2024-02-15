@@ -5,7 +5,7 @@ using Bitspace.Core;
 using Bitspace.Features;
 using Bitspace.Features.Buttons;
 using Bitspace.UI;
-using CommunityToolkit.Maui;
+using Microsoft.Maui.LifecycleEvents;
 
 namespace Bitspace;
 
@@ -16,14 +16,55 @@ public static class PlatformInitializer
     {
         builder.UsePrism(DryIocContainerExtension.DefaultRules.WithoutUseInterpretation(), prismBuilder =>
         {
-            prismBuilder.OnAppStart(NavigationConstants.Homepage);
+            prismBuilder.OnAppStart(async (_, nav)=>
+            {
+                var t = await nav.NavigateAsync(NavigationConstants.Homepage);
+            });
         });
+
+        RegisterLifecycleEvents(builder);
         RegisterServices(builder.Services);
         RegisterApis(builder.Services);
         RegisterDataLayers(builder.Services);
         RegisterNavigation(builder.Services);
         RegisterPlaygroundPagesForNavigation(builder.Services);
         return builder;
+    }
+
+    private static void RegisterLifecycleEvents(MauiAppBuilder builder)
+    {
+        builder.ConfigureLifecycleEvents(events =>
+        {
+            RegisterAndroidLifecycleEvents(events);
+            RegisterIosLifecycleEvents(events);
+        });
+    }
+
+    private static void RegisterIosLifecycleEvents(ILifecycleBuilder events)
+    {
+#if IOS
+        events.AddiOS(iosEvents =>
+        {
+            iosEvents.WillFinishLaunching((_, _) =>
+            {
+                // Plugin.Firebase.Core.Platforms.iOS.CrossFirebase.Initialize();
+                return false;
+            });
+        });
+#endif
+    }
+
+    private static void RegisterAndroidLifecycleEvents(ILifecycleBuilder events)
+    {
+#if ANDROID
+        events.AddAndroid(androidEvents =>
+        {
+            androidEvents.OnCreate((activity, _) =>
+            {
+                Firebase.FirebaseApp.InitializeApp(activity);
+            });
+        });
+#endif
     }
 
     private static void RegisterServices(IServiceCollection services)

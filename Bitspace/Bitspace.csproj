@@ -7,7 +7,7 @@
         <SingleProject>true</SingleProject>
         
         <ApplicationTitle>Bitspace</ApplicationTitle>
-        <ApplicationId>au.com.Bitspace</ApplicationId>
+        <ApplicationId>com.brycelynch.bitspace</ApplicationId>
         <ApplicationVersion>1</ApplicationVersion>
         <ApplicationDisplaVersion>1.0</ApplicationDisplaVersion>
           
@@ -22,13 +22,20 @@
     </ItemGroup>
 
     <!--Android-->
-    <ItemGroup Condition="$(TargetFramework) == 'net8.0-android'">
+<!--    <ItemGroup Condition="$(TargetFramework) == 'net8.0-android'">-->
+    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
         <GoogleServicesJson Include="Platforms\Android\google-services.json" />
+
+        <PackageReference Include="Xamarin.Plugin.Firebase" Version="2.0.2" />
+        <PackageReference Include="Xamarin.Firebase.Config" Version="121.5.0.1" />
     </ItemGroup>
 
     <!--iOS-->
-    <ItemGroup Condition="$(TargetFramework) == 'net8.0-ios'">
+<!--    <ItemGroup Condition="$(TargetFramework) == 'net8.0-ios'">-->
+    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
         <BundleResource Include="Platforms\iOS\GoogleService-Info.plist" />
+
+        <PackageReference Include="Xamarin.Firebase.iOS.RemoteConfig" Version="8.10.0.3" />
     </ItemGroup>
     
     <!--Nuget Packages-->

@@ -1,4 +1,5 @@
-﻿using Bitspace.Core;
+﻿using AsyncAwaitBestPractices;
+using Bitspace.Core;
 using Bitspace.Resources.Registers.Analytics;
 using PropertyChanged;
 using INavigationService = Bitspace.Core.INavigationService;
@@ -24,7 +25,7 @@ public class BasePageViewModel : BindableBase, IInitialize, INavigationAware, ID
 
     public virtual void Initialize(INavigationParameters parameters)
     {
-        _ = InitializeAsync(parameters);
+        InitializeAsync(parameters).SafeFireAndForget();
         AnalyticsService.LogEvent(AnalyticsRegister.SCREEN_VIEW, AnalyticsRegister.ID, GetPageName());
     }
 
@@ -35,7 +36,7 @@ public class BasePageViewModel : BindableBase, IInitialize, INavigationAware, ID
 
     public virtual void OnNavigatedFrom(INavigationParameters parameters)
     {
-        _ = OnNavigatedFromAsync(parameters);
+        OnNavigatedFromAsync(parameters).SafeFireAndForget();
     }
 
     public virtual Task OnNavigatedFromAsync(INavigationParameters parameters)
@@ -45,7 +46,7 @@ public class BasePageViewModel : BindableBase, IInitialize, INavigationAware, ID
 
     public virtual void OnNavigatedTo(INavigationParameters parameters)
     {
-        _ = OnNavigatedToAsync(parameters);
+        OnNavigatedToAsync(parameters).SafeFireAndForget();
     }
 
     public virtual Task OnNavigatedToAsync(INavigationParameters parameters)

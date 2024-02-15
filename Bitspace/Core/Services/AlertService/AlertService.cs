@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Maui.Core;
+﻿using Bitspace.Resources;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 
 namespace Bitspace.Core;
 
@@ -6,17 +8,8 @@ public class AlertService : IAlertService
 {
     public Task ShowSnackbar(string message)
     {
-        try
-        {
-            var defaultOptions = MakeActionOptions();
-            return CommunityToolkit.Maui.Alerts.Snackbar.Make(message).Show();
-
-        }
-        catch (Exception e)
-        {
-            
-        }
-        return Task.CompletedTask;
+        var defaultOptions = MakeActionOptions();
+        return Snackbar.Make(message, null, string.Empty, visualOptions: defaultOptions).Show();
     }
 
     public async Task Toast(string message)
@@ -31,7 +24,10 @@ public class AlertService : IAlertService
 
     private SnackbarOptions MakeActionOptions()
     {
-        var options = new SnackbarOptions();
+        var options = new SnackbarOptions
+        {
+            BackgroundColor = ResourceHelper.GetResource<ColorRef>("SnackbarBackgroundColor"),
+        };
         return options;
     }
 }

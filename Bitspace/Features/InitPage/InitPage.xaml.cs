@@ -7,6 +7,6 @@ public partial class InitPage
 {
     public InitPage()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 }
