@@ -2,6 +2,6 @@
 
 public interface IApiKeyManagerService
 {
-    public string GetKey(API_Endpoints api);
-    public bool HasKey(API_Endpoints api);
+    public string GetKey(ApiEndpoints api);
+    public bool HasKey(ApiEndpoints api);
 }

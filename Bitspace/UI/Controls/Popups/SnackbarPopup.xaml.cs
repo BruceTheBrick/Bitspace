@@ -29,11 +29,11 @@ public partial class SnackbarPopup
 
     private Task SlideLeft()
     {
-        return Frame.TranslateTo(-Frame.Width, 0, 200);
+        return Border.TranslateTo(-Border.Width, 0, 200);
     }
 
     private Task SlideRight()
     {
-        return Frame.TranslateTo(Frame.Width, 0, 200);
+        return Border.TranslateTo(Border.Width, 0, 200);
     }
 }

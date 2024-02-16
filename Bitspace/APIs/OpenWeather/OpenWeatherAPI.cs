@@ -9,7 +9,7 @@ public class OpenWeatherAPI : BaseAPI, IOpenWeatherAPI
     public OpenWeatherAPI(
         IHttpClient client,
         IApiKeyManagerService keyManagerService)
-        : base(client, keyManagerService, API_Endpoints.OPEN_WEATHER)
+        : base(client, keyManagerService, ApiEndpoints.OpenWeather)
     {
     }
 
@@ -34,10 +34,14 @@ public class OpenWeatherAPI : BaseAPI, IOpenWeatherAPI
         var url = $"{Endpoint}/geo/1.0/reverse?lat={request.Latitude}&lon={request.Longitude}&appid={ApiKey}";
         var rawResponse = await _client.GetAsync(url);
         var content = await rawResponse.Content.ReadAsStringAsync();
-        var data = JsonConvert.DeserializeObject<ReverseGeocodeResponseItemModel[]>(content) ??
-                   Array.Empty<ReverseGeocodeResponseItemModel>();
-        var response = new Response<ReverseGeocodeResponseItemModel[]>(data, rawResponse.StatusCode,
-            rawResponse.RequestMessage.Method.Method, rawResponse.IsSuccessStatusCode);
+        var data =
+            JsonConvert.DeserializeObject<ReverseGeocodeResponseItemModel[]>(content) ??
+            Array.Empty<ReverseGeocodeResponseItemModel>();
+        var response = new Response<ReverseGeocodeResponseItemModel[]>(
+            data,
+            rawResponse.StatusCode,
+            rawResponse.RequestMessage.Method.Method,
+            rawResponse.IsSuccessStatusCode);
         return response;
     }
 }

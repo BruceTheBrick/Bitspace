@@ -5,7 +5,7 @@ namespace Bitspace.APIs;
 [ExcludeFromCodeCoverage]
 public class ExtendedHttpClient : IHttpClient
 {
-    private HttpClient _client;
+    private readonly HttpClient _client;
 
     public ExtendedHttpClient()
     {
@@ -22,13 +22,13 @@ public class ExtendedHttpClient : IHttpClient
         return (int)_client.Timeout.TotalSeconds;
     }
 
-    public async Task<HttpResponseMessage> GetAsync(Uri uri)
+    public Task<HttpResponseMessage> GetAsync(Uri uri)
     {
-        return await _client.GetAsync(uri);
+        return _client.GetAsync(uri);
     }
 
-    public async Task<HttpResponseMessage> GetAsync(string url)
+    public Task<HttpResponseMessage> GetAsync(string url)
     {
-        return await _client.GetAsync(url);
+        return _client.GetAsync(url);
     }
 }

@@ -33,7 +33,7 @@ public partial class HomePageViewModel : BasePageViewModel
     [RelayCommand]
     private Task ItemSelected(MenuListItemViewModel item)
     {
-        AnalyticsService.LogEvent(AnalyticsRegister.ITEM_SELECTED, AnalyticsRegister.ID, item.NavigationConstant);
+        AnalyticsService.LogEvent(AnalyticsRegister.ItemSelected, AnalyticsRegister.Id, item.NavigationConstant);
         return NavigationService.NavigateAsync(item.NavigationConstant);
     }
 

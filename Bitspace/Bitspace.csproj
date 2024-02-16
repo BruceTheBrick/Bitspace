@@ -61,11 +61,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="APIs\APIKeys.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>APIKeys.resx</DependentUpon>
-        </Compile>
         <Compile Update="Registers\MainpageRegister.Designer.cs">
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>

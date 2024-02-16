@@ -13,12 +13,7 @@ public static class PlatformInitializer
             DryIocContainerExtension.DefaultRules.WithoutUseInterpretation(),
             prismBuilder =>
             {
-                prismBuilder.CreateWindow(async (_, nav) =>
-                    // prismBuilder.OnAppStart(async (_, nav) =>
-                {
-                    var t = await nav.NavigateAsync(NavigationConstants.Homepage);
-                    // return NavigationConstants.Homepage;
-                });
+                prismBuilder.CreateWindow(NavigationConstants.Homepage);
             });
 
         RegisterLifecycleEvents(builder);

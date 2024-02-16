@@ -9,42 +9,41 @@
     BackgroundColor="Transparent"
     BackgroundInputTransparent="True"
     CloseWhenBackgroundIsClicked="False">
-    <Frame
-        x:Name="Frame"
+    <Border
+        x:Name="Border"
         Margin="8,0,8,20"
         Padding="12"
         AutomationProperties.IsInAccessibleTree="True"
         AutomationProperties.Name="{Binding Message}"
-        Style="{StaticResource SnackbarStyle}">
-        <StackLayout
-            HorizontalOptions="FillAndExpand"
-            Orientation="Horizontal"
+        BackgroundColor="{StaticResource DarkGray}"
+        StrokeShape="RoundRectangle 12"
+        VerticalOptions="End">
+        <HorizontalStackLayout
+            HorizontalOptions="Fill"
             Spacing="12"
-            VerticalOptions="FillAndExpand">
+            VerticalOptions="Fill">
             <ui:ExtendedImage
                 AutomationProperties.IsInAccessibleTree="False"
                 HeightRequest="18"
                 IsVisible="{Binding IsLeftIconVisible}"
                 Source="{Binding Icon}"
-                Style="{StaticResource SnackbarIcon}"
-                TintColor="{StaticResource White}"
+                TintColor="{StaticResource SnackbarIconColor}"
                 WidthRequest="18" />
             <Label
                 AutomationProperties.IsInAccessibleTree="False"
-                Style="{StaticResource SnackbarLabel}"
-                Text="{Binding Message}" />
+                Text="{Binding Message}"
+                TextColor="{StaticResource SnackbarTextColor}" />
             <ui:ExtendedImage
                 AutomationProperties.IsInAccessibleTree="False"
                 HeightRequest="18"
                 IsVisible="{Binding IsRightIconVisible}"
                 Source="{Binding Icon}"
-                Style="{StaticResource SnackbarIcon}"
-                TintColor="{StaticResource White}"
+                TintColor="{StaticResource SnackbarIconColor}"
                 WidthRequest="18" />
-        </StackLayout>
-        <Frame.GestureRecognizers>
+        </HorizontalStackLayout>
+        <Border.GestureRecognizers>
             <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_OnSwiped" />
             <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_OnSwiped" />
-        </Frame.GestureRecognizers>
-    </Frame>
+        </Border.GestureRecognizers>
+    </Border>
 </popup:PopupPage>

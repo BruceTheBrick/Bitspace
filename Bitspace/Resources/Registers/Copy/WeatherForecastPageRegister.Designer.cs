@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bitspace.APIs {
+namespace Bitspace.Resources.Registers.Copy {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Bitspace.APIs {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class APIKeys {
+    public class WeatherForecastPageRegister {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal APIKeys() {
+        internal WeatherForecastPageRegister() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Bitspace.APIs {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bitspace.APIs.APIKeys", typeof(APIKeys).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bitspace.Resources.Registers.Copy.WeatherForecastPageRegister", typeof(WeatherForecastPageRegister).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,47 @@ namespace Bitspace.APIs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2366c9edf1524154fa6982430cacdb30.
+        ///   Looks up a localized string similar to Humidity.
         /// </summary>
-        public static string OpenWeatherAPIKey {
+        public static string Humidity {
             get {
-                return ResourceManager.GetString("OpenWeatherAPIKey", resourceCulture);
+                return ResourceManager.GetString("Humidity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weather Forecast Page.
+        /// </summary>
+        public static string PageName {
+            get {
+                return ResourceManager.GetString("PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pressure.
+        /// </summary>
+        public static string Pressure {
+            get {
+                return ResourceManager.GetString("Pressure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UV Index.
+        /// </summary>
+        public static string UVIndex {
+            get {
+                return ResourceManager.GetString("UVIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wind Speed.
+        /// </summary>
+        public static string WindSpeed {
+            get {
+                return ResourceManager.GetString("WindSpeed", resourceCulture);
             }
         }
     }

@@ -9,7 +9,6 @@
     <resources:ColorRef x:Key="ColorPrimary" Color="{StaticResource Jet}" />
     <resources:ColorRef x:Key="ColorSecondary" Color="{StaticResource DodgerBlue}" />
     <resources:ColorRef x:Key="ColorAccent" Color="{StaticResource 'Tart Orange'}" />
-    <resources:ColorRef x:Key="CF_TextPrimaryColor" Color="{StaticResource Jet}" />
 
     <!--  Buttons  -->
     <resources:ColorRef x:Key="ButtonDisabledBackgroundColor" Color="{StaticResource Gainsboro}" />

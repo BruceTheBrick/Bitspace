@@ -21,6 +21,7 @@
 
     <!--  Buttons  -->
     <resources:ColorRef x:Key="ButtonActiveBackgroundColor" Color="{StaticResource DodgerBlue}" />
+    <resources:ColorRef x:Key="ButtonSecondaryBackgroundColor" Color="{StaticResource White}" />
     <resources:ColorRef x:Key="ButtonActiveTextColor" Color="{StaticResource Jet}" />
     <resources:ColorRef x:Key="ButtonDisabledBackgroundColor" Color="{StaticResource Gainsboro}" />
     <resources:ColorRef x:Key="ButtonDisabledTextColor" Color="{StaticResource 'Spanish Gray'}" />
@@ -30,6 +31,9 @@
 
     <!--  SnackBar  -->
     <resources:ColorRef x:Key="SnackbarBackgroundColor" Color="{StaticResource DarkGray}" />
+    <resources:ColorRef x:Key="SnackbarIconColor" Color="{StaticResource White}" />
+    <resources:ColorRef x:Key="SnackbarTextColor" Color="{StaticResource White}" />
+
 
     <!--  ContentPage  -->
     <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
@@ -45,19 +49,4 @@
     <!-- <Style ApplyToDerivedTypes="True" TargetType="ui:Pill"> -->
     <!--     <Setter Property="CornerRadius" Value="{StaticResource Rounded}" /> -->
     <!-- </Style> -->
-
-    <!--  Snackbar  -->
-    <Style x:Key="SnackbarStyle" TargetType="Frame">
-        <Setter Property="BackgroundColor" Value="{StaticResource DarkGray}" />
-        <Setter Property="CornerRadius" Value="{StaticResource BaseCornerRadius}" />
-        <Setter Property="HasShadow" Value="False" />
-        <Setter Property="VerticalOptions" Value="End" />
-    </Style>
-    <Style x:Key="SnackbarLabel" TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource White}" />
-    </Style>
-    <Style x:Key="SnackbarIcon" TargetType="ui:ExtendedImage">
-        <Setter Property="HeightRequest" Value="24" />
-        <Setter Property="WidthRequest" Value="24" />
-    </Style>
 </ResourceDictionary>

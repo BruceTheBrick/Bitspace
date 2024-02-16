@@ -8,7 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bitspace.Resources {
+namespace Bitspace.Resources.Registers.Analytics {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -60,36 +63,36 @@ namespace Bitspace.Resources {
         /// <summary>
         ///   Looks up a localized string similar to CF_ENGINE_MOVE_DURATION.
         /// </summary>
-        public static string CF_ENGINE_MOVE_DURATION {
+        public static string ConnectFourEngineMoveDuration {
             get {
-                return ResourceManager.GetString("CF_ENGINE_MOVE_DURATION", resourceCulture);
+                return ResourceManager.GetString("ConnectFourEngineMoveDuration", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ID.
         /// </summary>
-        public static string ID {
+        public static string Id {
             get {
-                return ResourceManager.GetString("ID", resourceCulture);
+                return ResourceManager.GetString("Id", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ITEM_SELECTED.
         /// </summary>
-        public static string ITEM_SELECTED {
+        public static string ItemSelected {
             get {
-                return ResourceManager.GetString("ITEM_SELECTED", resourceCulture);
+                return ResourceManager.GetString("ItemSelected", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to SCREEN_VIEW.
         /// </summary>
-        public static string SCREEN_VIEW {
+        public static string ScreenView {
             get {
-                return ResourceManager.GetString("SCREEN_VIEW", resourceCulture);
+                return ResourceManager.GetString("ScreenView", resourceCulture);
             }
         }
     }

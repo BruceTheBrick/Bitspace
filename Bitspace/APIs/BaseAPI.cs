@@ -12,7 +12,7 @@ public class BaseAPI
     protected BaseAPI(
         IHttpClient client,
         IApiKeyManagerService keyManagerService,
-        API_Endpoints api)
+        ApiEndpoints api)
     {
         _client = client;
 

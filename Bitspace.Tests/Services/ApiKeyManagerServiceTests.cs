@@ -8,8 +8,7 @@ public class ApiKeyManagerServiceTests : UnitTestBase<ApiKeyManagerService>
     public void GetKey_ShouldCallRemoteConfig()
     {
         // Arrange
-        var faker = new Faker();
-        var endpoint = faker.PickRandom<API_Endpoints>();
+        var endpoint = Faker.PickRandom<ApiEndpoints>();
         
         // Act
         Sut.GetKey(endpoint);
@@ -22,9 +21,8 @@ public class ApiKeyManagerServiceTests : UnitTestBase<ApiKeyManagerService>
     public void GetKey_ShouldReturnKey_WhenRemoteConfigHasValue()
     {
         // Arrange
-        var faker = new Faker();
-        var endpoint = faker.PickRandom<API_Endpoints>();
-        var returnedKey = faker.Hacker.Abbreviation();
+        var endpoint = Faker.PickRandom<ApiEndpoints>();
+        var returnedKey = Faker.Hacker.Abbreviation();
         Mocker.GetMock<IRemoteConfigService>().Setup(x => x.GetValue(endpoint.ToString())).Returns(returnedKey);
 
 
@@ -39,8 +37,7 @@ public class ApiKeyManagerServiceTests : UnitTestBase<ApiKeyManagerService>
     public void GetKey_ShouldReturnEmptyString_WhenRemoteConfigDoesntHaveValue()
     {
         // Arrange
-        var faker = new Faker();
-        var endpoint = faker.PickRandom<API_Endpoints>();
+        var endpoint = Faker.PickRandom<ApiEndpoints>();
         Mocker.GetMock<IRemoteConfigService>().Setup(x => x.GetValue(endpoint.ToString())).Returns(string.Empty);
 
         // Act
@@ -58,8 +55,7 @@ public class ApiKeyManagerServiceTests : UnitTestBase<ApiKeyManagerService>
     public void HasKey_ShouldCallRemoteConfig()
     {
         // Arrange
-        var faker = new Faker();
-        var endpoint = faker.PickRandom<API_Endpoints>();
+        var endpoint = Faker.PickRandom<ApiEndpoints>();
         
         // Act
         Sut.HasKey(endpoint);
@@ -72,8 +68,7 @@ public class ApiKeyManagerServiceTests : UnitTestBase<ApiKeyManagerService>
     public void HasKey_ShouldReturnTrue_WhenRemoteConfigHasKey()
     {
         // Arrange
-        var faker = new Faker();
-        var endpoint = faker.PickRandom<API_Endpoints>();
+        var endpoint = Faker.PickRandom<ApiEndpoints>();
         Mocker.GetMock<IRemoteConfigService>().Setup(x => x.GetValue(endpoint.ToString())).Returns("some value");
 
         // Act
@@ -87,8 +82,7 @@ public class ApiKeyManagerServiceTests : UnitTestBase<ApiKeyManagerService>
     public void HasKey_ShouldReturnFalse_WhenRemoteConfigDoesNotHaveKey()
     {
         // Arrange
-        var faker = new Faker();
-        var endpoint = faker.PickRandom<API_Endpoints>();
+        var endpoint = Faker.PickRandom<ApiEndpoints>();
         Mocker.GetMock<IRemoteConfigService>().Setup(x => x.GetValue(endpoint.ToString())).Returns(string.Empty);
         
         // Act

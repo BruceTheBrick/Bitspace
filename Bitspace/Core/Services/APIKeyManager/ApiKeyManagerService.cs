@@ -9,12 +9,12 @@ public class ApiKeyManagerService : IApiKeyManagerService
         _remoteConfigService = remoteConfigService;
     }
 
-    public string GetKey(API_Endpoints api)
+    public string GetKey(ApiEndpoints api)
     {
         return _remoteConfigService.GetValue(api.ToString());
     }
 
-    public bool HasKey(API_Endpoints api)
+    public bool HasKey(ApiEndpoints api)
     {
         return !string.IsNullOrWhiteSpace(_remoteConfigService.GetValue(api.ToString()));
     }

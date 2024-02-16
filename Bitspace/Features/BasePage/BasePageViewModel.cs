@@ -26,7 +26,7 @@ public class BasePageViewModel : BindableBase, IInitialize, INavigationAware, ID
     public virtual void Initialize(INavigationParameters parameters)
     {
         InitializeAsync(parameters).SafeFireAndForget();
-        AnalyticsService.LogEvent(AnalyticsRegister.SCREEN_VIEW, AnalyticsRegister.ID, GetPageName());
+        AnalyticsService.LogEvent(AnalyticsRegister.ScreenView, AnalyticsRegister.Id, GetPageName());
     }
 
     public virtual Task InitializeAsync(INavigationParameters parameters)

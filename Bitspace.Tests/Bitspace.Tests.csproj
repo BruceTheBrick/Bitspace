@@ -9,6 +9,10 @@
     <ImplicitUsings>true</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bitspace\Bitspace.csproj" />
+    
+    <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.7" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.7" />
     <PackageReference Include="AutoBogus" Version="2.13.1" />
     <PackageReference Include="AutoMoq" Version="2.0.0" />
     <PackageReference Include="Bogus" Version="34.0.2" />
@@ -23,10 +27,5 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bitspace\Bitspace.csproj" />
-    <ProjectReference Include="..\Bitspace\Bitspace\Bitspace.csproj" />
-    <Reference Include="..\Bitspace\Bitspce\Resources" />
   </ItemGroup>
 </Project>
