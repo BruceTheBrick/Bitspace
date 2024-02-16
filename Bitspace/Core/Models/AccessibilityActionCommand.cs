@@ -1,6 +1,6 @@
 using System.Windows.Input;
 
-namespace Bitspace.Core.Models;
+namespace Bitspace.Core;
 
 public class AccessibilityActionCommand
 {

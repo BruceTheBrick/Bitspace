@@ -1,16 +1,7 @@
-using System.Security.Cryptography;
-using System.Threading.Tasks;
 using System.Timers;
-using Bitspace.Core;
-using Bitspace.Tests.Base;
-using Bitspace.UI;
-using DryIoc;
-using FluentAssertions;
-using Moq;
-using Prism.Navigation;
-using Xunit;
+using Timer = System.Timers.Timer;
 
-namespace Bitspace.Tests.UI.Controls.Popups;
+namespace Bitspace.Tests.UI;
 
 public class SnackbarPopupViewModelTests : UnitTestBase<SnackbarPopupViewModel>
 {
@@ -154,7 +145,7 @@ public class SnackbarPopupViewModelTests : UnitTestBase<SnackbarPopupViewModel>
         Sut.Timer = new Timer();
 
         //Act
-        await Sut.DismissCommand.ExecuteAsync();
+        await Sut.DismissCommand.ExecuteAsync(null);
 
         //Assert
         Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.GoBack());

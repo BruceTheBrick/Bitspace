@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using Bitspace.Core;
 using Firebase.RemoteConfig;
 
 namespace Bitspace.Platforms.iOS.Services;
@@ -33,7 +32,7 @@ public class RemoteConfigService : IRemoteConfigService
     {
         try
         {
-            await RemoteConfig.SharedInstance.FetchAsync(TimeoutConstants.REMOTECONFIG_MIN_FETCH_INTERVAL);
+            await RemoteConfig.SharedInstance.FetchAsync(TimeoutConstants.RemoteConfigMinimumFetchInterval);
             await RemoteConfig.SharedInstance.ActivateAsync();
         }
         catch (Exception e)

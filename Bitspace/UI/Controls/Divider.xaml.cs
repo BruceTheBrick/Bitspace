@@ -9,15 +9,13 @@ public partial class Divider
         nameof(Color),
         typeof(Color),
         typeof(Divider),
-        Colors.White,
-        BindingMode.TwoWay);
+        Colors.White);
 
     private static readonly BindableProperty ThicknessProperty = BindableProperty.Create(
         nameof(Thickness),
         typeof(int),
         typeof(Divider),
-        1,
-        BindingMode.TwoWay);
+        1);
 
     private bool _isVertical;
 
@@ -69,14 +67,14 @@ public partial class Divider
     private void InitHorizontalDivider()
     {
         This.HeightRequest = Thickness;
-        This.HorizontalOptions = LayoutOptions.FillAndExpand;
+        This.HorizontalOptions = LayoutOptions.Fill;
         This.VerticalOptions = LayoutOptions.Center;
     }
 
     private void InitVerticalDivider()
     {
         This.WidthRequest = Thickness;
-        This.VerticalOptions = LayoutOptions.FillAndExpand;
+        This.VerticalOptions = LayoutOptions.Fill;
         This.HorizontalOptions = LayoutOptions.Center;
     }
 }

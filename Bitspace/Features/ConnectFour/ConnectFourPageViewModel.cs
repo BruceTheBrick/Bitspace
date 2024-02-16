@@ -1,7 +1,4 @@
-﻿using System.Windows.Input;
-using Bitspace.Core;
-using Bitspace.Resources.Registers.Copy;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using Humanizer;
 using PropertyChanged;
 
@@ -18,7 +15,7 @@ public partial class ConnectFourPageViewModel : BasePageViewModel
 
         SetupBoardAndEngine();
     }
-    
+
     public IBoard Board { get; set; }
     public IConnectFourEngine Martini { get; set; }
     public int Columns { get; set; } = 7;
@@ -109,8 +106,8 @@ public partial class ConnectFourPageViewModel : BasePageViewModel
     private Task FinishGame()
     {
         IsGameOver = true;
-        var name = string.Format(ConnectFourRegister.CF_PLAYER, Winner.ToString().Humanize(LetterCasing.Title));
-        var parameters = new NavigationParameters {{NavigationConstants.Winner, name}};
+        var name = string.Format(ConnectFourRegister.Player, Winner.ToString().Humanize(LetterCasing.Title));
+        var parameters = new NavigationParameters { { NavigationConstants.Winner, name } };
         return NavigationService.NavigateAsync(nameof(GameOverPopupPage), parameters);
     }
 
@@ -138,7 +135,7 @@ public partial class ConnectFourPageViewModel : BasePageViewModel
     private string UpdateMartiniStatus()
     {
         return IsCpuBusy
-            ? string.Format(ConnectFourRegister.CF_ENGINE_BUSY, Martini.Name)
-            : string.Format(ConnectFourRegister.CF_ENGINE_IDLE, Martini.Name);
+            ? string.Format(ConnectFourRegister.EngineBusy, Martini.Name)
+            : string.Format(ConnectFourRegister.EngineIdle, Martini.Name);
     }
 }

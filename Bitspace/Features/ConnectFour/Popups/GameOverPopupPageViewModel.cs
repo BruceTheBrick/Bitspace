@@ -1,5 +1,3 @@
-using Bitspace.Core;
-using Bitspace.Resources.Registers.Copy;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Bitspace.Features;
@@ -18,7 +16,7 @@ public partial class GameOverPopupPageViewModel : BasePageViewModel
         base.Initialize(parameters);
         if (parameters.TryGetValue(NavigationConstants.Winner, out string winner))
         {
-            Winner = string.Format(ConnectFourRegister.CF_WINNER, winner);
+            Winner = string.Format(ConnectFourRegister.Winner, winner);
         }
     }
 

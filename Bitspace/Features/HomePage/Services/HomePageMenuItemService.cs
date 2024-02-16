@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Bitspace.Core;
-using Bitspace.Resources.Registers.Copy;
 
 namespace Bitspace.Features;
 
@@ -19,7 +17,7 @@ public class HomePageMenuItemService : IHomePageMenuItems
         if (_remoteConfigService.IsEnabled(RemoteConfigConstants.Homepage_Weather))
         {
             items.Add(new MenuListItemViewModel(
-                HomePageRegister.WEATHER_FORECAST_TITLE,
+                HomePageRegister.WeatherForecastTitle,
                 "ic_weather",
                 "ic_chevron_right",
                 nameof(WeatherForecastPage)));
@@ -28,7 +26,7 @@ public class HomePageMenuItemService : IHomePageMenuItems
         if (_remoteConfigService.IsEnabled(RemoteConfigConstants.Homepage_Martini))
         {
             items.Add(new MenuListItemViewModel(
-                HomePageRegister.MARTINI,
+                HomePageRegister.Martini,
                 "ic_martini",
                 "ic_chevron_right",
                 nameof(ConnectFourPage)));

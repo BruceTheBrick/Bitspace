@@ -3,6 +3,8 @@
 namespace Bitspace.UI;
 
 [ExcludeFromCodeCoverage]
+[SuppressMessage("ReSharper", "InconsistentNaming", Justification = "BindableProperties should be capitalised.")]
+[SuppressMessage("StyleCop.CSharp.NamingRules", "SA1306:Field names should begin with lower-case letter", Justification = "BindableProperties should be capitalised.")]
 public partial class EmptyListPlaceholder
 {
     private readonly BindableProperty ImageProperty = BindableProperty.Create(
@@ -28,8 +30,8 @@ public partial class EmptyListPlaceholder
 
     public EmptyListPlaceholder()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
     public string Image
     {

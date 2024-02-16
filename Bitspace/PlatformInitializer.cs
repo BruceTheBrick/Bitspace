@@ -1,10 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Bitspace.APIs;
-using Bitspace.Controls;
-using Bitspace.Core;
-using Bitspace.Features;
 using Bitspace.Features.Buttons;
-using Bitspace.UI;
 using Microsoft.Maui.LifecycleEvents;
 
 namespace Bitspace;
@@ -14,13 +9,17 @@ public static class PlatformInitializer
 {
     public static MauiAppBuilder Initialize(this MauiAppBuilder builder)
     {
-        builder.UsePrism(DryIocContainerExtension.DefaultRules.WithoutUseInterpretation(), prismBuilder =>
-        {
-            prismBuilder.OnAppStart(async (_, nav)=>
+        builder.UsePrism(
+            DryIocContainerExtension.DefaultRules.WithoutUseInterpretation(),
+            prismBuilder =>
             {
-                var t = await nav.NavigateAsync(NavigationConstants.Homepage);
+                prismBuilder.CreateWindow(async (_, nav) =>
+                    // prismBuilder.OnAppStart(async (_, nav) =>
+                {
+                    var t = await nav.NavigateAsync(NavigationConstants.Homepage);
+                    // return NavigationConstants.Homepage;
+                });
             });
-        });
 
         RegisterLifecycleEvents(builder);
         RegisterServices(builder.Services);
@@ -45,11 +44,6 @@ public static class PlatformInitializer
 #if IOS
         events.AddiOS(iosEvents =>
         {
-            iosEvents.WillFinishLaunching((_, _) =>
-            {
-                // Plugin.Firebase.Core.Platforms.iOS.CrossFirebase.Initialize();
-                return false;
-            });
         });
 #endif
     }
@@ -72,8 +66,9 @@ public static class PlatformInitializer
         RegisterAndroidServices(services);
         RegisterIosServices(services);
         // services.AddSingleton<IAppInfo, AppInfo>();
+        services.AddTransient(_ => Preferences.Default);
+        services.AddTransient(_ => VersionTracking.Default);
         services.AddSingleton<IApiKeyManagerService, ApiKeyManagerService>();
-        services.AddSingleton<IEssentialsVersion, EssentialsVersion>();
         services.AddSingleton<IEssentialsDeviceInfo, EssentialsDeviceInfo>();
         services.AddTransient<IBaseService, BaseService>();
         services.AddTransient<IHttpClient, ExtendedHttpClient>();
@@ -119,7 +114,6 @@ public static class PlatformInitializer
     private static void RegisterIosHelpers()
     {
 #if IOS
-        
 #endif
     }
 

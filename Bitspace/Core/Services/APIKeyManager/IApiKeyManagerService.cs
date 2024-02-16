@@ -1,6 +1,4 @@
-﻿using Bitspace.APIs;
-
-namespace Bitspace.Core;
+﻿namespace Bitspace.Core;
 
 public interface IApiKeyManagerService
 {

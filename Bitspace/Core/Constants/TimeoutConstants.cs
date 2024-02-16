@@ -7,6 +7,6 @@ namespace Bitspace.Core;
 [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "TimeoutConstants can have different casing")]
 public static class TimeoutConstants
 {
-    public static int REMOTECONFIG_MIN_FETCH_INTERVAL = 10;
-    public static int REMOTECONFIG_TIMEOUT = 10;
+    public const int RemoteConfigMinimumFetchInterval = 10;
+    public const int RemoteConfigTimeout = 10;
 }

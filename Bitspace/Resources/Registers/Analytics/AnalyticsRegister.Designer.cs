@@ -8,10 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bitspace.Resources.Registers.Analytics {
-    using System;
-    
-    
+namespace Bitspace.Resources {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,7 +19,7 @@ namespace Bitspace.Resources.Registers.Analytics {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class AnalyticsRegister {
+    public class AnalyticsRegister {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -63,7 +60,7 @@ namespace Bitspace.Resources.Registers.Analytics {
         /// <summary>
         ///   Looks up a localized string similar to CF_ENGINE_MOVE_DURATION.
         /// </summary>
-        internal static string CF_ENGINE_MOVE_DURATION {
+        public static string CF_ENGINE_MOVE_DURATION {
             get {
                 return ResourceManager.GetString("CF_ENGINE_MOVE_DURATION", resourceCulture);
             }
@@ -72,7 +69,7 @@ namespace Bitspace.Resources.Registers.Analytics {
         /// <summary>
         ///   Looks up a localized string similar to ID.
         /// </summary>
-        internal static string ID {
+        public static string ID {
             get {
                 return ResourceManager.GetString("ID", resourceCulture);
             }
@@ -81,7 +78,7 @@ namespace Bitspace.Resources.Registers.Analytics {
         /// <summary>
         ///   Looks up a localized string similar to ITEM_SELECTED.
         /// </summary>
-        internal static string ITEM_SELECTED {
+        public static string ITEM_SELECTED {
             get {
                 return ResourceManager.GetString("ITEM_SELECTED", resourceCulture);
             }
@@ -90,7 +87,7 @@ namespace Bitspace.Resources.Registers.Analytics {
         /// <summary>
         ///   Looks up a localized string similar to SCREEN_VIEW.
         /// </summary>
-        internal static string SCREEN_VIEW {
+        public static string SCREEN_VIEW {
             get {
                 return ResourceManager.GetString("SCREEN_VIEW", resourceCulture);
             }

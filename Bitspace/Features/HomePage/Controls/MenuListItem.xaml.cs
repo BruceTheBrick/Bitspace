@@ -22,8 +22,8 @@ public partial class MenuListItem
 
     public MenuListItem()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
     public MenuListItemViewModel MenuListItemViewModel
     {

@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
-using Bitspace.UI;
 
-namespace Bitspace.Controls;
+namespace Bitspace.UI;
 
 [ExcludeFromCodeCoverage]
 public partial class SnackbarPopup

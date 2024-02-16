@@ -1,11 +1,6 @@
-﻿using System;
-using Bitspace.APIs;
-using Bitspace.Tests.Factories;
-using FluentAssertions;
-using Humanizer;
-using Xunit;
+﻿using Humanizer;
 
-namespace Bitspace.Tests.APIs.OpenWeather;
+namespace Bitspace.Tests.APIs;
 
 public class DayViewModelTests
 {

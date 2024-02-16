@@ -1,9 +1,4 @@
-﻿using System;
-using Bitspace.Core;
-using FluentAssertions;
-using Xunit;
-
-namespace Bitspace.Tests.Extensions;
+﻿namespace Bitspace.Tests.Extensions;
 
 public class DateTimeExtensionsTests
 {

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <popup:PopupPage
-    BackgroundColor="Transparent"
-    BackgroundInputTransparent="True"
-    CloseWhenBackgroundIsClicked="False"
-    x:Class="Bitspace.Controls.SnackbarPopup"
-    x:DataType="ui:SnackbarPopupViewModel"
+    x:Class="Bitspace.UI.SnackbarPopup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:popup="clr-namespace:Mopups.Pages;assembly=Mopups"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    x:DataType="ui:SnackbarPopupViewModel"
+    BackgroundColor="Transparent"
+    BackgroundInputTransparent="True"
+    CloseWhenBackgroundIsClicked="False">
     <Frame
-        AutomationProperties.IsInAccessibleTree="True"
-        AutomationProperties.Name="{Binding Message}"
+        x:Name="Frame"
         Margin="8,0,8,20"
         Padding="12"
-        Style="{StaticResource SnackbarStyle}"
-        x:Name="Frame">
+        AutomationProperties.IsInAccessibleTree="True"
+        AutomationProperties.Name="{Binding Message}"
+        Style="{StaticResource SnackbarStyle}">
         <StackLayout
             HorizontalOptions="FillAndExpand"
             Orientation="Horizontal"

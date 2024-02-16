@@ -22,7 +22,7 @@ namespace Bitspace.APIs {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class APIKeys {
+    public class APIKeys {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -63,7 +63,7 @@ namespace Bitspace.APIs {
         /// <summary>
         ///   Looks up a localized string similar to 2366c9edf1524154fa6982430cacdb30.
         /// </summary>
-        internal static string OpenWeatherAPIKey {
+        public static string OpenWeatherAPIKey {
             get {
                 return ResourceManager.GetString("OpenWeatherAPIKey", resourceCulture);
             }

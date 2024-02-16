@@ -1,13 +1,6 @@
-﻿using System;
-using System.Linq;
-using Bitspace.APIs;
-using Bitspace.Core;
-using Bitspace.Tests.Extensions;
-using Bitspace.Tests.Factories;
-using FluentAssertions;
-using Xunit;
+﻿using Bitspace.Tests.Extensions;
 
-namespace Bitspace.Tests.APIs.OpenWeather;
+namespace Bitspace.Tests.APIs;
 
 public class DailyForecastViewModelTests
 {

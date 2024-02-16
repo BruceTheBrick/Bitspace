@@ -1,12 +1,4 @@
-using Bitspace.Core;
-using Bitspace.Features;
-using Bitspace.Tests.Base;
-using FluentAssertions;
-using Moq;
-using Prism.Navigation;
-using Xunit;
-
-namespace Bitspace.Tests.Features.ConnectFour;
+namespace Bitspace.Tests.Features;
 
 public class ConnectFourPageViewModelTests : UnitTestBase<ConnectFourPageViewModel>
 {

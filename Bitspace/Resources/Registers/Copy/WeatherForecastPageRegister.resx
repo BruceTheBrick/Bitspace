@@ -18,19 +18,19 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="HUMIDITY" xml:space="preserve">
+    <data name="Humidity" xml:space="preserve">
         <value>Humidity</value>
     </data>
-    <data name="WIND_SPEED" xml:space="preserve">
+    <data name="WindSpeed" xml:space="preserve">
         <value>Wind Speed</value>
     </data>
     <data name="UVIndex" xml:space="preserve">
         <value>UV Index</value>
     </data>
-    <data name="PRESSURE" xml:space="preserve">
+    <data name="Pressure" xml:space="preserve">
         <value>Pressure</value>
     </data>
-    <data name="PAGE_NAME" xml:space="preserve">
+    <data name="PageName" xml:space="preserve">
         <value>Weather Forecast Page</value>
     </data>
 </root>

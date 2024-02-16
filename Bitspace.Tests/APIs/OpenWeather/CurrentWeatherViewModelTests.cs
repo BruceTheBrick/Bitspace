@@ -1,10 +1,4 @@
-﻿using System.Linq;
-using Bitspace.APIs;
-using Bitspace.Tests.Factories;
-using FluentAssertions;
-using Xunit;
-
-namespace Bitspace.Tests.APIs.OpenWeather;
+﻿namespace Bitspace.Tests.APIs;
 
 public class CurrentWeatherViewModelTests
 {

@@ -1,7 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Bitspace.APIs;
-using Bitspace.Core;
-using Bitspace.UI;
 using CommunityToolkit.Mvvm.Input;
 using PropertyChanged;
 

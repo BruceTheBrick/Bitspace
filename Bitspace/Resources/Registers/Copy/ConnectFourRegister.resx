@@ -18,40 +18,40 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="CF_COL_EX" xml:space="preserve">
+    <data name="ColumnOutOfRangeException" xml:space="preserve">
         <value>Column {0} is out of range {1} - {2}.</value>
     </data>
-    <data name="CF_WIN" xml:space="preserve">
+    <data name="Win" xml:space="preserve">
         <value>Congratulations {0}, you won!</value>
     </data>
-    <data name="CF_CONGRATS" xml:space="preserve">
+    <data name="Congratulations" xml:space="preserve">
         <value>Congratulations!</value>
     </data>
-    <data name="CF_WINNER" xml:space="preserve">
+    <data name="Winner" xml:space="preserve">
         <value>{0} is the winner!</value>
     </data>
-    <data name="CF_PLAY_AGAIN" xml:space="preserve">
+    <data name="PlayAgain" xml:space="preserve">
         <value>Would you like to play again?</value>
     </data>
-    <data name="CF_NEW_GAME" xml:space="preserve">
+    <data name="NewGame" xml:space="preserve">
         <value>New Game</value>
     </data>
-    <data name="CF_QUIT" xml:space="preserve">
+    <data name="Quit" xml:space="preserve">
         <value>Quit</value>
     </data>
     <data name="PAGE_NAME" xml:space="preserve">
         <value>Connect Four</value>
     </data>
-    <data name="CF_PLAYER" xml:space="preserve">
+    <data name="Player" xml:space="preserve">
         <value>Player {0}</value>
     </data>
-    <data name="CF_ENGINE_IDLE" xml:space="preserve">
+    <data name="EngineIdle" xml:space="preserve">
         <value>{0} is waiting...</value>
     </data>
-    <data name="CF_ENGINE_BUSY" xml:space="preserve">
+    <data name="EngineBusy" xml:space="preserve">
         <value>{0} is thinking...</value>
     </data>
-    <data name="CF_ENGINE_NAME" xml:space="preserve">
+    <data name="EngineName" xml:space="preserve">
         <value>Martini</value>
     </data>
 </root>

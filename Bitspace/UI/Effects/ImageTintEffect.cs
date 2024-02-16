@@ -1,6 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Bitspace.Core;
-using Bitspace.Resources;
 
 namespace Bitspace.UI;
 

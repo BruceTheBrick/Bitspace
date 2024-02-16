@@ -1,14 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Bitspace.APIs;
-using Bitspace.Core;
-using Bitspace.Features;
-using Bitspace.Tests.Base;
-using FluentAssertions;
-using Moq;
-using Xunit;
+﻿using System.Net;
 
 namespace Bitspace.Tests.Services;
 
@@ -109,7 +99,7 @@ public class WeatherServiceTests : UnitTestBase<WeatherService>
         await Sut.GetHourlyForecast();
 
         // Assert
-        Mocker.GetMock<IAlertService>().Verify(x => x.Snackbar(It.IsAny<string>()), Times.Once);
+        Mocker.GetMock<IAlertService>().Verify(x => x.ShowSnackbar(It.IsAny<string>()), Times.Once);
     }
 
     [Fact]
@@ -126,7 +116,7 @@ public class WeatherServiceTests : UnitTestBase<WeatherService>
         await Sut.GetHourlyForecast();
 
         // Assert
-        Mocker.GetMock<IAlertService>().Verify(x => x.Snackbar(It.IsAny<string>()), Times.Once);
+        Mocker.GetMock<IAlertService>().Verify(x => x.ShowSnackbar(It.IsAny<string>()), Times.Once);
     }
 
     #endregion

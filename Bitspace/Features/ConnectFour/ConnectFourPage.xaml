@@ -5,11 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Bitspace.Features.Controls;assembly=Bitspace"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
-    xmlns:resources="clr-namespace:Bitspace.Resources;assembly=Bitspace"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:DataType="features:ConnectFourPageViewModel">
     <features:BasePage.Resources>
-        <resources:ConnectFourStyle />
+        <features:ConnectFourStyle />
     </features:BasePage.Resources>
     <Grid RowDefinitions="auto, *">
         <ui:NavigationBar

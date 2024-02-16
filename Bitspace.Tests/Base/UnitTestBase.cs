@@ -1,5 +1,4 @@
-﻿using Moq;
-using Moq.AutoMock;
+﻿using Moq.AutoMock;
 
 namespace Bitspace.Tests.Base;
 

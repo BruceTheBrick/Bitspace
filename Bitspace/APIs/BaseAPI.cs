@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Bitspace.Core;
 using Newtonsoft.Json;
 
 namespace Bitspace.APIs;

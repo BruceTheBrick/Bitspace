@@ -1,5 +1,3 @@
-using Bitspace.Core;
-
 namespace Bitspace.Features;
 
 public class InitPageViewModel : BasePageViewModel

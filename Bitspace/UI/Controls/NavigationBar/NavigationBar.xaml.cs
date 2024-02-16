@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
-using Bitspace.Resources.Registers.Copy;
 
 namespace Bitspace.UI;
 
@@ -48,9 +47,9 @@ public partial class NavigationBar
 
     public NavigationBar()
     {
-            InitializeComponent();
-            InitSemanticOrderView();
-        }
+        InitializeComponent();
+        InitSemanticOrderView();
+    }
 
     public string Title
     {
@@ -104,173 +103,173 @@ public partial class NavigationBar
     public string RightActionIconSource { get; set; }
     public string RightActionText { get; set; }
 
-    private static void LeftActionTypeUpdated(BindableObject bindable, object oldvalue, object newvalue)
+    private static void LeftActionTypeUpdated(BindableObject bindable, object oldValue, object newValue)
     {
-            if (!(bindable is NavigationBar view))
-            {
-                return;
-            }
-
-            view.UpdateActionProperties(true);
+        if (bindable is not NavigationBar view)
+        {
+            return;
         }
 
-    private static void RightActionTypeUpdated(BindableObject bindable, object oldvalue, object newvalue)
-    {
-            if (!(bindable is NavigationBar view))
-            {
-                return;
-            }
+        view.UpdateActionProperties(true);
+    }
 
-            view.UpdateActionProperties(false);
+    private static void RightActionTypeUpdated(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is not NavigationBar view)
+        {
+            return;
         }
+
+        view.UpdateActionProperties(false);
+    }
 
     private void UpdateActionProperties(bool isLeftAction)
     {
-            var actionType = isLeftAction ? LeftActionType : RightActionType;
-            switch (actionType)
+        var actionType = isLeftAction ? LeftActionType : RightActionType;
+        switch (actionType)
+        {
+            case ActionTypeEnum.Close:
             {
-                case ActionTypeEnum.Close:
-                {
-                    SetCloseProperties(isLeftAction);
-                    return;
-                }
+                SetCloseProperties(isLeftAction);
+                return;
+            }
 
-                case ActionTypeEnum.Back:
-                {
-                    SetBackProperties(isLeftAction);
-                    return;
-                }
+            case ActionTypeEnum.Back:
+            {
+                SetBackProperties(isLeftAction);
+                return;
+            }
 
-                case ActionTypeEnum.Cancel:
-                {
-                    SetCancelProperties(isLeftAction);
-                    return;
-                }
+            case ActionTypeEnum.Cancel:
+            {
+                SetCancelProperties(isLeftAction);
+                return;
+            }
 
-                case ActionTypeEnum.Done:
-                {
-                    SetDoneProperties(isLeftAction);
-                    return;
-                }
+            case ActionTypeEnum.Done:
+            {
+                SetDoneProperties(isLeftAction);
+                return;
+            }
 
-                case ActionTypeEnum.Next:
-                {
-                    SetNextProperties(isLeftAction);
-                    return;
-                }
+            case ActionTypeEnum.Next:
+            {
+                SetNextProperties(isLeftAction);
+                return;
+            }
 
-                case ActionTypeEnum.None:
-                {
-                    SetNoneProperties(isLeftAction);
-                    return;
-                }
+            case ActionTypeEnum.None:
+            {
+                SetNoneProperties(isLeftAction);
+                return;
             }
         }
+    }
 
     private void SetCloseProperties(bool isLeftAction)
     {
-            if (isLeftAction)
-            {
-                LeftActionText = string.Empty;
-                LeftActionIconSource = "ic_close";
-                LeftActionAccessibilityName = Bitspace_Global.NAV_CLOSE;
-                LeftActionIsInAccessibleTree = true;
-                return;
-            }
-
-            RightActionText = string.Empty;
-            RightActionIconSource = "ic_close";
-            RightActionAccessibilityName = Bitspace_Global.NAV_CLOSE;
-            RightActionIsInAccessibleTree = true;
+        if (isLeftAction)
+        {
+            LeftActionText = string.Empty;
+            LeftActionIconSource = "ic_close";
+            LeftActionAccessibilityName = Bitspace_Global.Close;
+            LeftActionIsInAccessibleTree = true;
+            return;
         }
+
+        RightActionText = string.Empty;
+        RightActionIconSource = "ic_close";
+        RightActionAccessibilityName = Bitspace_Global.Close;
+        RightActionIsInAccessibleTree = true;
+    }
 
     private void SetBackProperties(bool isLeftAction)
     {
-            if (isLeftAction)
-            {
-                LeftActionText = string.Empty;
-                LeftActionIconSource = "ic_arrow_left";
-                LeftActionAccessibilityName = Bitspace_Global.NAV_BACK;
-                LeftActionIsInAccessibleTree = true;
-                return;
-            }
-
-            RightActionText = string.Empty;
-            RightActionIconSource = "ic_arrow_left";
-            RightActionAccessibilityName = Bitspace_Global.NAV_BACK;
-            RightActionIsInAccessibleTree = true;
+        if (isLeftAction)
+        {
+            LeftActionText = string.Empty;
+            LeftActionIconSource = "ic_arrow_left";
+            LeftActionAccessibilityName = Bitspace_Global.Back;
+            LeftActionIsInAccessibleTree = true;
+            return;
         }
+
+        RightActionText = string.Empty;
+        RightActionIconSource = "ic_arrow_left";
+        RightActionAccessibilityName = Bitspace_Global.Back;
+        RightActionIsInAccessibleTree = true;
+    }
 
     private void SetCancelProperties(bool isLeftAction)
     {
-            if (isLeftAction)
-            {
-                LeftActionText = Bitspace_Global.NAV_CANCEL;
-                LeftActionIconSource = string.Empty;
-                LeftActionAccessibilityName = Bitspace_Global.NAV_CANCEL;
-                LeftActionIsInAccessibleTree = true;
-                return;
-            }
-
-            RightActionText = Bitspace_Global.NAV_CANCEL;
-            RightActionIconSource = string.Empty;
-            RightActionAccessibilityName = Bitspace_Global.NAV_CANCEL;
-            RightActionIsInAccessibleTree = true;
+        if (isLeftAction)
+        {
+            LeftActionText = Bitspace_Global.Cancel;
+            LeftActionIconSource = string.Empty;
+            LeftActionAccessibilityName = Bitspace_Global.Cancel;
+            LeftActionIsInAccessibleTree = true;
+            return;
         }
+
+        RightActionText = Bitspace_Global.Cancel;
+        RightActionIconSource = string.Empty;
+        RightActionAccessibilityName = Bitspace_Global.Cancel;
+        RightActionIsInAccessibleTree = true;
+    }
 
     private void SetDoneProperties(bool isLeftAction)
     {
-            if (isLeftAction)
-            {
-                LeftActionText = Bitspace_Global.NAV_DONE;
-                LeftActionIconSource = string.Empty;
-                LeftActionAccessibilityName = Bitspace_Global.NAV_DONE;
-                LeftActionIsInAccessibleTree = true;
-                return;
-            }
-
-            RightActionText = Bitspace_Global.NAV_DONE;
-            RightActionIconSource = string.Empty;
-            RightActionAccessibilityName = Bitspace_Global.NAV_DONE;
-            RightActionIsInAccessibleTree = true;
+        if (isLeftAction)
+        {
+            LeftActionText = Bitspace_Global.Done;
+            LeftActionIconSource = string.Empty;
+            LeftActionAccessibilityName = Bitspace_Global.Done;
+            LeftActionIsInAccessibleTree = true;
+            return;
         }
+
+        RightActionText = Bitspace_Global.Done;
+        RightActionIconSource = string.Empty;
+        RightActionAccessibilityName = Bitspace_Global.Done;
+        RightActionIsInAccessibleTree = true;
+    }
 
     private void SetNextProperties(bool isLeftAction)
     {
-            if (isLeftAction)
-            {
-                LeftActionText = string.Empty;
-                LeftActionIconSource = "ic_arrow_right";
-                LeftActionAccessibilityName = Bitspace_Global.NAV_NEXT;
-                LeftActionIsInAccessibleTree = true;
-                return;
-            }
-
-            RightActionText = string.Empty;
-            RightActionIconSource = "ic_arrow_right";
-            RightActionAccessibilityName = Bitspace_Global.NAV_NEXT;
-            RightActionIsInAccessibleTree = true;
+        if (isLeftAction)
+        {
+            LeftActionText = string.Empty;
+            LeftActionIconSource = "ic_arrow_right";
+            LeftActionAccessibilityName = Bitspace_Global.Next;
+            LeftActionIsInAccessibleTree = true;
+            return;
         }
+
+        RightActionText = string.Empty;
+        RightActionIconSource = "ic_arrow_right";
+        RightActionAccessibilityName = Bitspace_Global.Next;
+        RightActionIsInAccessibleTree = true;
+    }
 
     private void SetNoneProperties(bool isLeftAction)
     {
-            if (isLeftAction)
-            {
-                LeftActionText = string.Empty;
-                LeftActionIconSource = string.Empty;
-                LeftActionAccessibilityName = string.Empty;
-                LeftActionIsInAccessibleTree = false;
-                return;
-            }
-
-            RightActionText = string.Empty;
-            RightActionIconSource = string.Empty;
-            RightActionAccessibilityName = string.Empty;
-            RightActionIsInAccessibleTree = false;
+        if (isLeftAction)
+        {
+            LeftActionText = string.Empty;
+            LeftActionIconSource = string.Empty;
+            LeftActionAccessibilityName = string.Empty;
+            LeftActionIsInAccessibleTree = false;
+            return;
         }
+
+        RightActionText = string.Empty;
+        RightActionIconSource = string.Empty;
+        RightActionAccessibilityName = string.Empty;
+        RightActionIsInAccessibleTree = false;
+    }
 
     private void InitSemanticOrderView()
     {
-            ViewOrder = new List<View> { TitleView, LeftAction, RightAction };
-        }
+        ViewOrder = new List<View> { TitleView, LeftAction, RightAction };
+    }
 }

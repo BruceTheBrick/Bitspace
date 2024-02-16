@@ -1,7 +1,4 @@
-﻿using Bitspace.APIs;
-using Bitspace.Core;
-
-namespace Bitspace.Features;
+﻿namespace Bitspace.Features;
 
 public class WeatherService : ICurrentWeatherService
 {

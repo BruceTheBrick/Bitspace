@@ -1,11 +1,4 @@
-﻿using Bitspace.Core;
-using Bitspace.Features;
-using Bitspace.Tests.Base;
-using FluentAssertions;
-using Moq;
-using Xunit;
-
-namespace Bitspace.Tests.Features;
+﻿namespace Bitspace.Tests.Features;
 
 public class HomePageMenuItemServiceTest : UnitTestBase<HomePageMenuItemService>
 {

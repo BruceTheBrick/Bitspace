@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
-using Bitspace.UI;
 
 namespace Bitspace.Features.Controls;
 
@@ -53,7 +52,6 @@ public partial class BoardButtons
         _precomputedIndexes = PrecomputedIndexes.GetRevisedPrecomputedIndexes();
     }
 
-
     public int Columns
     {
         get => (int)GetValue(ColumnsProperty);
@@ -96,9 +94,9 @@ public partial class BoardButtons
         set => SetValue(PlayerTwoColorProperty, value);
     }
 
-    private static void BoardDimensionsUpdated(BindableObject bindable, object oldvalue, object newvalue)
+    private static void BoardDimensionsUpdated(BindableObject bindable, object oldValue, object newValue)
     {
-        if (!(bindable is BoardButtons view))
+        if (bindable is not BoardButtons view)
         {
             return;
         }
@@ -106,9 +104,9 @@ public partial class BoardButtons
         view.CreateContent();
     }
 
-    private static void UpdateButtonColors(BindableObject bindable, object oldvalue, object newvalue)
+    private static void UpdateButtonColors(BindableObject bindable, object oldValue, object newValue)
     {
-        if (!(bindable is BoardButtons view))
+        if (bindable is not BoardButtons view)
         {
             return;
         }
@@ -145,7 +143,7 @@ public partial class BoardButtons
         var columns = new ColumnDefinitionCollection();
         for (var i = 0; i < Columns; i++)
         {
-            var definition = new ColumnDefinition {Width = GridLength.Star};
+            var definition = new ColumnDefinition { Width = GridLength.Star };
             columns.Add(definition);
         }
 
@@ -157,7 +155,7 @@ public partial class BoardButtons
         var rows = new RowDefinitionCollection();
         for (var i = 0; i < Rows; i++)
         {
-            var definition = new RowDefinition {Height = GridLength.Star};
+            var definition = new RowDefinition { Height = GridLength.Star };
             rows.Add(definition);
         }
 

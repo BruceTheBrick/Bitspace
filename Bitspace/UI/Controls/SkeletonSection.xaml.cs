@@ -1,6 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Bitspace.Core;
-using Bitspace.Resources;
 using Microsoft.Maui.Controls.Shapes;
 
 namespace Bitspace.UI;
@@ -39,7 +37,7 @@ public partial class SkeletonSection
 
     public IList<IView> Contents
     {
-        set
+        init
         {
             foreach (var element in value)
             {
@@ -50,7 +48,7 @@ public partial class SkeletonSection
         get => ContentStack?.Children ?? new List<IView>();
     }
 
-public bool IsLoading
+    public bool IsLoading
     {
         get => (bool)GetValue(IsLoadingProperty);
         set => SetValue(IsLoadingProperty, value);

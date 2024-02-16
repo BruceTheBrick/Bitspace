@@ -1,14 +1,4 @@
-using System.Threading.Tasks;
-using Bitspace.Core;
-using Bitspace.Features;
-using Bitspace.Resources;
-using Bitspace.Tests.Base;
-using FluentAssertions;
-using Moq;
-using Prism.Navigation;
-using Xunit;
-
-namespace Bitspace.Tests.Features.ConnectFour.Popups;
+namespace Bitspace.Tests.Features;
 
 public class GameOverPopupPageViewModelTests : UnitTestBase<GameOverPopupPageViewModel>
 {
@@ -25,7 +15,7 @@ public class GameOverPopupPageViewModelTests : UnitTestBase<GameOverPopupPageVie
         Sut.Initialize(parameters);
 
         //Assert
-        Sut.Winner.Should().Be(string.Format(ConnectFourRegister.CF_WINNER, winnerName));
+        Sut.Winner.Should().Be(string.Format(ConnectFourRegister.Winner, winnerName));
     }
         
     #endregion
@@ -38,7 +28,7 @@ public class GameOverPopupPageViewModelTests : UnitTestBase<GameOverPopupPageVie
         //Arrange
 
         //Act
-        await Sut.PlayAgainCommand.ExecuteAsync();
+        await Sut.PlayAgainCommand.ExecuteAsync(null);
 
         //Assert
         Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.GoBack(It.IsAny<INavigationParameters>()), Times.Once);
@@ -54,7 +44,7 @@ public class GameOverPopupPageViewModelTests : UnitTestBase<GameOverPopupPageVie
         //Arrange
 
         //Act
-        await Sut.QuitCommand.ExecuteAsync();
+        await Sut.QuitCommand.ExecuteAsync(null);
 
         //Assert
         Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.GoBack());

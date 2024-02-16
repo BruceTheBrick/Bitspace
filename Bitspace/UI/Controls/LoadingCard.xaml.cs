@@ -21,8 +21,8 @@ public partial class LoadingCard
 
     public LoadingCard()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
     public bool IsLoading
     {

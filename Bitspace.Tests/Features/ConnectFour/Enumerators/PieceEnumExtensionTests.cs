@@ -1,8 +1,4 @@
-using Bitspace.Features;
-using FluentAssertions;
-using Xunit;
-
-namespace Bitspace.Tests.Features.ConnectFour.Enumerators;
+namespace Bitspace.Tests.Features;
 
 public class PieceEnumExtensionTests
 {

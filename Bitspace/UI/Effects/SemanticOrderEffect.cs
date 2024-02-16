@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Bitspace.Core;
 
 namespace Bitspace.UI;
 
@@ -23,7 +22,7 @@ public class SemanticOrder
         view.SetValue(IsEnabledProperty, IsEnabled);
     }
 
-    private static void IsEnabledChanged(BindableObject bindable, object oldvalue, object newvalue)
+    private static void IsEnabledChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var view = bindable as View;
         if (view == null)

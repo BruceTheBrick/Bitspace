@@ -1,7 +1,4 @@
 ﻿using System.Net;
-using System.Net.Http;
-using Bitspace.APIs;
-using Bogus;
 
 namespace Bitspace.Tests.Factories;
 

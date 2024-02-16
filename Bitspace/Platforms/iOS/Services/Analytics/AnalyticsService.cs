@@ -1,5 +1,4 @@
-﻿using Bitspace.Core;
-using Foundation;
+﻿using Foundation;
 
 namespace Bitspace.Platforms.iOS.Services;
 

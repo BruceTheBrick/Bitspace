@@ -1,7 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
-using Bitspace.Core;
-using Bitspace.UI;
 
 namespace Bitspace.Features;
 

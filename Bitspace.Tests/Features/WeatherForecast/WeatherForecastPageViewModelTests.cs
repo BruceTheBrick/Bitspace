@@ -1,16 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Bitspace.Core;
-using Bitspace.Features;
-using Bitspace.Tests.Base;
-using Bitspace.Tests.Factories;
-using Bitspace.UI;
-using FluentAssertions;
-using Moq;
-using Prism.Navigation;
-using Xunit;
-
-namespace Bitspace.Tests.Features;
+﻿namespace Bitspace.Tests.Features;
 
 public class WeatherForecastPageViewModelTests : UnitTestBase<WeatherForecastPageViewModel>
 {

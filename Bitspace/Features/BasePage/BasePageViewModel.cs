@@ -1,6 +1,5 @@
 ﻿using AsyncAwaitBestPractices;
-using Bitspace.Core;
-using Bitspace.Resources.Registers.Analytics;
+using Humanizer;
 using PropertyChanged;
 using INavigationService = Bitspace.Core.INavigationService;
 
@@ -18,6 +17,7 @@ public class BasePageViewModel : BindableBase, IInitialize, INavigationAware, ID
     }
 
     public bool IsBusy { get; set; }
+    public string Title => GetPageName();
     protected INavigationService NavigationService { get; }
     protected IAccessibilityService AccessibilityService { get; }
     protected IAnalyticsService AnalyticsService { get; }
@@ -68,6 +68,6 @@ public class BasePageViewModel : BindableBase, IInitialize, INavigationAware, ID
 
     private string GetPageName()
     {
-        return this.GetType().Name.Replace("ViewModel", string.Empty);
+        return GetType().Name.Replace("ViewModel", string.Empty).Humanize();
     }
 }

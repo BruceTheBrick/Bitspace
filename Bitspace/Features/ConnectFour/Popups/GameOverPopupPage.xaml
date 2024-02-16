@@ -3,7 +3,7 @@
     x:Class="Bitspace.Features.GameOverPopupPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:copy="clr-namespace:Bitspace.Resources.Registers.Copy"
+    xmlns:copy="clr-namespace:Bitspace.Resources"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
@@ -27,7 +27,7 @@
                 FontAttributes="Bold"
                 FontSize="Title"
                 HorizontalOptions="Center"
-                Text="{x:Static copy:ConnectFourRegister.CF_CONGRATS}" />
+                Text="{x:Static copy:ConnectFourRegister.Congratulations}" />
             <Label
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
@@ -38,17 +38,17 @@
                 Grid.ColumnSpan="2"
                 Margin="0,0,0,12"
                 HorizontalOptions="Center"
-                Text="{x:Static copy:ConnectFourRegister.CF_PLAY_AGAIN}" />
+                Text="{x:Static copy:ConnectFourRegister.PlayAgain}" />
             <ui:PrimaryButton
                 Grid.Row="3"
                 Grid.Column="0"
                 Command="{Binding PlayAgainCommand}"
-                Text="{x:Static copy:ConnectFourRegister.CF_NEW_GAME}" />
+                Text="{x:Static copy:ConnectFourRegister.NewGame}" />
             <ui:SecondaryButton
                 Grid.Row="3"
                 Grid.Column="1"
                 Command="{Binding QuitCommand}"
-                Text="{x:Static copy:ConnectFourRegister.CF_QUIT}" />
+                Text="{x:Static copy:ConnectFourRegister.Quit}" />
         </Grid>
     </Border>
 </pages:PopupPage>

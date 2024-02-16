@@ -1,5 +1,4 @@
-﻿using Bitspace.Core;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Bitspace.APIs;
 

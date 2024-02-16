@@ -1,6 +1,4 @@
 using System.Timers;
-using Bitspace.Core;
-using Bitspace.Features;
 using CommunityToolkit.Mvvm.Input;
 using Timer = System.Timers.Timer;
 

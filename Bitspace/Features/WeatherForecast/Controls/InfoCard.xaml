@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Border
-    StrokeShape="RoundRectangle 12"
-    StrokeThickness="1"
     x:Class="Bitspace.Features.InfoCard"
-    x:Name="This"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    xmlns:copy="clr-namespace:Bitspace.Resources.Registers.Copy"
+    xmlns:copy="clr-namespace:Bitspace.Resources"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    x:Name="This"
+    StrokeShape="RoundRectangle 12"
+    StrokeThickness="1">
     <Border.Resources>
         <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
     </Border.Resources>
@@ -19,9 +19,9 @@
             IsVisible="{Binding IsLoading, Source={x:Reference This}}"
             LoadingBackgroundColor="DarkGray" />
         <Grid
+            Padding="12"
             ColumnDefinitions="*, auto, *, auto, *"
-            HorizontalOptions="FillAndExpand"
-            Padding="12">
+            HorizontalOptions="FillAndExpand">
             <Grid
                 Grid.Column="0"
                 IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}, Source={x:Reference This}}"
@@ -31,10 +31,10 @@
                     HorizontalTextAlignment="Center"
                     Text="{Binding Humidity, StringFormat='{0}%', Source={x:Reference This}}" />
                 <Label
-                    FontAttributes="Bold"
                     Grid.Row="1"
+                    FontAttributes="Bold"
                     HorizontalTextAlignment="Center"
-                    Text="{x:Static copy:WeatherForecastPageRegister.HUMIDITY}" />
+                    Text="{x:Static copy:WeatherForecastPageRegister.Humidity}" />
             </Grid>
             <ui:Divider
                 Grid.Column="1"
@@ -50,10 +50,10 @@
                     HorizontalTextAlignment="Center"
                     Text="{Binding WindSpeed, StringFormat='{0} m/s', Source={x:Reference This}}" />
                 <Label
-                    FontAttributes="Bold"
                     Grid.Row="1"
+                    FontAttributes="Bold"
                     HorizontalTextAlignment="Center"
-                    Text="{x:Static copy:WeatherForecastPageRegister.WIND_SPEED}" />
+                    Text="{x:Static copy:WeatherForecastPageRegister.WindSpeed}" />
             </Grid>
             <ui:Divider
                 Grid.Column="3"
@@ -69,10 +69,10 @@
                     HorizontalTextAlignment="Center"
                     Text="{Binding Pressure, StringFormat='{0} hPa', Source={x:Reference This}}" />
                 <Label
-                    FontAttributes="Bold"
                     Grid.Row="1"
+                    FontAttributes="Bold"
                     HorizontalTextAlignment="Center"
-                    Text="{x:Static copy:WeatherForecastPageRegister.PRESSURE}" />
+                    Text="{x:Static copy:WeatherForecastPageRegister.Pressure}" />
             </Grid>
         </Grid>
     </Grid>

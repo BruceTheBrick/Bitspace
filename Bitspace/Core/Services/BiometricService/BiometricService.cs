@@ -5,23 +5,23 @@ namespace Bitspace.Core;
 [ExcludeFromCodeCoverage]
 public class BiometricService : IBiometricService
 {
-    public async Task<AuthenticationType> BiometricType()
+    public Task<AuthenticationType> BiometricType()
     {
         // return await CrossFingerprint.Current.GetAuthenticationTypeAsync();
-        return new AuthenticationType();
+        return Task.FromResult(new AuthenticationType());
     }
 
-    public async Task<bool> HasBiometrics()
+    public Task<bool> HasBiometrics()
     {
         // var biometricAuthAvailable = await CrossFingerprint.Current.GetAvailabilityAsync();
         // return biometricAuthAvailable == FingerprintAvailability.Available;
-        return false;
+        return Task.FromResult(false);
     }
 
-    public async Task<FingerprintAuthenticationResult> Authenticate(string title, string message)
+    public Task<FingerprintAuthenticationResult> Authenticate(string title, string message)
     {
         // var authenticationRequestConfig = new AuthenticationRequestConfiguration(title, message);
         // return await CrossFingerprint.Current.AuthenticateAsync(authenticationRequestConfig);
-        return new FingerprintAuthenticationResult();
+        return Task.FromResult(new FingerprintAuthenticationResult());
     }
 }

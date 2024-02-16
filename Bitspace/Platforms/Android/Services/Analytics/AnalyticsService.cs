@@ -1,5 +1,4 @@
 ﻿using Android.OS;
-using Bitspace.Core;
 
 namespace Bitspace.Platforms.Droid.Services;
 

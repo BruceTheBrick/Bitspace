@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Bitspace.Core;
 
 namespace Bitspace.UI;
 
@@ -24,7 +23,7 @@ public class AccessibilityTraits
         view.SetValue(TraitsProperty, traits);
     }
 
-    private static void TraitsPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
+    private static void TraitsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var view = bindable as View;
         if (view == null)

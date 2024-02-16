@@ -1,6 +1,4 @@
-﻿using Bitspace.Core;
-
-namespace Bitspace.APIs;
+﻿namespace Bitspace.APIs;
 
 public class DailyForecastViewModel
 {
@@ -12,7 +10,7 @@ public class DailyForecastViewModel
 
     public string DisplayDateTime { get; }
     public ForecastItemViewModel SelectedForecastItem { get; set; }
-    public IList<ForecastItemViewModel> HourlyForecastItems { get; set; }
+    public IList<ForecastItemViewModel> HourlyForecastItems { get; private set; }
 
     private void SetHourlyForecastItems(IList<ForecastListObjectResponse> forecastItems)
     {

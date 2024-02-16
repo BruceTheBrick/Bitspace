@@ -1,5 +1,4 @@
 ﻿using Android.Gms.Extensions;
-using Bitspace.Core;
 using Firebase.RemoteConfig;
 
 namespace Bitspace.Platforms.Droid.Services;
@@ -30,8 +29,8 @@ public class RemoteConfigService : IRemoteConfigService
     private FirebaseRemoteConfigSettings GetFirebaseSettings()
     {
         return new FirebaseRemoteConfigSettings.Builder()
-            .SetMinimumFetchIntervalInSeconds(TimeoutConstants.REMOTECONFIG_MIN_FETCH_INTERVAL)
-            .SetFetchTimeoutInSeconds(TimeoutConstants.REMOTECONFIG_TIMEOUT)
+            .SetMinimumFetchIntervalInSeconds(TimeoutConstants.RemoteConfigMinimumFetchInterval)
+            .SetFetchTimeoutInSeconds(TimeoutConstants.RemoteConfigTimeout)
             .Build();
     }
 }

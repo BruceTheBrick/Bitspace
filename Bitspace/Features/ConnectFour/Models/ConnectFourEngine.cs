@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using Bitspace.Resources.Registers.Copy;
 using PropertyChanged;
 
 namespace Bitspace.Features;
@@ -12,7 +11,7 @@ public class ConnectFourEngine : IConnectFourEngine
 
     public ConnectFourEngine(Piece player, IConnectFourScoringService scoringService)
     {
-        Name = ConnectFourRegister.CF_ENGINE_NAME;
+        Name = ConnectFourRegister.EngineName;
         _maximisingPlayer = player;
 
         _scoringService = scoringService;

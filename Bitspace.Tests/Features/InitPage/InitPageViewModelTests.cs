@@ -1,11 +1,4 @@
-using System.Threading.Tasks;
-using Bitspace.Core;
-using Bitspace.Features;
-using Bitspace.Tests.Base;
-using Prism.Navigation;
-using Xunit;
-
-namespace Bitspace.Tests.Features.InitPage;
+namespace Bitspace.Tests.Features;
 
 public class InitPageViewModelTests : UnitTestBase<InitPageViewModel>
 {

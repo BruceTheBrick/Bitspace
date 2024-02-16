@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using Bitspace.Features;
-using Bogus;
-
-namespace Bitspace.Tests.Factories;
+﻿namespace Bitspace.Tests.Factories;
 
 public static class MenuItemFactory
 {

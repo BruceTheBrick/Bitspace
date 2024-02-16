@@ -1,6 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Bitspace.Core;
-using Bitspace.Core.Models;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Bitspace.Features;

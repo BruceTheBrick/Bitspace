@@ -3,7 +3,6 @@
     x:Class="Bitspace.Features.WeatherForecastPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:copy="clr-namespace:Bitspace.Resources.Registers.Copy"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:DataType="features:WeatherForecastPageViewModel"
@@ -17,7 +16,7 @@
     </features:BasePage.Resources>
     <Grid RowDefinitions="auto, *">
         <ui:NavigationBar
-            Title="{x:Static copy:WeatherForecastPageRegister.PAGE_NAME}"
+            Title="{Binding Title}"
             Grid.Row="0"
             LeftActionCommand="{Binding NavigateBackCommand}"
             LeftActionType="Back" />

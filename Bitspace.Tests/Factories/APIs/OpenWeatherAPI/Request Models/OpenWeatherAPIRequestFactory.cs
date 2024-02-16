@@ -1,7 +1,4 @@
-﻿using Bitspace.APIs;
-using Bogus;
-
-namespace Bitspace.Tests.Factories;
+﻿namespace Bitspace.Tests.Factories;
 
 public static class OpenWeatherAPIRequestFactory
 {

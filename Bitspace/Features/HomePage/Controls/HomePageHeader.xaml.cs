@@ -1,6 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Bitspace.Core;
-using Bitspace.Resources.Registers.Copy;
 
 namespace Bitspace.Features;
 
@@ -16,7 +14,7 @@ public partial class HomePageHeader
         // _ = StartAnimation();
     }
 
-    public string AccessibilityName { get; } = $"{HomePageRegister.WELCOME_TO} {HomePageRegister.BITSPACE}";
+    public string AccessibilityName { get; } = $"{HomePageRegister.WelcomeTo} {HomePageRegister.Bitspace}";
 
     private async Task StartAnimation()
     {

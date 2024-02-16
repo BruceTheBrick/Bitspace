@@ -1,10 +1,4 @@
-﻿using System;
-using Bitspace.Core;
-using Bitspace.Tests.Base;
-using FluentAssertions;
-using Xunit;
-
-namespace Bitspace.Tests.Services;
+﻿namespace Bitspace.Tests.Services;
 
 public class TimeoutServiceTests : UnitTestBase<TimeoutService>
 {

@@ -7,6 +7,6 @@ public partial class ConnectFourPage
 {
     public ConnectFourPage()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 }

@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Bitspace.Core;
-using Bitspace.Resources.Registers.Analytics;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Bitspace.Features;
@@ -8,16 +6,16 @@ namespace Bitspace.Features;
 public partial class HomePageViewModel : BasePageViewModel
 {
     private readonly IHomePageMenuItems _homePageMenuItemsService;
-    private readonly IEssentialsVersion _essentialsVersionService;
+    private readonly IVersionTracking _versionTracking;
 
     public HomePageViewModel(
         IBaseService baseService,
         IHomePageMenuItems homePageMenuItemsService,
-        IEssentialsVersion essentialsVersion)
+        IVersionTracking version)
         : base(baseService)
     {
         _homePageMenuItemsService = homePageMenuItemsService;
-        _essentialsVersionService = essentialsVersion;
+        _versionTracking = version;
 
         SetVersionNumber();
     }
@@ -49,7 +47,6 @@ public partial class HomePageViewModel : BasePageViewModel
 
     private void SetVersionNumber()
     {
-        VersionNumber =
-            $"{_essentialsVersionService.CurrentVersion()} {_essentialsVersionService.CurrentBuildNumber()}";
+        VersionNumber = $"{_versionTracking.CurrentVersion} {_versionTracking.CurrentBuild}";
     }
 }
