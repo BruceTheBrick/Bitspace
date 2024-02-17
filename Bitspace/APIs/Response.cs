@@ -32,24 +32,16 @@ public class Response<T> where T : class
 
     private HttpMethod StringToMethod(string methodString)
     {
-        switch (methodString)
+        return methodString switch
         {
-            case "GET":
-                return HttpMethod.Get;
-            case "POST":
-                return HttpMethod.Post;
-            case "PUT":
-                return HttpMethod.Put;
-            case "HEAD":
-                return HttpMethod.Head;
-            case "DELETE":
-                return HttpMethod.Delete;
-            case "PATCH":
-                return HttpMethod.Patch;
-            case "OPTIONS":
-                return HttpMethod.Options;
-        }
-
-        return null;
+            "GET" => HttpMethod.Get,
+            "POST" => HttpMethod.Post,
+            "PUT" => HttpMethod.Put,
+            "HEAD" => HttpMethod.Head,
+            "DELETE" => HttpMethod.Delete,
+            "PATCH" => HttpMethod.Patch,
+            "OPTIONS" => HttpMethod.Options,
+            _ => null
+        };
     }
 }

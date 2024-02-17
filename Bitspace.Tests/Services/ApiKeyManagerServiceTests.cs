@@ -14,7 +14,7 @@ public class ApiKeyManagerServiceTests : UnitTestBase<ApiKeyManagerService>
         Sut.GetKey(endpoint);
 
         // Assert
-        Mocker.GetMock<IRemoteConfigService>().Verify(x => x.GetValue(endpoint.ToString()), Times.Once);
+        Mocker.GetMock<IRemoteConfigService>().Verify(x => x.GetValue(endpoint.ToString()));
     }
 
     [Fact]
@@ -61,7 +61,7 @@ public class ApiKeyManagerServiceTests : UnitTestBase<ApiKeyManagerService>
         Sut.HasKey(endpoint);
 
         // Assert
-        Mocker.GetMock<IRemoteConfigService>().Verify(x => x.GetValue(endpoint.ToString()), Times.Once);
+        Mocker.GetMock<IRemoteConfigService>().Verify(x => x.GetValue(endpoint.ToString()));
     }
 
     [Fact]

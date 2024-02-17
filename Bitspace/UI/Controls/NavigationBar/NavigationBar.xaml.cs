@@ -172,14 +172,14 @@ public partial class NavigationBar
         {
             LeftActionText = string.Empty;
             LeftActionIconSource = "ic_close";
-            LeftActionAccessibilityName = Global.Close;
+            LeftActionAccessibilityName = GlobalRegister.Close;
             LeftActionIsInAccessibleTree = true;
             return;
         }
 
         RightActionText = string.Empty;
         RightActionIconSource = "ic_close";
-        RightActionAccessibilityName = Global.Close;
+        RightActionAccessibilityName = GlobalRegister.Close;
         RightActionIsInAccessibleTree = true;
     }
 
@@ -189,14 +189,14 @@ public partial class NavigationBar
         {
             LeftActionText = string.Empty;
             LeftActionIconSource = "ic_arrow_left";
-            LeftActionAccessibilityName = Global.Back;
+            LeftActionAccessibilityName = GlobalRegister.Back;
             LeftActionIsInAccessibleTree = true;
             return;
         }
 
         RightActionText = string.Empty;
         RightActionIconSource = "ic_arrow_left";
-        RightActionAccessibilityName = Global.Back;
+        RightActionAccessibilityName = GlobalRegister.Back;
         RightActionIsInAccessibleTree = true;
     }
 
@@ -204,16 +204,16 @@ public partial class NavigationBar
     {
         if (isLeftAction)
         {
-            LeftActionText = Global.Cancel;
+            LeftActionText = GlobalRegister.Cancel;
             LeftActionIconSource = string.Empty;
-            LeftActionAccessibilityName = Global.Cancel;
+            LeftActionAccessibilityName = GlobalRegister.Cancel;
             LeftActionIsInAccessibleTree = true;
             return;
         }
 
-        RightActionText = Global.Cancel;
+        RightActionText = GlobalRegister.Cancel;
         RightActionIconSource = string.Empty;
-        RightActionAccessibilityName = Global.Cancel;
+        RightActionAccessibilityName = GlobalRegister.Cancel;
         RightActionIsInAccessibleTree = true;
     }
 
@@ -221,16 +221,16 @@ public partial class NavigationBar
     {
         if (isLeftAction)
         {
-            LeftActionText = Global.Done;
+            LeftActionText = GlobalRegister.Done;
             LeftActionIconSource = string.Empty;
-            LeftActionAccessibilityName = Global.Done;
+            LeftActionAccessibilityName = GlobalRegister.Done;
             LeftActionIsInAccessibleTree = true;
             return;
         }
 
-        RightActionText = Global.Done;
+        RightActionText = GlobalRegister.Done;
         RightActionIconSource = string.Empty;
-        RightActionAccessibilityName = Global.Done;
+        RightActionAccessibilityName = GlobalRegister.Done;
         RightActionIsInAccessibleTree = true;
     }
 
@@ -240,14 +240,14 @@ public partial class NavigationBar
         {
             LeftActionText = string.Empty;
             LeftActionIconSource = "ic_arrow_right";
-            LeftActionAccessibilityName = Global.Next;
+            LeftActionAccessibilityName = GlobalRegister.Next;
             LeftActionIsInAccessibleTree = true;
             return;
         }
 
         RightActionText = string.Empty;
         RightActionIconSource = "ic_arrow_right";
-        RightActionAccessibilityName = Global.Next;
+        RightActionAccessibilityName = GlobalRegister.Next;
         RightActionIsInAccessibleTree = true;
     }
 

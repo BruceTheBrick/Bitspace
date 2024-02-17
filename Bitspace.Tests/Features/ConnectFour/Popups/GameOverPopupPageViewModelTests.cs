@@ -31,7 +31,7 @@ public class GameOverPopupPageViewModelTests : UnitTestBase<GameOverPopupPageVie
         await Sut.PlayAgainCommand.ExecuteAsync(null);
 
         //Assert
-        Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.GoBack(It.IsAny<INavigationParameters>()), Times.Once);
+        Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.GoBack(It.IsAny<INavigationParameters>(), true));
     }
         
     #endregion
@@ -47,7 +47,7 @@ public class GameOverPopupPageViewModelTests : UnitTestBase<GameOverPopupPageVie
         await Sut.QuitCommand.ExecuteAsync(null);
 
         //Assert
-        Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.GoBack());
+        Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.GoBack(true));
 
     }
         

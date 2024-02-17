@@ -71,10 +71,10 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>ConnectFourRegister.resx</DependentUpon>
       </Compile>
-      <Compile Update="Resources\Registers\Copy\Global.Designer.cs">
+      <Compile Update="Resources\Registers\Copy\GlobalRegister.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
-        <DependentUpon>Global.resx</DependentUpon>
+        <DependentUpon>GlobalRegister.resx</DependentUpon>
       </Compile>
       <Compile Update="Resources\Registers\Copy\HomePageRegister.Designer.cs">
         <DesignTime>True</DesignTime>
@@ -95,10 +95,10 @@
             <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
         </EmbeddedResource>
         
-        <EmbeddedResource Update="Resources\Registers\Copy\Global.resx">
+        <EmbeddedResource Update="Resources\Registers\Copy\GlobalRegister.resx">
             <Generator>PublicResXFileCodeGenerator</Generator>
             <GenerateResource>true</GenerateResource>
-            <LastGenOutput>Global.Designer.cs</LastGenOutput>
+            <LastGenOutput>GlobalRegister.Designer.cs</LastGenOutput>
         </EmbeddedResource>
         <EmbeddedResource Update="Resources\Registers\Copy\ConnectFourRegister.resx">
             <Generator>PublicResXFileCodeGenerator</Generator>

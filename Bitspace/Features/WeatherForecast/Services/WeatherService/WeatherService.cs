@@ -2,7 +2,7 @@
 
 public class WeatherService : ICurrentWeatherService
 {
-    private readonly IOpenWeatherAPI _openWeatherApi;
+    private readonly IOpenWeatherApi _openWeatherApi;
     private readonly ITimeoutService _timeoutService;
     private readonly IPermissionService _permissionService;
     private readonly IDeviceLocation _deviceLocationService;
@@ -15,7 +15,7 @@ public class WeatherService : ICurrentWeatherService
     private DateTime _hourlyForecastLastUpdate;
 
     public WeatherService(
-        IOpenWeatherAPI openWeatherApi,
+        IOpenWeatherApi openWeatherApi,
         ITimeoutService timeoutService,
         IPermissionService permissionService,
         IDeviceLocation deviceLocationService,

@@ -17,7 +17,7 @@ public class BaseApi
         ApiKey = keyManagerService.GetKey(api);
     }
 
-    protected IHttpClient Client { get; init; }
+    protected IHttpClient Client { get; }
     protected string ApiKey { get; }
     protected int TimeoutSeconds => 10;
 
@@ -25,7 +25,10 @@ public class BaseApi
     {
         var content = await rawResponse.Content.ReadAsStringAsync();
         var data = JsonConvert.DeserializeObject<T>(content) ?? new T();
-        var response = new Response<T>(data, rawResponse.StatusCode, rawResponse.RequestMessage.Method.Method,
+        var response = new Response<T>(
+            data,
+            rawResponse.StatusCode,
+            rawResponse.RequestMessage?.Method.Method,
             rawResponse.IsSuccessStatusCode);
         return response;
     }

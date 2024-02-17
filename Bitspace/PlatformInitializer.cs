@@ -138,7 +138,7 @@ public static class PlatformInitializer
 
     private static void RegisterApis(IServiceCollection services)
     {
-        services.AddTransient<IOpenWeatherAPI, OpenWeatherAPI>();
+        services.AddTransient<IOpenWeatherApi, OpenWeatherAPI>();
     }
 
     private static void RegisterDataLayers(IServiceCollection services)

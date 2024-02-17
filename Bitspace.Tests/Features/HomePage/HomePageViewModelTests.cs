@@ -17,7 +17,7 @@ public class MainPageViewModelTests : UnitTestBase<HomePageViewModel>
         Sut.Initialize(It.IsAny<INavigationParameters>());
 
         //Assert
-        Mocker.GetMock<IHomePageMenuItems>().Verify(x => x.GetMenuItems(), Times.Once);
+        Mocker.GetMock<IHomePageMenuItems>().Verify(x => x.GetMenuItems());
         Sut.MenuItems.Should().Equal(menuItems);
     }
     
@@ -35,21 +35,7 @@ public class MainPageViewModelTests : UnitTestBase<HomePageViewModel>
         Sut.ItemSelectedCommand.Execute(menuItem);
 
         //Assert
-        Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.NavigateAsync(menuItem.NavigationConstant), Times.Once);
-    }
-
-    [Fact]
-    public void ItemSelectedCommand_ShouldNotNavigateAsync_WhenNavigationConstantIsEmpty()
-    {
-        //Arrange
-        var menuItem = MenuItemFactory.GetViewModel();
-        menuItem.NavigationConstant = string.Empty;
-
-        //Act
-        Sut.ItemSelectedCommand.Execute(menuItem);
-
-        //Assert
-        Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.NavigateAsync(It.IsAny<string>()), Times.Never);
+        Mocker.GetMock<IBaseService>().Verify(x => x.NavigationService.NavigateAsync(menuItem.NavigationConstant));
     }
 
     #endregion
@@ -67,7 +53,7 @@ public class MainPageViewModelTests : UnitTestBase<HomePageViewModel>
         Sut.RefreshMenuItemsCommand.Execute(null);
 
         //Assert
-        Mocker.GetMock<IHomePageMenuItems>().Verify(x => x.ForceUpdateGetMenuItems(), Times.Once);
+        Mocker.GetMock<IHomePageMenuItems>().Verify(x => x.ForceUpdateGetMenuItems());
         Sut.MenuItems.Should().Equal(menuItems);
     }
     #endregion

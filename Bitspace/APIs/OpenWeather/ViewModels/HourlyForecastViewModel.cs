@@ -14,7 +14,7 @@ public class HourlyForecastViewModel
         Location = new LocationViewModel();
     }
 
-    public IList<ForecastItemViewModel> ForecastItems { get; set; }
+    public IList<ForecastItemViewModel> ForecastItems { get; private set; }
     public IList<DayViewModel> Days { get; set; }
     public LocationViewModel Location { get; set; }
 

@@ -2,7 +2,6 @@
 
 public class HourlyForecastViewModelTests
 {
-        
     #region Constructor
 
     [Fact]

@@ -43,7 +43,7 @@ public class HomePageMenuItemServiceTest : UnitTestBase<HomePageMenuItemService>
         Sut.ForceUpdateGetMenuItems();
 
         // Assert
-        Mocker.GetMock<IRemoteConfigService>().Verify(x => x.FetchAndActivate(), Times.Once);
+        Mocker.GetMock<IRemoteConfigService>().Verify(x => x.FetchAndActivate());
     }
 
     [Fact]

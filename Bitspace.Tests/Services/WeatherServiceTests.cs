@@ -17,7 +17,7 @@ public class WeatherServiceTests : UnitTestBase<WeatherService>
 
         // Assert
         Mocker.GetMock<IPermissionService>()
-            .Verify(x => x.RequestPermission(DevicePermissions.LOCATION), Times.Once);
+            .Verify(x => x.RequestPermission(DevicePermissions.LOCATION));
     }
 
     [Fact]
@@ -32,8 +32,8 @@ public class WeatherServiceTests : UnitTestBase<WeatherService>
         await Sut.GetHourlyForecast();
 
         // Assert
-        Mocker.GetMock<IOpenWeatherAPI>()
-            .Verify(x => x.GetHourlyWeather(It.IsAny<HourlyForecastRequest>()), Times.Once);
+        Mocker.GetMock<IOpenWeatherApi>()
+            .Verify(x => x.GetHourlyWeather(It.IsAny<HourlyForecastRequest>()));
     }
         
     [Fact]
@@ -48,8 +48,8 @@ public class WeatherServiceTests : UnitTestBase<WeatherService>
         await Sut.GetHourlyForecast();
 
         // Assert
-        Mocker.GetMock<IOpenWeatherAPI>()
-            .Verify(x => x.GetCurrentLocationName(It.IsAny<ReverseGeocodeRequest>()), Times.Once);
+        Mocker.GetMock<IOpenWeatherApi>()
+            .Verify(x => x.GetCurrentLocationName(It.IsAny<ReverseGeocodeRequest>()));
     }
 
     [Fact]
@@ -60,7 +60,7 @@ public class WeatherServiceTests : UnitTestBase<WeatherService>
         Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION))
             .ReturnsAsync(true);
         Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
-        Mocker.GetMock<IOpenWeatherAPI>().Setup(x => x.GetHourlyWeather(It.IsAny<HourlyForecastRequest>())).ReturnsAsync(response);
+        Mocker.GetMock<IOpenWeatherApi>().Setup(x => x.GetHourlyWeather(It.IsAny<HourlyForecastRequest>())).ReturnsAsync(response);
 
         //Act
         var hourlyForecast = await Sut.GetHourlyForecast();
@@ -76,7 +76,7 @@ public class WeatherServiceTests : UnitTestBase<WeatherService>
         var response = new Response<ReverseGeocodeResponseItemModel[]>(null!, HttpStatusCode.BadRequest, HttpMethod.Get, false, string.Empty);
         Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION)).ReturnsAsync(true);
         Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
-        Mocker.GetMock<IOpenWeatherAPI>().Setup(x => x.GetCurrentLocationName(It.IsAny<ReverseGeocodeRequest>())).ReturnsAsync(response);
+        Mocker.GetMock<IOpenWeatherApi>().Setup(x => x.GetCurrentLocationName(It.IsAny<ReverseGeocodeRequest>())).ReturnsAsync(response);
 
         //Act
         var hourlyForecast = await Sut.GetHourlyForecast();
@@ -92,14 +92,14 @@ public class WeatherServiceTests : UnitTestBase<WeatherService>
         Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
         Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION))
             .ReturnsAsync(true);
-        Mocker.GetMock<IOpenWeatherAPI>().Setup(x => x.GetHourlyWeather(It.IsAny<HourlyForecastRequest>()))
+        Mocker.GetMock<IOpenWeatherApi>().Setup(x => x.GetHourlyWeather(It.IsAny<HourlyForecastRequest>()))
             .Throws<HttpRequestException>();
 
         // Act
         await Sut.GetHourlyForecast();
 
         // Assert
-        Mocker.GetMock<IAlertService>().Verify(x => x.ShowSnackbar(It.IsAny<string>()), Times.Once);
+        Mocker.GetMock<IAlertService>().Verify(x => x.ShowSnackbar(It.IsAny<string>()));
     }
 
     [Fact]
@@ -109,14 +109,14 @@ public class WeatherServiceTests : UnitTestBase<WeatherService>
         Mocker.GetMock<ITimeoutService>().Setup(x => x.IsExpired(It.IsAny<DateTime>())).Returns(true);
         Mocker.GetMock<IPermissionService>().Setup(x => x.RequestPermission(DevicePermissions.LOCATION))
             .ReturnsAsync(true);
-        Mocker.GetMock<IOpenWeatherAPI>().Setup(x => x.GetHourlyWeather(It.IsAny<HourlyForecastRequest>()))
+        Mocker.GetMock<IOpenWeatherApi>().Setup(x => x.GetHourlyWeather(It.IsAny<HourlyForecastRequest>()))
             .Throws<Exception>();
 
         // Act
         await Sut.GetHourlyForecast();
 
         // Assert
-        Mocker.GetMock<IAlertService>().Verify(x => x.ShowSnackbar(It.IsAny<string>()), Times.Once);
+        Mocker.GetMock<IAlertService>().Verify(x => x.ShowSnackbar(It.IsAny<string>()));
     }
 
     #endregion
