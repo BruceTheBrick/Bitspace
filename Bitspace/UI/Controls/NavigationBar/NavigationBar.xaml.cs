@@ -172,14 +172,14 @@ public partial class NavigationBar
         {
             LeftActionText = string.Empty;
             LeftActionIconSource = "ic_close";
-            LeftActionAccessibilityName = Bitspace_Global.Close;
+            LeftActionAccessibilityName = Global.Close;
             LeftActionIsInAccessibleTree = true;
             return;
         }
 
         RightActionText = string.Empty;
         RightActionIconSource = "ic_close";
-        RightActionAccessibilityName = Bitspace_Global.Close;
+        RightActionAccessibilityName = Global.Close;
         RightActionIsInAccessibleTree = true;
     }
 
@@ -189,14 +189,14 @@ public partial class NavigationBar
         {
             LeftActionText = string.Empty;
             LeftActionIconSource = "ic_arrow_left";
-            LeftActionAccessibilityName = Bitspace_Global.Back;
+            LeftActionAccessibilityName = Global.Back;
             LeftActionIsInAccessibleTree = true;
             return;
         }
 
         RightActionText = string.Empty;
         RightActionIconSource = "ic_arrow_left";
-        RightActionAccessibilityName = Bitspace_Global.Back;
+        RightActionAccessibilityName = Global.Back;
         RightActionIsInAccessibleTree = true;
     }
 
@@ -204,16 +204,16 @@ public partial class NavigationBar
     {
         if (isLeftAction)
         {
-            LeftActionText = Bitspace_Global.Cancel;
+            LeftActionText = Global.Cancel;
             LeftActionIconSource = string.Empty;
-            LeftActionAccessibilityName = Bitspace_Global.Cancel;
+            LeftActionAccessibilityName = Global.Cancel;
             LeftActionIsInAccessibleTree = true;
             return;
         }
 
-        RightActionText = Bitspace_Global.Cancel;
+        RightActionText = Global.Cancel;
         RightActionIconSource = string.Empty;
-        RightActionAccessibilityName = Bitspace_Global.Cancel;
+        RightActionAccessibilityName = Global.Cancel;
         RightActionIsInAccessibleTree = true;
     }
 
@@ -221,16 +221,16 @@ public partial class NavigationBar
     {
         if (isLeftAction)
         {
-            LeftActionText = Bitspace_Global.Done;
+            LeftActionText = Global.Done;
             LeftActionIconSource = string.Empty;
-            LeftActionAccessibilityName = Bitspace_Global.Done;
+            LeftActionAccessibilityName = Global.Done;
             LeftActionIsInAccessibleTree = true;
             return;
         }
 
-        RightActionText = Bitspace_Global.Done;
+        RightActionText = Global.Done;
         RightActionIconSource = string.Empty;
-        RightActionAccessibilityName = Bitspace_Global.Done;
+        RightActionAccessibilityName = Global.Done;
         RightActionIsInAccessibleTree = true;
     }
 
@@ -240,14 +240,14 @@ public partial class NavigationBar
         {
             LeftActionText = string.Empty;
             LeftActionIconSource = "ic_arrow_right";
-            LeftActionAccessibilityName = Bitspace_Global.Next;
+            LeftActionAccessibilityName = Global.Next;
             LeftActionIsInAccessibleTree = true;
             return;
         }
 
         RightActionText = string.Empty;
         RightActionIconSource = "ic_arrow_right";
-        RightActionAccessibilityName = Bitspace_Global.Next;
+        RightActionAccessibilityName = Global.Next;
         RightActionIsInAccessibleTree = true;
     }
 

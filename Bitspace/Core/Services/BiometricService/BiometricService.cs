@@ -1,27 +1,38 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
 
 namespace Bitspace.Core;
 
 [ExcludeFromCodeCoverage]
 public class BiometricService : IBiometricService
 {
-    public Task<AuthenticationType> BiometricType()
+    public async Task<BiometricType> BiometricType()
     {
-        // return await CrossFingerprint.Current.GetAuthenticationTypeAsync();
-        return Task.FromResult(new AuthenticationType());
+        var authenticationType = await CrossFingerprint.Current.GetAuthenticationTypeAsync();
+        return ToBiometricType(authenticationType);
     }
 
-    public Task<bool> HasBiometrics()
+    public async Task<bool> HasBiometrics()
     {
-        // var biometricAuthAvailable = await CrossFingerprint.Current.GetAvailabilityAsync();
-        // return biometricAuthAvailable == FingerprintAvailability.Available;
-        return Task.FromResult(false);
+        var type = await BiometricType();
+        return type != Core.BiometricType.None;
     }
 
-    public Task<FingerprintAuthenticationResult> Authenticate(string title, string message)
+    public async Task<AuthenticationResultModel> Authenticate(string title, string message)
     {
-        // var authenticationRequestConfig = new AuthenticationRequestConfiguration(title, message);
-        // return await CrossFingerprint.Current.AuthenticateAsync(authenticationRequestConfig);
-        return Task.FromResult(new FingerprintAuthenticationResult());
+        var authenticationRequestConfig = new AuthenticationRequestConfiguration(title, message);
+        var result = await CrossFingerprint.Current.AuthenticateAsync(authenticationRequestConfig);
+        return new AuthenticationResultModel(result);
+    }
+
+    private BiometricType ToBiometricType(AuthenticationType type)
+    {
+        return type switch
+        {
+            AuthenticationType.Face => Core.BiometricType.Face,
+            AuthenticationType.Fingerprint => Core.BiometricType.Fingerprint,
+            _ => Core.BiometricType.None
+        };
     }
 }

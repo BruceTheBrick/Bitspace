@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Plugin.Fingerprint.Abstractions;
 
 namespace Bitspace.Core;
 
@@ -13,6 +14,12 @@ public class AuthenticationResultModel
     {
         Success = success;
         ErrorMessage = errorMessage;
+    }
+
+    public AuthenticationResultModel(FingerprintAuthenticationResult result)
+    {
+        Success = result.Authenticated;
+        ErrorMessage = result.ErrorMessage;
     }
 
     public bool Success { get; }

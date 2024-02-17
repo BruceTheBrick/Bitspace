@@ -22,14 +22,14 @@ namespace Bitspace.Resources.Registers.Copy {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class WeatherForecastPageRegister {
+    public class HomePageRegister {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal WeatherForecastPageRegister() {
+        internal HomePageRegister() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Bitspace.Resources.Registers.Copy {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bitspace.Resources.Registers.Copy.WeatherForecastPageRegister", typeof(WeatherForecastPageRegister).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Bitspace.Resources.Registers.Copy.HomePageRegister", typeof(HomePageRegister).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,16 +61,25 @@ namespace Bitspace.Resources.Registers.Copy {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Humidity.
+        ///   Looks up a localized string similar to BITSPACE.
         /// </summary>
-        public static string Humidity {
+        public static string Bitspace {
             get {
-                return ResourceManager.GetString("Humidity", resourceCulture);
+                return ResourceManager.GetString("Bitspace", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weather Forecast Page.
+        ///   Looks up a localized string similar to Martini.
+        /// </summary>
+        public static string Martini {
+            get {
+                return ResourceManager.GetString("Martini", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home Page.
         /// </summary>
         public static string PageName {
             get {
@@ -79,29 +88,29 @@ namespace Bitspace.Resources.Registers.Copy {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pressure.
+        ///   Looks up a localized string similar to QR Code Scanner.
         /// </summary>
-        public static string Pressure {
+        public static string QrCodeScannerTitle {
             get {
-                return ResourceManager.GetString("Pressure", resourceCulture);
+                return ResourceManager.GetString("QrCodeScannerTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UV Index.
+        ///   Looks up a localized string similar to Weather Forecast.
         /// </summary>
-        public static string UVIndex {
+        public static string WeatherForecastTitle {
             get {
-                return ResourceManager.GetString("UVIndex", resourceCulture);
+                return ResourceManager.GetString("WeatherForecastTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wind Speed.
+        ///   Looks up a localized string similar to Welcome to.
         /// </summary>
-        public static string WindSpeed {
+        public static string WelcomeTo {
             get {
-                return ResourceManager.GetString("WindSpeed", resourceCulture);
+                return ResourceManager.GetString("WelcomeTo", resourceCulture);
             }
         }
     }

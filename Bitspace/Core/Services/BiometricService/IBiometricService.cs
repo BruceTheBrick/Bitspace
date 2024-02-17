@@ -2,11 +2,11 @@
 
 public interface IBiometricService
 {
-    public Task<AuthenticationType> BiometricType();
+    public Task<BiometricType> BiometricType();
 
     public Task<bool> HasBiometrics();
 
-    public Task<FingerprintAuthenticationResult> Authenticate(
+    public Task<AuthenticationResultModel> Authenticate(
         string title = "Authenticate",
         string message = "Please authenticate to continue.");
 }

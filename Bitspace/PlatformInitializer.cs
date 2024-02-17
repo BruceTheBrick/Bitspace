@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Bitspace.Features.Buttons;
 using Microsoft.Maui.LifecycleEvents;
+using Plugin.Fingerprint;
 
 namespace Bitspace;
 
@@ -51,6 +52,10 @@ public static class PlatformInitializer
             androidEvents.OnCreate((activity, _) =>
             {
                 Firebase.FirebaseApp.InitializeApp(activity);
+                if (activity is Platforms.Droid.MainActivity mainActivity)
+                {
+                    CrossFingerprint.SetCurrentActivityResolver(() => mainActivity);
+                }
             });
         });
 #endif

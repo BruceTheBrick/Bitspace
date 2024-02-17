@@ -3,24 +3,23 @@ using Newtonsoft.Json;
 
 namespace Bitspace.APIs;
 
-public class BaseAPI
+public class BaseApi
 {
-    protected readonly IHttpClient _client;
-    protected int TimeoutSeconds = 10;
-
     [ExcludeFromCodeCoverage]
-    protected BaseAPI(
+    protected BaseApi(
         IHttpClient client,
         IApiKeyManagerService keyManagerService,
         ApiEndpoints api)
     {
-        _client = client;
+        Client = client;
 
-        _client.SetTimeout(TimeoutSeconds);
+        Client.SetTimeout(TimeoutSeconds);
         ApiKey = keyManagerService.GetKey(api);
     }
 
+    protected IHttpClient Client { get; init; }
     protected string ApiKey { get; }
+    protected int TimeoutSeconds => 10;
 
     protected async Task<Response<T>> ToResponse<T>(HttpResponseMessage rawResponse) where T : class, new()
     {

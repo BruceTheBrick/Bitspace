@@ -39,7 +39,7 @@ public class HourlyForecastViewModel
             }
             else
             {
-                var forecastItems = new List<ForecastItemViewModel> {item};
+                var forecastItems = new List<ForecastItemViewModel> { item };
                 var newDay = new DayViewModel(item.DateTime, forecastItems);
                 Days.Add(newDay);
             }

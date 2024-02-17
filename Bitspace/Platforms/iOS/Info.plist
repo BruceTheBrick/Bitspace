@@ -28,5 +28,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>We use FaceID to securely authenticate you before accessing sensitive or personal information within Bitspace.</string>
 </dict>
 </plist>
