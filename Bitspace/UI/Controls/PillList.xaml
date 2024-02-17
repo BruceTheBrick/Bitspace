@@ -17,7 +17,7 @@
                 <DataTemplate x:DataType="ui:PillViewModel">
                     <ui:Pill>
                         <ui:Pill.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ItemSelectedCommand, Source={x:Reference This}}" />
+                            <TapGestureRecognizer Command="{Binding ItemSelectedCommand, Source={x:Reference This}}" CommandParameter="{Binding .}" />
                         </ui:Pill.GestureRecognizers>
                     </ui:Pill>
                 </DataTemplate>

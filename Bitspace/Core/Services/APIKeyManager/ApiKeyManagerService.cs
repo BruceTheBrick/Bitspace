@@ -11,7 +11,7 @@ public class ApiKeyManagerService : IApiKeyManagerService
 
     public string GetKey(ApiEndpoints api)
     {
-        return _remoteConfigService.GetValue(api.ToString());
+        return _remoteConfigService.GetValue($"{api}");
     }
 
     public bool HasKey(ApiEndpoints api)

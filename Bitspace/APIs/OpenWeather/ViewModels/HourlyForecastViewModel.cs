@@ -4,19 +4,17 @@ public class HourlyForecastViewModel
 {
     public HourlyForecastViewModel()
     {
-        Location = new LocationViewModel();
     }
 
     public HourlyForecastViewModel(HourlyWeatherResponse response)
     {
         InitForecastItems(response.List);
         InitDays();
-        Location = new LocationViewModel();
     }
 
     public IList<ForecastItemViewModel> ForecastItems { get; private set; }
-    public IList<DayViewModel> Days { get; set; }
-    public LocationViewModel Location { get; set; }
+    public IList<DayViewModel> Days { get; set; } = new List<DayViewModel>();
+    public LocationViewModel Location { get; set; } = new ();
 
     private void InitForecastItems(IEnumerable<ForecastListObjectResponse> items)
     {

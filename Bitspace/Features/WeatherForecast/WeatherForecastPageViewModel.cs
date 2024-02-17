@@ -32,7 +32,7 @@ public partial class WeatherForecastPageViewModel : BasePageViewModel
     {
         IsBusy = true;
         HourlyForecast = await _currentWeatherService.GetHourlyForecast();
-        SelectedDayViewModel = HourlyForecast.Days.First();
+        SelectedDayViewModel = HourlyForecast.Days.FirstOrDefault();
         InitDailyPillList();
         IsBusy = false;
     }

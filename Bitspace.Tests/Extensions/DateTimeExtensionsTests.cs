@@ -14,7 +14,7 @@ public class DateTimeExtensionsTests
         var formattedString = dateTime.ToDisplayString();
 
         //Assert
-        formattedString.Should().Be($"{dateTime.ToString("dddd")}, {dateTime.Day} {dateTime.ToString("MMM")}");
+        formattedString.Should().Be($"{dateTime:dddd}, {dateTime.Day} {dateTime:MMM}");
     }
         
     #endregion
