@@ -20,8 +20,8 @@ public partial class HomePageViewModel : BasePageViewModel
         SetVersionNumber();
     }
 
-    public string VersionNumber { get; set; }
     public ObservableCollection<MenuListItemViewModel> MenuItems { get; set; }
+    public string VersionNumber { get; set; }
     public bool IsRefreshing { get; set; }
 
     public override void Initialize(INavigationParameters parameters)

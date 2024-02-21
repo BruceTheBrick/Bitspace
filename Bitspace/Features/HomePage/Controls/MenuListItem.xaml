@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Grid
-    x:Class="Bitspace.Features.MenuListItem"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    x:Name="This"
-    Padding="18,16"
-    ui:AccessibilityTraits.Traits="{OnPlatform iOS=Button}"
     AutomationProperties.IsInAccessibleTree="True"
-    AutomationProperties.Name="{Binding .MenuListItemViewModel.Text, Source={x:Reference This}}"
-    ColumnDefinitions="*, 8*, *">
+    AutomationProperties.Name="{Binding MenuListItemViewModel.Text, Source={x:Reference This}}"
+    ColumnDefinitions="*, 8*, *"
+    Padding="18,16"
+    ui:AccessibilityTraits.Traits="Button"
+    x:Class="Bitspace.Features.MenuListItem"
+    x:Name="This"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ui:ExtendedImage
-        Grid.Column="0"
         AutomationProperties.IsInAccessibleTree="False"
+        Grid.Column="0"
         HeightRequest="28"
         HorizontalOptions="Start"
         Source="{Binding MenuListItemViewModel.Icon, Source={x:Reference This}}"
         VerticalOptions="Center"
         WidthRequest="28" />
     <Label
-        Grid.Column="1"
         AutomationProperties.IsInAccessibleTree="False"
+        Grid.Column="1"
         Text="{Binding .MenuListItemViewModel.Text, Source={x:Reference This}}"
         VerticalOptions="Center" />
     <ui:ExtendedImage
-        Grid.Column="2"
         AutomationProperties.IsInAccessibleTree="False"
+        Grid.Column="2"
         HeightRequest="18"
         Source="{Binding MenuListItemViewModel.ActionIcon, Source={x:Reference This}}"
         VerticalOptions="Center"

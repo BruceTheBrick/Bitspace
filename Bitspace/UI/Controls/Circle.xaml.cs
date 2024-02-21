@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Maui.Controls.Shapes;
 
 namespace Bitspace.UI;
 
@@ -12,6 +13,6 @@ public partial class Circle
 
     private void Circle_OnSizeChanged(object sender, EventArgs e)
     {
-        This.CornerRadius = (float)Height / 2;
+        StrokeShape = new RoundRectangle { CornerRadius = (float)Height / 2 };
     }
 }

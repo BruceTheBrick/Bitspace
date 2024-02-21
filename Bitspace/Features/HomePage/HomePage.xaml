@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <features:BasePage
     x:Class="Bitspace.Features.HomePage"
+    x:DataType="features:HomePageViewModel"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="http://prismlibrary.com"
     xmlns:converters="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
-    x:DataType="features:HomePageViewModel">
-    <VerticalStackLayout Spacing="0">
-        <features:HomePageHeader />
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Grid Padding="{StaticResource BaseThickness}" RowDefinitions="Auto, *, Auto">
+        <features:HomePageHeader Grid.Row="0" />
         <Border
+            BackgroundColor="{StaticResource White}"
+            Grid.Row="1"
             Margin="16,0,16,32"
             Padding="0,20"
-            BackgroundColor="{StaticResource White}"
-            StrokeShape="RoundRectangle 20">
+            StrokeShape="RoundRectangle 16">
             <Grid>
                 <ListView
                     HasUnevenRows="True"
@@ -40,10 +41,10 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Border
-                    Margin="20"
-                    Padding="20"
                     BackgroundColor="LightGray"
                     IsVisible="{Binding MenuItems, Converter={converters:IsListNullOrEmptyConverter}}"
+                    Margin="20"
+                    Padding="20"
                     StrokeShape="RoundRectangle 20">
                     <Label
                         FontSize="24"
@@ -53,6 +54,9 @@
                 </Border>
             </Grid>
         </Border>
-        <Label HorizontalOptions="End" Text="{Binding VersionNumber}" />
-    </VerticalStackLayout>
+        <Label
+            Grid.Row="2"
+            HorizontalOptions="End"
+            Text="{Binding VersionNumber}" />
+    </Grid>
 </features:BasePage>

@@ -63,12 +63,12 @@ public class ExtendedImage : Image
             return;
         }
 
-        view.AddTintEffect();
+        // view.AddTintEffect();
     }
 
     private void SetBaseSource(string source)
     {
-        ((Image)this).Source = source;
+        base.Source = source;
     }
 
     private void AddTintEffect()
