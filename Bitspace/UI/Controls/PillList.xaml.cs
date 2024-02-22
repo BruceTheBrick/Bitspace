@@ -26,8 +26,8 @@ public partial class PillList
 
     public PillList()
     {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
     public ObservableCollection<PillViewModel> ItemsSource
     {

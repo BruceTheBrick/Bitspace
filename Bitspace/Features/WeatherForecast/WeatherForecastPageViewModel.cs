@@ -15,11 +15,22 @@ public partial class WeatherForecastPageViewModel : BasePageViewModel
         : base(baseService)
     {
         _currentWeatherService = currentWeatherService;
+        
+        DailyPillList.Add(new PillViewModel());
+        DailyPillList.Add(new PillViewModel());
+        DailyPillList.Add(new PillViewModel());
+        DailyPillList.Add(new PillViewModel());
+        DailyPillList.Add(new PillViewModel());
+        DailyPillList.Add(new PillViewModel());
+        DailyPillList.Add(new PillViewModel());
+        DailyPillList.Add(new PillViewModel());
+        DailyPillList.Add(new PillViewModel());
+        
     }
 
     public HourlyForecastViewModel HourlyForecast { get; set; }
     public DayViewModel SelectedDayViewModel { get; set; }
-    public ObservableCollection<PillViewModel> DailyPillList { get; set; }
+    public ObservableCollection<PillViewModel> DailyPillList { get; set; } = new ();
     public PillViewModel ActivePill { get; set; }
 
     public override async Task InitializeAsync(INavigationParameters parameters)
@@ -39,16 +50,16 @@ public partial class WeatherForecastPageViewModel : BasePageViewModel
 
     private void InitDailyPillList()
     {
-        DailyPillList = new ObservableCollection<PillViewModel>();
-        foreach (var day in HourlyForecast.Days)
-        {
-            var pill = new PillViewModel(day.DateTime.ToDisplayString());
-            pill.Id = Guid.NewGuid().ToString();
-            DailyPillList.Add(pill);
-        }
-
-        ActivePill = DailyPillList.First();
-        ActivePill.IsActive = true;
+        // DailyPillList = new ObservableCollection<PillViewModel>();
+        // foreach (var day in HourlyForecast.Days)
+        // {
+        //     var pill = new PillViewModel(day.DateTime.ToDisplayString());
+        //     pill.Id = Guid.NewGuid().ToString();
+        //     DailyPillList.Add(pill);
+        // }
+        //
+        // ActivePill = DailyPillList.First();
+        // ActivePill.IsActive = true;
     }
 
     [RelayCommand]

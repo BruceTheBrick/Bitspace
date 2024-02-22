@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Grid
+<ContentView
     x:Class="Bitspace.UI.SkeletonSection"
+    x:Name="This"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:skeleton="clr-namespace:Maui.Skeleton;assembly=Maui.Skeleton"
-    x:Name="This">
-    <VerticalStackLayout x:Name="ContentStack" IsVisible="{Binding IsLoading, Converter={converters:InvertedBoolConverter}, Source={x:Reference This}}" />
-    <Border
-        x:Name="Skeleton"
-        skeleton:Skeleton.BackgroundColor="{Binding LoadingBackgroundColor, Source={x:Reference This}}"
-        skeleton:Skeleton.IsBusy="{Binding IsLoading, Source={x:Reference This}}"
-        BackgroundColor="Transparent"
-        HorizontalOptions="Fill"
-        IsVisible="{Binding IsLoading, Source={x:Reference This}}"
-        Opacity="0.3"
-        StrokeThickness="0"
-        VerticalOptions="Fill" />
-</Grid>
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Grid>
+        <StackLayout IsVisible="{Binding IsLoading, Converter={converters:InvertedBoolConverter}, Source={x:Reference This}}" x:Name="ContentStack" />
+        <Frame
+            CornerRadius="{Binding CornerRadius, Source={x:Reference This}}"
+            HorizontalOptions="Fill"
+            IsVisible="{Binding IsLoading, Source={x:Reference This}}"
+            Opacity="0.3"
+            VerticalOptions="Fill"
+            skeleton:Skeleton.BackgroundColor="{Binding LoadingBackgroundColor, Source={x:Reference This}}"
+            skeleton:Skeleton.IsBusy="{Binding IsLoading, Source={x:Reference This}}" />
+    </Grid>
+</ContentView>

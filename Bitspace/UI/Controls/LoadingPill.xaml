@@ -5,7 +5,7 @@
     HorizontalOptions="Start"
     SizeChanged="LoadingPill_OnSizeChanged"
     StrokeShape="RoundRectangle 40"
-    VerticalOptions="CenterAndExpand"
+    VerticalOptions="Center"
     WidthRequest="120"
     x:Class="Bitspace.UI.LoadingPill"
     x:DataType="ui:PillViewModel"
@@ -13,8 +13,8 @@
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ui:SkeletonSection
-        HorizontalOptions="FillAndExpand"
+        HorizontalOptions="Fill"
         IsLoading="True"
         IsVisible="True"
-        VerticalOptions="FillAndExpand" />
+        VerticalOptions="Fill" />
 </Border>

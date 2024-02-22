@@ -6,18 +6,16 @@ namespace Bitspace.Features;
 public partial class HomePageViewModel : BasePageViewModel
 {
     private readonly IHomePageMenuItems _homePageMenuItemsService;
-    private readonly IVersionTracking _versionTracking;
 
     public HomePageViewModel(
         IBaseService baseService,
         IHomePageMenuItems homePageMenuItemsService,
-        IVersionTracking version)
+        IVersionTracking versionTracking)
         : base(baseService)
     {
         _homePageMenuItemsService = homePageMenuItemsService;
-        _versionTracking = version;
 
-        SetVersionNumber();
+        VersionNumber = $"{versionTracking.CurrentVersion} {versionTracking.CurrentBuild}";
     }
 
     public ObservableCollection<MenuListItemViewModel> MenuItems { get; set; }
@@ -31,10 +29,10 @@ public partial class HomePageViewModel : BasePageViewModel
     }
 
     [RelayCommand]
-    private Task ItemSelected(MenuListItemViewModel item)
+    private async Task ItemSelected(MenuListItemViewModel item)
     {
         AnalyticsService.LogEvent(AnalyticsRegister.ItemSelected, AnalyticsRegister.Id, item.NavigationConstant);
-        return NavigationService.NavigateAsync(item.NavigationConstant);
+        var t = await NavigationService.NavigateAsync(item.NavigationConstant);
     }
 
     [RelayCommand]
@@ -43,10 +41,5 @@ public partial class HomePageViewModel : BasePageViewModel
         IsRefreshing = true;
         MenuItems = _homePageMenuItemsService.ForceUpdateGetMenuItems();
         IsRefreshing = false;
-    }
-
-    private void SetVersionNumber()
-    {
-        VersionNumber = $"{_versionTracking.CurrentVersion} {_versionTracking.CurrentBuild}";
     }
 }

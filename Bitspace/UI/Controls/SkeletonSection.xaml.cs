@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.Maui.Controls.Shapes;
 
 namespace Bitspace.UI;
 
@@ -26,8 +25,7 @@ public partial class SkeletonSection
         typeof(int),
         typeof(SkeletonSection),
         16,
-        BindingMode.TwoWay,
-        propertyChanged: OnCornerRadiusChanged);
+        BindingMode.TwoWay);
 
     public SkeletonSection()
     {
@@ -35,18 +33,7 @@ public partial class SkeletonSection
         SetDefaultLoadingColor();
     }
 
-    public IList<IView> Contents
-    {
-        init
-        {
-            foreach (var element in value)
-            {
-                ContentStack.AddLogicalChild((Element)element);
-            }
-        }
-
-        get => ContentStack?.Children ?? new List<IView>();
-    }
+    public IList<IView> Contents => ContentStack.Children;
 
     public bool IsLoading
     {
@@ -64,16 +51,6 @@ public partial class SkeletonSection
     {
         get => (int)GetValue(CornerRadiusProperty);
         set => SetValue(CornerRadiusProperty, value);
-    }
-
-    private static void OnCornerRadiusChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is not SkeletonSection skeletonSection)
-        {
-            return;
-        }
-
-        skeletonSection.Skeleton.StrokeShape = new RoundRectangle { CornerRadius = (int)newValue };
     }
 
     private void SetDefaultLoadingColor()
