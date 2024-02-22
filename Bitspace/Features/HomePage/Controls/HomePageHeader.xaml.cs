@@ -11,11 +11,15 @@ public partial class HomePageHeader
     {
         InitializeComponent();
         _animationService = new AnimationService();
-        // AppIcon.Opacity = 0;
-        // _ = StartAnimation();
+        AppIcon.Opacity = 0;
     }
 
     public string AccessibilityName => $"{HomePageRegister.WelcomeTo} {HomePageRegister.Bitspace}";
+    protected override void OnSizeAllocated(double width, double height)
+    {
+        base.OnSizeAllocated(width, height);
+        _ = StartAnimation();
+    }
 
     private async void RotateIcon(object sender, EventArgs e)
     {
@@ -37,13 +41,13 @@ public partial class HomePageHeader
 
     private async Task HideIcon()
     {
-        // await AppIcon.TranslateTo(-AppIcon.Width, AppIcon.Height, 0);
+        await AppIcon.TranslateTo(-AppIcon.Width, AppIcon.Height, 0);
     }
 
     private async Task AnimateIcon()
     {
         await HideIcon();
-        // _ = _animationService.FadeIn(AppIcon, 250);
-        // await AppIcon.TranslateTo(0, 0, 750, Easing.CubicInOut);
+        _ = _animationService.FadeIn(AppIcon, 250);
+        await AppIcon.TranslateTo(0, 0, 750, Easing.CubicInOut);
     }
 }

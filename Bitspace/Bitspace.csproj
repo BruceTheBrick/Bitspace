@@ -22,7 +22,6 @@
     </ItemGroup>
 
     <!--Android-->
-<!--    <ItemGroup Condition="$(TargetFramework) == 'net8.0-android'">-->
     <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
         <GoogleServicesJson Include="Platforms\Android\google-services.json" />
 
@@ -31,7 +30,6 @@
     </ItemGroup>
 
     <!--iOS-->
-<!--    <ItemGroup Condition="$(TargetFramework) == 'net8.0-ios'">-->
     <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
         <BundleResource Include="Platforms\iOS\GoogleService-Info.plist" />
 
@@ -61,31 +59,31 @@
         <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
     </ItemGroup>
     <ItemGroup>
-      <Compile Update="Resources\Registers\Analytics\AnalyticsRegister.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>AnalyticsRegister.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Registers\Copy\ConnectFourRegister.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>ConnectFourRegister.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Registers\Copy\GlobalRegister.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>GlobalRegister.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Registers\Copy\HomePageRegister.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>HomePageRegister.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Registers\Copy\WeatherForecastPageRegister.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>WeatherForecastPageRegister.resx</DependentUpon>
-      </Compile>
+        <Compile Update="Resources\Registers\Analytics\AnalyticsRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>AnalyticsRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Registers\Copy\ConnectFourRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>ConnectFourRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Registers\Copy\GlobalRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>GlobalRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Registers\Copy\HomePageRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>HomePageRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Registers\Copy\WeatherForecastPageRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>WeatherForecastPageRegister.resx</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -94,7 +92,6 @@
             <GenerateResource>true</GenerateResource>
             <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
         </EmbeddedResource>
-        
         <EmbeddedResource Update="Resources\Registers\Copy\GlobalRegister.resx">
             <Generator>PublicResXFileCodeGenerator</Generator>
             <GenerateResource>true</GenerateResource>
