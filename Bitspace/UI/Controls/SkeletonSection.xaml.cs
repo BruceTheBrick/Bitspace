@@ -33,7 +33,17 @@ public partial class SkeletonSection
         SetDefaultLoadingColor();
     }
 
-    public IList<IView> Contents => ContentStack.Children;
+    public IList<IView> Contents
+    {
+        get => ContentStack?.Children ?? new List<IView>();
+        set
+        {
+            foreach (var child in value)
+            {
+                ContentStack.Add(child);
+            }
+        }
+    }
 
     public bool IsLoading
     {

@@ -29,5 +29,6 @@ public class PillViewModel
     public string IconSource { get; set; }
     public bool IsEnabled { get; set; }
     public bool IsActive { get; set; }
+    public bool IsLoading { get; set; }
     public string Id { get; set; }
 }

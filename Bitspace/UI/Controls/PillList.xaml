@@ -3,32 +3,19 @@
     x:Class="Bitspace.UI.PillList"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:effects="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:Name="This"
     HorizontalScrollBarVisibility="Always"
     Orientation="Horizontal">
-    <HorizontalStackLayout>
-        <HorizontalStackLayout
-            Padding="0,8,0,8"
-            BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference This}}"
-            IsVisible="{Binding IsLoading, Converter={effects:InvertedBoolConverter}, Source={x:Reference This}}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate x:DataType="ui:PillViewModel">
-                    <ui:Pill>
-                        <ui:Pill.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ItemSelectedCommand, Source={x:Reference This}}" CommandParameter="{Binding .}" />
-                        </ui:Pill.GestureRecognizers>
-                    </ui:Pill>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout Padding="0,8,0,8" IsVisible="{Binding IsLoading, Source={x:Reference This}}">
-            <ui:LoadingPill />
-            <ui:LoadingPill />
-            <ui:LoadingPill />
-            <ui:LoadingPill />
-            <ui:LoadingPill />
-        </HorizontalStackLayout>
+    <HorizontalStackLayout Padding="0,8,0,8" BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference This}}">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate x:DataType="ui:PillViewModel">
+                <ui:Pill>
+                    <ui:Pill.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ItemSelectedCommand, Source={x:Reference This}}" CommandParameter="{Binding .}" />
+                    </ui:Pill.GestureRecognizers>
+                </ui:Pill>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
     </HorizontalStackLayout>
 </ScrollView>

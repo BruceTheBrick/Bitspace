@@ -16,15 +16,46 @@ public partial class WeatherForecastPageViewModel : BasePageViewModel
     {
         _currentWeatherService = currentWeatherService;
         
-        DailyPillList.Add(new PillViewModel());
-        DailyPillList.Add(new PillViewModel());
-        DailyPillList.Add(new PillViewModel());
-        DailyPillList.Add(new PillViewModel());
-        DailyPillList.Add(new PillViewModel());
-        DailyPillList.Add(new PillViewModel());
-        DailyPillList.Add(new PillViewModel());
-        DailyPillList.Add(new PillViewModel());
-        DailyPillList.Add(new PillViewModel());
+        DailyPillList.Add(new PillViewModel("Pill Here")
+        {
+            IsLoading = true,
+            IsActive = true,
+        });
+        DailyPillList.Add(new PillViewModel("Pill Here")
+        {
+            IsLoading = true,
+            IsActive = true,
+        });
+        DailyPillList.Add(new PillViewModel("Pill Here")
+        {
+            IsLoading = true,
+            IsActive = true,
+        });
+        DailyPillList.Add(new PillViewModel("Pill Here")
+        {
+            IsLoading = true,
+            IsActive = true,
+        });
+        DailyPillList.Add(new PillViewModel("Pill Here")
+        {
+            IsLoading = true,
+            IsActive = true,
+        });
+        DailyPillList.Add(new PillViewModel("Pill Here")
+        {
+            IsLoading = true,
+            IsActive = true,
+        });
+        DailyPillList.Add(new PillViewModel("Pill Here")
+        {
+            IsLoading = true,
+            IsActive = true,
+        });
+        DailyPillList.Add(new PillViewModel("Pill Here")
+        {
+            IsLoading = true,
+            IsActive = true,
+        });
         
     }
 
@@ -32,6 +63,15 @@ public partial class WeatherForecastPageViewModel : BasePageViewModel
     public DayViewModel SelectedDayViewModel { get; set; }
     public ObservableCollection<PillViewModel> DailyPillList { get; set; } = new ();
     public PillViewModel ActivePill { get; set; }
+
+    [RelayCommand]
+    private void TogglePillLoading()
+    {
+        foreach (var pill in DailyPillList)
+        {
+            pill.IsLoading = !pill.IsLoading;
+        }
+    }
 
     public override async Task InitializeAsync(INavigationParameters parameters)
     {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <features:BasePage
-    BackgroundColor="{StaticResource Ninja}"
     x:Class="Bitspace.Features.WeatherForecastPage"
-    x:DataType="features:WeatherForecastPageViewModel"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    x:DataType="features:WeatherForecastPageViewModel"
+    BackgroundColor="{StaticResource Ninja}">
     <features:BasePage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,45 +16,38 @@
     </features:BasePage.Resources>
     <Grid RowDefinitions="auto, *">
         <ui:NavigationBar
+            Title="{Binding Title}"
             Grid.Row="0"
             LeftActionCommand="{Binding NavigateBackCommand}"
-            LeftActionType="Back"
-            Title="{Binding Title}" />
+            LeftActionType="Back" />
         <Grid Grid.Row="1" RowDefinitions="*, *, *">
 
             <!--  Day Selection  -->
             <Grid
-                ColumnDefinitions="*, *, *"
                 Padding="16,16,0,16"
-                RowDefinitions="3*, 2*">
+                ColumnDefinitions="*, *, *"
+                RowDefinitions="3*, 2*, auto">
                 <Label
-                    Grid.Column="0"
                     Grid.Row="0"
+                    Grid.Column="0"
                     Text="{Binding SelectedDayViewModel.Description}" />
                 <Label
-                    FontSize="Title"
-                    Grid.Column="2"
                     Grid.Row="0"
-                    Text="{Binding HourlyForecast.Location.Name}" />
-                <ui:SkeletonSection
-                    Grid.Column="0"
-                    Grid.Row="1"
-                    IsLoading="True" />
-                <ui:SkeletonSection
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    IsLoading="True" />
-                <ui:SkeletonSection
                     Grid.Column="2"
+                    FontSize="Title"
+                    Text="{Binding HourlyForecast.Location.Name}" />
+                <ui:PillList
                     Grid.Row="1"
-                    IsLoading="True" />
-                <!--  <ui:PillList  -->
-                <!--  Grid.ColumnSpan="3"  -->
-                <!--  Grid.Row="1"  -->
-                <!--  IsLoading="{Binding IsBusy}"  -->
-                <!--  ItemSelectedCommand="{Binding PillSelectedCommand}"  -->
-                <!--  ItemsSource="{Binding DailyPillList}"  -->
-                <!--  Padding="10,6" />  -->
+                    Grid.ColumnSpan="3"
+                    Padding="10,6"
+                    IsLoading="True"
+                    ItemSelectedCommand="{Binding PillSelectedCommand}"
+                    ItemsSource="{Binding DailyPillList}" />
+                <Button
+                    Grid.Row="2"
+                    Grid.ColumnSpan="3"
+                    Command="{Binding TogglePillLoadingCommand}"
+                    Text="Toggle Loading" />
             </Grid>
 
             <!--  Main Content  -->
@@ -64,8 +57,8 @@
                 Padding="0"
                 RowDefinitions="5*, 4*">
                 <Border
-                    BackgroundColor="{StaticResource Xiketic}"
                     Grid.RowSpan="2"
+                    BackgroundColor="{StaticResource Xiketic}"
                     StrokeShape="RoundRectangle 12" />
                 <Grid ColumnDefinitions="*, *">
                     <ui:ExtendedImage
@@ -76,35 +69,35 @@
                         TranslationY="-20"
                         WidthRequest="120" />
                     <Label
+                        Grid.Column="1"
                         FontAttributes="Bold"
                         FontSize="60"
-                        Grid.Column="1"
                         HorizontalTextAlignment="Center"
                         Text="{Binding SelectedDayViewModel.Temperature, StringFormat='{0}°'}"
                         TextColor="#B2CFE6"
                         VerticalOptions="Center" />
                 </Grid>
                 <Grid
-                    ColumnDefinitions="3*, 2*, 3*"
-                    ColumnSpacing="16"
                     Grid.Row="1"
-                    Margin="16,0,16,16">
+                    Margin="16,0,16,16"
+                    ColumnDefinitions="3*, 2*, 3*"
+                    ColumnSpacing="16">
                     <Border
-                        BackgroundColor="{StaticResource SpaceCadet}"
                         Grid.Column="0"
                         Padding="0"
+                        BackgroundColor="{StaticResource SpaceCadet}"
                         StrokeShape="RoundRectangle 8">
                         <Grid Padding="8" RowDefinitions="*, *, *">
                             <ui:ExtendedImage Source="ic_wind" TintColor="{StaticResource IconColor}" />
                             <Label
-                                FontSize="Micro"
                                 Grid.Row="1"
+                                FontSize="Micro"
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
                                 Text="Wind" />
                             <Label
-                                FontAttributes="Bold"
                                 Grid.Row="2"
+                                FontAttributes="Bold"
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding SelectedDayViewModel.WindSpeed, StringFormat='{0} km/h'}"
@@ -112,21 +105,21 @@
                         </Grid>
                     </Border>
                     <Border
-                        BackgroundColor="{StaticResource SpaceCadet}"
                         Grid.Column="1"
                         Padding="0"
+                        BackgroundColor="{StaticResource SpaceCadet}"
                         StrokeShape="RoundRectangle 8">
                         <Grid Padding="8" RowDefinitions="*, *, *">
                             <ui:ExtendedImage Source="ic_droplette" TintColor="{StaticResource IconColor}" />
                             <Label
-                                FontSize="Micro"
                                 Grid.Row="1"
+                                FontSize="Micro"
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
                                 Text="Humidity" />
                             <Label
-                                FontAttributes="Bold"
                                 Grid.Row="2"
+                                FontAttributes="Bold"
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding SelectedDayViewModel.Humidity, StringFormat='{0}%'}"
@@ -134,21 +127,21 @@
                         </Grid>
                     </Border>
                     <Border
-                        BackgroundColor="{StaticResource SpaceCadet}"
                         Grid.Column="2"
                         Padding="0"
+                        BackgroundColor="{StaticResource SpaceCadet}"
                         StrokeShape="RoundRectangle 8">
                         <Grid Padding="8" RowDefinitions="*, *, *">
                             <ui:ExtendedImage Source="ic_rain" TintColor="{StaticResource IconColor}" />
                             <Label
-                                FontSize="Micro"
                                 Grid.Row="1"
+                                FontSize="Micro"
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
                                 Text="Chance of rain" />
                             <Label
-                                FontAttributes="Bold"
                                 Grid.Row="2"
+                                FontAttributes="Bold"
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding SelectedDayViewModel.RainChance, StringFormat='{0}%'}"
@@ -176,10 +169,10 @@
                     </StackLayout>
                 </ScrollView>
                 <Border
-                    BackgroundColor="{StaticResource Xiketic}"
                     Grid.Row="2"
+                    BackgroundColor="{StaticResource Xiketic}"
                     StrokeShape="RoundRectangle 16">
-                    <Grid ColumnDefinitions="*, *, *, *" Padding="20">
+                    <Grid Padding="20" ColumnDefinitions="*, *, *, *">
                         <ui:ExtendedImage
                             Grid.Column="1"
                             Source="ic_home"
