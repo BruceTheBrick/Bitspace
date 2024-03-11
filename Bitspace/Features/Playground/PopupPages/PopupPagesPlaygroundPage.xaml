@@ -6,7 +6,7 @@
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:DataType="features:PopupPagesPlaygroundPageViewModel">
-    <Grid RowDefinitions="auto, *">
+    <Grid RowDefinitions="Auto, *">
         <ui:NavigationBar
             Grid.Row="0"
             LeftActionCommand="{Binding NavigateBackCommand}"

@@ -7,17 +7,19 @@
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:DataType="buttons:ButtonsPlaygroundPageViewModel">
-    <Grid RowDefinitions="auto, *">
-        <ui:NavigationBar LeftActionCommand="{Binding NavigateBackCommand}" LeftActionType="Back" />
+    <Grid RowDefinitions="Auto, *">
+        <ui:NavigationBar
+            Title="Buttons"
+            LeftActionCommand="{Binding NavigateBackCommand}"
+            LeftActionType="Back" />
         <ScrollView Grid.Row="1">
-            <StackLayout>
-                <Label Text="Buttons" />
+            <VerticalStackLayout>
                 <Switch IsToggled="{Binding IsEnabled}" />
                 <ui:PrimaryButton
                     HorizontalOptions="Center"
                     IsEnabled="{Binding IsEnabled}"
                     Text="My Button" />
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 </features:BasePage>

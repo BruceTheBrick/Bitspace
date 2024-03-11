@@ -6,7 +6,7 @@
     xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
     xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
     x:DataType="features:NavigationBarPlaygroundPageViewModel">
-    <Grid RowDefinitions="auto, *">
+    <Grid RowDefinitions="Auto, *">
         <ui:NavigationBar
             Grid.Row="0"
             LeftActionCommand="{Binding NavigateBackCommand}"
@@ -18,8 +18,9 @@
             <Grid
                 Padding="16"
                 ColumnDefinitions="*, *"
-                ColumnSpacing="16">
-                <StackLayout Grid.Column="0">
+                ColumnSpacing="16"
+                RowSpacing="8">
+                <VerticalStackLayout Grid.Column="0" Spacing="8">
                     <Label Text="Left Action" />
                     <ui:Divider />
                     <ui:PrimaryButton
@@ -47,8 +48,8 @@
                         CommandParameter="{x:Static ui:ActionTypeEnum.None}"
                         Text="None" />
                     <Switch IsToggled="{Binding IsLeftActionToggled}" />
-                </StackLayout>
-                <StackLayout Grid.Column="1">
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Spacing="8">
                     <Label Text="Right Action" />
                     <ui:Divider />
                     <ui:PrimaryButton
@@ -76,7 +77,7 @@
                         CommandParameter="{x:Static ui:ActionTypeEnum.None}"
                         Text="None" />
                     <Switch IsToggled="{Binding IsRightActionToggled}" />
-                </StackLayout>
+                </VerticalStackLayout>
             </Grid>
         </ScrollView>
     </Grid>
