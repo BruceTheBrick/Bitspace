@@ -24,9 +24,9 @@
 
             <!--  Day Selection  -->
             <Grid
-                Padding="16,16,0,16"
+                Padding="16"
                 ColumnDefinitions="*, *, *"
-                RowDefinitions="3*, 2*, auto">
+                RowDefinitions="3*, 2*">
                 <Label
                     Grid.Row="0"
                     Grid.Column="0"
@@ -35,19 +35,15 @@
                     Grid.Row="0"
                     Grid.Column="2"
                     FontSize="Title"
+                    HorizontalTextAlignment="End"
                     Text="{Binding HourlyForecast.Location.Name}" />
                 <ui:PillList
                     Grid.Row="1"
                     Grid.ColumnSpan="3"
                     Padding="10,6"
-                    IsLoading="True"
+                    IsLoading="{Binding IsBusy}"
                     ItemSelectedCommand="{Binding PillSelectedCommand}"
                     ItemsSource="{Binding DailyPillList}" />
-                <Button
-                    Grid.Row="2"
-                    Grid.ColumnSpan="3"
-                    Command="{Binding TogglePillLoadingCommand}"
-                    Text="Toggle Loading" />
             </Grid>
 
             <!--  Main Content  -->

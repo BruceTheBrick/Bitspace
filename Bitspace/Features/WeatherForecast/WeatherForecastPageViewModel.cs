@@ -15,63 +15,12 @@ public partial class WeatherForecastPageViewModel : BasePageViewModel
         : base(baseService)
     {
         _currentWeatherService = currentWeatherService;
-        
-        DailyPillList.Add(new PillViewModel("Pill Here")
-        {
-            IsLoading = true,
-            IsActive = true,
-        });
-        DailyPillList.Add(new PillViewModel("Pill Here")
-        {
-            IsLoading = true,
-            IsActive = true,
-        });
-        DailyPillList.Add(new PillViewModel("Pill Here")
-        {
-            IsLoading = true,
-            IsActive = true,
-        });
-        DailyPillList.Add(new PillViewModel("Pill Here")
-        {
-            IsLoading = true,
-            IsActive = true,
-        });
-        DailyPillList.Add(new PillViewModel("Pill Here")
-        {
-            IsLoading = true,
-            IsActive = true,
-        });
-        DailyPillList.Add(new PillViewModel("Pill Here")
-        {
-            IsLoading = true,
-            IsActive = true,
-        });
-        DailyPillList.Add(new PillViewModel("Pill Here")
-        {
-            IsLoading = true,
-            IsActive = true,
-        });
-        DailyPillList.Add(new PillViewModel("Pill Here")
-        {
-            IsLoading = true,
-            IsActive = true,
-        });
-        
     }
 
     public HourlyForecastViewModel HourlyForecast { get; set; }
     public DayViewModel SelectedDayViewModel { get; set; }
     public ObservableCollection<PillViewModel> DailyPillList { get; set; } = new ();
     public PillViewModel ActivePill { get; set; }
-
-    [RelayCommand]
-    private void TogglePillLoading()
-    {
-        foreach (var pill in DailyPillList)
-        {
-            pill.IsLoading = !pill.IsLoading;
-        }
-    }
 
     public override async Task InitializeAsync(INavigationParameters parameters)
     {
@@ -90,16 +39,16 @@ public partial class WeatherForecastPageViewModel : BasePageViewModel
 
     private void InitDailyPillList()
     {
-        // DailyPillList = new ObservableCollection<PillViewModel>();
-        // foreach (var day in HourlyForecast.Days)
-        // {
-        //     var pill = new PillViewModel(day.DateTime.ToDisplayString());
-        //     pill.Id = Guid.NewGuid().ToString();
-        //     DailyPillList.Add(pill);
-        // }
-        //
-        // ActivePill = DailyPillList.First();
-        // ActivePill.IsActive = true;
+        DailyPillList = [];
+        foreach (var day in HourlyForecast.Days)
+        {
+            var pill = new PillViewModel(day.DateTime.ToDisplayString());
+            pill.Id = Guid.NewGuid().ToString();
+            DailyPillList.Add(pill);
+        }
+
+        ActivePill = DailyPillList.First();
+        ActivePill.IsActive = true;
     }
 
     [RelayCommand]
@@ -115,5 +64,13 @@ public partial class WeatherForecastPageViewModel : BasePageViewModel
     private Task NavigateBack()
     {
         return NavigationService.GoBack();
+    }
+
+    private void UpdatePillsIsLoading(bool isLoading)
+    {
+        foreach (var pill in DailyPillList)
+        {
+            pill.IsLoading = isLoading;
+        }
     }
 }

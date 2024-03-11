@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Border
+    x:Class="Bitspace.UI.LoadingPill"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:skeleton="clr-namespace:Maui.Skeleton;assembly=Maui.Skeleton"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    skeleton:Skeleton.Animation="{skeleton:DefaultAnimation Fade}"
+    skeleton:Skeleton.BackgroundColor="{StaticResource DarkThemeSkeletonLoader}"
+    skeleton:Skeleton.IsBusy="True"
+    x:DataType="ui:PillViewModel"
     AutomationProperties.IsInAccessibleTree="True"
     HeightRequest="40"
     HorizontalOptions="Start"
     SizeChanged="LoadingPill_OnSizeChanged"
     StrokeShape="RoundRectangle 40"
     VerticalOptions="Center"
-    WidthRequest="120"
-    x:Class="Bitspace.UI.LoadingPill"
-    x:DataType="ui:PillViewModel"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <ui:SkeletonSection
-        HorizontalOptions="Fill"
-        IsLoading="True"
-        IsVisible="True"
-        VerticalOptions="Fill" />
-</Border>
+    WidthRequest="120" />

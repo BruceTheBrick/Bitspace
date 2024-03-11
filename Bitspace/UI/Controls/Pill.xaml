@@ -15,12 +15,12 @@
     HorizontalOptions="Start"
     SizeChanged="Pill_OnSizeChanged"
     VerticalOptions="CenterAndExpand">
-    <Frame.Resources>
+    <Border.Resources>
         <converters:BoolToObjectConverter
             x:Key="BoolToObjectConverter"
             FalseObject="1"
             TrueObject="0" />
-    </Frame.Resources>
+    </Border.Resources>
     <StackLayout>
         <ui:ExtendedImage
             HorizontalOptions="Start"
