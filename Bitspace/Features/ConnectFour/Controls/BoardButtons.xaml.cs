@@ -170,15 +170,12 @@ public partial class BoardButtons
         }
 
         var piece = Board.GetPiece(row, col);
-        switch (piece)
+        return piece switch
         {
-            case Piece.One:
-                return PlayerOneColor;
-            case Piece.Two:
-                return PlayerTwoColor;
-            default:
-                return Colors.LightGray;
-        }
+            Piece.One => PlayerOneColor,
+            Piece.Two => PlayerTwoColor,
+            _ => Colors.Chartreuse
+        };
     }
 
     private void CreateNewButton(int row, int column)

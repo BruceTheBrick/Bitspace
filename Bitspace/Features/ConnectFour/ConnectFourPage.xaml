@@ -10,18 +10,18 @@
     <features:BasePage.Resources>
         <features:ConnectFourStyle />
     </features:BasePage.Resources>
-    <Grid RowDefinitions="auto, *">
+    <Grid RowDefinitions="Auto, *">
         <ui:NavigationBar
             Grid.Row="0"
             LeftActionCommand="{Binding NavigateBackCommand}"
             LeftActionType="Back" />
         <ScrollView Grid.Row="1">
-            <Grid RowDefinitions="auto, *, auto">
+            <Grid RowDefinitions="Auto, *, Auto">
                 <Grid
                     Grid.Row="0"
                     Padding="8,12"
-                    ColumnDefinitions="auto, *"
-                    RowDefinitions="auto, auto"
+                    ColumnDefinitions="Auto, *"
+                    RowDefinitions="Auto, Auto"
                     VerticalOptions="End">
                     <ActivityIndicator
                         Grid.Column="0"
@@ -34,13 +34,12 @@
                         Text="{Binding MartiniStatus}"
                         VerticalOptions="Center" />
                 </Grid>
-                <Frame
+                <Border
                     Grid.Row="1"
                     Margin="8"
                     BackgroundColor="Salmon"
-                    CornerRadius="8"
-                    HasShadow="False"
                     HorizontalOptions="Center"
+                    StrokeShape="RoundRectangle 8"
                     VerticalOptions="Center">
                     <controls:BoardButtons
                         Board="{Binding Board}"
@@ -53,7 +52,7 @@
                         Rows="{Binding Rows}"
                         UpdateButtonState="{Binding UpdateButtons}"
                         VerticalOptions="Center" />
-                </Frame>
+                </Border>
                 <Grid
                     Grid.Row="2"
                     Padding="16"

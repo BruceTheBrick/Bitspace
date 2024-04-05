@@ -13,7 +13,6 @@ public partial class Pill
 
     private void Pill_OnSizeChanged(object sender, EventArgs e)
     {
-        // CornerRadius = (float)Height / 2;
         var strokeShape = new RoundRectangle { CornerRadius = (float)Height / 2 };
         StrokeShape = strokeShape;
     }
