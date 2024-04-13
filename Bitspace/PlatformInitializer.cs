@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Bitespace.Core;
 using Bitspace.Features.Buttons;
+using Bitspace.Features.SecureStorage;
 using Microsoft.Maui.LifecycleEvents;
 using Plugin.Fingerprint;
 
@@ -40,6 +42,11 @@ public static class PlatformInitializer
 #if IOS
         events.AddiOS(iosEvents =>
         {
+            iosEvents.WillFinishLaunching((app, launchOptions) =>
+            {
+                Firebase.Core.App.Configure();
+                return true;
+            });
         });
 #endif
     }
@@ -65,9 +72,11 @@ public static class PlatformInitializer
     {
         RegisterAndroidServices(services);
         RegisterIosServices(services);
-        // services.AddSingleton<IAppInfo, AppInfo>();
+        services.AddTransient(_ => AppInfo.Current);
         services.AddTransient(_ => Preferences.Default);
         services.AddTransient(_ => VersionTracking.Default);
+        services.AddTransient(_ => SecureStorage.Default);
+        services.AddSingleton<ILegacySecureStorage, LegacySecureStorage>();
         services.AddSingleton<IApiKeyManagerService, ApiKeyManagerService>();
         services.AddSingleton<IEssentialsDeviceInfo, EssentialsDeviceInfo>();
         services.AddTransient<IBaseService, BaseService>();
@@ -134,6 +143,7 @@ public static class PlatformInitializer
         services.RegisterForNavigation<ButtonsPlaygroundPage, ButtonsPlaygroundPageViewModel>();
         services.RegisterForNavigation<NavigationBarPlaygroundPage, NavigationBarPlaygroundPageViewModel>();
         services.RegisterForNavigation<PopupPagesPlaygroundPage, PopupPagesPlaygroundPageViewModel>();
+        services.RegisterForNavigation<SecureStoragePlaygroundPage, SecureStoragePlaygroundPageViewModel>();
     }
 
     private static void RegisterApis(IServiceCollection services)

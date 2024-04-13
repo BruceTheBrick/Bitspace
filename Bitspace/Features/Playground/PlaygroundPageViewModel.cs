@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Bitspace.Features.Buttons;
+using Bitspace.Features.SecureStorage;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Bitspace.Features;
@@ -34,5 +35,11 @@ public partial class PlaygroundPageViewModel : BasePlaygroundPageViewModel
     private Task NavigateToPopupPagesPlaygroundPage()
     {
         return NavigationService.NavigateAsync(nameof(PopupPagesPlaygroundPage));
+    }
+
+    [RelayCommand]
+    private Task NavigateToSecureStoragePlaygroundPage()
+    {
+        return NavigationService.NavigateAsync(nameof(SecureStoragePlaygroundPage));
     }
 }

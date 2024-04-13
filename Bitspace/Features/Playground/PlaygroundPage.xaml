@@ -18,6 +18,7 @@
                 <ui:PrimaryButton Command="{Binding NavigateToButtonsPlaygroundPageCommand}" Text="Buttons" />
                 <ui:PrimaryButton Command="{Binding NavigateToNavigationBarPlaygroundPageCommand}" Text="NavigationBar" />
                 <ui:PrimaryButton Command="{Binding NavigateToPopupPagesPlaygroundPageCommand}" Text="Popup Pages" />
+                <ui:PrimaryButton Command="{Binding NavigateToSecureStoragePlaygroundPageCommand}" Text="Secure Storage" />
             </StackLayout>
         </ScrollView>
     </Grid>

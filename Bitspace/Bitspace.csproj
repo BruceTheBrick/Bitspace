@@ -30,7 +30,7 @@
 
     <!--iOS-->
     <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
-        <BundleResource Include="Platforms\iOS\GoogleService-Info.plist" />
+        <BundleResource Include="Platforms\iOS\GoogleService-Info.plist" Link="GoogleService-Info.plist" />
 
         <PackageReference Include="Xamarin.Firebase.iOS.RemoteConfig" Version="8.10.0.3" />
     </ItemGroup>
