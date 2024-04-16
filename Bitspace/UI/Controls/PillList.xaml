@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ScrollView
+    x:Class="Bitspace.UI.PillList"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:Name="This"
+    HorizontalScrollBarVisibility="Always"
+    Orientation="Horizontal">
+    <HorizontalStackLayout>
+        <HorizontalStackLayout
+            BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference This}}"
+            IsVisible="{Binding IsLoading, Source={x:Reference This}, Converter={toolkit:InvertedBoolConverter}}"
+            Spacing="8">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="ui:PillViewModel">
+                    <ui:Pill>
+                        <ui:Pill.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ItemSelectedCommand, Source={x:Reference This}}" CommandParameter="{Binding .}" />
+                        </ui:Pill.GestureRecognizers>
+                    </ui:Pill>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout IsVisible="{Binding IsLoading, Source={x:Reference This}}" Spacing="8">
+            <ui:LoadingPill />
+            <ui:LoadingPill />
+            <ui:LoadingPill />
+            <ui:LoadingPill />
+            <ui:LoadingPill />
+            <ui:LoadingPill />
+            <ui:LoadingPill />
+            <ui:LoadingPill />
+            <ui:LoadingPill />
+        </HorizontalStackLayout>
+    </HorizontalStackLayout>
+</ScrollView>

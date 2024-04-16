@@ -8,8 +8,8 @@ variables:
   androidVersionCode: '$(Build.BuildNumber)'
 
 pool:
-#  vmImage: macos-latest
-  vmImage: windows-latest
+  vmImage: macos-latest
+#  vmImage: windows-latest
 steps:
   - task: NuGetToolInstaller@1
 

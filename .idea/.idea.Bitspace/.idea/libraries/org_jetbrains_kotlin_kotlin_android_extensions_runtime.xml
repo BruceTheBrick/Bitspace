@@ -1,0 +1,9 @@
+﻿<component name="libraryTable">
+  <library name="org.jetbrains.kotlin.kotlin-android-extensions-runtime">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.nuget/packages/xamarin.android.jetbrains.kotlin_android_extensions_runtime/1.5.20.1/jar/org.jetbrains.kotlin.kotlin-android-extensions-runtime.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

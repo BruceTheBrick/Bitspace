@@ -1,0 +1,122 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net8.0-ios;net8.0-android;net8.0</TargetFrameworks>
+        <OutputType Condition="$(TargetFramework) != 'net8.0'">Exe</OutputType>
+        <UseMaui>True</UseMaui>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <SingleProject>true</SingleProject>
+        
+        <ApplicationTitle>Bitspace</ApplicationTitle>
+        <ApplicationId>com.brycelynch.bitspace</ApplicationId>
+        <ApplicationVersion>1</ApplicationVersion>
+        <ApplicationDisplaVersion>1.0</ApplicationDisplaVersion>
+          
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+        <MauiSplashScreen Include="Resources\Splash\appiconfg.png" Color="#512BD4" />
+        <MauiImage Include="Resources\Images\*" />
+    </ItemGroup>
+
+    <!--Android-->
+    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+        <GoogleServicesJson Include="Platforms\Android\google-services.json" />
+
+        <PackageReference Include="Xamarin.Plugin.Firebase" Version="2.0.2" />
+    </ItemGroup>
+
+    <!--iOS-->
+    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+        <BundleResource Include="Platforms\iOS\GoogleService-Info.plist" Link="GoogleService-Info.plist" />
+
+        <PackageReference Include="Xamarin.Firebase.iOS.RemoteConfig" Version="8.10.0.3" />
+    </ItemGroup>
+    
+    <!--Nuget Packages-->
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+        <PackageReference Include="HorusStudio.Maui.Skeleton" Version="2.0.0" />
+        <PackageReference Include="Humanizer" Version="2.14.1" />
+        <PackageReference Include="Mopups" Version="1.3.1" />
+        <PackageReference Include="Plugin.Fingerprint" Version="3.0.0-beta.1" />
+        <PackageReference Include="Prism.DryIoc.Maui" Version="9.0.401-pre" />
+        <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+        <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.14" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.7" />
+        <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.7" />
+        <PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.7" />
+        <PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Update="Resources\Registers\Analytics\AnalyticsRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>AnalyticsRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Registers\Copy\ConnectFourRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>ConnectFourRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Registers\Copy\GlobalRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>GlobalRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Registers\Copy\HomePageRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>HomePageRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Registers\Copy\WeatherForecastPageRegister.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>WeatherForecastPageRegister.resx</DependentUpon>
+        </Compile>
+        <Compile Remove="Bitspace.Android\**" />
+        <Compile Remove="Bitspace.iOS\**" />
+        <Compile Remove="Bitspace\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Resources\Registers\Analytics\AnalyticsRegister.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <GenerateResource>true</GenerateResource>
+            <LastGenOutput>AnalyticsRegister.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Registers\Copy\GlobalRegister.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <GenerateResource>true</GenerateResource>
+            <LastGenOutput>GlobalRegister.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Registers\Copy\ConnectFourRegister.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <GenerateResource>true</GenerateResource>
+            <LastGenOutput>ConnectFourRegister.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Registers\Copy\HomePageRegister.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <GenerateResource>true</GenerateResource>
+            <LastGenOutput>HomePageRegister.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Registers\Copy\WeatherForecastPageRegister.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <GenerateResource>true</GenerateResource>
+            <LastGenOutput>WeatherForecastPageRegister.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
+      <PackageReference Include="Xamarin.Firebase.Config" Version="121.6.0.1" />
+    </ItemGroup>
+</Project>

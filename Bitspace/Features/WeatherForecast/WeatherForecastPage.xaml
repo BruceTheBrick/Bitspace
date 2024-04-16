@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<features:BasePage
+    x:Class="Bitspace.Features.WeatherForecastPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:DataType="features:WeatherForecastPageViewModel"
+    BackgroundColor="{StaticResource Ninja}">
+    <features:BasePage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <features:WeatherForecastStyle />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </features:BasePage.Resources>
+    <Grid RowDefinitions="auto, *">
+        <ui:NavigationBar
+            Title="{Binding Title}"
+            Grid.Row="0"
+            LeftActionCommand="{Binding NavigateBackCommand}"
+            LeftActionType="Back" />
+        <Grid Grid.Row="1" RowDefinitions="*, *, *">
+
+            <!--  Day Selection  -->
+            <Grid
+                Padding="16"
+                ColumnDefinitions="*, *, *"
+                RowDefinitions="3*, 2*">
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="{Binding SelectedDayViewModel.Description}" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    FontSize="Title"
+                    HorizontalTextAlignment="End"
+                    Text="{Binding HourlyForecast.Location.Name}" />
+                <ui:PillList
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    Padding="10,6"
+                    IsLoading="{Binding IsBusy}"
+                    ItemSelectedCommand="{Binding PillSelectedCommand}"
+                    ItemsSource="{Binding DailyPillList}" />
+            </Grid>
+
+            <!--  Main Content  -->
+            <Grid
+                Grid.Row="1"
+                Margin="24"
+                Padding="0"
+                RowDefinitions="5*, 4*">
+                <Border
+                    Grid.RowSpan="2"
+                    BackgroundColor="{StaticResource Xiketic}"
+                    StrokeShape="RoundRectangle 12" />
+                <Grid ColumnDefinitions="*, *">
+                    <ui:ExtendedImage
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Source="ic_weather"
+                        TintColor="{StaticResource IconWhiteColor}"
+                        TranslationY="-20"
+                        WidthRequest="120" />
+                    <Label
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="60"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding SelectedDayViewModel.Temperature, StringFormat='{0}°'}"
+                        TextColor="#B2CFE6"
+                        VerticalOptions="Center" />
+                </Grid>
+                <Grid
+                    Grid.Row="1"
+                    Margin="16,0,16,16"
+                    ColumnDefinitions="3*, 2*, 3*"
+                    ColumnSpacing="16">
+                    <Border
+                        Grid.Column="0"
+                        Padding="0"
+                        BackgroundColor="{StaticResource SpaceCadet}"
+                        StrokeShape="RoundRectangle 8">
+                        <Grid Padding="8" RowDefinitions="*, *, *">
+                            <ui:ExtendedImage Source="ic_wind" TintColor="{StaticResource IconColor}" />
+                            <Label
+                                Grid.Row="1"
+                                FontSize="Micro"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Wind" />
+                            <Label
+                                Grid.Row="2"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding SelectedDayViewModel.WindSpeed, StringFormat='{0} km/h'}"
+                                TextColor="#B2CFE6" />
+                        </Grid>
+                    </Border>
+                    <Border
+                        Grid.Column="1"
+                        Padding="0"
+                        BackgroundColor="{StaticResource SpaceCadet}"
+                        StrokeShape="RoundRectangle 8">
+                        <Grid Padding="8" RowDefinitions="*, *, *">
+                            <ui:ExtendedImage Source="ic_droplette" TintColor="{StaticResource IconColor}" />
+                            <Label
+                                Grid.Row="1"
+                                FontSize="Micro"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Humidity" />
+                            <Label
+                                Grid.Row="2"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding SelectedDayViewModel.Humidity, StringFormat='{0}%'}"
+                                TextColor="#B2CFE6" />
+                        </Grid>
+                    </Border>
+                    <Border
+                        Grid.Column="2"
+                        Padding="0"
+                        BackgroundColor="{StaticResource SpaceCadet}"
+                        StrokeShape="RoundRectangle 8">
+                        <Grid Padding="8" RowDefinitions="*, *, *">
+                            <ui:ExtendedImage Source="ic_rain" TintColor="{StaticResource IconColor}" />
+                            <Label
+                                Grid.Row="1"
+                                FontSize="Micro"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Chance of rain" />
+                            <Label
+                                Grid.Row="2"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding SelectedDayViewModel.RainChance, StringFormat='{0}%'}"
+                                TextColor="#B2CFE6" />
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <!--  Hourly Selection  -->
+            <Grid
+                Grid.Row="2"
+                Margin="24"
+                RowDefinitions="3*, *, 2*">
+                <ScrollView Grid.Row="0" Orientation="Horizontal">
+                    <StackLayout
+                        BindableLayout.ItemsSource="{Binding SelectedDayViewModel.ForecastItems}"
+                        Orientation="Horizontal"
+                        Spacing="16">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <features:ForecastItem />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+                <Border
+                    Grid.Row="2"
+                    BackgroundColor="{StaticResource Xiketic}"
+                    StrokeShape="RoundRectangle 16">
+                    <Grid Padding="20" ColumnDefinitions="*, *, *, *">
+                        <ui:ExtendedImage
+                            Grid.Column="1"
+                            Source="ic_home"
+                            TintColor="{StaticResource PillActiveBackground}"
+                            VerticalOptions="Center" />
+                        <ui:ExtendedImage
+                            Grid.Column="2"
+                            Source="ic_magnifying_glass"
+                            TintColor="{StaticResource IconSecondaryColor}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</features:BasePage>

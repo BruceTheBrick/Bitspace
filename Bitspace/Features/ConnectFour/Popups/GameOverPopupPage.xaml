@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="Bitspace.Features.GameOverPopupPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:copy="clr-namespace:Bitspace.Resources.Registers.Copy"
+    xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
+    xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:DataType="features:GameOverPopupPageViewModel"
+    CloseWhenBackgroundIsClicked="False">
+    <Border
+        Margin="{StaticResource Base}"
+        Padding="{StaticResource BaseThickness}"
+        BackgroundColor="{StaticResource Dark}"
+        StrokeShape="RoundRectangle 16"
+        VerticalOptions="Center">
+        <Grid
+            ColumnDefinitions="*, *"
+            ColumnSpacing="16"
+            RowDefinitions="auto, auto, auto, auto"
+            RowSpacing="12"
+            VerticalOptions="Center">
+            <Label
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                FontAttributes="Bold"
+                FontSize="Title"
+                HorizontalOptions="Center"
+                Text="{x:Static copy:ConnectFourRegister.Congratulations}" />
+            <Label
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Center"
+                Text="{Binding Winner}" />
+            <Label
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Margin="0,0,0,12"
+                HorizontalOptions="Center"
+                Text="{x:Static copy:ConnectFourRegister.PlayAgain}" />
+            <ui:PrimaryButton
+                Grid.Row="3"
+                Grid.Column="0"
+                Command="{Binding PlayAgainCommand}"
+                Text="{x:Static copy:ConnectFourRegister.NewGame}" />
+            <ui:SecondaryButton
+                Grid.Row="3"
+                Grid.Column="1"
+                Command="{Binding QuitCommand}"
+                Text="{x:Static copy:ConnectFourRegister.Quit}" />
+        </Grid>
+    </Border>
+</pages:PopupPage>

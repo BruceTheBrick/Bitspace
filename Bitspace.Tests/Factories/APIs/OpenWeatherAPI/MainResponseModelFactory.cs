@@ -1,7 +1,4 @@
-﻿using Bitspace.APIs.OpenWeather.Response_Models;
-using Bogus;
-
-namespace Bitspace.Tests.Factories.APIs.OpenWeatherAPI;
+﻿namespace Bitspace.Tests.Factories;
 
 public static class MainResponseModelFactory
 {

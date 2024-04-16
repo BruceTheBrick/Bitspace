@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<features:BasePage
+    x:Class="Bitspace.Features.AccessibilityPlaygroundPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:DataType="features:AccessibilityPlaygroundPageViewModel">
+    <Grid RowDefinitions="Auto, *">
+        <ui:NavigationBar
+            Grid.Row="0"
+            LeftActionCommand="{Binding NavigateBackCommand}"
+            LeftActionType="Back" />
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout>
+                <VerticalStackLayout
+                    ui:AccessibilityTraits.Traits="Button"
+                    AutomationProperties.IsInAccessibleTree="True"
+                    AutomationProperties.Name="My stack layout">
+                    <Label Text="Accessibility Page" />
+                </VerticalStackLayout>
+                <ui:AccessibilityStackLayout
+                    Padding="20"
+                    ui:AccessibilityTraits.Traits="Button"
+                    AccessibilityActionCommandList="{Binding AccessibilityActionCommands}"
+                    AutomationProperties.Name="Accessibility StackLayout. This is me"
+                    BackgroundColor="Blue"
+                    VerticalOptions="Center">
+                    <Label Text="This is a special kind of stack layout. Lets see if we can make it work!" />
+                </ui:AccessibilityStackLayout>
+                <ui:PrimaryButton Command="{Binding AnnouncementCommand}" Text="Announce" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</features:BasePage>

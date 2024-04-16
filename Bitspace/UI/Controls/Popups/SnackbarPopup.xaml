@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage
+    x:Class="Bitspace.UI.SnackbarPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:popup="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:DataType="ui:SnackbarPopupViewModel"
+    BackgroundColor="Transparent"
+    BackgroundInputTransparent="True"
+    CloseWhenBackgroundIsClicked="False">
+    <Border
+        x:Name="Border"
+        Margin="8,0,8,20"
+        Padding="12"
+        AutomationProperties.IsInAccessibleTree="True"
+        AutomationProperties.Name="{Binding Message}"
+        BackgroundColor="{StaticResource DarkGray}"
+        StrokeShape="RoundRectangle 12"
+        VerticalOptions="End">
+        <HorizontalStackLayout
+            HorizontalOptions="Fill"
+            Spacing="12"
+            VerticalOptions="Fill">
+            <ui:ExtendedImage
+                AutomationProperties.IsInAccessibleTree="False"
+                HeightRequest="18"
+                IsVisible="{Binding IsLeftIconVisible}"
+                Source="{Binding Icon}"
+                TintColor="{StaticResource SnackbarIconColor}"
+                WidthRequest="18" />
+            <Label
+                AutomationProperties.IsInAccessibleTree="False"
+                Text="{Binding Message}"
+                TextColor="{StaticResource SnackbarTextColor}" />
+            <ui:ExtendedImage
+                AutomationProperties.IsInAccessibleTree="False"
+                HeightRequest="18"
+                IsVisible="{Binding IsRightIconVisible}"
+                Source="{Binding Icon}"
+                TintColor="{StaticResource SnackbarIconColor}"
+                WidthRequest="18" />
+        </HorizontalStackLayout>
+        <Border.GestureRecognizers>
+            <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_OnSwiped" />
+            <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_OnSwiped" />
+        </Border.GestureRecognizers>
+    </Border>
+</popup:PopupPage>

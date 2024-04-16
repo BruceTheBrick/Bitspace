@@ -2,7 +2,17 @@
 <project version="4">
   <component name="UserContentModel">
     <attachedFolders />
-    <explicitIncludes />
+    <explicitIncludes>
+      <Path>.git</Path>
+      <Path>.gitattributes</Path>
+      <Path>.gitignore</Path>
+      <Path>.idea</Path>
+      <Path>Bitspace.sln.DotSettings.user</Path>
+      <Path>README.md</Path>
+      <Path>appcenter-post-clone.sh</Path>
+      <Path>azure-pipelines.yml</Path>
+      <Path>global.json</Path>
+    </explicitIncludes>
     <explicitExcludes />
   </component>
 </project>

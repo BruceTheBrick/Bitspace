@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<VerticalStackLayout
+    AutomationProperties.IsInAccessibleTree="True"
+    AutomationProperties.Name="{Binding AccessibilityName, Source={x:Reference This}}"
+    Spacing="{StaticResource Base}"
+    ui:AccessibilityTraits.Traits="Header"
+    x:Class="Bitspace.Features.HomePageHeader"
+    x:Name="This"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:copy="clr-namespace:Bitspace.Resources.Registers.Copy"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Label
+        AutomationProperties.IsInAccessibleTree="False"
+        FontSize="Header"
+        HorizontalOptions="Center"
+        Text="{x:Static copy:HomePageRegister.WelcomeTo}" />
+    <ui:Circle
+        BackgroundColor="#AAFFFFFF"
+        HorizontalOptions="Center"
+        Padding="16"
+        WidthRequest="100">
+        <ui:ExtendedImage
+            Source="logo_light"
+            TintColor="{StaticResource BackgroundColor}"
+            x:Name="AppIcon">
+            <ui:ExtendedImage.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="RotateIcon" />
+            </ui:ExtendedImage.GestureRecognizers>
+        </ui:ExtendedImage>
+    </ui:Circle>
+    <Label
+        AutomationProperties.IsInAccessibleTree="False"
+        FontAttributes="Bold"
+        FontSize="Large"
+        HorizontalOptions="Center"
+        Text="{x:Static copy:HomePageRegister.Bitspace}"
+        x:Name="AppName" />
+</VerticalStackLayout>

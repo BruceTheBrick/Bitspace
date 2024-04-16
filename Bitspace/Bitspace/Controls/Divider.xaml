@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-
-<BoxView
-    BackgroundColor="{Binding Color, Source={x:Reference This}}"
-    x:Class="Bitspace.Controls.Divider"
-    x:Name="This"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" />

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="Bitspace.UI.SkeletonSection"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:skeleton="clr-namespace:Maui.Skeleton;assembly=Maui.Skeleton"
+    x:Name="This">
+    <StackLayout x:Name="ContentStack" IsVisible="{Binding IsLoading, Converter={converters:InvertedBoolConverter}, Source={x:Reference This}}" />
+    <Frame
+        skeleton:Skeleton.BackgroundColor="{Binding LoadingBackgroundColor, Source={x:Reference This}}"
+        skeleton:Skeleton.IsBusy="{Binding IsLoading, Source={x:Reference This}}"
+        CornerRadius="{Binding CornerRadius, Source={x:Reference This}}"
+        HorizontalOptions="Fill"
+        IsVisible="{Binding IsLoading, Source={x:Reference This}}"
+        Opacity="0.3"
+        VerticalOptions="Fill" />
+</Grid>

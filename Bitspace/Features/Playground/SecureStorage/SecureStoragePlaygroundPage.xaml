@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<features:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:features="clr-namespace:Bitspace.Features"
+             x:DataType="secureStorage:SecureStoragePlaygroundPageViewModel"
+             xmlns:ui="clr-namespace:Bitspace.UI"
+             xmlns:secureStorage="clr-namespace:Bitspace.Features.SecureStorage"
+             x:Class="Bitspace.Features.SecureStorage.SecureStoragePlaygroundPage">
+    <Grid RowDefinitions="Auto, *">
+        <ui:NavigationBar
+            Grid.Row="0"
+            LeftActionCommand="{Binding NavigateBackCommand}"
+            LeftActionType="Back" />
+        <ScrollView Grid.Row="1" Padding="16">
+            <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, *, *">
+                <Label Text="Key" Grid.Column="0" Grid.Row="0"/>
+                <Entry Grid.Column="0" Grid.Row="1" Text="{Binding Key}" />
+                <Label Grid.Column="1" Grid.Row="0" Text="Value" />
+                <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Value}" />
+                
+                <CheckBox Grid.Column="0" Grid.Row="2" IsChecked="{Binding WasValueFetched}"/>
+                <Label Grid.Column="1" Grid.Row="2" Text="{Binding FetchedValue}"/>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</features:BasePage>

@@ -1,8 +1,4 @@
-﻿using Bitspace.APIs.OpenWeather.Response_Models;
-using Bogus;
-using Xamarin.Forms.Xaml;
-
-namespace Bitspace.Tests.Factories.APIs.OpenWeatherAPI;
+﻿namespace Bitspace.Tests.Factories;
 
 public static class WindResponseModelFactory
 {

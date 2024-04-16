@@ -1,20 +1,20 @@
-﻿using Moq;
-using Moq.AutoMock;
+﻿using Moq.AutoMock;
 
-namespace Bitspace.Tests.Base
+namespace Bitspace.Tests.Base;
+
+public class UnitTestBase<T> where T : class
 {
-    public class UnitTestBase<T> where T : class
+    protected UnitTestBase()
     {
-        public UnitTestBase()
-        {
-            Mocker = new AutoMocker(MockBehavior.Default, DefaultValue.Mock);
-            Sut = Mocker.CreateInstance<T>();
-            SutMock = Mocker.GetMock<T>();
-            SutMock.CallBase = true;
-        }
-
-        public T Sut { get; }
-        public Mock<T> SutMock { get; }
-        public AutoMocker Mocker { get; }
+        Mocker = new AutoMocker(MockBehavior.Default, DefaultValue.Mock);
+        Sut = Mocker.CreateInstance<T>();
+        SutMock = Mocker.GetMock<T>();
+        SutMock.CallBase = true;
+        Faker = new Faker();
     }
+
+    protected T Sut { get; }
+    protected Mock<T> SutMock { get; }
+    protected AutoMocker Mocker { get; }
+    protected Faker Faker { get; }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="Bitspace.Features.ConnectFourStyle"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:Bitspace.Resources;assembly=Bitspace">
+
+    <!--  Colors  -->
+    <resources:ColorRef x:Key="ColorPrimary" Color="{StaticResource Jet}" />
+    <resources:ColorRef x:Key="ColorSecondary" Color="{StaticResource DodgerBlue}" />
+    <resources:ColorRef x:Key="ColorAccent" Color="{StaticResource 'Tart Orange'}" />
+    <resources:ColorRef x:Key="CF_TextPrimaryColor" Color="{StaticResource Jet}" />
+
+    <!--  Buttons  -->
+    <resources:ColorRef x:Key="ButtonDisabledBackgroundColor" Color="{StaticResource Gainsboro}" />
+    <resources:ColorRef x:Key="ButtonDisabledTextColor" Color="{StaticResource 'Spanish Gray'}" />
+
+    <!--  Text  -->
+    <Style ApplyToDerivedTypes="True" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+    </Style>
+</ResourceDictionary>

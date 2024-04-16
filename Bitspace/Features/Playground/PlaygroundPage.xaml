@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<features:BasePage
+    x:Class="Bitspace.Features.PlaygroundPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:DataType="features:PlaygroundPageViewModel">
+    <Grid RowDefinitions="auto, *">
+        <ui:NavigationBar
+            Title="Playground"
+            Grid.Row="0"
+            LeftActionCommand="{Binding NavigateBackCommand}"
+            LeftActionType="Back" />
+        <ScrollView Grid.Row="1" Padding="16">
+            <StackLayout Spacing="12">
+                <ui:PrimaryButton Command="{Binding NavigateToAccessibilityPlaygroundPageCommand}" Text="Accessibility" />
+                <ui:PrimaryButton Command="{Binding NavigateToButtonsPlaygroundPageCommand}" Text="Buttons" />
+                <ui:PrimaryButton Command="{Binding NavigateToNavigationBarPlaygroundPageCommand}" Text="NavigationBar" />
+                <ui:PrimaryButton Command="{Binding NavigateToPopupPagesPlaygroundPageCommand}" Text="Popup Pages" />
+                <ui:PrimaryButton Command="{Binding NavigateToSecureStoragePlaygroundPageCommand}" Text="Secure Storage" />
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</features:BasePage>

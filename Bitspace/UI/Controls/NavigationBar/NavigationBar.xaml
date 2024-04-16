@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<converters:SemanticOrderView
+    HorizontalOptions="FillAndExpand"
+    x:Class="Bitspace.UI.NavigationBar"
+    x:Name="This"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:converters="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Grid ColumnDefinitions="*, 2*, *">
+
+        <!--  LEFT ACTION  -->
+        <ContentView
+            AutomationProperties.IsInAccessibleTree="{Binding LeftActionIsInAccessibleTree, Source={x:Reference This}}"
+            AutomationProperties.Name="{Binding LeftActionAccessibilityName, Source={x:Reference This}}"
+            Grid.Column="0"
+            IsEnabled="{Binding LeftActionIsEnabled, Source={x:Reference This}}"
+            Padding="16"
+            ui:AccessibilityTraits.Traits="Button"
+            x:Name="LeftAction">
+            <StackLayout HorizontalOptions="Start">
+                <ui:ExtendedImage
+                    HeightRequest="24"
+                    IsVisible="{Binding LeftActionIconSource, Converter={converters:IsStringNotNullOrEmptyConverter}, Source={x:Reference This}}"
+                    Source="{Binding LeftActionIconSource, Source={x:Reference This}}"
+                    TintColor="{StaticResource IconPrimaryColor}"
+                    VerticalOptions="Center"
+                    WidthRequest="24" />
+                <Label
+                    IsVisible="{Binding LeftActionText, Converter={converters:IsStringNotNullOrEmptyConverter}, Source={x:Reference This}}"
+                    Text="{Binding LeftActionText, Source={x:Reference This}}"
+                    VerticalOptions="Center" />
+            </StackLayout>
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LeftActionCommand, Source={x:Reference This}}" />
+            </ContentView.GestureRecognizers>
+        </ContentView>
+
+        <!--  TITLE  -->
+        <ContentView
+            AutomationProperties.IsInAccessibleTree="{Binding Title, Converter={converters:IsStringNotNullOrEmptyConverter}, Source={x:Reference This}}"
+            Grid.Column="1"
+            Padding="16"
+            ui:AccessibilityTraits.Traits="Header"
+            x:Name="TitleView">
+            <Label
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Title, Source={x:Reference This}}"
+                VerticalOptions="Center" />
+        </ContentView>
+
+        <!--  RIGHT ACTION  -->
+        <ContentView
+            AutomationProperties.IsInAccessibleTree="{Binding RightActionIsInAccessibleTree, Source={x:Reference This}}"
+            AutomationProperties.Name="{Binding RightActionAccessibilityName, Source={x:Reference This}}"
+            Grid.Column="2"
+            IsEnabled="{Binding RightActionIsEnabled, Source={x:Reference This}}"
+            Padding="16"
+            ui:AccessibilityTraits.Traits="Button"
+            x:Name="RightAction">
+            <StackLayout HorizontalOptions="End">
+                <ui:ExtendedImage
+                    HeightRequest="24"
+                    IsVisible="{Binding RightActionIconSource, Converter={converters:IsStringNotNullOrEmptyConverter}, Source={x:Reference This}}"
+                    Source="{Binding RightActionIconSource, Source={x:Reference This}}"
+                    TintColor="{StaticResource IconPrimaryColor}"
+                    VerticalOptions="Center"
+                    WidthRequest="24" />
+                <Label
+                    IsVisible="{Binding RightActionText, Converter={converters:IsStringNotNullOrEmptyConverter}, Source={x:Reference This}}"
+                    Text="{Binding RightActionText, Source={x:Reference This}}"
+                    VerticalOptions="Center" />
+            </StackLayout>
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding RightActionCommand, Source={x:Reference This}}" />
+            </ContentView.GestureRecognizers>
+        </ContentView>
+    </Grid>
+</converters:SemanticOrderView>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<features:BasePage
+    x:Class="Bitspace.Features.Buttons.ButtonsPlaygroundPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Bitspace.Features.Buttons;assembly=Bitspace"
+    xmlns:features="clr-namespace:Bitspace.Features;assembly=Bitspace"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:DataType="buttons:ButtonsPlaygroundPageViewModel">
+    <Grid RowDefinitions="Auto, *">
+        <ui:NavigationBar
+            Title="Buttons"
+            LeftActionCommand="{Binding NavigateBackCommand}"
+            LeftActionType="Back" />
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout>
+                <Switch IsToggled="{Binding IsEnabled}" />
+                <ui:PrimaryButton
+                    HorizontalOptions="Center"
+                    IsEnabled="{Binding IsEnabled}"
+                    Text="My Button" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</features:BasePage>

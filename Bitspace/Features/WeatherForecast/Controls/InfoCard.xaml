@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Border
+    x:Class="Bitspace.Features.InfoCard"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:copy="clr-namespace:Bitspace.Resources.Registers.Copy"
+    xmlns:ui="clr-namespace:Bitspace.UI;assembly=Bitspace"
+    x:Name="This"
+    StrokeShape="RoundRectangle 12"
+    StrokeThickness="1">
+    <Border.Resources>
+        <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+    </Border.Resources>
+    <Grid>
+        <ui:SkeletonSection
+            CornerRadius="0"
+            IsLoading="{Binding IsLoading, Source={x:Reference This}}"
+            IsVisible="{Binding IsLoading, Source={x:Reference This}}"
+            LoadingBackgroundColor="DarkGray" />
+        <Grid
+            Padding="12"
+            ColumnDefinitions="*, auto, *, auto, *"
+            HorizontalOptions="FillAndExpand">
+            <Grid
+                Grid.Column="0"
+                IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}, Source={x:Reference This}}"
+                RowDefinitions="*, *">
+                <Label
+                    Grid.Row="0"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Humidity, StringFormat='{0}%', Source={x:Reference This}}" />
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static copy:WeatherForecastPageRegister.Humidity}" />
+            </Grid>
+            <ui:Divider
+                Grid.Column="1"
+                HorizontalOptions="CenterAndExpand"
+                IsVertical="True"
+                Thickness="1" />
+            <Grid
+                Grid.Column="2"
+                IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}, Source={x:Reference This}}"
+                RowDefinitions="*, *">
+                <Label
+                    Grid.Row="0"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding WindSpeed, StringFormat='{0} m/s', Source={x:Reference This}}" />
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static copy:WeatherForecastPageRegister.WindSpeed}" />
+            </Grid>
+            <ui:Divider
+                Grid.Column="3"
+                HorizontalOptions="CenterAndExpand"
+                IsVertical="True"
+                Thickness="1" />
+            <Grid
+                Grid.Column="4"
+                IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}, Source={x:Reference This}}"
+                RowDefinitions="*, *">
+                <Label
+                    Grid.Row="0"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Pressure, StringFormat='{0} hPa', Source={x:Reference This}}" />
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static copy:WeatherForecastPageRegister.Pressure}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Border>

@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+/.idea
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -362,3 +363,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Bitspace/Bitspace/APIs/APIKeys.resx
+/azure-pipelines.yml.bak
